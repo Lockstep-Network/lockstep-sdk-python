@@ -16,7 +16,7 @@
 
 
 """
-Represents the response to either a successful or failed account
+Represents the response to either a successful or failed account 
 provisioning
 """
 class ProvisioningResponseModel:

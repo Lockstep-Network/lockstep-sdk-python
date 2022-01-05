@@ -16,7 +16,7 @@
 
 
 """
-Model containing information about a user for the invite/onboarding
+Model containing information about a user for the invite/onboarding 
 process.
 """
 class InviteDataModel:

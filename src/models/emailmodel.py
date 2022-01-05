@@ -21,11 +21,11 @@ from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from src.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
-An Email represents a communication sent from one company to another.
-The creator of the email is identified by the `CompanyId` field,
-recipient(s) by the `EmailTo` field, and cc recipient(s) by the
-'EmailCC' field. The Email Model represents an email and a number of
-different metadata attributes related to the creation, storage, and
+An Email represents a communication sent from one company to another. 
+The creator of the email is identified by the `CompanyId` field, 
+recipient(s) by the `EmailTo` field, and cc recipient(s) by the 
+'EmailCC' field. The Email Model represents an email and a number of 
+different metadata attributes related to the creation, storage, and 
 ownership of the email.
 """
 class EmailModel:
@@ -54,8 +54,6 @@ class EmailModel:
     externalThreadId: str
     emailBcc: str
     sendType: str
-    modified: str
-    modifiedUserId: str
     responseOriginId: str
     responseOrigin: EmailModel
     notes: list[NoteModel]

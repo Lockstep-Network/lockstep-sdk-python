@@ -21,9 +21,9 @@ class MigrationClient:
         self.client = client
 
     """
-    Migrates all customer data from the Lockstep Collect system to the API,
-    including all stored data for contacts, companies, payments, and
-    invoices.
+    Migrates all customer data from the Lockstep Collect system to the 
+    API, including all stored data for contacts, companies, payments, 
+    and invoices.
 
     Parameters
     ----------
@@ -33,8 +33,8 @@ class MigrationClient:
         return self.client.send_request("POST", path, None, None)
 
     """
-    Lists all of the customer, contact, payment, and invoice data currently
-    available for Migration.
+    Lists all of the customer, contact, payment, and invoice data 
+    currently available for Migration.
 
     Parameters
     ----------

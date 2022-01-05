@@ -23,8 +23,8 @@ class ProvisioningClient:
         self.client = client
 
     """
-    Creates a new User or updates an Invited user based on metadata provided
-    by the User during the onboarding process
+    Creates a new User or updates an Invited user based on metadata 
+    provided by the User during the onboarding process
 
     Parameters
     ----------
@@ -36,9 +36,9 @@ class ProvisioningClient:
         return self.client.send_request("POST", path, body, {body: ProvisioningModel})
 
     """
-    Updates user, company and group metadata for a User of status
-    'Onboarding' and finalizes a user's onboarding process by changing the
-    user status to 'Active'
+    Updates user, company and group metadata for a User of status 
+    'Onboarding' and finalizes a user's onboarding process by changing 
+    the user status to 'Active'
 
     Parameters
     ----------
