@@ -16,7 +16,8 @@
 
 
 """
-Represents all possible data required to set up an app enrollment for a connector.
+Represents all possible data required to set up an app enrollment for a
+connector.
 Only send required fields for the given connector.
 """
 class ConnectorInfoModel:

@@ -21,34 +21,41 @@ class UserRolesClient:
         self.client = client
 
     """
-    Retrieves the User Role with this identifier.
-    
+Retrieves the User Role with this identifier.
     Parameters
     ----------
     id : str
         The unique ID number of the User Role to retrieve
     include : str
-        To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
+        To fetch additional data on this object, specify the list of elements to
+        retrieve. No collections are currently available but may be offered in
+        the future
     """
     def retrieve_user_role(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/UserRoles/{id}"
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-    Queries User Roles for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
-    
+Queries User Roles for this account using the specified filtering,
+    sorting, nested fetch, and pagination rules requested.
     Parameters
     ----------
     filter : str
-        The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        The filter for this query. See [Searchlight Query
+        Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     include : str
-        To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
+        To fetch additional data on this object, specify the list of elements to
+        retrieve. No collections are currently available but may be offered in
+        the future
     order : str
-        The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        The sort order for this query. See See [Searchlight Query
+        Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     pageSize : int
-        The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        The page size for results (default 200). See [Searchlight Query
+        Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     pageNumber : int
-        The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        The page number for results (default 0). See [Searchlight Query
+        Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     """
     def query_user_roles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/UserRoles/query"

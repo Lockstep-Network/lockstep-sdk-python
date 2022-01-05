@@ -22,16 +22,20 @@ class CurrenciesClient:
         self.client = client
 
     """
-    Retrieve a currency conversation rate from one currency to another as of the specified date.              Optionally, you can specify which currency data provider to use.
-    
-                 The currency rate model contains all of the information used to make the API call, plus the rate to              use for the conversion.
-    
+Retrieve a currency conversation rate from one currency to another as of
+    the specified date. Optionally, you can specify which currency data
+    provider to use. The currency rate model contains all of the information
+    used to make the API call, plus the rate to use for the conversion.
     Parameters
     ----------
     sourceCurrency : str
-        The ISO 4217 currency code of the origin currency. For a list of currency codes, call List Currencies.
+        The ISO 4217 currency code of the origin currency.
+For a list of
+        currency codes, call List Currencies.
     destinationCurrency : str
-        The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.
+        The ISO 4217 currency code of the target currency.
+For a list of
+        currency codes, call List Currencies.
     date : str
         The date for which we should cto use for this currency conversion.
     dataProvider : str
@@ -42,8 +46,9 @@ class CurrenciesClient:
         return self.client.send_request("GET", path, None, {sourceCurrency: str, destinationCurrency: str, date: str, dataProvider: str})
 
     """
-    Receives an array of dates and currencies and a destination currency and returns an array of the corresponding currency rates to the given destination currency (Limit X).
-    
+Receives an array of dates and currencies and a destination currency and
+    returns an array of the corresponding currency rates to the given
+    destination currency (Limit X).
     Parameters
     ----------
     destinationCurrency : str

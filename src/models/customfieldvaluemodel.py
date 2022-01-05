@@ -17,12 +17,20 @@
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 """
-A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
-core definition for each object.  The core definition is intended to represent a level of compatibility
-that provides support across most accounting systems and products.  When a user or developer requires
-information beyond this core definition, you can use Custom Fields to represent this information.
+A Custom Field represents metadata added to an object within the
+Lockstep Platform. Lockstep provides a
+core definition for each object.
+The core definition is intended to represent a level of
+compatibility
+that provides support across most accounting systems and
+products. When a user or developer requires
+information beyond this
+core definition, you can use Custom Fields to represent this
+information.
 
-See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+See
+[Extensibility](https://developer.lockstep.io/docs/extensibility) for
+more information.
 """
 class CustomFieldValueModel:
     groupKey: str

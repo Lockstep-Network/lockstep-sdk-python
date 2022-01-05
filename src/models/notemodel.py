@@ -16,12 +16,16 @@
 
 
 """
-A note is a customizable text string that can be attached to various account attributes
-within Lockstep. You can use notes for internal communication, correspondence with
-clients, or personal reminders. The Note Model represents a note and a number of
-different metadata attributes related to the creation, storage, and ownership of the note.
-
-See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+A note is a customizable text string that can be attached to various
+account attributes
+within Lockstep. You can use notes for internal
+communication, correspondence with
+clients, or personal reminders. The
+Note Model represents a note and a number of
+different metadata
+attributes related to the creation, storage, and ownership of the note.
+See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+for more information.
 """
 class NoteModel:
     noteId: str

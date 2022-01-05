@@ -16,7 +16,8 @@
 
 
 """
-Represents all the possible data sent as a part of the provisioning post.
+Represents all the possible data sent as a part of the provisioning
+post.
 Only send required fields for the given connector.
 """
 class ErpInfoDataModel:

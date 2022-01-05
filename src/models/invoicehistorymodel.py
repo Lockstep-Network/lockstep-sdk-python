@@ -16,9 +16,13 @@
 
 
 """
-An Invoice represents a bill sent from one company to another.  The Lockstep Platform tracks changes to
-each Invoice so that you can observe the changes over time.  You can view the InvoiceHistory list to
-monitor and observe the changes of this Invoice and track the dates when changes occurred.
+An Invoice represents a bill sent from one company to another. The
+Lockstep Platform tracks changes to
+each Invoice so that you can
+observe the changes over time. You can view the InvoiceHistory list
+to
+monitor and observe the changes of this Invoice and track the dates
+when changes occurred.
 """
 class InvoiceHistoryModel:
     groupKey: str

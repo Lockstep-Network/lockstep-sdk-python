@@ -20,10 +20,16 @@ from src.models.customfieldvaluemodel import CustomFieldValueModel
 from src.models.codedefinitionmodel import CodeDefinitionModel
 
 """
-A User represents a person who has the ability to authenticate against the Lockstep Platform and use
-services such as Lockstep Insights.  A User is uniquely identified by an Azure identity, and each user must
-have an email address defined within their account.  All Users must validate their email to make use of
-Lockstep platform services.  Users may have different privileges and access control rights within the
+A User represents a person who has the ability to authenticate against
+the Lockstep Platform and use
+services such as Lockstep Insights. A
+User is uniquely identified by an Azure identity, and each user
+must
+have an email address defined within their account. All Users must
+validate their email to make use of
+Lockstep platform services. Users
+may have different privileges and access control rights within
+the
 Lockstep Platform.
 """
 class UserAccountModel:

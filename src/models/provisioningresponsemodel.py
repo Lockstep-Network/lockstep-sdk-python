@@ -16,7 +16,8 @@
 
 
 """
-Represents the response to either a successful or failed account provisioning
+Represents the response to either a successful or failed account
+provisioning
 """
 class ProvisioningResponseModel:
     userName: str
