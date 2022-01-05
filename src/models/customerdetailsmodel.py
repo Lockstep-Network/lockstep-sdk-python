@@ -21,24 +21,24 @@ Contains customer details data
 """
 @dataclass
 class CustomerDetailsModel:
-    groupKey: str
-    customerId: str
-    name: str
-    address1: str
-    address2: str
-    address3: str
-    city: str
-    state: str
-    postalCode: str
-    country: str
-    phoneNumber: str
-    faxNumber: str
-    email: str
-    contactId: str
-    contactName: str
-    contactEmail: str
-    outstandingInvoices: int
-    outstandingAmount: float
-    amountPastDue: float
-    payments: list[CustomerDetailsPaymentModel]
+    groupKey: str = None
+    customerId: str = None
+    name: str = None
+    address1: str = None
+    address2: str = None
+    address3: str = None
+    city: str = None
+    state: str = None
+    postalCode: str = None
+    country: str = None
+    phoneNumber: str = None
+    faxNumber: str = None
+    email: str = None
+    contactId: str = None
+    contactName: str = None
+    contactEmail: str = None
+    outstandingInvoices: int = None
+    outstandingAmount: float = None
+    amountPastDue: float = None
+    payments: list[CustomerDetailsPaymentModel] = None
 

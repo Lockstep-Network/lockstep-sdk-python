@@ -26,15 +26,15 @@ for more information.
 """
 @dataclass
 class NoteModel:
-    noteId: str
-    groupKey: str
-    tableKey: str
-    objectKey: str
-    noteText: str
-    noteType: str
-    isArchived: bool
-    created: str
-    createdUserId: str
-    createdUserName: str
-    appEnrollmentId: str
+    noteId: str = None
+    groupKey: str = None
+    tableKey: str = None
+    objectKey: str = None
+    noteText: str = None
+    noteType: str = None
+    isArchived: bool = None
+    created: str = None
+    createdUserId: str = None
+    createdUserName: str = None
+    appEnrollmentId: str = None
 

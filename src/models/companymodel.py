@@ -32,52 +32,52 @@ for more information.
 """
 @dataclass
 class CompanyModel:
-    companyId: str
-    companyName: str
-    erpKey: str
-    companyType: str
-    companyStatus: str
-    parentCompanyId: str
-    enterpriseId: str
-    groupKey: str
-    isActive: bool
-    defaultCurrencyCode: str
-    companyLogoUrl: str
-    primaryContactId: str
-    address1: str
-    address2: str
-    address3: str
-    corpCity: str
-    corpState: str
-    corpPostalCode: str
-    corpCountry: str
-    corpPhone: str
-    corpFax: str
-    city: str
-    stateRegion: str
-    postalCode: str
-    country: str
-    phoneNumber: str
-    faxNumber: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    modifiedUserName: str
-    taxId: str
-    dunsNumber: str
-    apEmailAddress: str
-    arEmailAddress: str
-    domainName: str
-    companyClassificationCodeDefId: str
-    description: str
-    website: str
-    appEnrollmentId: str
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    contacts: list[ContactModel]
-    invoices: list[object]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
-    companyClassificationCodeDefinition: CodeDefinitionModel
+    companyId: str = None
+    companyName: str = None
+    erpKey: str = None
+    companyType: str = None
+    companyStatus: str = None
+    parentCompanyId: str = None
+    enterpriseId: str = None
+    groupKey: str = None
+    isActive: bool = None
+    defaultCurrencyCode: str = None
+    companyLogoUrl: str = None
+    primaryContactId: str = None
+    address1: str = None
+    address2: str = None
+    address3: str = None
+    corpCity: str = None
+    corpState: str = None
+    corpPostalCode: str = None
+    corpCountry: str = None
+    corpPhone: str = None
+    corpFax: str = None
+    city: str = None
+    stateRegion: str = None
+    postalCode: str = None
+    country: str = None
+    phoneNumber: str = None
+    faxNumber: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    modifiedUserName: str = None
+    taxId: str = None
+    dunsNumber: str = None
+    apEmailAddress: str = None
+    arEmailAddress: str = None
+    domainName: str = None
+    companyClassificationCodeDefId: str = None
+    description: str = None
+    website: str = None
+    appEnrollmentId: str = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    contacts: list[ContactModel] = None
+    invoices: list[object] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
+    companyClassificationCodeDefinition: CodeDefinitionModel = None
 

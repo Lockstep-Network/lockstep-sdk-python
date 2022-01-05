@@ -20,7 +20,7 @@ State model for ISO-3166-2
 """
 @dataclass
 class StateModel:
-    name: str
-    alpha2: str
-    aliases: str
+    name: str = None
+    alpha2: str = None
+    aliases: str = None
 

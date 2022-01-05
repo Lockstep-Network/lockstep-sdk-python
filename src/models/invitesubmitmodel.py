@@ -20,5 +20,5 @@ Model to invite a new user to your accounting group
 """
 @dataclass
 class InviteSubmitModel:
-    email: str
+    email: str = None
 

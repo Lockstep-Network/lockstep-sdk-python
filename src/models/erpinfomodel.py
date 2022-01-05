@@ -21,6 +21,6 @@ Represents the ERP object sent in a provisioning request
 """
 @dataclass
 class ErpInfoModel:
-    appId: str
-    data: ConnectorInfoModel
+    appId: str = None
+    data: ConnectorInfoModel = None
 

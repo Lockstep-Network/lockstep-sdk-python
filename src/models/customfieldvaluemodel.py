@@ -29,15 +29,15 @@ for more information.
 """
 @dataclass
 class CustomFieldValueModel:
-    groupKey: str
-    customFieldDefinitionId: str
-    recordKey: str
-    stringValue: str
-    numericValue: float
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    customFieldDefinition: CustomFieldDefinitionModel
+    groupKey: str = None
+    customFieldDefinitionId: str = None
+    recordKey: str = None
+    stringValue: str = None
+    numericValue: float = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    customFieldDefinition: CustomFieldDefinitionModel = None
 

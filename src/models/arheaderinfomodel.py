@@ -20,25 +20,25 @@ Aggregated Accounts Receivable information.
 """
 @dataclass
 class ArHeaderInfoModel:
-    groupKey: str
-    reportPeriod: str
-    totalCustomers: int
-    totalInvoices: int
-    totalInvoicedAmount: float
-    totalUnappliedPayments: float
-    totalCollected: float
-    totalArAmount: float
-    totalInvoicesPaid: int
-    totalInvoicesPastDue: int
-    totalInvoices90DaysPastDue: int
-    totalPastDueAmount: float
-    totalPastDueAmount90Days: float
-    percentageOfTotalAr: float
-    dso: float
-    totalInvoiceAmountCurrentYear: float
-    totalInvoiceAmountPreviousYear: float
-    totalPaymentAmountCurrentYear: float
-    totalCollectedPastThirtyDays: int
-    totalInvoicesPaidPastThirtyDays: int
-    percentageOfTotalAr90DaysPastDue: float
+    groupKey: str = None
+    reportPeriod: str = None
+    totalCustomers: int = None
+    totalInvoices: int = None
+    totalInvoicedAmount: float = None
+    totalUnappliedPayments: float = None
+    totalCollected: float = None
+    totalArAmount: float = None
+    totalInvoicesPaid: int = None
+    totalInvoicesPastDue: int = None
+    totalInvoices90DaysPastDue: int = None
+    totalPastDueAmount: float = None
+    totalPastDueAmount90Days: float = None
+    percentageOfTotalAr: float = None
+    dso: float = None
+    totalInvoiceAmountCurrentYear: float = None
+    totalInvoiceAmountPreviousYear: float = None
+    totalPaymentAmountCurrentYear: float = None
+    totalCollectedPastThirtyDays: int = None
+    totalInvoicesPaidPastThirtyDays: int = None
+    percentageOfTotalAr90DaysPastDue: float = None
 

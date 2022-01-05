@@ -34,30 +34,30 @@ deposit that has been paid and not yet applied to an Invoice.
 """
 @dataclass
 class PaymentModel:
-    groupKey: str
-    paymentId: str
-    companyId: str
-    erpKey: str
-    paymentType: str
-    tenderType: str
-    isOpen: bool
-    memoText: str
-    paymentDate: str
-    postDate: str
-    paymentAmount: float
-    unappliedAmount: float
-    currencyCode: str
-    referenceCode: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    isVoided: bool
-    inDispute: bool
-    applications: list[PaymentAppliedModel]
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    groupKey: str = None
+    paymentId: str = None
+    companyId: str = None
+    erpKey: str = None
+    paymentType: str = None
+    tenderType: str = None
+    isOpen: bool = None
+    memoText: str = None
+    paymentDate: str = None
+    postDate: str = None
+    paymentAmount: float = None
+    unappliedAmount: float = None
+    currencyCode: str = None
+    referenceCode: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    isVoided: bool = None
+    inDispute: bool = None
+    applications: list[PaymentAppliedModel] = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

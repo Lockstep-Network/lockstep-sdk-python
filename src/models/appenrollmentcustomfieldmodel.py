@@ -20,15 +20,15 @@ App enrollment and custom field merged into one
 """
 @dataclass
 class AppEnrollmentCustomFieldModel:
-    appEnrollmentId: str
-    appId: str
-    name: str
-    appType: str
-    groupKey: str
-    customFieldDefinitionId: str
-    customFieldLabel: str
-    dataType: str
-    sortOrder: int
-    stringValue: str
-    numericValue: float
+    appEnrollmentId: str = None
+    appId: str = None
+    name: str = None
+    appType: str = None
+    groupKey: str = None
+    customFieldDefinitionId: str = None
+    customFieldLabel: str = None
+    dataType: str = None
+    sortOrder: int = None
+    stringValue: str = None
+    numericValue: float = None
 

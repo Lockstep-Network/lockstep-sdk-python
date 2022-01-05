@@ -20,7 +20,7 @@ Represents an aging record
 """
 @dataclass
 class AgingModel:
-    bucket: int
-    currencyCode: str
-    outstandingBalance: float
+    bucket: int = None
+    currencyCode: str = None
+    outstandingBalance: float = None
 

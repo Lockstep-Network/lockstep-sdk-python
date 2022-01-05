@@ -20,9 +20,9 @@ Represents the cashflow report based on a timeframe
 """
 @dataclass
 class CashflowReportModel:
-    timeframe: int
-    paymentsCollected: float
-    paymentsCollectedCount: int
-    invoicesBilled: float
-    invoicesBilledCount: int
+    timeframe: int = None
+    paymentsCollected: float = None
+    paymentsCollectedCount: int = None
+    invoicesBilled: float = None
+    invoicesBilledCount: int = None
 

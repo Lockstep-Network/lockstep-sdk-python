@@ -28,30 +28,30 @@ task, and any amounts collected, paid, or credited for the task.
 """
 @dataclass
 class ActivityModel:
-    activityId: str
-    groupKey: str
-    companyId: str
-    activityTypeCode: str
-    activityName: str
-    activityDescription: str
-    activityStatus: str
-    isOpen: bool
-    priority: str
-    userAssignedTo: str
-    dateAssigned: str
-    dateClosed: str
-    snoozeUntilDate: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    amountCollected: float
-    amountPaid: float
-    creditGiven: float
-    isUnread: bool
-    isArchived: bool
-    attachments: list[AttachmentModel]
-    notes: list[NoteModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    activityId: str = None
+    groupKey: str = None
+    companyId: str = None
+    activityTypeCode: str = None
+    activityName: str = None
+    activityDescription: str = None
+    activityStatus: str = None
+    isOpen: bool = None
+    priority: str = None
+    userAssignedTo: str = None
+    dateAssigned: str = None
+    dateClosed: str = None
+    snoozeUntilDate: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    amountCollected: float = None
+    amountPaid: float = None
+    creditGiven: float = None
+    isUnread: bool = None
+    isArchived: bool = None
+    attachments: list[AttachmentModel] = None
+    notes: list[NoteModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

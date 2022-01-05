@@ -20,6 +20,6 @@ Input format used for bulk conversion route
 """
 @dataclass
 class BulkCurrencyConversionModel:
-    date: str
-    sourceCurrency: str
+    date: str = None
+    sourceCurrency: str = None
 

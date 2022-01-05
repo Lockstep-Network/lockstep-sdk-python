@@ -27,14 +27,14 @@ Keys](https://developer.lockstep.io/docs/api-keys).
 """
 @dataclass
 class ApiKeyModel:
-    apiKeyId: str
-    groupKey: str
-    name: str
-    apiKey: str
-    keyPrefix: str
-    created: str
-    createdUserId: str
-    revoked: str
-    revokedUserId: str
-    expires: str
+    apiKeyId: str = None
+    groupKey: str = None
+    name: str = None
+    apiKey: str = None
+    keyPrefix: str = None
+    created: str = None
+    createdUserId: str = None
+    revoked: str = None
+    revokedUserId: str = None
+    expires: str = None
 

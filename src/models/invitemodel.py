@@ -21,8 +21,8 @@ Model from the User invite process
 """
 @dataclass
 class InviteModel:
-    email: str
-    success: bool
-    invitedUser: UserAccountModel
-    errorMessage: str
+    email: str = None
+    success: bool = None
+    invitedUser: UserAccountModel = None
+    errorMessage: str = None
 

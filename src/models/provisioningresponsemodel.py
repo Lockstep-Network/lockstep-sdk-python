@@ -21,11 +21,11 @@ provisioning
 """
 @dataclass
 class ProvisioningResponseModel:
-    userName: str
-    accountName: str
-    userId: str
-    groupKey: str
-    appEnrollmentId: str
-    syncRequestId: str
-    errorMessage: str
+    userName: str = None
+    accountName: str = None
+    userId: str = None
+    groupKey: str = None
+    appEnrollmentId: str = None
+    syncRequestId: str = None
+    errorMessage: str = None
 

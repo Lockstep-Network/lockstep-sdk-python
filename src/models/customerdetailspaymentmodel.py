@@ -20,14 +20,14 @@ Customer payment collected information
 """
 @dataclass
 class CustomerDetailsPaymentModel:
-    groupKey: str
-    paymentId: str
-    paymentAppliedId: str
-    paymentType: str
-    invoiceId: str
-    invoiceTypeCode: str
-    invoiceReferenceCode: str
-    invoiceTotalAmount: float
-    paymentDate: str
-    paymentAmount: float
+    groupKey: str = None
+    paymentId: str = None
+    paymentAppliedId: str = None
+    paymentType: str = None
+    invoiceId: str = None
+    invoiceTypeCode: str = None
+    invoiceReferenceCode: str = None
+    invoiceTotalAmount: float = None
+    paymentDate: str = None
+    paymentAmount: float = None
 

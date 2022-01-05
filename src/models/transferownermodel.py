@@ -22,6 +22,6 @@ Model from the transfer ownership process.
 """
 @dataclass
 class TransferOwnerModel:
-    previousOwner: UserAccountModel
-    newOwner: UserAccountModel
+    previousOwner: UserAccountModel = None
+    newOwner: UserAccountModel = None
 

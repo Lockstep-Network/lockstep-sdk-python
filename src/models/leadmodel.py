@@ -20,9 +20,9 @@ Represents leads for creating new ERP connectors
 """
 @dataclass
 class LeadModel:
-    leadId: str
-    name: str
-    company: str
-    email: str
-    erpSystem: str
+    leadId: str = None
+    name: str = None
+    company: str = None
+    email: str = None
+    erpSystem: str = None
 

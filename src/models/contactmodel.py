@@ -27,34 +27,34 @@ at a particular customer or vendor you should speak with about invoices.
 """
 @dataclass
 class ContactModel:
-    contactId: str
-    companyId: str
-    groupKey: str
-    erpKey: str
-    contactName: str
-    contactCode: str
-    title: str
-    roleCode: str
-    emailAddress: str
-    phone: str
-    fax: str
-    address1: str
-    address2: str
-    address3: str
-    city: str
-    stateRegion: str
-    postalCode: str
-    countryCode: str
-    isActive: bool
-    webpageUrl: str
-    pictureUrl: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    contactId: str = None
+    companyId: str = None
+    groupKey: str = None
+    erpKey: str = None
+    contactName: str = None
+    contactCode: str = None
+    title: str = None
+    roleCode: str = None
+    emailAddress: str = None
+    phone: str = None
+    fax: str = None
+    address1: str = None
+    address2: str = None
+    address3: str = None
+    city: str = None
+    stateRegion: str = None
+    postalCode: str = None
+    countryCode: str = None
+    isActive: bool = None
+    webpageUrl: str = None
+    pictureUrl: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

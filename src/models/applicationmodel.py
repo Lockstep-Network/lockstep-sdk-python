@@ -34,23 +34,23 @@ for more information. --swaggerCategory:Platform
 """
 @dataclass
 class ApplicationModel:
-    appId: str
-    name: str
-    description: str
-    appType: str
-    ownerId: str
-    projectUrl: str
-    iconUrl: str
-    priceTerms: str
-    createdUserId: str
-    modifiedUserId: str
-    created: str
-    modified: str
-    isActive: bool
-    wikiURL: str
-    groupKey: str
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    appId: str = None
+    name: str = None
+    description: str = None
+    appType: str = None
+    ownerId: str = None
+    projectUrl: str = None
+    iconUrl: str = None
+    priceTerms: str = None
+    createdUserId: str = None
+    modifiedUserId: str = None
+    created: str = None
+    modified: str = None
+    isActive: bool = None
+    wikiURL: str = None
+    groupKey: str = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

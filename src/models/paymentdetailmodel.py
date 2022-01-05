@@ -20,26 +20,26 @@ Contains detailed information about a Payment.
 """
 @dataclass
 class PaymentDetailModel:
-    groupKey: str
-    paymentId: str
-    customerId: str
-    customerName: str
-    memoText: str
-    referenceCode: str
-    primaryContact: str
-    email: str
-    paymentAmount: float
-    unappliedAmount: float
-    paymentType: str
-    paymentDate: str
-    postDate: str
-    phone: str
-    fax: str
-    address1: str
-    address2: str
-    address3: str
-    city: str
-    stateRegion: str
-    postalCode: str
-    countryCode: str
+    groupKey: str = None
+    paymentId: str = None
+    customerId: str = None
+    customerName: str = None
+    memoText: str = None
+    referenceCode: str = None
+    primaryContact: str = None
+    email: str = None
+    paymentAmount: float = None
+    unappliedAmount: float = None
+    paymentType: str = None
+    paymentDate: str = None
+    postDate: str = None
+    phone: str = None
+    fax: str = None
+    address1: str = None
+    address2: str = None
+    address3: str = None
+    city: str = None
+    stateRegion: str = None
+    postalCode: str = None
+    countryCode: str = None
 

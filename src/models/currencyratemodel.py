@@ -20,8 +20,8 @@ Represents a currency rate for specific currencies and date
 """
 @dataclass
 class CurrencyRateModel:
-    sourceCurrency: str
-    destinationCurrency: str
-    date: str
-    currencyRate: float
+    sourceCurrency: str = None
+    destinationCurrency: str = None
+    date: str = None
+    currencyRate: float = None
 

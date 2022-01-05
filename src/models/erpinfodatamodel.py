@@ -21,7 +21,7 @@ post. Only send required fields for the given connector.
 """
 @dataclass
 class ErpInfoDataModel:
-    authCode: str
-    realmId: str
-    redirectUri: str
+    authCode: str = None
+    realmId: str = None
+    redirectUri: str = None
 

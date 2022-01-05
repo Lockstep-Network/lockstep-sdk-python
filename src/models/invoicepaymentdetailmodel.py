@@ -20,14 +20,14 @@ View to return Payment Detail information for a given Invoice record.
 """
 @dataclass
 class InvoicePaymentDetailModel:
-    groupKey: str
-    paymentAppliedId: str
-    invoiceId: str
-    paymentId: str
-    applyToInvoiceDate: str
-    paymentAppliedAmount: float
-    referenceCode: str
-    companyId: str
-    paymentAmount: float
-    unappliedAmount: float
+    groupKey: str = None
+    paymentAppliedId: str = None
+    invoiceId: str = None
+    paymentId: str = None
+    applyToInvoiceDate: str = None
+    paymentAppliedAmount: float = None
+    referenceCode: str = None
+    companyId: str = None
+    paymentAmount: float = None
+    unappliedAmount: float = None
 

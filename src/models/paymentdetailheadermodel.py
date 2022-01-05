@@ -20,10 +20,10 @@ Contains group level payment data.
 """
 @dataclass
 class PaymentDetailHeaderModel:
-    groupKey: str
-    customerCount: int
-    amountCollected: float
-    unappliedAmount: float
-    paidInvoiceCount: int
-    openInvoiceCount: int
+    groupKey: str = None
+    customerCount: int = None
+    amountCollected: float = None
+    unappliedAmount: float = None
+    paidInvoiceCount: int = None
+    openInvoiceCount: int = None
 

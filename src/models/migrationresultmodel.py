@@ -20,15 +20,15 @@ Information about the migration action for a particular group
 """
 @dataclass
 class MigrationResultModel:
-    messages: list[str]
-    groupKey: str
-    invoiceCount: int
-    addressCount: int
-    invoiceFieldCount: int
-    lineCount: int
-    contactCount: int
-    companyCount: int
-    paymentCount: int
-    paymentFieldCount: int
-    paymentAppliedCount: int
+    messages: list[str] = None
+    groupKey: str = None
+    invoiceCount: int = None
+    addressCount: int = None
+    invoiceFieldCount: int = None
+    lineCount: int = None
+    contactCount: int = None
+    companyCount: int = None
+    paymentCount: int = None
+    paymentFieldCount: int = None
+    paymentAppliedCount: int = None
 

@@ -20,20 +20,20 @@ Contains summarized data for an invoice
 """
 @dataclass
 class AtRiskInvoiceSummaryModel:
-    reportDate: str
-    groupKey: str
-    customerId: str
-    invoiceId: str
-    invoiceNumber: str
-    invoiceDate: str
-    customerName: str
-    status: str
-    paymentDueDate: str
-    invoiceAmount: float
-    outstandingBalance: float
-    invoiceTypeCode: str
-    newestActivity: str
-    daysPastDue: int
-    paymentNumbers: list[str]
-    paymentIds: list[str]
+    reportDate: str = None
+    groupKey: str = None
+    customerId: str = None
+    invoiceId: str = None
+    invoiceNumber: str = None
+    invoiceDate: str = None
+    customerName: str = None
+    status: str = None
+    paymentDueDate: str = None
+    invoiceAmount: float = None
+    outstandingBalance: float = None
+    invoiceTypeCode: str = None
+    newestActivity: str = None
+    daysPastDue: int = None
+    paymentNumbers: list[str] = None
+    paymentIds: list[str] = None
 

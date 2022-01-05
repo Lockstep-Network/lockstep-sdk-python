@@ -20,16 +20,16 @@ Country model for ISO-3166
 """
 @dataclass
 class CountryModel:
-    name: str
-    alpha2: str
-    alpha3: str
-    countryCode: int
-    region: str
-    subRegion: str
-    intermediateRegion: str
-    regionCode: int
-    subRegionCode: int
-    intermediateRegionCode: int
-    frenchName: str
-    aliases: str
+    name: str = None
+    alpha2: str = None
+    alpha3: str = None
+    countryCode: int = None
+    region: str = None
+    subRegion: str = None
+    intermediateRegion: str = None
+    regionCode: int = None
+    subRegionCode: int = None
+    intermediateRegionCode: int = None
+    frenchName: str = None
+    aliases: str = None
 

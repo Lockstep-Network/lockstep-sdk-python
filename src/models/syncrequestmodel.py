@@ -20,13 +20,13 @@ Represents a user request to sync data
 """
 @dataclass
 class SyncRequestModel:
-    syncRequestId: str
-    groupKey: str
-    statusCode: str
-    processResultMessage: str
-    appEnrollmentId: str
-    created: str
-    modified: str
-    modifiedUserId: str
-    details: object
+    syncRequestId: str = None
+    groupKey: str = None
+    statusCode: str = None
+    processResultMessage: str = None
+    appEnrollmentId: str = None
+    created: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    details: object = None
 

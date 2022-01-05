@@ -30,21 +30,21 @@ paid using this Credit.
 """
 @dataclass
 class CreditMemoAppliedModel:
-    creditMemoAppliedId: str
-    groupKey: str
-    invoiceId: str
-    creditMemoInvoiceId: str
-    erpKey: str
-    entryNumber: int
-    applyToInvoiceDate: str
-    creditMemoAppliedAmount: float
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    attachments: list[AttachmentModel]
-    notes: list[NoteModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    creditMemoAppliedId: str = None
+    groupKey: str = None
+    invoiceId: str = None
+    creditMemoInvoiceId: str = None
+    erpKey: str = None
+    entryNumber: int = None
+    applyToInvoiceDate: str = None
+    creditMemoAppliedAmount: float = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    attachments: list[AttachmentModel] = None
+    notes: list[NoteModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

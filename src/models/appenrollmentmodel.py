@@ -33,20 +33,20 @@ for more information.
 """
 @dataclass
 class AppEnrollmentModel:
-    appEnrollmentId: str
-    appId: str
-    groupKey: str
-    isActive: bool
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    cronSettings: str
-    syncScheduleIsActive: bool
-    app: ApplicationModel
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
-    lastSync: SyncRequestModel
-    erpInfo: ErpInfoDataModel
-    connectorInfo: ConnectorInfoModel
+    appEnrollmentId: str = None
+    appId: str = None
+    groupKey: str = None
+    isActive: bool = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    cronSettings: str = None
+    syncScheduleIsActive: bool = None
+    app: ApplicationModel = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
+    lastSync: SyncRequestModel = None
+    erpInfo: ErpInfoDataModel = None
+    connectorInfo: ConnectorInfoModel = None
 

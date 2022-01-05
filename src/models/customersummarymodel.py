@@ -20,19 +20,19 @@ Contains summarized data for a customer
 """
 @dataclass
 class CustomerSummaryModel:
-    groupKey: str
-    companyId: str
-    companyName: str
-    primaryContact: str
-    outstandingInvoices: int
-    totalInvoicesOpen: int
-    totalInvoicesPastDue: int
-    closedInvoices: int
-    amountCollected: float
-    outstandingAmount: float
-    amountPastDue: float
-    unappliedPayments: float
-    percentOfTotalAr: float
-    dso: float
-    newestActivity: str
+    groupKey: str = None
+    companyId: str = None
+    companyName: str = None
+    primaryContact: str = None
+    outstandingInvoices: int = None
+    totalInvoicesOpen: int = None
+    totalInvoicesPastDue: int = None
+    closedInvoices: int = None
+    amountCollected: float = None
+    outstandingAmount: float = None
+    amountPastDue: float = None
+    unappliedPayments: float = None
+    percentOfTotalAr: float = None
+    dso: float = None
+    newestActivity: str = None
 

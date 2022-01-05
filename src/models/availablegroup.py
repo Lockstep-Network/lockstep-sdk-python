@@ -20,11 +20,11 @@ Data counts for the GroupKey.
 """
 @dataclass
 class AvailableGroup:
-    groupKey: str
-    invoiceCount: int
-    lineCount: int
-    companyCount: int
-    contactCount: int
-    paymentCount: int
-    paymentAppliedCount: int
+    groupKey: str = None
+    invoiceCount: int = None
+    lineCount: int = None
+    companyCount: int = None
+    contactCount: int = None
+    paymentCount: int = None
+    paymentAppliedCount: int = None
 

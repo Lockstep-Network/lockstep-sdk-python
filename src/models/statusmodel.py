@@ -20,16 +20,16 @@ Represents the status of a user's credentials
 """
 @dataclass
 class StatusModel:
-    userName: str
-    accountName: str
-    accountCompanyId: str
-    userId: str
-    groupKey: str
-    loggedIn: bool
-    errorMessage: str
-    roles: list[str]
-    lastLoggedIn: str
-    apiKeyId: str
-    userStatus: str
-    dependencies: object
+    userName: str = None
+    accountName: str = None
+    accountCompanyId: str = None
+    userId: str = None
+    groupKey: str = None
+    loggedIn: bool = None
+    errorMessage: str = None
+    roles: list[str] = None
+    lastLoggedIn: str = None
+    apiKeyId: str = None
+    userStatus: str = None
+    dependencies: object = None
 

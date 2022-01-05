@@ -21,8 +21,8 @@ connector. Only send required fields for the given connector.
 """
 @dataclass
 class ConnectorInfoModel:
-    authCode: str
-    realmId: str
-    redirectUri: str
-    email: str
+    authCode: str = None
+    realmId: str = None
+    redirectUri: str = None
+    email: str = None
 

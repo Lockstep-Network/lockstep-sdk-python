@@ -22,9 +22,9 @@ Represents the data to finalize onboarding for a user
 """
 @dataclass
 class ProvisioningFinalizeRequestModel:
-    fullName: str
-    timeZone: str
-    defaultCurrency: str
-    company: CompanyModel
-    emailConnector: ErpInfoModel
+    fullName: str = None
+    timeZone: str = None
+    defaultCurrency: str = None
+    company: CompanyModel = None
+    emailConnector: ErpInfoModel = None
 

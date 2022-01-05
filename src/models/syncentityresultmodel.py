@@ -20,9 +20,9 @@ Contains information about a sync process for an entity.
 """
 @dataclass
 class SyncEntityResultModel:
-    insertCount: int
-    updateCount: int
-    skipCount: int
-    errorCount: int
-    errors: object
+    insertCount: int = None
+    updateCount: int = None
+    skipCount: int = None
+    errorCount: int = None
+    errors: object = None
 

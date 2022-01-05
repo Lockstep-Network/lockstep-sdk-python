@@ -20,9 +20,9 @@ Aggregated Attachment status information.
 """
 @dataclass
 class AttachmentHeaderInfoModel:
-    groupKey: str
-    companyId: str
-    totalAttachments: int
-    totalArchived: int
-    totalActive: int
+    groupKey: str = None
+    companyId: str = None
+    totalAttachments: int = None
+    totalArchived: int = None
+    totalActive: int = None
 

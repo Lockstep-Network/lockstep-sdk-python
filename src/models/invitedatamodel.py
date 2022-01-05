@@ -21,6 +21,6 @@ process.
 """
 @dataclass
 class InviteDataModel:
-    email: str
-    userStatus: str
+    email: str = None
+    userStatus: str = None
 

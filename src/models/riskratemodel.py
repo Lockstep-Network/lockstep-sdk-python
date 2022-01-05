@@ -20,13 +20,13 @@ Represents a risk rate calculation for a single month
 """
 @dataclass
 class RiskRateModel:
-    groupKey: str
-    reportPeriod: str
-    invoiceMonthName: str
-    totalInvoiceCount: int
-    totalInvoiceAmount: float
-    atRiskCount: int
-    atRiskAmount: float
-    atRiskCountPercentage: float
-    atRiskPercentage: float
+    groupKey: str = None
+    reportPeriod: str = None
+    invoiceMonthName: str = None
+    totalInvoiceCount: int = None
+    totalInvoiceAmount: float = None
+    atRiskCount: int = None
+    atRiskAmount: float = None
+    atRiskCountPercentage: float = None
+    atRiskPercentage: float = None
 

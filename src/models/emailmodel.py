@@ -30,35 +30,35 @@ ownership of the email.
 """
 @dataclass
 class EmailModel:
-    emailId: str
-    threadId: str
-    groupKey: str
-    companyId: str
-    emailFrom: str
-    emailTo: str
-    emailCC: str
-    emailSubject: str
-    emailBody: str
-    sentDate: str
-    isUnread: bool
-    isPriority: bool
-    isSpam: bool
-    created: str
-    createdUserId: str
-    toBeSent: bool
-    customerId: str
-    receivedTimeStamp: str
-    openedTimestamp: str
-    viewCount: int
-    appEnrollmentId: str
-    externalEmailId: str
-    externalThreadId: str
-    emailBcc: str
-    sendType: str
-    responseOriginId: str
-    responseOrigin: EmailModel
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
-    customFieldValues: list[CustomFieldValueModel]
+    emailId: str = None
+    threadId: str = None
+    groupKey: str = None
+    companyId: str = None
+    emailFrom: str = None
+    emailTo: str = None
+    emailCC: str = None
+    emailSubject: str = None
+    emailBody: str = None
+    sentDate: str = None
+    isUnread: bool = None
+    isPriority: bool = None
+    isSpam: bool = None
+    created: str = None
+    createdUserId: str = None
+    toBeSent: bool = None
+    customerId: str = None
+    receivedTimeStamp: str = None
+    openedTimestamp: str = None
+    viewCount: int = None
+    appEnrollmentId: str = None
+    externalEmailId: str = None
+    externalThreadId: str = None
+    emailBcc: str = None
+    sendType: str = None
+    responseOriginId: str = None
+    responseOrigin: EmailModel = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
 

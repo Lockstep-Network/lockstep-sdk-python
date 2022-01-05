@@ -30,36 +30,36 @@ Platform.
 """
 @dataclass
 class UserAccountModel:
-    userId: str
-    groupKey: str
-    userName: str
-    email: str
-    status: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    modifiedUserName: str
-    b2CUserId: str
-    userRole: str
-    inviteSent: str
-    phoneNumber: str
-    faxNumber: str
-    title: str
-    accountingRoleCodeDefId: str
-    address1: str
-    address2: str
-    address3: str
-    city: str
-    stateRegion: str
-    postalCode: str
-    country: str
-    imageURL: str
-    description: str
-    b2CLastLoggedIn: str
-    defaultCurrencyCode: str
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    customFieldValues: list[CustomFieldValueModel]
-    accountingRoleCodeDefinition: CodeDefinitionModel
+    userId: str = None
+    groupKey: str = None
+    userName: str = None
+    email: str = None
+    status: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    modifiedUserName: str = None
+    b2CUserId: str = None
+    userRole: str = None
+    inviteSent: str = None
+    phoneNumber: str = None
+    faxNumber: str = None
+    title: str = None
+    accountingRoleCodeDefId: str = None
+    address1: str = None
+    address2: str = None
+    address3: str = None
+    city: str = None
+    stateRegion: str = None
+    postalCode: str = None
+    country: str = None
+    imageURL: str = None
+    description: str = None
+    b2CLastLoggedIn: str = None
+    defaultCurrencyCode: str = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
+    accountingRoleCodeDefinition: CodeDefinitionModel = None
 

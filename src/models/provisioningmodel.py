@@ -22,9 +22,9 @@ Represents the data sent during the onboarding flow
 """
 @dataclass
 class ProvisioningModel:
-    fullName: str
-    timeZone: str
-    defaultCurrency: str
-    erp: ErpInfoModel
-    company: CompanyModel
+    fullName: str = None
+    timeZone: str = None
+    defaultCurrency: str = None
+    erp: ErpInfoModel = None
+    company: CompanyModel = None
 

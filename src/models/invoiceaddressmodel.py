@@ -20,20 +20,20 @@ Represents a single address for an invoice
 """
 @dataclass
 class InvoiceAddressModel:
-    invoiceAddressId: str
-    groupKey: str
-    invoiceId: str
-    line1: str
-    line2: str
-    line3: str
-    city: str
-    region: str
-    postalCode: str
-    country: str
-    latitude: float
-    longitude: float
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
+    invoiceAddressId: str = None
+    groupKey: str = None
+    invoiceId: str = None
+    line1: str = None
+    line2: str = None
+    line3: str = None
+    city: str = None
+    region: str = None
+    postalCode: str = None
+    country: str = None
+    latitude: float = None
+    longitude: float = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
 

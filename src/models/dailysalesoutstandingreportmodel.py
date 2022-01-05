@@ -20,7 +20,7 @@ Represents the daily sales outstanding report
 """
 @dataclass
 class DailySalesOutstandingReportModel:
-    timeframe: str
-    invoiceCount: int
-    dailySalesOutstanding: float
+    timeframe: str = None
+    invoiceCount: int = None
+    dailySalesOutstanding: float = None
 

@@ -26,18 +26,18 @@ Payments and for which amounts.
 """
 @dataclass
 class PaymentAppliedModel:
-    groupKey: str
-    paymentAppliedId: str
-    invoiceId: str
-    paymentId: str
-    erpKey: str
-    entryNumber: int
-    applyToInvoiceDate: str
-    paymentAppliedAmount: float
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    invoice: InvoiceModel
+    groupKey: str = None
+    paymentAppliedId: str = None
+    invoiceId: str = None
+    paymentId: str = None
+    erpKey: str = None
+    entryNumber: int = None
+    applyToInvoiceDate: str = None
+    paymentAppliedAmount: float = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    invoice: InvoiceModel = None
 

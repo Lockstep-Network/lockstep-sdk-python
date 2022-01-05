@@ -21,5 +21,5 @@ Represents a list of available migrations
 """
 @dataclass
 class AvailableMigrationsModel:
-    migrations: list[AvailableGroup]
+    migrations: list[AvailableGroup] = None
 

@@ -20,16 +20,16 @@ Contains information about a credit memo invoice
 """
 @dataclass
 class CreditMemoInvoiceModel:
-    groupKey: str
-    creditMemoAppliedId: str
-    invoiceId: str
-    creditMemoInvoiceId: str
-    applyToInvoiceDate: str
-    creditMemoAppliedAmount: float
-    referenceCode: str
-    companyId: str
-    customerId: str
-    invoiceStatusCode: str
-    totalAmount: float
-    outstandingBalanceAmount: float
+    groupKey: str = None
+    creditMemoAppliedId: str = None
+    invoiceId: str = None
+    creditMemoInvoiceId: str = None
+    applyToInvoiceDate: str = None
+    creditMemoAppliedAmount: float = None
+    referenceCode: str = None
+    companyId: str = None
+    customerId: str = None
+    invoiceStatusCode: str = None
+    totalAmount: float = None
+    outstandingBalanceAmount: float = None
 

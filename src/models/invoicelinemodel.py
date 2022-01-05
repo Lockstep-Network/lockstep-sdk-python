@@ -22,28 +22,28 @@ Represents a line in an invoice
 """
 @dataclass
 class InvoiceLineModel:
-    invoiceLineId: str
-    groupKey: str
-    invoiceId: str
-    erpKey: str
-    lineNumber: str
-    productCode: str
-    description: str
-    unitMeasureCode: str
-    unitPrice: float
-    quantity: float
-    quantityShipped: float
-    quantityReceived: float
-    totalAmount: float
-    exemptionCode: str
-    reportingDate: str
-    overrideOriginAddressId: str
-    overrideBillToAddressId: str
-    overrideShipToAddressId: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
+    invoiceLineId: str = None
+    groupKey: str = None
+    invoiceId: str = None
+    erpKey: str = None
+    lineNumber: str = None
+    productCode: str = None
+    description: str = None
+    unitMeasureCode: str = None
+    unitPrice: float = None
+    quantity: float = None
+    quantityShipped: float = None
+    quantityReceived: float = None
+    totalAmount: float = None
+    exemptionCode: str = None
+    reportingDate: str = None
+    overrideOriginAddressId: str = None
+    overrideBillToAddressId: str = None
+    overrideShipToAddressId: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
 

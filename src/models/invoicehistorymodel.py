@@ -24,36 +24,36 @@ occurred.
 """
 @dataclass
 class InvoiceHistoryModel:
-    groupKey: str
-    invoiceHistoryId: str
-    invoiceId: str
-    companyId: str
-    customerId: str
-    erpKey: str
-    purchaseOrderCode: str
-    referenceCode: str
-    salespersonCode: str
-    salespersonName: str
-    invoiceTypeCode: str
-    invoiceStatusCode: str
-    termsCode: str
-    specialTerms: str
-    currencyCode: str
-    totalAmount: float
-    salesTaxAmount: float
-    discountAmount: float
-    outstandingBalanceAmount: float
-    invoiceDate: str
-    discountDate: str
-    postedDate: str
-    invoiceClosedDate: str
-    paymentDueDate: str
-    importedDate: str
-    primaryOriginAddressId: str
-    primaryBillToAddressId: str
-    primaryShipToAddressId: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
+    groupKey: str = None
+    invoiceHistoryId: str = None
+    invoiceId: str = None
+    companyId: str = None
+    customerId: str = None
+    erpKey: str = None
+    purchaseOrderCode: str = None
+    referenceCode: str = None
+    salespersonCode: str = None
+    salespersonName: str = None
+    invoiceTypeCode: str = None
+    invoiceStatusCode: str = None
+    termsCode: str = None
+    specialTerms: str = None
+    currencyCode: str = None
+    totalAmount: float = None
+    salesTaxAmount: float = None
+    discountAmount: float = None
+    outstandingBalanceAmount: float = None
+    invoiceDate: str = None
+    discountDate: str = None
+    postedDate: str = None
+    invoiceClosedDate: str = None
+    paymentDueDate: str = None
+    importedDate: str = None
+    primaryOriginAddressId: str = None
+    primaryBillToAddressId: str = None
+    primaryShipToAddressId: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
 

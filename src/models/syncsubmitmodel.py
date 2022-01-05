@@ -20,5 +20,5 @@ Model representing information for a sync request
 """
 @dataclass
 class SyncSubmitModel:
-    appEnrollmentId: str
+    appEnrollmentId: str = None
 

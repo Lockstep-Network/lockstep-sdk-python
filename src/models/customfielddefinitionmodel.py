@@ -28,16 +28,16 @@ for more information.
 """
 @dataclass
 class CustomFieldDefinitionModel:
-    groupKey: str
-    customFieldDefinitionId: str
-    tableKey: str
-    appId: str
-    customFieldLabel: str
-    dataType: str
-    sortOrder: int
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
+    groupKey: str = None
+    customFieldDefinitionId: str = None
+    tableKey: str = None
+    appId: str = None
+    customFieldLabel: str = None
+    dataType: str = None
+    sortOrder: int = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
 

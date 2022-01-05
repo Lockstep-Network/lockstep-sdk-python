@@ -38,50 +38,50 @@ the `OutstandingBalanceAmount` may be different.
 """
 @dataclass
 class InvoiceModel:
-    groupKey: str
-    invoiceId: str
-    companyId: str
-    customerId: str
-    erpKey: str
-    purchaseOrderCode: str
-    referenceCode: str
-    salespersonCode: str
-    salespersonName: str
-    invoiceTypeCode: str
-    invoiceStatusCode: str
-    termsCode: str
-    specialTerms: str
-    currencyCode: str
-    totalAmount: float
-    salesTaxAmount: float
-    discountAmount: float
-    outstandingBalanceAmount: float
-    invoiceDate: str
-    discountDate: str
-    postedDate: str
-    invoiceClosedDate: str
-    paymentDueDate: str
-    importedDate: str
-    primaryOriginAddressId: str
-    primaryBillToAddressId: str
-    primaryShipToAddressId: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
-    appEnrollmentId: str
-    isVoided: bool
-    inDispute: bool
-    excludeFromAging: bool
-    addresses: list[InvoiceAddressModel]
-    lines: list[InvoiceLineModel]
-    payments: list[InvoicePaymentDetailModel]
-    notes: list[NoteModel]
-    attachments: list[AttachmentModel]
-    company: CompanyModel
-    customer: CompanyModel
-    customerPrimaryContact: ContactModel
-    creditMemos: list[CreditMemoInvoiceModel]
-    customFieldValues: list[CustomFieldValueModel]
-    customFieldDefinitions: list[CustomFieldDefinitionModel]
+    groupKey: str = None
+    invoiceId: str = None
+    companyId: str = None
+    customerId: str = None
+    erpKey: str = None
+    purchaseOrderCode: str = None
+    referenceCode: str = None
+    salespersonCode: str = None
+    salespersonName: str = None
+    invoiceTypeCode: str = None
+    invoiceStatusCode: str = None
+    termsCode: str = None
+    specialTerms: str = None
+    currencyCode: str = None
+    totalAmount: float = None
+    salesTaxAmount: float = None
+    discountAmount: float = None
+    outstandingBalanceAmount: float = None
+    invoiceDate: str = None
+    discountDate: str = None
+    postedDate: str = None
+    invoiceClosedDate: str = None
+    paymentDueDate: str = None
+    importedDate: str = None
+    primaryOriginAddressId: str = None
+    primaryBillToAddressId: str = None
+    primaryShipToAddressId: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
+    appEnrollmentId: str = None
+    isVoided: bool = None
+    inDispute: bool = None
+    excludeFromAging: bool = None
+    addresses: list[InvoiceAddressModel] = None
+    lines: list[InvoiceLineModel] = None
+    payments: list[InvoicePaymentDetailModel] = None
+    notes: list[NoteModel] = None
+    attachments: list[AttachmentModel] = None
+    company: CompanyModel = None
+    customer: CompanyModel = None
+    customerPrimaryContact: ContactModel = None
+    creditMemos: list[CreditMemoInvoiceModel] = None
+    customFieldValues: list[CustomFieldValueModel] = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
 

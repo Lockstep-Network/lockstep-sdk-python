@@ -20,11 +20,11 @@ Represents a role for a user
 """
 @dataclass
 class UserRoleModel:
-    userRoleId: str
-    groupKey: str
-    userRoleName: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
+    userRoleId: str = None
+    groupKey: str = None
+    userRoleName: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
 

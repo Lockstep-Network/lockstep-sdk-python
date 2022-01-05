@@ -20,7 +20,7 @@ Represents unsupported ERP systems
 """
 @dataclass
 class ErpModel:
-    erpSystemId: str
-    name: str
-    isSupported: bool
+    erpSystemId: str = None
+    name: str = None
+    isSupported: bool = None
 

@@ -20,17 +20,17 @@ Represents a user uploaded attachment
 """
 @dataclass
 class AttachmentModel:
-    attachmentId: str
-    groupKey: str
-    tableKey: str
-    objectKey: str
-    fileName: str
-    fileExt: str
-    attachmentTypeId: str
-    isArchived: bool
-    originAttachmentId: str
-    viewInternal: bool
-    viewExternal: bool
-    created: str
-    createdUserId: str
+    attachmentId: str = None
+    groupKey: str = None
+    tableKey: str = None
+    objectKey: str = None
+    fileName: str = None
+    fileExt: str = None
+    attachmentTypeId: str = None
+    isArchived: bool = None
+    originAttachmentId: str = None
+    viewInternal: bool = None
+    viewExternal: bool = None
+    created: str = None
+    createdUserId: str = None
 

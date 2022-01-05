@@ -22,13 +22,13 @@ system values for Lockstep objects.
 """
 @dataclass
 class CodeDefinitionModel:
-    codeDefinitionId: str
-    groupKey: str
-    codeType: str
-    code: str
-    codeDescription: str
-    created: str
-    createdUserId: str
-    modified: str
-    modifiedUserId: str
+    codeDefinitionId: str = None
+    groupKey: str = None
+    codeType: str = None
+    code: str = None
+    codeDescription: str = None
+    created: str = None
+    createdUserId: str = None
+    modified: str = None
+    modifiedUserId: str = None
 
