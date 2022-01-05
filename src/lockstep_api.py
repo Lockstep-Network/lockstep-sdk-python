@@ -102,14 +102,14 @@ class LockstepApi():
     Send a request and parse the result
     """
     def send_request(self, method: str, path: str, body: object, query_params: object) -> LockstepResponse:
-        if query_params != None:
+        if query_params:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
         
-        if self.apiKey != None:
+        if self.apiKey:
             headers = {"Accept": "application/json", "Api-Key": self.apiKey}
-        elif self.bearerToken != None:
+        elif self.bearerToken:
             headers = {"Accept": "application/json", "Authorization": "Bearer " + self.bearerToken}
         else:
             headers = {"Accept": "application/json"}
