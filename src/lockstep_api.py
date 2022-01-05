@@ -12,34 +12,34 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.clients.ActivitiesClient import ActivitiesClient
-from src.clients.ApiKeysClient import ApiKeysClient
-from src.clients.AppEnrollmentsClient import AppEnrollmentsClient
-from src.clients.ApplicationsClient import ApplicationsClient
-from src.clients.AttachmentsClient import AttachmentsClient
-from src.clients.CodeDefinitionsClient import CodeDefinitionsClient
-from src.clients.CompaniesClient import CompaniesClient
-from src.clients.ContactsClient import ContactsClient
-from src.clients.CreditMemoAppliedClient import CreditMemoAppliedClient
-from src.clients.CurrenciesClient import CurrenciesClient
-from src.clients.CustomFieldDefinitionsClient import CustomFieldDefinitionsClient
-from src.clients.CustomFieldValuesClient import CustomFieldValuesClient
-from src.clients.DefinitionsClient import DefinitionsClient
-from src.clients.EmailsClient import EmailsClient
-from src.clients.InvoiceHistoryClient import InvoiceHistoryClient
-from src.clients.InvoicesClient import InvoicesClient
-from src.clients.LeadsClient import LeadsClient
-from src.clients.MigrationClient import MigrationClient
-from src.clients.NotesClient import NotesClient
-from src.clients.PaymentApplicationsClient import PaymentApplicationsClient
-from src.clients.PaymentsClient import PaymentsClient
-from src.clients.ProvisioningClient import ProvisioningClient
-from src.clients.ReportsClient import ReportsClient
-from src.clients.StatusClient import StatusClient
-from src.clients.SyncClient import SyncClient
-from src.clients.UserAccountsClient import UserAccountsClient
-from src.clients.UserRolesClient import UserRolesClient
-from src.models.LockstepResponse import LockstepResponse
+from src.clients.activities_client import ActivitiesClient
+from src.clients.apikeys_client import ApiKeysClient
+from src.clients.appenrollments_client import AppEnrollmentsClient
+from src.clients.applications_client import ApplicationsClient
+from src.clients.attachments_client import AttachmentsClient
+from src.clients.codedefinitions_client import CodeDefinitionsClient
+from src.clients.companies_client import CompaniesClient
+from src.clients.contacts_client import ContactsClient
+from src.clients.creditmemoapplied_client import CreditMemoAppliedClient
+from src.clients.currencies_client import CurrenciesClient
+from src.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
+from src.clients.customfieldvalues_client import CustomFieldValuesClient
+from src.clients.definitions_client import DefinitionsClient
+from src.clients.emails_client import EmailsClient
+from src.clients.invoicehistory_client import InvoiceHistoryClient
+from src.clients.invoices_client import InvoicesClient
+from src.clients.leads_client import LeadsClient
+from src.clients.migration_client import MigrationClient
+from src.clients.notes_client import NotesClient
+from src.clients.paymentapplications_client import PaymentApplicationsClient
+from src.clients.payments_client import PaymentsClient
+from src.clients.provisioning_client import ProvisioningClient
+from src.clients.reports_client import ReportsClient
+from src.clients.status_client import StatusClient
+from src.clients.sync_client import SyncClient
+from src.clients.useraccounts_client import UserAccountsClient
+from src.clients.userroles_client import UserRolesClient
+from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
 
