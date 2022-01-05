@@ -22,17 +22,16 @@ class CustomFieldDefinitionsClient:
         self.client = client
 
     """
-Retrieves the Custom Field Definition specified by this unique
-    identifier.
-
-A Custom Field represents metadata added to an object
-    within the Lockstep Platform. Lockstep provides a core definition for
-    each object. The core definition is intended to represent a level of
+    Retrieves the Custom Field Definition specified by this unique
+    identifier. A Custom Field represents metadata added to an object within
+    the Lockstep Platform. Lockstep provides a core definition for each
+    object. The core definition is intended to represent a level of
     compatibility that provides support across most accounting systems and
     products. When a user or developer requires information beyond this core
     definition, you can use Custom Fields to represent this information. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     id : str
@@ -47,17 +46,13 @@ A Custom Field represents metadata added to an object
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an existing Custom Field Definition with the information
-    supplied to this PATCH call.
-
-The PATCH method allows you to change
+    Updates an existing Custom Field Definition with the information
+    supplied to this PATCH call. The PATCH method allows you to change
     specific values on the object while leaving other values alone. As input
     you should supply a list of field names and new values. If you do not
     provide the name of a field, that field will remain unchanged. This
     allows you to ensure that you are only updating the specific fields
-    desired.
-
-A Custom Field represents metadata added to an object within
+    desired. A Custom Field represents metadata added to an object within
     the Lockstep Platform. Lockstep provides a core definition for each
     object. The core definition is intended to represent a level of
     compatibility that provides support across most accounting systems and
@@ -65,6 +60,7 @@ A Custom Field represents metadata added to an object within
     definition, you can use Custom Fields to represent this information. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     id : str
@@ -78,17 +74,16 @@ A Custom Field represents metadata added to an object within
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Deletes the Custom Field Definition referred to by this unique
-    identifier.
-
-A Custom Field represents metadata added to an object
-    within the Lockstep Platform. Lockstep provides a core definition for
-    each object. The core definition is intended to represent a level of
+    Deletes the Custom Field Definition referred to by this unique
+    identifier. A Custom Field represents metadata added to an object within
+    the Lockstep Platform. Lockstep provides a core definition for each
+    object. The core definition is intended to represent a level of
     compatibility that provides support across most accounting systems and
     products. When a user or developer requires information beyond this core
     definition, you can use Custom Fields to represent this information. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     id : str
@@ -100,7 +95,7 @@ A Custom Field represents metadata added to an object
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more Custom Field Definitions and returns the records as
+    Creates one or more Custom Field Definitions and returns the records as
     created. A Custom Field represents metadata added to an object within
     the Lockstep Platform. Lockstep provides a core definition for each
     object. The core definition is intended to represent a level of
@@ -109,6 +104,7 @@ Creates one or more Custom Field Definitions and returns the records as
     definition, you can use Custom Fields to represent this information. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     body : list[CustomFieldDefinitionModel]
@@ -119,16 +115,12 @@ Creates one or more Custom Field Definitions and returns the records as
         return self.client.send_request("POST", path, body, {body: list[CustomFieldDefinitionModel]})
 
     """
-Queries Custom Field Definitions within the Lockstep platform using the
+    Queries Custom Field Definitions within the Lockstep platform using the
     specified filtering, sorting, nested fetch, and pagination rules
-    requested.
-
-More information on querying can be found on the
-    [Searchlight Query
+    requested. More information on querying can be found on the [Searchlight
+    Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
-
-A Custom Field represents
+    page on the Lockstep Developer website. A Custom Field represents
     metadata added to an object within the Lockstep Platform. Lockstep
     provides a core definition for each object. The core definition is
     intended to represent a level of compatibility that provides support
@@ -137,6 +129,7 @@ A Custom Field represents
     Fields to represent this information. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     filter : str

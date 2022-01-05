@@ -22,17 +22,15 @@ class CreditMemoAppliedClient:
         self.client = client
 
     """
-Retrieves the Credit Memo Application specified by this unique
-    identifier, optionally including nested data sets.
+    Retrieves the Credit Memo Application specified by this unique
+    identifier, optionally including nested data sets. Credit Memos reflect
+    credits granted to a customer for various reasons, such as discounts or
+    refunds. Credit Memos may be applied to Invoices as Payments. When a
+    Credit Memo is applied as payment to an Invoice, Lockstep creates a
+    Credit Memo Application record to track the amount from the Credit Memo
+    that was applied as payment to the Invoice. You can examine Credit Memo
+    Application records to track which Invoices were paid using this Credit.
 
-Credit Memos
-    reflect credits granted to a customer for various reasons, such as
-    discounts or refunds. Credit Memos may be applied to Invoices as
-    Payments. When a Credit Memo is applied as payment to an Invoice,
-    Lockstep creates a Credit Memo Application record to track the amount
-    from the Credit Memo that was applied as payment to the Invoice. You can
-    examine Credit Memo Application records to track which Invoices were
-    paid using this Credit.
     Parameters
     ----------
     id : str
@@ -47,10 +45,8 @@ Credit Memos
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an existing Credit memo Application with the information
-    supplied to this PATCH call.
-
-The PATCH method allows you to change
+    Updates an existing Credit memo Application with the information
+    supplied to this PATCH call. The PATCH method allows you to change
     specific values on the object while leaving other values alone. As input
     you should supply a list of field names and new values. If you do not
     provide the name of a field, that field will remain unchanged. This
@@ -62,6 +58,7 @@ The PATCH method allows you to change
     amount from the Credit Memo that was applied as payment to the Invoice.
     You can examine Credit Memo Application records to track which Invoices
     were paid using this Credit.
+
     Parameters
     ----------
     id : str
@@ -75,16 +72,15 @@ The PATCH method allows you to change
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Deletes the Credit Memo Application referred to by this unique
-    identifier.
-
-Credit Memos reflect credits granted to a customer for
+    Deletes the Credit Memo Application referred to by this unique
+    identifier. Credit Memos reflect credits granted to a customer for
     various reasons, such as discounts or refunds. Credit Memos may be
     applied to Invoices as Payments. When a Credit Memo is applied as
     payment to an Invoice, Lockstep creates a Credit Memo Application record
     to track the amount from the Credit Memo that was applied as payment to
     the Invoice. You can examine Credit Memo Application records to track
     which Invoices were paid using this Credit.
+
     Parameters
     ----------
     id : str
@@ -96,16 +92,15 @@ Credit Memos reflect credits granted to a customer for
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more Credit Memo Applications within this account and
-    returns the records as created.
-
-Credit Memos reflect credits granted
-    to a customer for various reasons, such as discounts or refunds. Credit
+    Creates one or more Credit Memo Applications within this account and
+    returns the records as created. Credit Memos reflect credits granted to
+    a customer for various reasons, such as discounts or refunds. Credit
     Memos may be applied to Invoices as Payments. When a Credit Memo is
     applied as payment to an Invoice, Lockstep creates a Credit Memo
     Application record to track the amount from the Credit Memo that was
     applied as payment to the Invoice. You can examine Credit Memo
     Application records to track which Invoices were paid using this Credit.
+
     Parameters
     ----------
     body : list[CreditMemoAppliedModel]
@@ -116,12 +111,9 @@ Credit Memos reflect credits granted
         return self.client.send_request("POST", path, body, {body: list[CreditMemoAppliedModel]})
 
     """
-Queries Credit Memo Applications for this account using the specified
-    filtering, sorting, nested fetch, and pagination rules
-    requested.
-
-More information on querying can be found on the
-    [Searchlight Query
+    Queries Credit Memo Applications for this account using the specified
+    filtering, sorting, nested fetch, and pagination rules requested. More
+    information on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. Credit Memos reflect credits
     granted to a customer for various reasons, such as discounts or refunds.
@@ -130,6 +122,7 @@ More information on querying can be found on the
     Application record to track the amount from the Credit Memo that was
     applied as payment to the Invoice. You can examine Credit Memo
     Application records to track which Invoices were paid using this Credit.
+
     Parameters
     ----------
     filter : str

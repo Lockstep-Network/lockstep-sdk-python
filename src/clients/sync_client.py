@@ -22,16 +22,15 @@ class SyncClient:
         self.client = client
 
     """
-Requests a new Sync task from the Application specified in the request
+    Requests a new Sync task from the Application specified in the request
     and returns a token that can be used to check the progress and status of
-    the task.
-
-A Sync task represents an action performed by an
-    Application for a particular account. An Application can provide many
-    different tasks as part of their capabilities. Sync tasks are executed
-    in the background and will continue running after they are created. Use
-    one of the creation APIs to request execution of a task. To check on the
+    the task. A Sync task represents an action performed by an Application
+    for a particular account. An Application can provide many different
+    tasks as part of their capabilities. Sync tasks are executed in the
+    background and will continue running after they are created. Use one of
+    the creation APIs to request execution of a task. To check on the
     progress of the task, call GetSync or QuerySync.
+
     Parameters
     ----------
     body : SyncSubmitModel
@@ -42,17 +41,16 @@ A Sync task represents an action performed by an
         return self.client.send_request("POST", path, body, {body: SyncSubmitModel})
 
     """
-Requests a new Sync task from a ZIP file you provide. This ZIP file can
+    Requests a new Sync task from a ZIP file you provide. This ZIP file can
     contain one or more files with data from the customer's platform.
-    Individual files can be in the format CSV or JSONL (JSON with
-    Lines).
+    Individual files can be in the format CSV or JSONL (JSON with Lines). A
+    Sync task represents an action performed by an Application for a
+    particular account. An Application can provide many different tasks as
+    part of their capabilities. Sync tasks are executed in the background
+    and will continue running after they are created. Use one of the
+    creation APIs to request execution of a task. To check on the progress
+    of the task, call GetSync or QuerySync.
 
-A Sync task represents an action performed by an Application
-    for a particular account. An Application can provide many different
-    tasks as part of their capabilities. Sync tasks are executed in the
-    background and will continue running after they are created. Use one of
-    the creation APIs to request execution of a task. To check on the
-    progress of the task, call GetSync or QuerySync.
     Parameters
     ----------
     """
@@ -61,23 +59,20 @@ A Sync task represents an action performed by an Application
         return self.client.send_request("POST", path, None, None)
 
     """
-Updates an existing Sync with the information supplied to this PATCH
-    call.
+    Updates an existing Sync with the information supplied to this PATCH
+    call. This API is restricted to internal service users and may not be
+    called by customers or partners. The PATCH method allows you to change
+    specific values on the object while leaving other values alone. As input
+    you should supply a list of field names and new values. For example, you
+    can provide the field name "IsActive" and specify the new value "False";
+    this API will then change the value of IsActive to false. A Sync task
+    represents an action performed by an Application for a particular
+    account. An Application can provide many different tasks as part of
+    their capabilities. Sync tasks are executed in the background and will
+    continue running after they are created. Use one of the creation APIs to
+    request execution of a task. To check on the progress of the task, call
+    GetSync or QuerySync.
 
-This API is restricted to internal service users and may not be
-    called by customers or partners.
-
-The PATCH method allows you to
-    change specific values on the object while leaving other values alone.
-    As input you should supply a list of field names and new values. For
-    example, you can provide the field name "IsActive" and specify the new
-    value "False"; this API will then change the value of IsActive to false.
-    A Sync task represents an action performed by an Application for a
-    particular account. An Application can provide many different tasks as
-    part of their capabilities. Sync tasks are executed in the background
-    and will continue running after they are created. Use one of the
-    creation APIs to request execution of a task. To check on the progress
-    of the task, call GetSync or QuerySync.
     Parameters
     ----------
     id : str
@@ -90,7 +85,7 @@ The PATCH method allows you to
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Retrieves the status and information about a Sync operation by the
+    Retrieves the status and information about a Sync operation by the
     requested ID. Provides status and progress information about this task.
     A Sync task represents an action performed by an Application for a
     particular account. An Application can provide many different tasks as
@@ -98,6 +93,7 @@ Retrieves the status and information about a Sync operation by the
     and will continue running after they are created. Use one of the
     creation APIs to request execution of a task. To check on the progress
     of the task, call GetSync or QuerySync.
+
     Parameters
     ----------
     id : str
@@ -111,11 +107,9 @@ Retrieves the status and information about a Sync operation by the
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Queries Sync tasks for this account using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Sync tasks for this account using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. A Sync task represents an action
     performed by an Application for a particular account. An Application can
@@ -123,6 +117,7 @@ More
     are executed in the background and will continue running after they are
     created. Use one of the creation APIs to request execution of a task. To
     check on the progress of the task, call GetSync or QuerySync.
+
     Parameters
     ----------
     filter : str

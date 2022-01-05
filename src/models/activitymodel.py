@@ -21,12 +21,9 @@ from src.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
 An Activity contains information about work being done on a specific
-accounting task.
-You can use Activities to track information about who
-has been assigned a specific task,
-the current status of the task, the
-name and description given for the particular task,
-the priority of the
+accounting task. You can use Activities to track information about who
+has been assigned a specific task, the current status of the task, the
+name and description given for the particular task, the priority of the
 task, and any amounts collected, paid, or credited for the task.
 """
 class ActivityModel:

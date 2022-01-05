@@ -21,13 +21,12 @@ class ReportsClient:
         self.client = client
 
     """
-Retrieves a current Cash Flow report for this account.
-
-The Cash Flow
+    Retrieves a current Cash Flow report for this account. The Cash Flow
     report indicates the amount of payments retrieved and invoices billed
     within a given timeframe. You can use this report to determine the
     overall balance of money coming into and out of your accounts receivable
     and accounts payable businesses.
+
     Parameters
     ----------
     timeframe : int
@@ -39,13 +38,12 @@ The Cash Flow
         return self.client.send_request("GET", path, None, {timeframe: int})
 
     """
-Retrieves a current Daily Sales Outstanding (DSO) report for this
-    account.
+    Retrieves a current Daily Sales Outstanding (DSO) report for this
+    account. Daily Sales Outstanding, or DSO, is a metric that indicates the
+    average number of days that it takes for an invoice to be fully paid.
+    You can use this report to identify whether a company is improving on
+    its ability to collect on invoices.
 
-Daily Sales Outstanding, or DSO, is a metric that indicates
-    the average number of days that it takes for an invoice to be fully
-    paid. You can use this report to identify whether a company is improving
-    on its ability to collect on invoices.
     Parameters
     ----------
     """
@@ -54,12 +52,11 @@ Daily Sales Outstanding, or DSO, is a metric that indicates
         return self.client.send_request("GET", path, None, None)
 
     """
-Retrieves a current Risk Rate report for this account.
-
-Risk Rate is a
+    Retrieves a current Risk Rate report for this account. Risk Rate is a
     metric that indicates the percentage of total AR balance left unpaid
     after 90 days. You can use this report to identify the percentage of
     invoice value that is not being collected in a timely manner.
+
     Parameters
     ----------
     """
@@ -68,7 +65,8 @@ Risk Rate is a
         return self.client.send_request("GET", path, None, None)
 
     """
-Retrieves AR header information up to the date specified.
+    Retrieves AR header information up to the date specified.
+
     Parameters
     ----------
     reportDate : str
@@ -82,24 +80,19 @@ Retrieves AR header information up to the date specified.
         return self.client.send_request("GET", path, None, {reportDate: str, companyId: str})
 
     """
-The Aging Report contains information about the total dollar value of
+    The Aging Report contains information about the total dollar value of
     invoices broken down by their age. Last default or specified bucket
     treated as a catch all bucket for values that fit in that bucket or
-    beyond.
-
-You can specify viewing parameters for the aging report such
-    as currency code and date bucket configuration. You can also view aging
-    data for an entire account or a specific company.
-
-This information is
+    beyond. You can specify viewing parameters for the aging report such as
+    currency code and date bucket configuration. You can also view aging
+    data for an entire account or a specific company. This information is
     recalculated when invoice data changes. After each invoice data change
     occurs, Lockstep queues up a calculation based on the current invoice
     data at that time. This information is calculated and persisted for each
-    customer so that the report will be available quickly.
-
-To force a
+    customer so that the report will be available quickly. To force a
     recalculation of aging data, specify the `recalculate` option. Note that
     forcing a recalculation will slow your API response time.
+
     Parameters
     ----------
     CompanyId : str
@@ -110,29 +103,25 @@ To force a
         set to false
     CurrencyCode : str
         Currency aging buckets are converted to (all aging data returned without
-        currency conversion if no currency is
-specified)
+        currency conversion if no currency is specified)
     CurrencyProvider : str
         Currency provider currency rates should be returned from to convert
-        aging amounts to (default Lockstep currency
-provider used if no data
+        aging amounts to (default Lockstep currency provider used if no data
         provider specified)
     Buckets : list[int]
         Customized buckets used for aging calculations (default buckets
-        [0,30,60,90,120,180] will be used if buckets not
-specified)
+        [0,30,60,90,120,180] will be used if buckets not specified)
     """
     def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse:
         path = f"/api/v1/Reports/aging"
         return self.client.send_request("GET", path, None, {CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]})
 
     """
-Retrieves AR Aging Header information report broken down by aging
-    bucket.
-
-The AR Aging Header report contains aggregated information
-    about the `TotalInvoicesPastDue`, `TotalCustomers`, and their respective
+    Retrieves AR Aging Header information report broken down by aging
+    bucket. The AR Aging Header report contains aggregated information about
+    the `TotalInvoicesPastDue`, `TotalCustomers`, and their respective
     `PercentageOfTotalAr` grouped by their aging `ReportBucket`.
+
     Parameters
     ----------
     """
@@ -141,12 +130,11 @@ The AR Aging Header report contains aggregated information
         return self.client.send_request("GET", path, None, None)
 
     """
-Retrieves Attachment Header information for the requested
-    companyId.
+    Retrieves Attachment Header information for the requested companyId. The
+    Attachment Header report contains aggregated information about the
+    `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment
+    classifications.
 
-The Attachment Header report contains aggregated
-    information about the `TotalAttachments`, `TotalArchived`, and
-    `TotalActive` attachment classifications.
     Parameters
     ----------
     companyId : str

@@ -22,17 +22,15 @@ class NotesClient:
         self.client = client
 
     """
-Retrieves the note with the specified note identifier. A note is a
+    Retrieves the note with the specified note identifier. A note is a
     customizable text string that can be attached to various account
     attributes within Lockstep. You can use notes for internal
     communication, correspondence with clients, or personal reminders. The
     Note Model represents a note and a number of different metadata
-    attributes related to the creation, storage, and ownership of the
-    note.
+    attributes related to the creation, storage, and ownership of the note.
+    See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+    for more information.
 
-See
-    [Extensibility](https://developer.lockstep.io/docs/extensibility) for
-    more information.
     Parameters
     ----------
     id : str
@@ -47,16 +45,15 @@ See
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Archives the Note with the unique ID specified. A note is a customizable
+    Archives the Note with the unique ID specified. A note is a customizable
     text string that can be attached to various account attributes within
     Lockstep. You can use notes for internal communication, correspondence
     with clients, or personal reminders. The Note Model represents a note
     and a number of different metadata attributes related to the creation,
-    storage, and ownership of the note.
-
-See
+    storage, and ownership of the note. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     id : str
@@ -67,19 +64,15 @@ See
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more notes from the specified array of Note Models
-
-A
-    note is a customizable text string that can be attached to various
-    account attributes within Lockstep. You can use notes for internal
+    Creates one or more notes from the specified array of Note Models A note
+    is a customizable text string that can be attached to various account
+    attributes within Lockstep. You can use notes for internal
     communication, correspondence with clients, or personal reminders. The
     Note Model represents a note and a number of different metadata
-    attributes related to the creation, storage, and ownership of the
-    note.
+    attributes related to the creation, storage, and ownership of the note.
+    See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+    for more information.
 
-See
-    [Extensibility](https://developer.lockstep.io/docs/extensibility) for
-    more information.
     Parameters
     ----------
     body : list[NoteModel]
@@ -90,38 +83,32 @@ See
         return self.client.send_request("POST", path, body, {body: list[NoteModel]})
 
     """
-Queries Notes on the Lockstep Platform using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Notes on the Lockstep Platform using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. A note is a customizable text
     string that can be attached to various account attributes within
     Lockstep. You can use notes for internal communication, correspondence
     with clients, or personal reminders. The Note Model represents a note
     and a number of different metadata attributes related to the creation,
-    storage, and ownership of the note.
-
-See
+    storage, and ownership of the note. See
     [Extensibility](https://developer.lockstep.io/docs/extensibility) for
     more information.
+
     Parameters
     ----------
     filter : str
         The filter to use to select from the list of available applications, in
-        the [Searchlight
-        query
-syntax](https://github.com/tspence/csharp-searchlight).
+        the [Searchlight query
+        syntax](https://github.com/tspence/csharp-searchlight).
     include : str
         To fetch additional data on this object, specify the list of elements to
-        retrieve.
-No collections are currently available but may be offered in
+        retrieve. No collections are currently available but may be offered in
         the future
     order : str
-        The sort order for the results, in the [Searchlight
-        order
-syntax](https://github.com/tspence/csharp-searchlight).
+        The sort order for the results, in the [Searchlight order
+        syntax](https://github.com/tspence/csharp-searchlight).
     pageSize : int
         The page size for results (default 200, maximum of 10,000)
     pageNumber : int

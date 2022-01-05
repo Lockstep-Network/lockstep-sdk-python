@@ -22,15 +22,14 @@ class ActivitiesClient:
         self.client = client
 
     """
-Retrieves the Activity specified by this unique identifier, optionally
-    including nested data sets.
-
-An Activity contains information about
-    work being done on a specific accounting task. You can use Activities to
+    Retrieves the Activity specified by this unique identifier, optionally
+    including nested data sets. An Activity contains information about work
+    being done on a specific accounting task. You can use Activities to
     track information about who has been assigned a specific task, the
     current status of the task, the name and description given for the
     particular task, the priority of the task, and any amounts collected,
     paid, or credited for the task.
+
     Parameters
     ----------
     id : str
@@ -44,21 +43,18 @@ An Activity contains information about
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an activity that matches the specified id with the requested
-    information.
-
-The PATCH method allows you to change specific values on
+    Updates an activity that matches the specified id with the requested
+    information. The PATCH method allows you to change specific values on
     the object while leaving other values alone. As input you should supply
     a list of field names and new values. If you do not provide the name of
     a field, that field will remain unchanged. This allows you to ensure
-    that you are only updating the specific fields desired.
-
-An Activity
+    that you are only updating the specific fields desired. An Activity
     contains information about work being done on a specific accounting
     task. You can use Activities to track information about who has been
     assigned a specific task, the current status of the task, the name and
     description given for the particular task, the priority of the task, and
     any amounts collected, paid, or credited for the task.
+
     Parameters
     ----------
     id : str
@@ -71,14 +67,13 @@ An Activity
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Delete the Activity referred to by this unique identifier.
+    Delete the Activity referred to by this unique identifier. An Activity
+    contains information about work being done on a specific accounting
+    task. You can use Activities to track information about who has been
+    assigned a specific task, the current status of the task, the name and
+    description given for the particular task, the priority of the task, and
+    any amounts collected, paid, or credited for the task.
 
-An
-    Activity contains information about work being done on a specific
-    accounting task. You can use Activities to track information about who
-    has been assigned a specific task, the current status of the task, the
-    name and description given for the particular task, the priority of the
-    task, and any amounts collected, paid, or credited for the task.
     Parameters
     ----------
     id : str
@@ -89,14 +84,13 @@ An
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more activities from a given model.
+    Creates one or more activities from a given model. An Activity contains
+    information about work being done on a specific accounting task. You can
+    use Activities to track information about who has been assigned a
+    specific task, the current status of the task, the name and description
+    given for the particular task, the priority of the task, and any amounts
+    collected, paid, or credited for the task.
 
-An Activity
-    contains information about work being done on a specific accounting
-    task. You can use Activities to track information about who has been
-    assigned a specific task, the current status of the task, the name and
-    description given for the particular task, the priority of the task, and
-    any amounts collected, paid, or credited for the task.
     Parameters
     ----------
     body : list[ActivityModel]
@@ -107,20 +101,17 @@ An Activity
         return self.client.send_request("POST", path, body, {body: list[ActivityModel]})
 
     """
-Queries Activities for this account using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Activities for this account using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
-
-An Activity contains
-    information about work being done on a specific accounting task. You can
-    use Activities to track information about who has been assigned a
-    specific task, the current status of the task, the name and description
-    given for the particular task, the priority of the task, and any amounts
+    page on the Lockstep Developer website. An Activity contains information
+    about work being done on a specific accounting task. You can use
+    Activities to track information about who has been assigned a specific
+    task, the current status of the task, the name and description given for
+    the particular task, the priority of the task, and any amounts
     collected, paid, or credited for the task.
+
     Parameters
     ----------
     filter : str
@@ -128,7 +119,7 @@ An Activity contains
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     include : str
         To fetch additional data on this object, specify the list of elements to
-        retrieve.  Available collections: Attachments, CustomFields, and Notes
+        retrieve. Available collections: Attachments, CustomFields, and Notes
     order : str
         The sort order for this query. See See [Searchlight Query
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)

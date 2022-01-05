@@ -22,14 +22,13 @@ class EmailsClient:
         self.client = client
 
     """
-Retrieves the email with the specified email identifier.
-
-An Email
+    Retrieves the email with the specified email identifier. An Email
     represents a communication sent from one company to another. The creator
     of the email is identified by the `CompanyId` field, recipient(s) by the
     `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email
     Model represents an email and a number of different metadata attributes
     related to the creation, storage, and ownership of the email.
+
     Parameters
     ----------
     id : str
@@ -44,21 +43,18 @@ An Email
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an existing Email with the information supplied to this PATCH
-    call.
-
-The PATCH method allows you to change specific values on the
+    Updates an existing Email with the information supplied to this PATCH
+    call. The PATCH method allows you to change specific values on the
     object while leaving other values alone. As input you should supply a
     list of field names and new values. If you do not provide the name of a
     field, that field will remain unchanged. This allows you to ensure that
-    you are only updating the specific fields desired.
-
-An Email
-    represents a communication sent from one company to another. The creator
-    of the email is identified by the `CompanyId` field, recipient(s) by the
-    `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email
-    Model represents an email and a number of different metadata attributes
+    you are only updating the specific fields desired. An Email represents a
+    communication sent from one company to another. The creator of the email
+    is identified by the `CompanyId` field, recipient(s) by the `EmailTo`
+    field, and cc recipient(s) by the 'EmailCC' field. The Email Model
+    represents an email and a number of different metadata attributes
     related to the creation, storage, and ownership of the email.
+
     Parameters
     ----------
     id : str
@@ -71,14 +67,13 @@ An Email
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Deletes the Email referred to by this unique identifier.
-
-An Email
+    Deletes the Email referred to by this unique identifier. An Email
     represents a communication sent from one company to another. The creator
     of the email is identified by the `CompanyId` field, recipient(s) by the
     `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email
     Model represents an email and a number of different metadata attributes
     related to the creation, storage, and ownership of the email.
+
     Parameters
     ----------
     id : str
@@ -89,15 +84,14 @@ An Email
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Retrieves a signature logo for the email with the specified identifier
-    and increments 'ViewCount'.
-
-An Email represents a communication sent
+    Retrieves a signature logo for the email with the specified identifier
+    and increments 'ViewCount'. An Email represents a communication sent
     from one company to another. The creator of the email is identified by
     the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc
     recipient(s) by the 'EmailCC' field. The Email Model represents an email
     and a number of different metadata attributes related to the creation,
     storage, and ownership of the email.
+
     Parameters
     ----------
     emailId : str
@@ -110,15 +104,14 @@ An Email represents a communication sent
         return self.client.send_request("GET", path, None, {emailId: str, nonce: str})
 
     """
-Creates one or more emails from the specified array of Email
-    Models
-
-An Email represents a communication sent from one company to
-    another. The creator of the email is identified by the `CompanyId`
-    field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the
+    Creates one or more emails from the specified array of Email Models An
+    Email represents a communication sent from one company to another. The
+    creator of the email is identified by the `CompanyId` field,
+    recipient(s) by the `EmailTo` field, and cc recipient(s) by the
     'EmailCC' field. The Email Model represents an email and a number of
     different metadata attributes related to the creation, storage, and
     ownership of the email.
+
     Parameters
     ----------
     body : list[EmailModel]
@@ -129,20 +122,17 @@ An Email represents a communication sent from one company to
         return self.client.send_request("POST", path, body, {body: list[EmailModel]})
 
     """
-Queries Emails on the Lockstep Platform using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Emails on the Lockstep Platform using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
-
-An Email represents a
+    page on the Lockstep Developer website. An Email represents a
     communication sent from one company to another. The creator of the email
     is identified by the `CompanyId` field, recipient(s) by the `EmailTo`
     field, and cc recipient(s) by the 'EmailCC' field. The Email Model
     represents an email and a number of different metadata attributes
     related to the creation, storage, and ownership of the email.
+
     Parameters
     ----------
     filter : str

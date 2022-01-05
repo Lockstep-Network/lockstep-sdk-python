@@ -22,12 +22,13 @@ class ContactsClient:
         self.client = client
 
     """
-Retrieves the Contact specified by this unique identifier, optionally
+    Retrieves the Contact specified by this unique identifier, optionally
     including nested data sets. A Contact contains information about a
     person or role within a Company. You can use Contacts to track
     information about who is responsible for a specific project, who handles
     invoices, or information about which role at a particular customer or
     vendor you should speak with about invoices.
+
     Parameters
     ----------
     id : str
@@ -42,10 +43,8 @@ Retrieves the Contact specified by this unique identifier, optionally
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates a contact that matches the specified id with the requested
-    information.
-
-The PATCH method allows you to change specific values on
+    Updates a contact that matches the specified id with the requested
+    information. The PATCH method allows you to change specific values on
     the object while leaving other values alone. As input you should supply
     a list of field names and new values. If you do not provide the name of
     a field, that field will remain unchanged. This allows you to ensure
@@ -54,6 +53,7 @@ The PATCH method allows you to change specific values on
     use Contacts to track information about who is responsible for a
     specific project, who handles invoices, or information about which role
     at a particular customer or vendor you should speak with about invoices.
+
     Parameters
     ----------
     id : str
@@ -67,13 +67,12 @@ The PATCH method allows you to change specific values on
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Disable the Contact referred to by this unique identifier.
-
-A Contact
+    Disable the Contact referred to by this unique identifier. A Contact
     contains information about a person or role within a Company. You can
     use Contacts to track information about who is responsible for a
     specific project, who handles invoices, or information about which role
     at a particular customer or vendor you should speak with about invoices.
+
     Parameters
     ----------
     id : str
@@ -85,13 +84,12 @@ A Contact
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more contacts from a given model.
-
-A Contact contains
+    Creates one or more contacts from a given model. A Contact contains
     information about a person or role within a Company. You can use
     Contacts to track information about who is responsible for a specific
     project, who handles invoices, or information about which role at a
     particular customer or vendor you should speak with about invoices.
+
     Parameters
     ----------
     body : list[ContactModel]
@@ -102,17 +100,16 @@ A Contact contains
         return self.client.send_request("POST", path, body, {body: list[ContactModel]})
 
     """
-Queries Contacts for this account using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Contacts for this account using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. A Contact contains information
     about a person or role within a Company. You can use Contacts to track
     information about who is responsible for a specific project, who handles
     invoices, or information about which role at a particular customer or
     vendor you should speak with about invoices.
+
     Parameters
     ----------
     filter : str
@@ -120,7 +117,7 @@ More
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     include : str
         To fetch additional data on this object, specify the list of elements to
-        retrieve.  Available collections: Attachments, CustomFields, Notes
+        retrieve. Available collections: Attachments, CustomFields, Notes
     order : str
         The sort order for this query. See See [Searchlight Query
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)

@@ -21,11 +21,10 @@ class CodeDefinitionsClient:
         self.client = client
 
     """
-Retrieves the CodeDefinition specified by this unique identifier,
-    optionally including nested data sets.
-
-A CodeDefinition contains
+    Retrieves the CodeDefinition specified by this unique identifier,
+    optionally including nested data sets. A CodeDefinition contains
     information around system code values and their definitions.
+
     Parameters
     ----------
     id : str
@@ -40,14 +39,13 @@ A CodeDefinition contains
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Queries CodeDefinitions for this account using the specified filtering,
+    Queries CodeDefinitions for this account using the specified filtering,
     sorting, nested fetch, and pagination rules requested. More information
     on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
-
-A CodeDefinition contains
+    page on the Lockstep Developer website. A CodeDefinition contains
     information around system code values and their definitions.
+
     Parameters
     ----------
     filter : str

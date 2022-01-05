@@ -17,16 +17,12 @@
 
 """
 An API Key is an authentication token that you may use with the Lockstep
-API. Because API Keys
-do not have an expiration date, they are well
-suited for unattended processes. Each API Key
-is associated with a
-user, and may be revoked to prevent it from accessing the Lockstep
-API.
-When you create an API Key, make sure to save the value in a
-secure location. Lockstep cannot
-retrieve an API Key once it is
-created. For more information, see [API
+API. Because API Keys do not have an expiration date, they are well
+suited for unattended processes. Each API Key is associated with a user,
+and may be revoked to prevent it from accessing the Lockstep API. When
+you create an API Key, make sure to save the value in a secure location.
+Lockstep cannot retrieve an API Key once it is created. For more
+information, see [API
 Keys](https://developer.lockstep.io/docs/api-keys).
 """
 class ApiKeyModel:

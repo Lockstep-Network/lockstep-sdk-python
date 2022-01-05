@@ -22,17 +22,16 @@ class InvoicesClient:
         self.client = client
 
     """
-Retrieves the Invoice specified by this unique identifier, optionally
-    including nested data sets.
-
-An Invoice represents a bill sent from
-    one company to another. The creator of the invoice is identified by the
+    Retrieves the Invoice specified by this unique identifier, optionally
+    including nested data sets. An Invoice represents a bill sent from one
+    company to another. The creator of the invoice is identified by the
     `CompanyId` field, and the recipient of the invoice is identified by the
     `CustomerId` field. Most invoices are uniquely identified both by a
     Lockstep Platform ID number and a customer ERP "key" that was generated
     by the system that originated the invoice. Invoices have a total amount
     and a due date, and when some payments have been made on the Invoice the
     `TotalAmount` and the `OutstandingBalanceAmount` may be different.
+
     Parameters
     ----------
     id : str
@@ -48,10 +47,8 @@ An Invoice represents a bill sent from
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an existing Invoice with the information supplied to this PATCH
-    call.
-
-The PATCH method allows you to change specific values on the
+    Updates an existing Invoice with the information supplied to this PATCH
+    call. The PATCH method allows you to change specific values on the
     object while leaving other values alone. As input you should supply a
     list of field names and new values. If you do not provide the name of a
     field, that field will remain unchanged. This allows you to ensure that
@@ -64,6 +61,7 @@ The PATCH method allows you to change specific values on the
     Invoices have a total amount and a due date, and when some payments have
     been made on the Invoice the `TotalAmount` and the
     `OutstandingBalanceAmount` may be different.
+
     Parameters
     ----------
     id : str
@@ -77,7 +75,7 @@ The PATCH method allows you to change specific values on the
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Deletes the Invoice referred to by this unique identifier. An Invoice
+    Deletes the Invoice referred to by this unique identifier. An Invoice
     represents a bill sent from one company to another. The creator of the
     invoice is identified by the `CompanyId` field, and the recipient of the
     invoice is identified by the `CustomerId` field. Most invoices are
@@ -86,6 +84,7 @@ Deletes the Invoice referred to by this unique identifier. An Invoice
     Invoices have a total amount and a due date, and when some payments have
     been made on the Invoice the `TotalAmount` and the
     `OutstandingBalanceAmount` may be different.
+
     Parameters
     ----------
     id : str
@@ -97,10 +96,8 @@ Deletes the Invoice referred to by this unique identifier. An Invoice
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more Invoices within this account and returns the records
-    as created.
-
-An Invoice represents a bill sent from one company to
+    Creates one or more Invoices within this account and returns the records
+    as created. An Invoice represents a bill sent from one company to
     another. The creator of the invoice is identified by the `CompanyId`
     field, and the recipient of the invoice is identified by the
     `CustomerId` field. Most invoices are uniquely identified both by a
@@ -108,6 +105,7 @@ An Invoice represents a bill sent from one company to
     by the system that originated the invoice. Invoices have a total amount
     and a due date, and when some payments have been made on the Invoice the
     `TotalAmount` and the `OutstandingBalanceAmount` may be different.
+
     Parameters
     ----------
     body : list[InvoiceModel]
@@ -118,11 +116,9 @@ An Invoice represents a bill sent from one company to
         return self.client.send_request("POST", path, body, {body: list[InvoiceModel]})
 
     """
-Queries Invoices for this account using the specified filtering,
-    sorting, nested fetch, and pagination rules requested.
-
-More
-    information on querying can be found on the [Searchlight Query
+    Queries Invoices for this account using the specified filtering,
+    sorting, nested fetch, and pagination rules requested. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. An Invoice represents a bill
     sent from one company to another. The creator of the invoice is
@@ -133,6 +129,7 @@ More
     Invoices have a total amount and a due date, and when some payments have
     been made on the Invoice the `TotalAmount` and the
     `OutstandingBalanceAmount` may be different.
+
     Parameters
     ----------
     filter : str
@@ -157,19 +154,16 @@ More
         return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
 
     """
-Queries Invoices for this account using the specified filtering,
+    Queries Invoices for this account using the specified filtering,
     sorting, nested fetch, and pagination rules requested. Display the
-    results using the Invoice Summary View format.
-
-More information on
+    results using the Invoice Summary View format. More information on
     querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
-
-The Invoice Summary View
+    page on the Lockstep Developer website. The Invoice Summary View
     represents a slightly different view of the data and includes some extra
     fields that might be useful. For more information, see the data format
     of the Invoice Summary Model.
+
     Parameters
     ----------
     filter : str
@@ -194,19 +188,16 @@ The Invoice Summary View
         return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
 
     """
-Queries At Risk Invoices for this account using the specified filtering,
+    Queries At Risk Invoices for this account using the specified filtering,
     sorting, nested fetch, and pagination rules requested. Display the
-    results using the At Risk Invoice Summary View format.
-
-More
-    information on querying can be found on the [Searchlight Query
+    results using the At Risk Invoice Summary View format. More information
+    on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-    page on the Lockstep Developer website.
+    page on the Lockstep Developer website. The At Risk Invoice Summary View
+    represents a slightly different view of the data and includes some extra
+    fields that might be useful. For more information, see the data format
+    of the At Risk Invoice Summary Model.
 
-The At Risk Invoice Summary
-    View represents a slightly different view of the data and includes some
-    extra fields that might be useful. For more information, see the data
-    format of the At Risk Invoice Summary Model.
     Parameters
     ----------
     filter : str

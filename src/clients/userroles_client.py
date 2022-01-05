@@ -21,7 +21,8 @@ class UserRolesClient:
         self.client = client
 
     """
-Retrieves the User Role with this identifier.
+    Retrieves the User Role with this identifier.
+
     Parameters
     ----------
     id : str
@@ -36,8 +37,9 @@ Retrieves the User Role with this identifier.
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Queries User Roles for this account using the specified filtering,
+    Queries User Roles for this account using the specified filtering,
     sorting, nested fetch, and pagination rules requested.
+
     Parameters
     ----------
     filter : str

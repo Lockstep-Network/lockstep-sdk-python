@@ -21,16 +21,12 @@ from src.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
 Credit Memos reflect credits granted to a customer for various reasons,
-such as discounts or refunds.
-Credit Memos may be applied to Invoices
-as Payments. When a Credit Memo is applied as payment to an
-Invoice,
-Lockstep creates a Credit Memo Application record to track the
-amount from the Credit Memo that was applied
-as payment to the Invoice.
-You can examine Credit Memo Application records to track which Invoices
-were paid
-using this Credit.
+such as discounts or refunds. Credit Memos may be applied to Invoices as
+Payments. When a Credit Memo is applied as payment to an Invoice,
+Lockstep creates a Credit Memo Application record to track the amount
+from the Credit Memo that was applied as payment to the Invoice. You can
+examine Credit Memo Application records to track which Invoices were
+paid using this Credit.
 """
 class CreditMemoAppliedModel:
     creditMemoAppliedId: str

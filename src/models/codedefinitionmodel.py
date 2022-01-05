@@ -17,9 +17,8 @@
 
 """
 Represents a Code Definition. Codes can be used as shortened, human
-readable strings.
-Additionally, this table can be used to store lists
-of system values for Lockstep objects.
+readable strings. Additionally, this table can be used to store lists of
+system values for Lockstep objects.
 """
 class CodeDefinitionModel:
     codeDefinitionId: str

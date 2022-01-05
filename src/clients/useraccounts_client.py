@@ -23,15 +23,14 @@ class UserAccountsClient:
         self.client = client
 
     """
-Retrieves the User with this identifier.
-
-A User represents a person
-    who has the ability to authenticate against the Lockstep Platform and
-    use services such as Lockstep Insights. A User is uniquely identified by
-    an Azure identity, and each user must have an email address defined
-    within their account. All Users must validate their email to make use of
+    Retrieves the User with this identifier. A User represents a person who
+    has the ability to authenticate against the Lockstep Platform and use
+    services such as Lockstep Insights. A User is uniquely identified by an
+    Azure identity, and each user must have an email address defined within
+    their account. All Users must validate their email to make use of
     Lockstep platform services. Users may have different privileges and
     access control rights within the Lockstep Platform.
+
     Parameters
     ----------
     id : str
@@ -46,10 +45,8 @@ A User represents a person
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates a User that matches the specified id with the requested
-    information.
-
-The PATCH method allows you to change specific values on
+    Updates a User that matches the specified id with the requested
+    information. The PATCH method allows you to change specific values on
     the object while leaving other values alone. As input you should supply
     a list of field names and new values. If you do not provide the name of
     a field, that field will remain unchanged. This allows you to ensure
@@ -61,6 +58,7 @@ The PATCH method allows you to change specific values on
     their email to make use of Lockstep platform services. Users may have
     different privileges and access control rights within the Lockstep
     Platform.
+
     Parameters
     ----------
     id : str
@@ -73,9 +71,7 @@ The PATCH method allows you to change specific values on
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Disable the user referred to by this unique identifier.
-
-A User
+    Disable the user referred to by this unique identifier. A User
     represents a person who has the ability to authenticate against the
     Lockstep Platform and use services such as Lockstep Insights. A User is
     uniquely identified by an Azure identity, and each user must have an
@@ -83,6 +79,7 @@ A User
     their email to make use of Lockstep platform services. Users may have
     different privileges and access control rights within the Lockstep
     Platform.
+
     Parameters
     ----------
     id : str
@@ -93,9 +90,7 @@ A User
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Reenable the user referred to by this unique identifier.
-
-A User
+    Reenable the user referred to by this unique identifier. A User
     represents a person who has the ability to authenticate against the
     Lockstep Platform and use services such as Lockstep Insights. A User is
     uniquely identified by an Azure identity, and each user must have an
@@ -103,6 +98,7 @@ A User
     their email to make use of Lockstep platform services. Users may have
     different privileges and access control rights within the Lockstep
     Platform.
+
     Parameters
     ----------
     id : str
@@ -113,10 +109,8 @@ A User
         return self.client.send_request("POST", path, None, {id: str})
 
     """
-Invite a user with the specified email to join your accounting group.
-    The user will receive an email to set up their account.
-
-A User
+    Invite a user with the specified email to join your accounting group.
+    The user will receive an email to set up their account. A User
     represents a person who has the ability to authenticate against the
     Lockstep Platform and use services such as Lockstep Insights. A User is
     uniquely identified by an Azure identity, and each user must have an
@@ -124,6 +118,7 @@ A User
     their email to make use of Lockstep platform services. Users may have
     different privileges and access control rights within the Lockstep
     Platform.
+
     Parameters
     ----------
     body : list[InviteSubmitModel]
@@ -134,9 +129,7 @@ A User
         return self.client.send_request("POST", path, body, {body: list[InviteSubmitModel]})
 
     """
-Retrieves invite information for the specified invite token.
-
-A User
+    Retrieves invite information for the specified invite token. A User
     represents a person who has the ability to authenticate against the
     Lockstep Platform and use services such as Lockstep Insights. A User is
     uniquely identified by an Azure identity, and each user must have an
@@ -144,6 +137,7 @@ A User
     their email to make use of Lockstep platform services. Users may have
     different privileges and access control rights within the Lockstep
     Platform.
+
     Parameters
     ----------
     code : str
@@ -154,16 +148,15 @@ A User
         return self.client.send_request("GET", path, None, {code: str})
 
     """
-Transfer the ownership of a group to another user. This API must be
-    called by the current owner of the group.
-
-A User represents a person
-    who has the ability to authenticate against the Lockstep Platform and
-    use services such as Lockstep Insights. A User is uniquely identified by
-    an Azure identity, and each user must have an email address defined
-    within their account. All Users must validate their email to make use of
+    Transfer the ownership of a group to another user. This API must be
+    called by the current owner of the group. A User represents a person who
+    has the ability to authenticate against the Lockstep Platform and use
+    services such as Lockstep Insights. A User is uniquely identified by an
+    Azure identity, and each user must have an email address defined within
+    their account. All Users must validate their email to make use of
     Lockstep platform services. Users may have different privileges and
     access control rights within the Lockstep Platform.
+
     Parameters
     ----------
     body : TransferOwnerSubmitModel
@@ -174,7 +167,7 @@ A User represents a person
         return self.client.send_request("POST", path, body, {body: TransferOwnerSubmitModel})
 
     """
-Queries Users for this account using the specified filtering, sorting,
+    Queries Users for this account using the specified filtering, sorting,
     nested fetch, and pagination rules requested. A User represents a person
     who has the ability to authenticate against the Lockstep Platform and
     use services such as Lockstep Insights. A User is uniquely identified by
@@ -182,6 +175,7 @@ Queries Users for this account using the specified filtering, sorting,
     within their account. All Users must validate their email to make use of
     Lockstep platform services. Users may have different privileges and
     access control rights within the Lockstep Platform.
+
     Parameters
     ----------
     filter : str

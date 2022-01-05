@@ -21,14 +21,13 @@ class InvoiceHistoryClient:
         self.client = client
 
     """
-Retrieves the history of the Invoice specified by this unique
-    identifier.
-
-An Invoice represents a bill sent from one company to
+    Retrieves the history of the Invoice specified by this unique
+    identifier. An Invoice represents a bill sent from one company to
     another. The Lockstep Platform tracks changes to each Invoice so that
     you can observe the changes over time. You can view the InvoiceHistory
     list to monitor and observe the changes of this Invoice and track the
     dates when changes occurred.
+
     Parameters
     ----------
     id : str
@@ -40,14 +39,13 @@ An Invoice represents a bill sent from one company to
         return self.client.send_request("GET", path, None, {id: str})
 
     """
-Queries Invoice History for this account using the specified filtering,
-    sorting, and pagination rules requested.
-
-An Invoice represents a bill
+    Queries Invoice History for this account using the specified filtering,
+    sorting, and pagination rules requested. An Invoice represents a bill
     sent from one company to another. The Lockstep Platform tracks changes
     to each Invoice so that you can observe the changes over time. You can
     view the InvoiceHistory list to monitor and observe the changes of this
     Invoice and track the dates when changes occurred.
+
     Parameters
     ----------
     filter : str

@@ -22,15 +22,14 @@ class PaymentApplicationsClient:
         self.client = client
 
     """
-Retrieves the Payment Application specified by this unique identifier,
-    optionally including nested data sets.
-
-A Payment Application is
-    created by a business who receives a Payment from a customer. A customer
-    may make a single Payment to match an Invoice exactly, a partial Payment
-    for an Invoice, or a single Payment may be made for multiple smaller
+    Retrieves the Payment Application specified by this unique identifier,
+    optionally including nested data sets. A Payment Application is created
+    by a business who receives a Payment from a customer. A customer may
+    make a single Payment to match an Invoice exactly, a partial Payment for
+    an Invoice, or a single Payment may be made for multiple smaller
     Invoices. The Payment Application contains information about which
     Invoices are connected to which Payments and for which amounts.
+
     Parameters
     ----------
     id : str
@@ -45,20 +44,19 @@ A Payment Application is
         return self.client.send_request("GET", path, None, {id: str, include: str})
 
     """
-Updates an existing Payment Application with the information supplied to
-    this PATCH call.
+    Updates an existing Payment Application with the information supplied to
+    this PATCH call. The PATCH method allows you to change specific values
+    on the object while leaving other values alone. As input you should
+    supply a list of field names and new values. If you do not provide the
+    name of a field, that field will remain unchanged. This allows you to
+    ensure that you are only updating the specific fields desired. A Payment
+    Application is created by a business who receives a Payment from a
+    customer. A customer may make a single Payment to match an Invoice
+    exactly, a partial Payment for an Invoice, or a single Payment may be
+    made for multiple smaller Invoices. The Payment Application contains
+    information about which Invoices are connected to which Payments and for
+    which amounts.
 
-The PATCH method allows you to change specific
-    values on the object while leaving other values alone. As input you
-    should supply a list of field names and new values. If you do not
-    provide the name of a field, that field will remain unchanged. This
-    allows you to ensure that you are only updating the specific fields
-    desired. A Payment Application is created by a business who receives a
-    Payment from a customer. A customer may make a single Payment to match
-    an Invoice exactly, a partial Payment for an Invoice, or a single
-    Payment may be made for multiple smaller Invoices. The Payment
-    Application contains information about which Invoices are connected to
-    which Payments and for which amounts.
     Parameters
     ----------
     id : str
@@ -72,15 +70,14 @@ The PATCH method allows you to change specific
         return self.client.send_request("PATCH", path, body, {id: str, body: object})
 
     """
-Deletes the Payment Application referred to by this unique
-    identifier.
+    Deletes the Payment Application referred to by this unique identifier. A
+    Payment Application is created by a business who receives a Payment from
+    a customer. A customer may make a single Payment to match an Invoice
+    exactly, a partial Payment for an Invoice, or a single Payment may be
+    made for multiple smaller Invoices. The Payment Application contains
+    information about which Invoices are connected to which Payments and for
+    which amounts.
 
-A Payment Application is created by a business who
-    receives a Payment from a customer. A customer may make a single Payment
-    to match an Invoice exactly, a partial Payment for an Invoice, or a
-    single Payment may be made for multiple smaller Invoices. The Payment
-    Application contains information about which Invoices are connected to
-    which Payments and for which amounts.
     Parameters
     ----------
     id : str
@@ -92,15 +89,14 @@ A Payment Application is created by a business who
         return self.client.send_request("DELETE", path, None, {id: str})
 
     """
-Creates one or more Payment Applications within this account and returns
-    the records as created.
-
-A Payment Application is created by a
-    business who receives a Payment from a customer. A customer may make a
-    single Payment to match an Invoice exactly, a partial Payment for an
-    Invoice, or a single Payment may be made for multiple smaller Invoices.
-    The Payment Application contains information about which Invoices are
+    Creates one or more Payment Applications within this account and returns
+    the records as created. A Payment Application is created by a business
+    who receives a Payment from a customer. A customer may make a single
+    Payment to match an Invoice exactly, a partial Payment for an Invoice,
+    or a single Payment may be made for multiple smaller Invoices. The
+    Payment Application contains information about which Invoices are
     connected to which Payments and for which amounts.
+
     Parameters
     ----------
     body : list[PaymentAppliedModel]
@@ -111,12 +107,9 @@ A Payment Application is created by a
         return self.client.send_request("POST", path, body, {body: list[PaymentAppliedModel]})
 
     """
-Queries Payment Applications for this account using the specified
-    filtering, sorting, nested fetch, and pagination rules
-    requested.
-
-More information on querying can be found on the
-    [Searchlight Query
+    Queries Payment Applications for this account using the specified
+    filtering, sorting, nested fetch, and pagination rules requested. More
+    information on querying can be found on the [Searchlight Query
     Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     page on the Lockstep Developer website. A Payment Application is created
     by a business who receives a Payment from a customer. A customer may
@@ -124,6 +117,7 @@ More information on querying can be found on the
     an Invoice, or a single Payment may be made for multiple smaller
     Invoices. The Payment Application contains information about which
     Invoices are connected to which Payments and for which amounts.
+
     Parameters
     ----------
     filter : str
