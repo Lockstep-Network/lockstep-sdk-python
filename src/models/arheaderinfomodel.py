@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Aggregated Accounts Receivable information.
 """
+@dataclass
 class ArHeaderInfoModel:
     groupKey: str
     reportPeriod: str

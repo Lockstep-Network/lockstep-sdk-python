@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents an ISO-4217 currency code definition
 """
+@dataclass
 class CurrencyModel:
     alphaCode: str
     numericCode: str

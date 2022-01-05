@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Aggregated Accounts Receivable Aging information.
 """
+@dataclass
 class ArAgingHeaderInfoModel:
     groupKey: str
     reportBucket: str

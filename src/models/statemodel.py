@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 State model for ISO-3166-2
 """
+@dataclass
 class StateModel:
     name: str
     alpha2: str

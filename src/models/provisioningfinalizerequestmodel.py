@@ -13,13 +13,14 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.companymodel import CompanyModel
 from src.models.erpinfomodel import ErpInfoModel
 
 """
 Represents the data to finalize onboarding for a user
 """
+@dataclass
 class ProvisioningFinalizeRequestModel:
     fullName: str
     timeZone: str

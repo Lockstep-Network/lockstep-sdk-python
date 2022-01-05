@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.customfieldvaluemodel import CustomFieldValueModel
@@ -28,6 +28,7 @@ their email to make use of Lockstep platform services. Users may have
 different privileges and access control rights within the Lockstep 
 Platform.
 """
+@dataclass
 class UserAccountModel:
     userId: str
     groupKey: str

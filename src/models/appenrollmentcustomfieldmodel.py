@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 App enrollment and custom field merged into one
 """
+@dataclass
 class AppEnrollmentCustomFieldModel:
     appEnrollmentId: str
     appId: str

@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a user uploaded attachment
 """
+@dataclass
 class AttachmentModel:
     attachmentId: str
     groupKey: str

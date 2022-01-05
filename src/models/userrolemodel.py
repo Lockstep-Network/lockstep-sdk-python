@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a role for a user
 """
+@dataclass
 class UserRoleModel:
     userRoleId: str
     groupKey: str

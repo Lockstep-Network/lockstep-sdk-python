@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 A note is a customizable text string that can be attached to various 
@@ -24,6 +24,7 @@ attributes related to the creation, storage, and ownership of the note.
 See [Extensibility](https://developer.lockstep.io/docs/extensibility) 
 for more information.
 """
+@dataclass
 class NoteModel:
     noteId: str
     groupKey: str

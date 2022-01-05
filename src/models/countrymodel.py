@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Country model for ISO-3166
 """
+@dataclass
 class CountryModel:
     name: str
     alpha2: str

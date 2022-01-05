@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.availablegroup import AvailableGroup
 
 """
 Represents a list of available migrations
 """
+@dataclass
 class AvailableMigrationsModel:
     migrations: list[AvailableGroup]
 

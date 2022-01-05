@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Aggregated Attachment status information.
 """
+@dataclass
 class AttachmentHeaderInfoModel:
     groupKey: str
     companyId: str

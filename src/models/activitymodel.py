@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.attachmentmodel import AttachmentModel
 from src.models.notemodel import NoteModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -26,6 +26,7 @@ has been assigned a specific task, the current status of the task, the
 name and description given for the particular task, the priority of the 
 task, and any amounts collected, paid, or credited for the task.
 """
+@dataclass
 class ActivityModel:
     activityId: str
     groupKey: str

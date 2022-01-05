@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Data counts for the GroupKey.
 """
+@dataclass
 class AvailableGroup:
     groupKey: str
     invoiceCount: int

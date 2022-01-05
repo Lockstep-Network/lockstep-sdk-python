@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Model used to submit a transfer ownership request
 """
+@dataclass
 class TransferOwnerSubmitModel:
     targetUserId: str
 

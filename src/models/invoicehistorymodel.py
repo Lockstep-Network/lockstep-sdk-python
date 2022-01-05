@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 An Invoice represents a bill sent from one company to another. The 
@@ -22,6 +22,7 @@ the changes over time. You can view the InvoiceHistory list to monitor
 and observe the changes of this Invoice and track the dates when changes 
 occurred.
 """
+@dataclass
 class InvoiceHistoryModel:
     groupKey: str
     invoiceHistoryId: str

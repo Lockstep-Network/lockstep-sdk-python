@@ -13,13 +13,14 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.erpinfomodel import ErpInfoModel
 from src.models.companymodel import CompanyModel
 
 """
 Represents the data sent during the onboarding flow
 """
+@dataclass
 class ProvisioningModel:
     fullName: str
     timeZone: str

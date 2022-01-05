@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a currency rate for specific currencies and date
 """
+@dataclass
 class CurrencyRateModel:
     sourceCurrency: str
     destinationCurrency: str

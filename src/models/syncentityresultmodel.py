@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Contains information about a sync process for an entity.
 """
+@dataclass
 class SyncEntityResultModel:
     insertCount: int
     updateCount: int

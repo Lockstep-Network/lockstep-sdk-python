@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 An API Key is an authentication token that you may use with the Lockstep 
@@ -25,6 +25,7 @@ Lockstep cannot retrieve an API Key once it is created. For more
 information, see [API 
 Keys](https://developer.lockstep.io/docs/api-keys).
 """
+@dataclass
 class ApiKeyModel:
     apiKeyId: str
     groupKey: str

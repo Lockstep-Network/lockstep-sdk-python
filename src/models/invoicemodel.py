@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.invoiceaddressmodel import InvoiceAddressModel
 from src.models.invoicelinemodel import InvoiceLineModel
 from src.models.invoicepaymentdetailmodel import InvoicePaymentDetailModel
@@ -36,6 +36,7 @@ originated the invoice. Invoices have a total amount and a due date, and
 when some payments have been made on the Invoice the `TotalAmount` and 
 the `OutstandingBalanceAmount` may be different.
 """
+@dataclass
 class InvoiceModel:
     groupKey: str
     invoiceId: str

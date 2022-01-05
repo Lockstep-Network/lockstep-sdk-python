@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.contactmodel import ContactModel
@@ -30,6 +30,7 @@ under this Company label. See [Vendors, Customers, and
 Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) 
 for more information.
 """
+@dataclass
 class CompanyModel:
     companyId: str
     companyName: str

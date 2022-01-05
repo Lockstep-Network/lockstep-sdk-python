@@ -14,13 +14,15 @@
 
 
 # from typing import Generic, TypeVar
-from src.models.ErrorResult import ErrorResult
+from src.models.error_result import ErrorResult
+from dataclasses import dataclass
 
 # T = TypeVar("T")
 
 """
 Represents a response from a Lockstep Platform API call
 """
+@dataclass
 class LockstepResponse: #(Generic[T]):
     success: bool
     value: any # This could be replaced with TypeVar("T") in the future

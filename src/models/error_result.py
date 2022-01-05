@@ -12,12 +12,12 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-
-
+from dataclasses import dataclass
 
 """
 Represents an error in an API call
 """
+@dataclass
 class ErrorResult:
     type: str
     title: str

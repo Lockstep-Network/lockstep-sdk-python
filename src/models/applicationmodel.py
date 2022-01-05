@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -32,6 +32,7 @@ not customer-specific. See [Applications and
 Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) 
 for more information. --swaggerCategory:Platform
 """
+@dataclass
 class ApplicationModel:
     appId: str
     name: str

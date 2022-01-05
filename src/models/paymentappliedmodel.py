@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.invoicemodel import InvoiceModel
 
 """
@@ -24,6 +24,7 @@ may be made for multiple smaller Invoices. The Payment Application
 contains information about which Invoices are connected to which 
 Payments and for which amounts.
 """
+@dataclass
 class PaymentAppliedModel:
     groupKey: str
     paymentAppliedId: str

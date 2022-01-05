@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -25,6 +25,7 @@ You can use Contacts to track information about who is responsible for a
 specific project, who handles invoices, or information about which role 
 at a particular customer or vendor you should speak with about invoices.
 """
+@dataclass
 class ContactModel:
     contactId: str
     companyId: str

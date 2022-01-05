@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a single address for an invoice
 """
+@dataclass
 class InvoiceAddressModel:
     invoiceAddressId: str
     groupKey: str

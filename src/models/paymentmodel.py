@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.paymentappliedmodel import PaymentAppliedModel
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
@@ -32,6 +32,7 @@ by the system that originated the Payment. Payments that have not been
 fully applied have a nonzero `UnappliedAmount` value, which represents a 
 deposit that has been paid and not yet applied to an Invoice.
 """
+@dataclass
 class PaymentModel:
     groupKey: str
     paymentId: str

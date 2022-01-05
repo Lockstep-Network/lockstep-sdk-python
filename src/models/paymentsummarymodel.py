@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Contains summary information for a Payment
 """
+@dataclass
 class PaymentSummaryModel:
     groupKey: str
     paymentId: str

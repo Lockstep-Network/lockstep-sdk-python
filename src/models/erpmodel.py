@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents unsupported ERP systems
 """
+@dataclass
 class ErpModel:
     erpSystemId: str
     name: str

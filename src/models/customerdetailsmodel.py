@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.customerdetailspaymentmodel import CustomerDetailsPaymentModel
 
 """
 Contains customer details data
 """
+@dataclass
 class CustomerDetailsModel:
     groupKey: str
     customerId: str

@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents the status of a user's credentials
 """
+@dataclass
 class StatusModel:
     userName: str
     accountName: str

@@ -13,13 +13,14 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 
 """
 Represents a line in an invoice
 """
+@dataclass
 class InvoiceLineModel:
     invoiceLineId: str
     groupKey: str

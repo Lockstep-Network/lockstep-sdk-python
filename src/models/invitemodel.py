@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.useraccountmodel import UserAccountModel
 
 """
 Model from the User invite process
 """
+@dataclass
 class InviteModel:
     email: str
     success: bool

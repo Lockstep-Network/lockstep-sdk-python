@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.emailmodel import EmailModel
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
@@ -28,6 +28,7 @@ recipient(s) by the `EmailTo` field, and cc recipient(s) by the
 different metadata attributes related to the creation, storage, and 
 ownership of the email.
 """
+@dataclass
 class EmailModel:
     emailId: str
     threadId: str

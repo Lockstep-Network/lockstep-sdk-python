@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.attachmentmodel import AttachmentModel
 from src.models.notemodel import NoteModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -28,6 +28,7 @@ from the Credit Memo that was applied as payment to the Invoice. You can
 examine Credit Memo Application records to track which Invoices were 
 paid using this Credit.
 """
+@dataclass
 class CreditMemoAppliedModel:
     creditMemoAppliedId: str
     groupKey: str

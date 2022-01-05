@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Contains group level payment data.
 """
+@dataclass
 class PaymentDetailHeaderModel:
     groupKey: str
     customerCount: int

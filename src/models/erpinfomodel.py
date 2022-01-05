@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.connectorinfomodel import ConnectorInfoModel
 
 """
 Represents the ERP object sent in a provisioning request
 """
+@dataclass
 class ErpInfoModel:
     appId: str
     data: ConnectorInfoModel

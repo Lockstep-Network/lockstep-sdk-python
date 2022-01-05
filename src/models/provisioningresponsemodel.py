@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents the response to either a successful or failed account 
 provisioning
 """
+@dataclass
 class ProvisioningResponseModel:
     userName: str
     accountName: str

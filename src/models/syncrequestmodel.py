@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a user request to sync data
 """
+@dataclass
 class SyncRequestModel:
     syncRequestId: str
     groupKey: str

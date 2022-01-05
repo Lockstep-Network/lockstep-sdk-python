@@ -13,12 +13,13 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Model containing information about a user for the invite/onboarding 
 process.
 """
+@dataclass
 class InviteDataModel:
     email: str
     userStatus: str

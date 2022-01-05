@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Contains information about a credit memo invoice
 """
+@dataclass
 class CreditMemoInvoiceModel:
     groupKey: str
     creditMemoAppliedId: str

@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents an aging record
 """
+@dataclass
 class AgingModel:
     bucket: int
     currencyCode: str

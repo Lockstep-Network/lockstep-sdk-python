@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents the daily sales outstanding report
 """
+@dataclass
 class DailySalesOutstandingReportModel:
     timeframe: str
     invoiceCount: int

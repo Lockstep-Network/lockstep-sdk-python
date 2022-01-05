@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents the cashflow report based on a timeframe
 """
+@dataclass
 class CashflowReportModel:
     timeframe: int
     paymentsCollected: float

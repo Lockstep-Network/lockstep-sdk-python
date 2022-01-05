@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Model representing information for a sync request
 """
+@dataclass
 class SyncSubmitModel:
     appEnrollmentId: str
 

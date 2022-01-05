@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Information about the migration action for a particular group
 """
+@dataclass
 class MigrationResultModel:
     messages: list[str]
     groupKey: str

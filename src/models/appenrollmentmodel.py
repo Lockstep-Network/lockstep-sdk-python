@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.applicationmodel import ApplicationModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from src.models.customfieldvaluemodel import CustomFieldValueModel
@@ -31,6 +31,7 @@ See [Applications and
 Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) 
 for more information.
 """
+@dataclass
 class AppEnrollmentModel:
     appEnrollmentId: str
     appId: str

@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 A Custom Field represents metadata added to an object within the 
@@ -26,6 +26,7 @@ you can use Custom Fields to represent this information.
 See [Extensibility](https://developer.lockstep.io/docs/extensibility) 
 for more information.
 """
+@dataclass
 class CustomFieldDefinitionModel:
     groupKey: str
     customFieldDefinitionId: str

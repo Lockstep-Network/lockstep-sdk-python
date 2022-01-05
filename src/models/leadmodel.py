@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents leads for creating new ERP connectors
 """
+@dataclass
 class LeadModel:
     leadId: str
     name: str

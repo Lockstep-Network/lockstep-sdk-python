@@ -13,7 +13,7 @@
 #
 
 
-
+from dataclasses import dataclass
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 """
@@ -27,6 +27,7 @@ you can use Custom Fields to represent this information.
 See [Extensibility](https://developer.lockstep.io/docs/extensibility) 
 for more information.
 """
+@dataclass
 class CustomFieldValueModel:
     groupKey: str
     customFieldDefinitionId: str

@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 View to return Payment Detail information for a given Invoice record.
 """
+@dataclass
 class InvoicePaymentDetailModel:
     groupKey: str
     paymentAppliedId: str

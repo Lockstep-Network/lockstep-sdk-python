@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Contains summarized data for a customer
 """
+@dataclass
 class CustomerSummaryModel:
     groupKey: str
     companyId: str

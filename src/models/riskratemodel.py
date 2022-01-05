@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Represents a risk rate calculation for a single month
 """
+@dataclass
 class RiskRateModel:
     groupKey: str
     reportPeriod: str

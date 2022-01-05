@@ -13,11 +13,12 @@
 #
 
 
-
+from dataclasses import dataclass
 
 """
 Input format used for bulk conversion route
 """
+@dataclass
 class BulkCurrencyConversionModel:
     date: str
     sourceCurrency: str
