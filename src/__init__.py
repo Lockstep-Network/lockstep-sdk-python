@@ -1,1 +1,1 @@
-from LockstepApi import LockstepApi
+from lockstep_api import LockstepApi
