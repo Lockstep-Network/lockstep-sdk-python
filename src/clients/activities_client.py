@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -38,8 +38,8 @@ class ActivitiesClient:
         The unique Lockstep Platform ID number of this Activity
     include : str
         To fetch additional data on this object, specify the list of 
-        elements to retrieve. Available collections: Attachments, 
-        CustomFields, and Notes
+        elements to retrieve. Available collections: Company, 
+        Attachments, CustomFields, and Notes
     """
     def retrieve_activity(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Activities/{id}"
@@ -133,8 +133,8 @@ class ActivitiesClient:
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
     include : str
         To fetch additional data on this object, specify the list of 
-        elements to retrieve. Available collections: Attachments, 
-        CustomFields, and Notes
+        elements to retrieve. Available collections: Company, 
+        Attachments, CustomFields, and Notes
     order : str
         The sort order for this query. See See [Searchlight Query 
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -148,3 +148,23 @@ class ActivitiesClient:
     def query_activities(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Activities/query"
         return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+
+    """
+    Retrieves a list of items representing the activity stream for the 
+    supplied activity id. 
+
+    An Activity contains information about work being done on a specific 
+    accounting task. You can use Activities to track information about 
+    who has been assigned a specific task, the current status of the 
+    task, the name and description given for the particular task, the 
+    priority of the task, and any amounts collected, paid, or credited 
+    for the task.
+
+    Parameters
+    ----------
+    id : str
+        The unique Lockstep Platform ID number of this Activity
+    """
+    def retrieve_activity_stream(self, id: str) -> LockstepResponse:
+        path = f"/api/v1/Activities/{id}/stream"
+        return self.client.send_request("GET", path, None, {id: str})

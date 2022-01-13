@@ -8,12 +8,13 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
+from src.models.companymodel import CompanyModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.notemodel import NoteModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -50,6 +51,7 @@ class ActivityModel:
     creditGiven: float = None
     isUnread: bool = None
     isArchived: bool = None
+    company: CompanyModel = None
     attachments: list[AttachmentModel] = None
     notes: list[NoteModel] = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] = None

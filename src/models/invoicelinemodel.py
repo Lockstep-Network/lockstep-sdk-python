@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -44,6 +44,7 @@ class InvoiceLineModel:
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
+    appEnrollmentId: str = None
     notes: list[NoteModel] = None
     attachments: list[AttachmentModel] = None
 
