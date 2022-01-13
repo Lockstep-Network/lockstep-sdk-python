@@ -16,13 +16,18 @@
 from dataclasses import dataclass
 
 """
-Aggregated Attachment status information.
+Represents an item belonging to the activity stream.
 """
 @dataclass
-class AttachmentHeaderInfoModel:
+class ActivityStreamItemModel:
+    objectKey: str = None
+    activityType: str = None
+    textValue: str = None
+    created: str = None
+    createdUserId: str = None
     groupKey: str = None
-    companyId: str = None
-    totalAttachments: int = None
-    totalArchived: int = None
-    totalActive: int = None
+    fromEmailAddress: str = None
+    toEmailAddress: str = None
+    fromContactName: str = None
+    toContactName: str = None
 

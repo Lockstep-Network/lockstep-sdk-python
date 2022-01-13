@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -43,6 +43,7 @@ class CodeDefinitionsClient:
     """
     Queries CodeDefinitions for this account using the specified 
     filtering, sorting, nested fetch, and pagination rules requested. 
+
     More information on querying can be found on the [Searchlight Query 
     Language](https://developer.lockstep.io/docs/querying-with-searchlight) 
     page on the Lockstep Developer website. 
