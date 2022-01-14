@@ -8,37 +8,10 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2.88.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.clients.activities_client import ActivitiesClient
-from src.clients.apikeys_client import ApiKeysClient
-from src.clients.appenrollments_client import AppEnrollmentsClient
-from src.clients.applications_client import ApplicationsClient
-from src.clients.attachments_client import AttachmentsClient
-from src.clients.codedefinitions_client import CodeDefinitionsClient
-from src.clients.companies_client import CompaniesClient
-from src.clients.contacts_client import ContactsClient
-from src.clients.creditmemoapplied_client import CreditMemoAppliedClient
-from src.clients.currencies_client import CurrenciesClient
-from src.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
-from src.clients.customfieldvalues_client import CustomFieldValuesClient
-from src.clients.definitions_client import DefinitionsClient
-from src.clients.emails_client import EmailsClient
-from src.clients.invoicehistory_client import InvoiceHistoryClient
-from src.clients.invoices_client import InvoicesClient
-from src.clients.leads_client import LeadsClient
-from src.clients.migration_client import MigrationClient
-from src.clients.notes_client import NotesClient
-from src.clients.paymentapplications_client import PaymentApplicationsClient
-from src.clients.payments_client import PaymentsClient
-from src.clients.provisioning_client import ProvisioningClient
-from src.clients.reports_client import ReportsClient
-from src.clients.status_client import StatusClient
-from src.clients.sync_client import SyncClient
-from src.clients.useraccounts_client import UserAccountsClient
-from src.clients.userroles_client import UserRolesClient
 from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
@@ -49,6 +22,33 @@ class LockstepApi():
     Construct a new LockstepApi client object
     """
     def __init__(self, env: str):
+        from src.clients.activities_client import ActivitiesClient
+        from src.clients.apikeys_client import ApiKeysClient
+        from src.clients.appenrollments_client import AppEnrollmentsClient
+        from src.clients.applications_client import ApplicationsClient
+        from src.clients.attachments_client import AttachmentsClient
+        from src.clients.codedefinitions_client import CodeDefinitionsClient
+        from src.clients.companies_client import CompaniesClient
+        from src.clients.contacts_client import ContactsClient
+        from src.clients.creditmemoapplied_client import CreditMemoAppliedClient
+        from src.clients.currencies_client import CurrenciesClient
+        from src.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
+        from src.clients.customfieldvalues_client import CustomFieldValuesClient
+        from src.clients.definitions_client import DefinitionsClient
+        from src.clients.emails_client import EmailsClient
+        from src.clients.invoicehistory_client import InvoiceHistoryClient
+        from src.clients.invoices_client import InvoicesClient
+        from src.clients.leads_client import LeadsClient
+        from src.clients.migration_client import MigrationClient
+        from src.clients.notes_client import NotesClient
+        from src.clients.paymentapplications_client import PaymentApplicationsClient
+        from src.clients.payments_client import PaymentsClient
+        from src.clients.provisioning_client import ProvisioningClient
+        from src.clients.reports_client import ReportsClient
+        from src.clients.status_client import StatusClient
+        from src.clients.sync_client import SyncClient
+        from src.clients.useraccounts_client import UserAccountsClient
+        from src.clients.userroles_client import UserRolesClient
         self.activities = ActivitiesClient(self)
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
@@ -82,7 +82,7 @@ class LockstepApi():
             self.serverUrl = "https://api.lockstep.io/"
         else:
             self.serverUrl = env
-        self.version = "2021.39"
+        self.version = "2022.2.88.0"
 
     """
     Configure this API client to use API Key authentication

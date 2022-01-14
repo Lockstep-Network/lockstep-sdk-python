@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -73,12 +73,13 @@ class SyncClient:
     while leaving other values alone. As input you should supply a list 
     of field names and new values. For example, you can provide the 
     field name "IsActive" and specify the new value "False"; this API 
-    will then change the value of IsActive to false. A Sync task 
-    represents an action performed by an Application for a particular 
-    account. An Application can provide many different tasks as part of 
-    their capabilities. Sync tasks are executed in the background and 
-    will continue running after they are created. Use one of the 
-    creation APIs to request execution of a task. To check on the 
+    will then change the value of IsActive to false. 
+
+    A Sync task represents an action performed by an Application for a 
+    particular account. An Application can provide many different tasks 
+    as part of their capabilities. Sync tasks are executed in the 
+    background and will continue running after they are created. Use one 
+    of the creation APIs to request execution of a task. To check on the 
     progress of the task, call GetSync or QuerySync.
 
     Parameters
@@ -95,9 +96,11 @@ class SyncClient:
     """
     Retrieves the status and information about a Sync operation by the 
     requested ID. Provides status and progress information about this 
-    task. A Sync task represents an action performed by an Application 
-    for a particular account. An Application can provide many different 
-    tasks as part of their capabilities. Sync tasks are executed in the 
+    task. 
+
+    A Sync task represents an action performed by an Application for a 
+    particular account. An Application can provide many different tasks 
+    as part of their capabilities. Sync tasks are executed in the 
     background and will continue running after they are created. Use one 
     of the creation APIs to request execution of a task. To check on the 
     progress of the task, call GetSync or QuerySync.
@@ -120,13 +123,14 @@ class SyncClient:
 
     More information on querying can be found on the [Searchlight Query 
     Language](https://developer.lockstep.io/docs/querying-with-searchlight) 
-    page on the Lockstep Developer website. A Sync task represents an 
-    action performed by an Application for a particular account. An 
-    Application can provide many different tasks as part of their 
-    capabilities. Sync tasks are executed in the background and will 
-    continue running after they are created. Use one of the creation 
-    APIs to request execution of a task. To check on the progress of the 
-    task, call GetSync or QuerySync.
+    page on the Lockstep Developer website. 
+
+    A Sync task represents an action performed by an Application for a 
+    particular account. An Application can provide many different tasks 
+    as part of their capabilities. Sync tasks are executed in the 
+    background and will continue running after they are created. Use one 
+    of the creation APIs to request execution of a task. To check on the 
+    progress of the task, call GetSync or QuerySync.
 
     Parameters
     ----------
