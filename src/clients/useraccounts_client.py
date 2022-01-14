@@ -12,12 +12,12 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep_api import LockstepApi
 from src.models.lockstep_response import LockstepResponse
-from src.models.invitesubmitmodel import InviteSubmitModel
-from src.models.transferownersubmitmodel import TransferOwnerSubmitModel
 
 class UserAccountsClient:
+    from src.lockstep_api import LockstepApi
+    from src.models.invitesubmitmodel import InviteSubmitModel
+    from src.models.transferownersubmitmodel import TransferOwnerSubmitModel
 
     def __init__(self, client: LockstepApi):
         self.client = client

@@ -12,11 +12,11 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep_api import LockstepApi
 from src.models.lockstep_response import LockstepResponse
-from src.models.syncsubmitmodel import SyncSubmitModel
 
 class SyncClient:
+    from src.lockstep_api import LockstepApi
+    from src.models.syncsubmitmodel import SyncSubmitModel
 
     def __init__(self, client: LockstepApi):
         self.client = client

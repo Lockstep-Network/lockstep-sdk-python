@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2.88.0
+# @version    2022.2.93.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -16,7 +16,7 @@ from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
 
-class LockstepApi():
+class LockstepApi:
 
     """
     Construct a new LockstepApi client object
@@ -39,7 +39,6 @@ class LockstepApi():
         from src.clients.invoicehistory_client import InvoiceHistoryClient
         from src.clients.invoices_client import InvoicesClient
         from src.clients.leads_client import LeadsClient
-        from src.clients.migration_client import MigrationClient
         from src.clients.notes_client import NotesClient
         from src.clients.paymentapplications_client import PaymentApplicationsClient
         from src.clients.payments_client import PaymentsClient
@@ -66,7 +65,6 @@ class LockstepApi():
         self.invoiceHistory = InvoiceHistoryClient(self)
         self.invoices = InvoicesClient(self)
         self.leads = LeadsClient(self)
-        self.migration = MigrationClient(self)
         self.notes = NotesClient(self)
         self.paymentApplications = PaymentApplicationsClient(self)
         self.payments = PaymentsClient(self)
@@ -82,7 +80,7 @@ class LockstepApi():
             self.serverUrl = "https://api.lockstep.io/"
         else:
             self.serverUrl = env
-        self.version = "2022.2.88.0"
+        self.version = "2022.2.93.0"
 
     """
     Configure this API client to use API Key authentication
