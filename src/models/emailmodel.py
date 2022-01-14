@@ -14,7 +14,6 @@
 
 
 from dataclasses import dataclass
-from src.models.emailmodel import EmailModel
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
