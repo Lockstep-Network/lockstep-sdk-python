@@ -12,10 +12,10 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.models.lockstep_response import LockstepResponse
 
 class ProvisioningClient:
-    from src.lockstep_api import LockstepApi
+    from src.api.lockstep_response import LockstepResponse
+    from src.api.lockstep_api import LockstepApi
     from src.models.provisioningmodel import ProvisioningModel
     from src.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
 

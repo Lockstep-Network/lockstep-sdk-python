@@ -12,11 +12,11 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
 
 class LockstepApi:
+    from lockstep_response import LockstepResponse
 
     """
     Construct a new LockstepApi client object
