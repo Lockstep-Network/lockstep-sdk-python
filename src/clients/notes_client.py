@@ -12,11 +12,11 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep_api import LockstepApi
 from src.models.lockstep_response import LockstepResponse
 from src.models.notemodel import NoteModel
 
 class NotesClient:
+    from src.lockstep_api.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -25,7 +25,7 @@ class NotesClient:
     Retrieves the note with the specified note identifier. A note is a 
     customizable text string that can be attached to various account 
     attributes within Lockstep. You can use notes for internal 
-    communication, correspondence with clients, or personal reminders. 
+    communication, correspondence with clients_, or personal reminders. 
     The Note Model represents a note and a number of different metadata 
     attributes related to the creation, storage, and ownership of the 
     note. 
@@ -51,7 +51,7 @@ class NotesClient:
     Archives the Note with the unique ID specified. A note is a 
     customizable text string that can be attached to various account 
     attributes within Lockstep. You can use notes for internal 
-    communication, correspondence with clients, or personal reminders. 
+    communication, correspondence with clients_, or personal reminders. 
     The Note Model represents a note and a number of different metadata 
     attributes related to the creation, storage, and ownership of the 
     note. 
@@ -74,7 +74,7 @@ class NotesClient:
 
     A note is a customizable text string that can be attached to various 
     account attributes within Lockstep. You can use notes for internal 
-    communication, correspondence with clients, or personal reminders. 
+    communication, correspondence with clients_, or personal reminders. 
     The Note Model represents a note and a number of different metadata 
     attributes related to the creation, storage, and ownership of the 
     note. 
@@ -101,7 +101,7 @@ class NotesClient:
     page on the Lockstep Developer website. A note is a customizable 
     text string that can be attached to various account attributes 
     within Lockstep. You can use notes for internal communication, 
-    correspondence with clients, or personal reminders. The Note Model 
+    correspondence with clients_, or personal reminders. The Note Model 
     represents a note and a number of different metadata attributes 
     related to the creation, storage, and ownership of the note. 
 

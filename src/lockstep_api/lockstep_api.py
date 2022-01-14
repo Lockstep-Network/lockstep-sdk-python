@@ -16,7 +16,7 @@ from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
 
-class LockstepApi():
+class LockstepApi:
 
     """
     Construct a new LockstepApi client object

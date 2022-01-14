@@ -15,7 +15,6 @@
 
 from dataclasses import dataclass
 from src.models.useraccountmodel import UserAccountModel
-from src.models.useraccountmodel import UserAccountModel
 
 """
 Model from the transfer ownership process.

@@ -11,10 +11,8 @@
 # @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
-
-
+import this
 from dataclasses import dataclass
-from src.models.emailmodel import EmailModel
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -58,7 +56,7 @@ class EmailModel:
     modified: str = None
     modifiedUserId: str = None
     responseOriginId: str = None
-    responseOrigin: EmailModel = None
+    # responseOrigin: EmailModel = None
     notes: list[NoteModel] = None
     attachments: list[AttachmentModel] = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] = None

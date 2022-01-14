@@ -20,7 +20,6 @@ from src.models.invoicepaymentdetailmodel import InvoicePaymentDetailModel
 from src.models.notemodel import NoteModel
 from src.models.attachmentmodel import AttachmentModel
 from src.models.companymodel import CompanyModel
-from src.models.companymodel import CompanyModel
 from src.models.contactmodel import ContactModel
 from src.models.creditmemoinvoicemodel import CreditMemoInvoiceModel
 from src.models.customfieldvaluemodel import CustomFieldValueModel
