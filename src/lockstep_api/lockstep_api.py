@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2.88.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -49,7 +49,6 @@ class LockstepApi:
         from src.clients.sync_client import SyncClient
         from src.clients.useraccounts_client import UserAccountsClient
         from src.clients.userroles_client import UserRolesClient
-
         self.activities = ActivitiesClient(self)
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
@@ -83,7 +82,7 @@ class LockstepApi:
             self.serverUrl = "https://api.lockstep.io/"
         else:
             self.serverUrl = env
-        self.version = "2021.39"
+        self.version = "2022.2.88.0"
 
     """
     Configure this API client to use API Key authentication

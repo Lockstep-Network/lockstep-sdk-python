@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2021.39
+# @version    2022.2
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -31,5 +31,7 @@ class StatusModel:
     lastLoggedIn: str = None
     apiKeyId: str = None
     userStatus: str = None
+    environment: str = None
+    version: str = None
     dependencies: object = None
 
