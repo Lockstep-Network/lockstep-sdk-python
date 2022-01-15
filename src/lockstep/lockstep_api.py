@@ -113,5 +113,5 @@ class LockstepApi:
             headers = {"Accept": "application/json"}
     
         response = requests.request(method, url, headers=headers)
-        return response
+        return response.json()
         
