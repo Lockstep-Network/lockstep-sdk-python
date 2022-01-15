@@ -12,8 +12,8 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.models.leadmodel import LeadModel
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.leadmodel import LeadModel
 
 class LeadsClient:
 

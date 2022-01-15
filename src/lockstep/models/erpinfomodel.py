@@ -14,7 +14,7 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.connectorinfomodel import ConnectorInfoModel
+from lockstep.models.connectorinfomodel import ConnectorInfoModel
 
 """
 Represents the ERP object sent in a provisioning request

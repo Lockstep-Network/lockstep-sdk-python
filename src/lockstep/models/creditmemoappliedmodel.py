@@ -14,10 +14,10 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
 Credit Memos reflect credits granted to a customer for various reasons, 

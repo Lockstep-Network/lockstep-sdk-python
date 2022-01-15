@@ -12,9 +12,9 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.models.invitesubmitmodel import InviteSubmitModel
-from src.lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.invitesubmitmodel import InviteSubmitModel
+from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 
 class UserAccountsClient:
 

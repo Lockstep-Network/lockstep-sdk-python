@@ -14,12 +14,12 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.companymodel import CompanyModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from src.lockstep.models.activityxrefmodel import ActivityXRefModel
+from lockstep.models.companymodel import CompanyModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.activityxrefmodel import ActivityXRefModel
 
 """
 An Activity contains information about work being done on a specific 

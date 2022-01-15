@@ -14,8 +14,8 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.companymodel import CompanyModel
-from src.lockstep.models.erpinfomodel import ErpInfoModel
+from lockstep.models.companymodel import CompanyModel
+from lockstep.models.erpinfomodel import ErpInfoModel
 
 """
 Represents the data to finalize onboarding for a user

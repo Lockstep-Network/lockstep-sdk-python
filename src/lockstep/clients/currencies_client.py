@@ -12,8 +12,8 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 
 class CurrenciesClient:
 

@@ -14,17 +14,17 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.invoiceaddressmodel import InvoiceAddressModel
-from src.lockstep.models.invoicelinemodel import InvoiceLineModel
-from src.lockstep.models.invoicepaymentdetailmodel import InvoicePaymentDetailModel
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.companymodel import CompanyModel
-from src.lockstep.models.companymodel import CompanyModel
-from src.lockstep.models.contactmodel import ContactModel
-from src.lockstep.models.creditmemoinvoicemodel import CreditMemoInvoiceModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.invoiceaddressmodel import InvoiceAddressModel
+from lockstep.models.invoicelinemodel import InvoiceLineModel
+from lockstep.models.invoicepaymentdetailmodel import InvoicePaymentDetailModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.companymodel import CompanyModel
+from lockstep.models.companymodel import CompanyModel
+from lockstep.models.contactmodel import ContactModel
+from lockstep.models.creditmemoinvoicemodel import CreditMemoInvoiceModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 """
 An Invoice represents a bill sent from one company to another. The 

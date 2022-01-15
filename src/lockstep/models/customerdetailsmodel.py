@@ -14,7 +14,7 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.customerdetailspaymentmodel import CustomerDetailsPaymentModel
+from lockstep.models.customerdetailspaymentmodel import CustomerDetailsPaymentModel
 
 """
 Contains customer details data

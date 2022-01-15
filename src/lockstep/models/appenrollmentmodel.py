@@ -14,12 +14,12 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.applicationmodel import ApplicationModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from src.lockstep.models.syncrequestmodel import SyncRequestModel
-from src.lockstep.models.erpinfodatamodel import ErpInfoDataModel
-from src.lockstep.models.connectorinfomodel import ConnectorInfoModel
+from lockstep.models.applicationmodel import ApplicationModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.syncrequestmodel import SyncRequestModel
+from lockstep.models.erpinfodatamodel import ErpInfoDataModel
+from lockstep.models.connectorinfomodel import ConnectorInfoModel
 
 """
 An AppEnrollment represents an app that has been enrolled to the current 

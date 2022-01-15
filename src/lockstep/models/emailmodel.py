@@ -14,11 +14,11 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.emailmodel import EmailModel
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.emailmodel import EmailModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
 An Email represents a communication sent from one company to another. 

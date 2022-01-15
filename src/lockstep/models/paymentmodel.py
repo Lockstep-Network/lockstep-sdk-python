@@ -14,11 +14,11 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.paymentappliedmodel import PaymentAppliedModel
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.paymentappliedmodel import PaymentAppliedModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 """
 A Payment represents money sent from one company to another. A single 

@@ -14,7 +14,7 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.invoicemodel import InvoiceModel
+from lockstep.models.invoicemodel import InvoiceModel
 
 """
 A Payment Application is created by a business who receives a Payment 

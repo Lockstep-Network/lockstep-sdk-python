@@ -14,7 +14,7 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 """
 A Custom Field represents metadata added to an object within the 

@@ -14,8 +14,8 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.useraccountmodel import UserAccountModel
-from src.lockstep.models.useraccountmodel import UserAccountModel
+from lockstep.models.useraccountmodel import UserAccountModel
+from lockstep.models.useraccountmodel import UserAccountModel
 
 """
 Model from the transfer ownership process.

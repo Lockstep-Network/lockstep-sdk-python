@@ -14,8 +14,8 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.attachmentmodel import AttachmentModel
 
 """
 Represents a line in an invoice

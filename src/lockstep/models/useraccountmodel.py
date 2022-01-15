@@ -14,10 +14,10 @@
 
 
 from dataclasses import dataclass
-from src.lockstep.models.notemodel import NoteModel
-from src.lockstep.models.attachmentmodel import AttachmentModel
-from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from src.lockstep.models.codedefinitionmodel import CodeDefinitionModel
+from lockstep.models.notemodel import NoteModel
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 
 """
 A User represents a person who has the ability to authenticate against 

@@ -12,7 +12,7 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.lockstep_response import LockstepResponse
 
 class StatusClient:
 

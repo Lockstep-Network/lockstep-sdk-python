@@ -12,8 +12,8 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.models.paymentappliedmodel import PaymentAppliedModel
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.paymentappliedmodel import PaymentAppliedModel
 
 class PaymentApplicationsClient:
 
