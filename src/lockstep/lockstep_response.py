@@ -14,7 +14,7 @@
 
 
 # from typing import Generic, TypeVar
-from src.models.error_result import ErrorResult
+from error_result import ErrorResult
 from dataclasses import dataclass
 
 # T = TypeVar("T")
