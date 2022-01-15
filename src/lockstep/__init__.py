@@ -1,4 +1,6 @@
 from lockstep.lockstep_api import LockstepApi
+from lockstep.error_result import ErrorResult
+from lockstep.lockstep_response import LockstepResponse
 from lockstep.clients.activities_client import ActivitiesClient
 from lockstep.clients.apikeys_client import ApiKeysClient
 from lockstep.clients.appenrollments_client import AppEnrollmentsClient

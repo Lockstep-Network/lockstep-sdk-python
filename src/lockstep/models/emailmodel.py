@@ -14,7 +14,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.emailmodel import EmailModel
 from lockstep.models.notemodel import NoteModel
 from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel

@@ -14,7 +14,7 @@
 
 
 # from typing import Generic, TypeVar
-from error_result import ErrorResult
+from lockstep.error_result import ErrorResult
 from dataclasses import dataclass
 
 # T = TypeVar("T")
