@@ -15,12 +15,15 @@
 from src.models.lockstep_response import LockstepResponse
 import requests
 import urllib.parse
+import os
+import socket
+
 
 class LockstepApi():
-
     """
     Construct a new LockstepApi client object
     """
+
     def __init__(self, env: str):
         from src.clients.activities_client import ActivitiesClient
         from src.clients.apikeys_client import ApiKeysClient
@@ -76,6 +79,10 @@ class LockstepApi():
         self.sync = SyncClient(self)
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
+        self._sdkName = "Python"
+        self._sdkVersion = "2022.3.7.0"
+        self._machineName = socket.gethostname()
+        self._applicationName = ""
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         elif env == "prd":
@@ -87,33 +94,43 @@ class LockstepApi():
     """
     Configure this API client to use API Key authentication
     """
+
     def with_api_key(self, apiKey: str):
         self.apiKey = apiKey
         self.bearerToken = None
-    
+
     """
     Configure this API client to use Bearer Token authentication
     """
+
     def with_bearer_token(self, bearerToken: str):
         self.apiKey = None
         self.bearerToken = bearerToken
-    
+
     """
     Send a request and parse the result
     """
+
     def send_request(self, method: str, path: str, body: object, query_params: object) -> LockstepResponse:
+
         if query_params:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
-        
+
+        headers = {"Accept": "application/json",
+                   "SdkName": self._sdkName,
+                   "SdkVersion": self._sdkVersion,
+                   "MachineName": self._machineName,
+                   "ApplicationName": ""}
+
         if self.apiKey:
-            headers = {"Accept": "application/json", "Api-Key": self.apiKey}
+            headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
-            headers = {"Accept": "application/json", "Authorization": "Bearer " + self.bearerToken}
-        else:
-            headers = {"Accept": "application/json"}
-    
+            headers["Authorization"] = "Bearer " + self.bearerToken
+
+        if self._applicationName is not None:
+            headers["ApplicationName"] = self._applicationName
+
         response = requests.request(method, url, headers=headers)
         return response
-        
