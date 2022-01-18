@@ -1,4 +1,104 @@
-# Fetch Invoice Sample Python Project
+# Lockstep API 
+![PyPI](https://img.shields.io/pypi/v/lockstep-sdk)
+
+
+A financial service API and platform for innovative accounting solutions providers.
+
+### Who are we? 
+Lockstep automates accounting workflows to improve your operational efficiency and cash flow. Accelerate payments through automated customer communications, enhanced collections activity management, and innovative forecasting and reporting.
+
+
+# Getting Started
+
+### Pip install the Lockstep API  
+```bash
+ path\\to\\project\\file: pip install lockstep-sdk
+```
+
+### Get Credentials
+
+# TODO: WHERE SHOULD WE REDIRECT? 
+
+{The SDK is all hosted here: https://api.sbx.lockstep.io/} ?? IS THIS OKAY?
+
+### Pulling local environment variable with API key into program
+```python
+API_KEY = os.environ.get('INSERT_LOCAL_ENVIORNMENT_VARIABLE_HERE')
+```
+
+### Creating Client
+```python
+env = 'PASS_ENVIRONMENT_HERE'
+client = LockstepApi(env)
+client.with_api_key(apikey)
+
+if not client:
+    print("ISSUE WITH CLIENT, NO API KEY OR WRONG ENVIRONMENT")
+else:
+    print(f"CLIENT WAS CREATED SUCCESSFULLY: {client}")
+    return client
+```
+You now have your API credentials and have successfully created your client
+
+## Features (API Endpoints) 
+- [Activities](https://developer.lockstep.io/reference/get_api-v1-activities-id)
+- [ApiKeys](https://developer.lockstep.io/reference/get_api-v1-apikeys-id)
+- [AppEnrollments](https://developer.lockstep.io/reference/get_api-v1-appenrollments-id)
+- [Applications](https://developer.lockstep.io/reference/get_api-v1-applications-id)
+- [Attachments](https://developer.lockstep.io/reference/get_api-v1-attachments-id)
+- [Code Definitions](https://developer.lockstep.io/reference/get_api-v1-codedefinitions-id)
+- [Companies](https://developer.lockstep.io/reference/get_api-v1-companies-id)
+- [Contacts](https://developer.lockstep.io/reference/get_api-v1-contacts-id)
+- [Countries](https://developer.lockstep.io/reference/get_api-v1-countries)
+- [Credit Memo Applied](https://developer.lockstep.io/reference/get_api-v1-creditmemoapplied-id)
+- [Currencies](https://developer.lockstep.io/reference/get_api-v1-currencies)
+- [CustomFieldDefinitions](https://developer.lockstep.io/reference/get_api-v1-customfielddefinitions-id)
+- [CustomFieldValues](https://developer.lockstep.io/reference/get_api-v1-customfieldvalues-definitionid-recordkey)
+- [Definitions](https://developer.lockstep.io/reference/get_api-v1-definitions-countries)
+- [Emails](https://developer.lockstep.io/reference/get_api-v1-emails-id)
+- [Erps](https://developer.lockstep.io/reference/get_api-v1-erps)
+- [InvoiceHistory](https://developer.lockstep.io/reference/get_api-v1-invoicehistory-id)
+- [Invoices](https://developer.lockstep.io/reference/get_api-v1-invoices-id)
+- [Leads](https://developer.lockstep.io/reference/post_api-v1-leads)
+- [Migration](https://developer.lockstep.io/reference/post_api-v1-migration)
+- [Notes](https://developer.lockstep.io/reference/get_api-v1-notes-id)
+- [PaymentApplications](https://developer.lockstep.io/reference/get_api-v1-paymentapplications-id)
+- [Payments](https://developer.lockstep.io/reference/get_api-v1-payments-id)
+- [Provisioning](https://developer.lockstep.io/reference/post_api-v1-provisioning)
+- [Reports](https://developer.lockstep.io/reference/get_api-v1-reports-cashflow)
+- [States](https://developer.lockstep.io/reference/get_api-v1-states)
+- [Status](https://developer.lockstep.io/reference/get_api-v1-status)
+- [Sync](https://developer.lockstep.io/reference/post_api-v1-sync)
+- [UserAccounts](https://developer.lockstep.io/reference/get_api-v1-useraccounts-id)
+- [UserRoles](https://developer.lockstep.io/reference/get_api-v1-userroles-id)
+
+## How to Use (Basic Usage)
+This example will show you how to call an API, using the [Query Invoices API](https://developer.lockstep.io/reference/get_api-v1-invoices-query) to retrieve a collection of invoices. 
+
+```python
+env = 'sbx'
+client = LockstepApi(env)
+client.with_api_key({INSERT_API_KEY})
+
+invoices = client.invoices.query_invoices(
+            "invoiceDate",
+            "Company",
+            "invoiceDate asc",
+            10,
+            page_num)
+
+print(invoices['records'])
+```
+
+## Sample Project 
+Fetch Invoice Sample Python Project
+{INSERT REFERENCE TO READ ME}
+
+
+
+
+---- 
+#### SAMPLE PROJECT BELOW MOVE TO EXAMPLE REPO
 
 Many types of products examine invoices for a customer and provide feedback on them. A typical product might analyze incoming invoices and add metadata like a **credit score** for each invoice. This tutorial explains how to iterate through invoices and examine them. 
 
@@ -20,7 +120,11 @@ client = LockstepApi(env)
 client.with_api_key({INSERT_API_KEY})
 ```
 
-**TODO: Add status result to verify API is connected**
+### Check if you are connected to the API
+```python
+status_results = client.status.ping()
+print(f"StatusResult: {status_results}")
+```
 
 ## Step 2: Create API Query 
 
