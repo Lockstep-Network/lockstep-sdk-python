@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -44,7 +44,7 @@ class CurrenciesClient:
     """
     def retrieve_currency_rate(self, sourceCurrency: str, destinationCurrency: str, date: str, dataProvider: str) -> LockstepResponse:
         path = f"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}"
-        return self.client.send_request("GET", path, None, {sourceCurrency: str, destinationCurrency: str, date: str, dataProvider: str})
+        return self.client.send_request("GET", path, None, {"sourceCurrency": sourceCurrency, "destinationCurrency": destinationCurrency, "date": date, "dataProvider": dataProvider})
 
     """
     Receives an array of dates and currencies and a destination currency 
@@ -60,4 +60,4 @@ class CurrenciesClient:
     """
     def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse:
         path = f"/api/v1/Currencies/bulk"
-        return self.client.send_request("POST", path, body, {destinationCurrency: str, body: list[BulkCurrencyConversionModel]})
+        return self.client.send_request("POST", path, body, {"destinationCurrency": destinationCurrency, "body": body})

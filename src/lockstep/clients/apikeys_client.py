@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -43,7 +43,7 @@ class ApiKeysClient:
     """
     def retrieve_api_key(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/ApiKeys/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Immediately revokes the API Key with the specified id so it cannot 
@@ -69,7 +69,7 @@ class ApiKeysClient:
     """
     def revoke_api_key(self, id: str) -> LockstepResponse:
         path = f"/api/v1/ApiKeys/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates an API key with the specified name. 
@@ -90,7 +90,7 @@ class ApiKeysClient:
     """
     def create_api_key(self, body: ApiKeyModel) -> LockstepResponse:
         path = f"/api/v1/ApiKeys"
-        return self.client.send_request("POST", path, body, {body: ApiKeyModel})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries API Keys for this user using the specified filtering, 
@@ -125,4 +125,4 @@ class ApiKeysClient:
     """
     def query_api_keys(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/ApiKeys/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

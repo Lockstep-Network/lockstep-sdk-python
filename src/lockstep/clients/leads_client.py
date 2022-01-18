@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -36,4 +36,4 @@ class LeadsClient:
     """
     def create_leads(self, body: list[LeadModel]) -> LockstepResponse:
         path = f"/api/v1/Leads"
-        return self.client.send_request("POST", path, body, {body: list[LeadModel]})
+        return self.client.send_request("POST", path, body, {"body": body})

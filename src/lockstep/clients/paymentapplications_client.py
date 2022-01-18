@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -42,7 +42,7 @@ class PaymentApplicationsClient:
     """
     def retrieve_payment_application(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Payment Application with the information 
@@ -70,7 +70,7 @@ class PaymentApplicationsClient:
     """
     def update_payment_application(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Payment Application referred to by this unique 
@@ -91,7 +91,7 @@ class PaymentApplicationsClient:
     """
     def delete_payment_application(self, id: str) -> LockstepResponse:
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Payment Applications within this account and 
@@ -111,7 +111,7 @@ class PaymentApplicationsClient:
     """
     def create_payment_applications(self, body: list[PaymentAppliedModel]) -> LockstepResponse:
         path = f"/api/v1/PaymentApplications"
-        return self.client.send_request("POST", path, body, {body: list[PaymentAppliedModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Payment Applications for this account using the specified 
@@ -147,4 +147,4 @@ class PaymentApplicationsClient:
     """
     def query_payment_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/PaymentApplications/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

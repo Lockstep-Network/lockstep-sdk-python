@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -41,7 +41,7 @@ class EmailsClient:
     """
     def retrieve_email(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Emails/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Email with the information supplied to this 
@@ -69,7 +69,7 @@ class EmailsClient:
     """
     def update_email(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Emails/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Email referred to by this unique identifier. 
@@ -88,7 +88,7 @@ class EmailsClient:
     """
     def delete_email(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Emails/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Retrieves a signature logo for the email with the specified 
@@ -110,7 +110,7 @@ class EmailsClient:
     """
     def retrieve_email_logo(self, emailId: str, nonce: str) -> LockstepResponse:
         path = f"/api/v1/Emails/{emailId}/logo/{nonce}"
-        return self.client.send_request("GET", path, None, {emailId: str, nonce: str})
+        return self.client.send_request("GET", path, None, {"emailId": emailId, "nonce": nonce})
 
     """
     Creates one or more emails from the specified array of Email Models 
@@ -129,7 +129,7 @@ class EmailsClient:
     """
     def create_emails(self, body: list[EmailModel]) -> LockstepResponse:
         path = f"/api/v1/Emails"
-        return self.client.send_request("POST", path, body, {body: list[EmailModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Emails on the Lockstep Platform using the specified 
@@ -168,4 +168,4 @@ class EmailsClient:
     """
     def query_emails(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Emails/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

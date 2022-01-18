@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -37,7 +37,7 @@ class InvoiceHistoryClient:
     """
     def retrieve_invoice_history(self, id: str) -> LockstepResponse:
         path = f"/api/v1/InvoiceHistory/{id}"
-        return self.client.send_request("GET", path, None, {id: str})
+        return self.client.send_request("GET", path, None, {"id": id})
 
     """
     Queries Invoice History for this account using the specified 
@@ -70,4 +70,4 @@ class InvoiceHistoryClient:
     """
     def query_invoice_history(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/InvoiceHistory/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

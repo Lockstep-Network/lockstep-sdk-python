@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -39,7 +39,7 @@ class SyncClient:
     """
     def create_sync(self, body: SyncSubmitModel) -> LockstepResponse:
         path = f"/api/v1/Sync"
-        return self.client.send_request("POST", path, body, {body: SyncSubmitModel})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Requests a new Sync task from a ZIP file you provide. This ZIP file 
@@ -90,7 +90,7 @@ class SyncClient:
     """
     def update_sync(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Sync/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Retrieves the status and information about a Sync operation by the 
@@ -114,7 +114,7 @@ class SyncClient:
     """
     def retrieve_sync(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Sync/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Queries Sync tasks for this account using the specified filtering, 
@@ -151,4 +151,4 @@ class SyncClient:
     """
     def query_syncs(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Sync/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

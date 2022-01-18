@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -48,7 +48,7 @@ class PaymentsClient:
     """
     def retrieve_payment(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Payment with the information supplied to this 
@@ -82,7 +82,7 @@ class PaymentsClient:
     """
     def update_payment(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Payment referred to by this unique identifier. 
@@ -107,7 +107,7 @@ class PaymentsClient:
     """
     def delete_payment(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Payments within this account and returns the 
@@ -132,7 +132,7 @@ class PaymentsClient:
     """
     def create_payments(self, body: list[PaymentModel]) -> LockstepResponse:
         path = f"/api/v1/Payments"
-        return self.client.send_request("POST", path, body, {body: list[PaymentModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Payments for this account using the specified filtering, 
@@ -175,7 +175,7 @@ class PaymentsClient:
     """
     def query_payments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Payments/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Queries Payments for this account using the specified filtering, 
@@ -222,7 +222,7 @@ class PaymentsClient:
     """
     def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Payments/views/summary"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Retrieves aggregated payment data from your account.
@@ -275,4 +275,4 @@ class PaymentsClient:
     """
     def query_payment_detail_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Payments/views/detail"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

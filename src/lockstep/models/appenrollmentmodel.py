@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -17,6 +17,7 @@ from dataclasses import dataclass
 from lockstep.models.applicationmodel import ApplicationModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.erpinfodatamodel import ErpInfoDataModel
 from lockstep.models.connectorinfomodel import ConnectorInfoModel
@@ -47,6 +48,7 @@ class AppEnrollmentModel:
     customFieldDefinitions: list[CustomFieldDefinitionModel] = None
     customFieldValues: list[CustomFieldValueModel] = None
     lastSync: SyncRequestModel = None
+    lastSuccessfulSync: SyncRequestModel = None
     erpInfo: ErpInfoDataModel = None
     connectorInfo: ConnectorInfoModel = None
 

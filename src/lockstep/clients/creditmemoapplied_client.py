@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -44,7 +44,7 @@ class CreditMemoAppliedClient:
     """
     def retrieve_credit_memo_application(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Credit memo Application with the information 
@@ -73,7 +73,7 @@ class CreditMemoAppliedClient:
     """
     def update_credit_memo_application(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Credit Memo Application referred to by this unique 
@@ -95,7 +95,7 @@ class CreditMemoAppliedClient:
     """
     def delete_credit_memo_application(self, id: str) -> LockstepResponse:
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Credit Memo Applications within this account and 
@@ -116,7 +116,7 @@ class CreditMemoAppliedClient:
     """
     def create_credit_memo_applications(self, body: list[CreditMemoAppliedModel]) -> LockstepResponse:
         path = f"/api/v1/CreditMemoApplied"
-        return self.client.send_request("POST", path, body, {body: list[CreditMemoAppliedModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Credit Memo Applications for this account using the 
@@ -155,4 +155,4 @@ class CreditMemoAppliedClient:
     """
     def query_credit_memo_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/CreditMemoApplied/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

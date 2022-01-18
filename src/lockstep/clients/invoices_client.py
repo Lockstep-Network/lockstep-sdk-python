@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -47,7 +47,7 @@ class InvoicesClient:
     """
     def retrieve_invoice(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Invoice with the information supplied to this 
@@ -77,7 +77,7 @@ class InvoicesClient:
     """
     def update_invoice(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Invoice referred to by this unique identifier. An 
@@ -99,7 +99,7 @@ class InvoicesClient:
     """
     def delete_invoice(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Invoices within this account and returns the 
@@ -122,7 +122,7 @@ class InvoicesClient:
     """
     def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse:
         path = f"/api/v1/Invoices"
-        return self.client.send_request("POST", path, body, {body: list[InvoiceModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Invoices for this account using the specified filtering, 
@@ -162,7 +162,7 @@ class InvoicesClient:
     """
     def query_invoices(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Invoices/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Queries Invoices for this account using the specified filtering, 
@@ -198,7 +198,7 @@ class InvoicesClient:
     """
     def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Invoices/views/summary"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Queries At Risk Invoices for this account using the specified 
@@ -235,4 +235,4 @@ class InvoicesClient:
     """
     def query_at_risk_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Invoices/views/at-risk-summary"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

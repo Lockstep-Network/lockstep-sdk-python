@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -48,7 +48,7 @@ class CustomFieldValuesClient:
     """
     def retrieve_field(self, definitionId: str, recordKey: str, include: str) -> LockstepResponse:
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("GET", path, None, {definitionId: str, recordKey: str, include: str})
+        return self.client.send_request("GET", path, None, {"definitionId": definitionId, "recordKey": recordKey, "include": include})
 
     """
     Updates an existing Custom Field with the information supplied to 
@@ -83,7 +83,7 @@ class CustomFieldValuesClient:
     """
     def update_field(self, definitionId: str, recordKey: str, body: object) -> LockstepResponse:
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("PATCH", path, body, {definitionId: str, recordKey: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"definitionId": definitionId, "recordKey": recordKey, "body": body})
 
     """
     Deletes the Custom Field referred to by this unique identifier. 
@@ -109,7 +109,7 @@ class CustomFieldValuesClient:
     """
     def delete_field(self, definitionId: str, recordKey: str) -> LockstepResponse:
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("DELETE", path, None, {definitionId: str, recordKey: str})
+        return self.client.send_request("DELETE", path, None, {"definitionId": definitionId, "recordKey": recordKey})
 
     """
     Creates one or more Custom Fields and returns the records as 
@@ -130,7 +130,7 @@ class CustomFieldValuesClient:
     """
     def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse:
         path = f"/api/v1/CustomFieldValues"
-        return self.client.send_request("POST", path, body, {body: list[CustomFieldValueModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Custom Fields within the Lockstep platform using the 
@@ -172,4 +172,4 @@ class CustomFieldValuesClient:
     """
     def query_fields(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/CustomFieldValues/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

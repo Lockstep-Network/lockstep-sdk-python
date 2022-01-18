@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -38,11 +38,12 @@ class ActivitiesClient:
     include : str
         To fetch additional data on this object, specify the list of 
         elements to retrieve. Available collections: Company, 
-        Attachments, CustomFields, Notes and References
+        Attachments, CustomFields, Notes, References, and 
+        UserAssignedToName
     """
     def retrieve_activity(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an activity that matches the specified id with the requested 
@@ -70,7 +71,7 @@ class ActivitiesClient:
     """
     def update_activity(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Delete the Activity referred to by this unique identifier. 
@@ -89,7 +90,7 @@ class ActivitiesClient:
     """
     def delete_activity(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more activities from a given model. 
@@ -108,7 +109,7 @@ class ActivitiesClient:
     """
     def create_activities(self, body: list[ActivityModel]) -> LockstepResponse:
         path = f"/api/v1/Activities"
-        return self.client.send_request("POST", path, body, {body: list[ActivityModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Activities for this account using the specified filtering, 
@@ -133,7 +134,8 @@ class ActivitiesClient:
     include : str
         To fetch additional data on this object, specify the list of 
         elements to retrieve. Available collections: Company, 
-        Attachments, CustomFields, Notes and References
+        Attachments, CustomFields, Notes, References, and 
+        UserAssignedToName
     order : str
         The sort order for this query. See See [Searchlight Query 
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -146,7 +148,7 @@ class ActivitiesClient:
     """
     def query_activities(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Activities/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Retrieves a list of items representing the activity stream for the 
@@ -166,7 +168,7 @@ class ActivitiesClient:
     """
     def retrieve_activity_stream(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Activities/{id}/stream"
-        return self.client.send_request("GET", path, None, {id: str})
+        return self.client.send_request("GET", path, None, {"id": id})
 
     """
     Forwards an activity by creating a new activity with all child 
@@ -188,4 +190,4 @@ class ActivitiesClient:
     """
     def forward_activity(self, activityId: str, userId: str) -> LockstepResponse:
         path = f"/api/v1/Activities/{activityId}/forward/{userId}"
-        return self.client.send_request("POST", path, None, {activityId: str, userId: str})
+        return self.client.send_request("POST", path, None, {"activityId": activityId, "userId": userId})

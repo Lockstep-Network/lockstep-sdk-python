@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -44,7 +44,7 @@ class AttachmentsClient:
     """
     def retrieve_attachment(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Attachment with the information supplied to this 
@@ -77,7 +77,7 @@ class AttachmentsClient:
     """
     def update_attachment(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Flag this attachment as archived, which can distinguish between 
@@ -103,7 +103,7 @@ class AttachmentsClient:
     """
     def archive_attachment(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Returns a URI for the Attachment file to be downloaded, based on the 
@@ -128,7 +128,7 @@ class AttachmentsClient:
     """
     def download_attachment(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Attachments/{id}/download"
-        return self.client.send_request("GET", path, None, {id: str})
+        return self.client.send_request("GET", path, None, {"id": id})
 
     """
     Uploads and creates one or more Attachments from the provided 
@@ -156,7 +156,7 @@ class AttachmentsClient:
     """
     def upload_attachment(self, tableName: str, objectId: str) -> LockstepResponse:
         path = f"/api/v1/Attachments"
-        return self.client.send_request("POST", path, None, {tableName: str, objectId: str})
+        return self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId})
 
     """
     Queries Attachments for this account using the specified filtering, 
@@ -197,4 +197,4 @@ class AttachmentsClient:
     """
     def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Attachments/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

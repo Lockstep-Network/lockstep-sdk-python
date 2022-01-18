@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -44,7 +44,7 @@ class NotesClient:
     """
     def retrieve_note(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Notes/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Archives the Note with the unique ID specified. A note is a 
@@ -66,7 +66,7 @@ class NotesClient:
     """
     def archive_note(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Notes/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more notes from the specified array of Note Models 
@@ -89,7 +89,7 @@ class NotesClient:
     """
     def create_notes(self, body: list[NoteModel]) -> LockstepResponse:
         path = f"/api/v1/Notes"
-        return self.client.send_request("POST", path, body, {body: list[NoteModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Notes on the Lockstep Platform using the specified 
@@ -128,4 +128,4 @@ class NotesClient:
     """
     def query_notes(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Notes/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

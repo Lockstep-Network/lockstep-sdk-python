@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -48,7 +48,7 @@ class ApplicationsClient:
     """
     def retrieve_application(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Applications/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Application with the information supplied to 
@@ -82,7 +82,7 @@ class ApplicationsClient:
     """
     def update_application(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Applications/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Application referred to by this unique identifier. 
@@ -110,7 +110,7 @@ class ApplicationsClient:
     """
     def delete_application(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Applications/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Applications and returns the records as created. 
@@ -137,7 +137,7 @@ class ApplicationsClient:
     """
     def create_applications(self, body: list[ApplicationModel]) -> LockstepResponse:
         path = f"/api/v1/Applications"
-        return self.client.send_request("POST", path, body, {body: list[ApplicationModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Applications on the Lockstep Platform using the specified 
@@ -181,4 +181,4 @@ class ApplicationsClient:
     """
     def query_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Applications/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
