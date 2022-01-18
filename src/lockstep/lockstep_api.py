@@ -14,8 +14,7 @@
 
 import requests
 import urllib.parse
-import os
-import socket
+import platform
 
 
 class LockstepApi:
@@ -80,7 +79,7 @@ class LockstepApi:
         self.userRoles = UserRolesClient(self)
         self._sdkName = "Python"
         self._sdkVersion = "2022.3.7.0"
-        self._machineName = socket.gethostname()
+        self._machineName = platform.uname().node
         self._applicationName = ""
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
