@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -66,4 +66,4 @@ class StatusClient:
     """
     def error_test(self, err: str) -> LockstepResponse:
         path = f"/api/v1/Status/testing"
-        return self.client.send_request("GET", path, None, {err: str})
+        return self.client.send_request("GET", path, None, {"err": err})

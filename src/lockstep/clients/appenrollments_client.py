@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -40,11 +40,12 @@ class AppEnrollmentsClient:
         The unique ID number of the App Enrollment to retrieve
     include : str
         To fetch additional data on this object, specify the list of 
-        elements to retrieve. Available collections: App, CustomFields
+        elements to retrieve. Available collections: App, CustomFields, 
+        LastSync, LastSuccessfulSync
     """
     def retrieve_app_enrollment(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing App Enrollment with the information supplied to 
@@ -76,7 +77,7 @@ class AppEnrollmentsClient:
     """
     def update_app_enrollment(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the App Enrollment referred to by this unique identifier. An 
@@ -101,7 +102,7 @@ class AppEnrollmentsClient:
     """
     def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str, removeEnrollmentData: bool})
+        return self.client.send_request("DELETE", path, None, {"id": id, "removeEnrollmentData": removeEnrollmentData})
 
     """
     Creates one or more App Enrollments within this account and returns 
@@ -125,7 +126,7 @@ class AppEnrollmentsClient:
     """
     def create_app_enrollments(self, body: list[AppEnrollmentModel]) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments"
-        return self.client.send_request("POST", path, body, {body: list[AppEnrollmentModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries App Enrollments for this account using the specified 
@@ -154,7 +155,7 @@ class AppEnrollmentsClient:
     include : str
         To fetch additional data on this object, specify the list of 
         elements to retrieve. Available collections: App, CustomFields, 
-        LastSync
+        LastSync, LastSuccessfulSync
     order : str
         The sort order for this query. See See [Searchlight Query 
         Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -167,7 +168,7 @@ class AppEnrollmentsClient:
     """
     def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Queries custom fields settings for app enrollment within the 
@@ -197,4 +198,4 @@ class AppEnrollmentsClient:
     """
     def query_enrollment_fields(self, id: str) -> LockstepResponse:
         path = f"/api/v1/AppEnrollments/settings/{id}"
-        return self.client.send_request("GET", path, None, {id: str})
+        return self.client.send_request("GET", path, None, {"id": id})

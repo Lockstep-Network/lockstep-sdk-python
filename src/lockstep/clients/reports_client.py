@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -35,7 +35,7 @@ class ReportsClient:
     """
     def cash_flow(self, timeframe: int) -> LockstepResponse:
         path = f"/api/v1/Reports/cashflow"
-        return self.client.send_request("GET", path, None, {timeframe: int})
+        return self.client.send_request("GET", path, None, {"timeframe": timeframe})
 
     """
     Retrieves a current Daily Sales Outstanding (DSO) report for this 
@@ -81,7 +81,7 @@ class ReportsClient:
     """
     def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse:
         path = f"/api/v1/Reports/ar-header"
-        return self.client.send_request("GET", path, None, {reportDate: str, companyId: str})
+        return self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId})
 
     """
     The Aging Report contains information about the total dollar value 
@@ -124,7 +124,7 @@ class ReportsClient:
     """
     def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse:
         path = f"/api/v1/Reports/aging"
-        return self.client.send_request("GET", path, None, {CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]})
+        return self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets})
 
     """
     Retrieves AR Aging Header information report broken down by aging 
@@ -157,4 +157,4 @@ class ReportsClient:
     """
     def attachments_header_information(self, companyId: str) -> LockstepResponse:
         path = f"/api/v1/Reports/attachments-header"
-        return self.client.send_request("GET", path, None, {companyId: str})
+        return self.client.send_request("GET", path, None, {"companyId": companyId})

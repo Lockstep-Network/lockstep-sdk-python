@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -41,7 +41,7 @@ class ContactsClient:
     """
     def retrieve_contact(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Contacts/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates a contact that matches the specified id with the requested 
@@ -68,7 +68,7 @@ class ContactsClient:
     """
     def update_contact(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Contacts/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Disable the Contact referred to by this unique identifier. 
@@ -87,7 +87,7 @@ class ContactsClient:
     """
     def disable_contact(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Contacts/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more contacts from a given model. 
@@ -105,7 +105,7 @@ class ContactsClient:
     """
     def create_contacts(self, body: list[ContactModel]) -> LockstepResponse:
         path = f"/api/v1/Contacts"
-        return self.client.send_request("POST", path, body, {body: list[ContactModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Contacts for this account using the specified filtering, 
@@ -141,4 +141,4 @@ class ContactsClient:
     """
     def query_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Contacts/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})

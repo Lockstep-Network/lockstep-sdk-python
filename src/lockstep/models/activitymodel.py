@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -53,6 +53,7 @@ class ActivityModel:
     isUnread: bool = None
     isArchived: bool = None
     company: CompanyModel = None
+    userAssignedToName: str = None
     attachments: list[AttachmentModel] = None
     notes: list[NoteModel] = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] = None

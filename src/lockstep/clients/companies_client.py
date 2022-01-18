@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -45,7 +45,7 @@ class CompaniesClient:
     """
     def retrieve_company(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates a Company that matches the specified id with the requested 
@@ -76,7 +76,7 @@ class CompaniesClient:
     """
     def update_company(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Disable the Company referred to by this unique identifier. 
@@ -99,7 +99,7 @@ class CompaniesClient:
     """
     def disable_company(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Companies from a given model. A Company 
@@ -120,7 +120,7 @@ class CompaniesClient:
     """
     def create_companies(self, body: list[CompanyModel]) -> LockstepResponse:
         path = f"/api/v1/Companies"
-        return self.client.send_request("POST", path, body, {body: list[CompanyModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Companies for this account using the specified filtering, 
@@ -158,7 +158,7 @@ class CompaniesClient:
     """
     def query_companies(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Companies/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Queries Customer Summaries for this account using the specified 
@@ -193,7 +193,7 @@ class CompaniesClient:
     """
     def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/Companies/views/customer-summary"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
 
     """
     Retrieves the Customer Details specified by this unique identifier, 
@@ -213,4 +213,4 @@ class CompaniesClient:
     """
     def retrieve_customer_detail(self, id: str) -> LockstepResponse:
         path = f"/api/v1/Companies/views/customer-details/{id}"
-        return self.client.send_request("GET", path, None, {id: str})
+        return self.client.send_request("GET", path, None, {"id": id})

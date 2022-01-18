@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.2
+# @version    2022.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -47,7 +47,7 @@ class CustomFieldDefinitionsClient:
     """
     def retrieve_field_definition(self, id: str, include: str) -> LockstepResponse:
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        return self.client.send_request("GET", path, None, {id: str, include: str})
+        return self.client.send_request("GET", path, None, {"id": id, "include": include})
 
     """
     Updates an existing Custom Field Definition with the information 
@@ -79,7 +79,7 @@ class CustomFieldDefinitionsClient:
     """
     def update_field_definition(self, id: str, body: object) -> LockstepResponse:
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        return self.client.send_request("PATCH", path, body, {id: str, body: object})
+        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
 
     """
     Deletes the Custom Field Definition referred to by this unique 
@@ -103,7 +103,7 @@ class CustomFieldDefinitionsClient:
     """
     def delete_field_definition(self, id: str) -> LockstepResponse:
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        return self.client.send_request("DELETE", path, None, {id: str})
+        return self.client.send_request("DELETE", path, None, {"id": id})
 
     """
     Creates one or more Custom Field Definitions and returns the records 
@@ -124,7 +124,7 @@ class CustomFieldDefinitionsClient:
     """
     def create_field_definitions(self, body: list[CustomFieldDefinitionModel]) -> LockstepResponse:
         path = f"/api/v1/CustomFieldDefinitions"
-        return self.client.send_request("POST", path, body, {body: list[CustomFieldDefinitionModel]})
+        return self.client.send_request("POST", path, body, {"body": body})
 
     """
     Queries Custom Field Definitions within the Lockstep platform using 
@@ -167,4 +167,4 @@ class CustomFieldDefinitionsClient:
     """
     def query_field_definitions(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         path = f"/api/v1/CustomFieldDefinitions/query"
-        return self.client.send_request("GET", path, None, {filter: str, include: str, order: str, pageSize: int, pageNumber: int})
+        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
