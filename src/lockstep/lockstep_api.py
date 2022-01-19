@@ -24,7 +24,7 @@ class LockstepApi:
     Construct a new LockstepApi client object
     """
 
-    def __init__(self, env: str):
+    def __init__(self, env: str, appname: str):
         from lockstep.clients.activities_client import ActivitiesClient
         from lockstep.clients.apikeys_client import ApiKeysClient
         from lockstep.clients.appenrollments_client import AppEnrollmentsClient
@@ -80,7 +80,7 @@ class LockstepApi:
         self._sdkName = "Python"
         self._sdkVersion = "2022.3.7.0"
         self._machineName = platform.uname().node
-        self._applicationName = "Default Application Name"
+        self._applicationName = appname
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         elif env == "prd":
