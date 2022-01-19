@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3.7.0
+# @version    2022.3.32.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -16,14 +16,23 @@ import requests
 import urllib.parse
 import platform
 
-
 class LockstepApi:
     from lockstep.lockstep_response import LockstepResponse
 
     """
     Construct a new LockstepApi client object
+    
+    Parameters
+    ----------
+    env : str
+        Select the Lockstep Platform environment to use for this client. You
+        may select from either "prd", "sbx", or provide a full URL of a custom
+        environment.
+    appname : str
+        Provide a name for your application for logging and debugging. This
+        name will be recorded alongside API calls so that you can identify
+        the source of errors. 
     """
-
     def __init__(self, env: str, appname: str):
         from lockstep.clients.activities_client import ActivitiesClient
         from lockstep.clients.apikeys_client import ApiKeysClient
@@ -77,56 +86,76 @@ class LockstepApi:
         self.sync = SyncClient(self)
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
-        self._sdkName = "Python"
-        self._sdkVersion = "2022.3.7.0"
-        self._machineName = platform.uname().node
-        self._applicationName = appname
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         elif env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         else:
             self.serverUrl = env
-        self.version = "2022.3.7.0"
+        self.sdkName = "Python"
+        self.sdkVersion = "2022.3.32.0"
+        self.machineName = platform.uname().node
+        self.applicationName = appname
 
     """
     Configure this API client to use API Key authentication
+    
+    Parameters
+    ----------
+    apiKey : str
+        The [Lockstep Platform API 
+        key](https://developer.lockstep.io/docs/api-keys) to use for 
+        authentication.
     """
-
     def with_api_key(self, apiKey: str):
         self.apiKey = apiKey
         self.bearerToken = None
-
+    
     """
     Configure this API client to use Bearer Token authentication
+    
+    Parameters
+    ----------
+    bearerToken : str
+        The [Lockstep Platform JWT Bearer 
+        Token](https://developer.lockstep.io/docs/jwt-bearer-tokens) to use 
+        for authentication.
     """
-
     def with_bearer_token(self, bearerToken: str):
         self.apiKey = None
         self.bearerToken = bearerToken
-
+    
     """
     Send a request and parse the result
+    
+    Parameters
+    ----------
+    method : str
+        The HTTP method for this request
+    path : str
+        The path of the API endpoint for this request
+    body : object
+        For POST, PUT, or PATCH, represents the body of the request. For other
+        requests, this value should be nil.
+    query_params : object
+        The list of query parameters for the request
     """
-
     def send_request(self, method: str, path: str, body: object, query_params: object) -> LockstepResponse:
-
         if query_params:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
-
+        
         headers = {"Accept": "application/json",
-                   "SdkName": self._sdkName,
-                   "SdkVersion": self._sdkVersion,
-                   "MachineName": self._machineName,
-                   "ApplicationName": self._applicationName}
-
+                   "SdkName": self.sdkName,
+                   "SdkVersion": self.sdkVersion,
+                   "MachineName": self.machineName,
+                   "ApplicationName": self.applicationName}
         if self.apiKey:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
-
+    
         response = requests.request(method, url, headers=headers)
         return response.json()
         

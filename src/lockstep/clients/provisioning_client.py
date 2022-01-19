@@ -15,6 +15,7 @@
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.provisioningmodel import ProvisioningModel
 from lockstep.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
+from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
 
 class ProvisioningClient:
 
@@ -46,4 +47,8 @@ class ProvisioningClient:
     """
     def finalize_user_account_provisioning(self, body: ProvisioningFinalizeRequestModel) -> LockstepResponse:
         path = f"/api/v1/Provisioning/finalize"
+        return self.client.send_request("POST", path, body, {"body": body})
+
+    def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse:
+        path = f"/api/v1/Provisioning/free-account"
         return self.client.send_request("POST", path, body, {"body": body})

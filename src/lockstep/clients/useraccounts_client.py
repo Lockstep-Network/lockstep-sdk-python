@@ -26,9 +26,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -53,14 +53,15 @@ class UserAccountsClient:
     while leaving other values alone. As input you should supply a list 
     of field names and new values. If you do not provide the name of a 
     field, that field will remain unchanged. This allows you to ensure 
-    that you are only updating the specific fields desired. A User 
-    represents a person who has the ability to authenticate against the 
-    Lockstep Platform and use services such as Lockstep Insights. A User 
-    is uniquely identified by an Azure identity, and each user must have 
-    an email address defined within their account. All Users must 
-    validate their email to make use of Lockstep platform services. 
-    Users may have different privileges and access control rights within 
-    the Lockstep Platform.
+    that you are only updating the specific fields desired. 
+
+    A User represents a person who has the ability to authenticate 
+    against the Lockstep Platform and use services such as Lockstep 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
+    services. Users may have different privileges and access control 
+    rights within the Lockstep Platform.
 
     Parameters
     ----------
@@ -78,9 +79,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -98,9 +99,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -119,9 +120,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -139,9 +140,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -160,9 +161,9 @@ class UserAccountsClient:
 
     A User represents a person who has the ability to authenticate 
     against the Lockstep Platform and use services such as Lockstep 
-    Insights. A User is uniquely identified by an Azure identity, and 
-    each user must have an email address defined within their account. 
-    All Users must validate their email to make use of Lockstep platform 
+    Inbox. A User is uniquely identified by an Azure identity, and each 
+    user must have an email address defined within their account. All 
+    Users must validate their email to make use of Lockstep platform 
     services. Users may have different privileges and access control 
     rights within the Lockstep Platform.
 
@@ -179,12 +180,12 @@ class UserAccountsClient:
     Queries Users for this account using the specified filtering, 
     sorting, nested fetch, and pagination rules requested. A User 
     represents a person who has the ability to authenticate against the 
-    Lockstep Platform and use services such as Lockstep Insights. A User 
-    is uniquely identified by an Azure identity, and each user must have 
-    an email address defined within their account. All Users must 
-    validate their email to make use of Lockstep platform services. 
-    Users may have different privileges and access control rights within 
-    the Lockstep Platform.
+    Lockstep Platform and use services such as Lockstep Inbox. A User is 
+    uniquely identified by an Azure identity, and each user must have an 
+    email address defined within their account. All Users must validate 
+    their email to make use of Lockstep platform services. Users may 
+    have different privileges and access control rights within the 
+    Lockstep Platform.
 
     Parameters
     ----------
