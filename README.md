@@ -95,5 +95,4 @@ print(invoices['records'])
 ```
 
 ## Sample Project 
-Fetch Invoice Sample Python Project
-{INSERT REFERENCE TO READ ME}
+(Fetch Invoice Sample Python Project)[https://github.com/Lockstep-Network/lockstep-sdk-examples/tree/main/PythonExample]
