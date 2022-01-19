@@ -57,6 +57,7 @@ from lockstep.models.customersummarymodel import CustomerSummaryModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
+from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
 from lockstep.models.emailmodel import EmailModel
 from lockstep.models.erpinfodatamodel import ErpInfoDataModel
 from lockstep.models.erpinfomodel import ErpInfoModel
