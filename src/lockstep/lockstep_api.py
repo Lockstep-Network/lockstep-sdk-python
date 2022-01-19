@@ -80,7 +80,7 @@ class LockstepApi:
         self._sdkName = "Python"
         self._sdkVersion = "2022.3.7.0"
         self._machineName = platform.uname().node
-        self._applicationName = ""
+        self._applicationName = "Default Application Name"
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         elif env == "prd":
@@ -120,15 +120,12 @@ class LockstepApi:
                    "SdkName": self._sdkName,
                    "SdkVersion": self._sdkVersion,
                    "MachineName": self._machineName,
-                   "ApplicationName": ""}
+                   "ApplicationName": self._applicationName}
 
         if self.apiKey:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
-
-        if self._applicationName is not None:
-            headers["ApplicationName"] = self._applicationName
 
         response = requests.request(method, url, headers=headers)
         return response.json()
