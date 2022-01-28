@@ -8,19 +8,20 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Represents all possible data required to set up an app enrollment for a 
-connector. Only send required fields for the given connector.
-"""
 @dataclass
 class ConnectorInfoModel:
+    """
+    Represents all possible data required to set up an app enrollment
+    for a connector. Only send required fields for the given connector.
+    """
+
     authCode: str = None
     realmId: str = None
     redirectUri: str = None

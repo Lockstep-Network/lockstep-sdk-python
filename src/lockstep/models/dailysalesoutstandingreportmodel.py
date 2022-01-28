@@ -8,18 +8,19 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Represents the daily sales outstanding report
-"""
 @dataclass
 class DailySalesOutstandingReportModel:
+    """
+    Represents the daily sales outstanding report
+    """
+
     timeframe: str = None
     invoiceCount: int = None
     dailySalesOutstanding: float = None

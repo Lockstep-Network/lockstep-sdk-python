@@ -8,18 +8,19 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Aggregated Attachment status information.
-"""
 @dataclass
 class AttachmentHeaderInfoModel:
+    """
+    Aggregated Attachment status information.
+    """
+
     groupKey: str = None
     companyId: str = None
     totalAttachments: int = None

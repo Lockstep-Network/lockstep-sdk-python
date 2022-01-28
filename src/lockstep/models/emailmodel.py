@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -19,16 +19,17 @@ from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
-"""
-An Email represents a communication sent from one company to another. 
-The creator of the email is identified by the `CompanyId` field, 
-recipient(s) by the `EmailTo` field, and cc recipient(s) by the 
-'EmailCC' field. The Email Model represents an email and a number of 
-different metadata attributes related to the creation, storage, and 
-ownership of the email.
-"""
 @dataclass
 class EmailModel:
+    """
+    An Email represents a communication sent from one company to
+    another. The creator of the email is identified by the `CompanyId`
+    field, recipient(s) by the `EmailTo` field, and cc recipient(s) by
+    the 'EmailCC' field. The Email Model represents an email and a
+    number of different metadata attributes related to the creation,
+    storage, and ownership of the email.
+    """
+
     emailId: str = None
     threadId: str = None
     groupKey: str = None

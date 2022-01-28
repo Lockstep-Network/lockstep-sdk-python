@@ -8,22 +8,23 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-An Invoice represents a bill sent from one company to another. The 
-Lockstep Platform tracks changes to each Invoice so that you can observe 
-the changes over time. You can view the InvoiceHistory list to monitor 
-and observe the changes of this Invoice and track the dates when changes 
-occurred.
-"""
 @dataclass
 class InvoiceHistoryModel:
+    """
+    An Invoice represents a bill sent from one company to another. The
+    Lockstep Platform tracks changes to each Invoice so that you can
+    observe the changes over time. You can view the InvoiceHistory list
+    to monitor and observe the changes of this Invoice and track the
+    dates when changes occurred.
+    """
+
     groupKey: str = None
     invoiceHistoryId: str = None
     invoiceId: str = None
