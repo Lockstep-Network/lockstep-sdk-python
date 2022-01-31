@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -19,14 +19,16 @@ from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
-"""
-A Contact contains information about a person or role within a Company. 
-You can use Contacts to track information about who is responsible for a 
-specific project, who handles invoices, or information about which role 
-at a particular customer or vendor you should speak with about invoices.
-"""
 @dataclass
 class ContactModel:
+    """
+    A Contact contains information about a person or role within a
+    Company. You can use Contacts to track information about who is
+    responsible for a specific project, who handles invoices, or
+    information about which role at a particular customer or vendor you
+    should speak with about invoices.
+    """
+
     contactId: str = None
     companyId: str = None
     groupKey: str = None

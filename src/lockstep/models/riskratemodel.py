@@ -8,18 +8,19 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Represents a risk rate calculation for a single month
-"""
 @dataclass
 class RiskRateModel:
+    """
+    Represents a risk rate calculation for a single month
+    """
+
     groupKey: str = None
     reportPeriod: str = None
     invoiceMonthName: str = None

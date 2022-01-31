@@ -8,19 +8,20 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Model containing information about a user for the invite/onboarding 
-process.
-"""
 @dataclass
 class InviteDataModel:
+    """
+    Model containing information about a user for the invite/onboarding
+    process.
+    """
+
     email: str = None
     userStatus: str = None
 

@@ -8,19 +8,20 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Represents the response to either a successful or failed account 
-provisioning
-"""
 @dataclass
 class ProvisioningResponseModel:
+    """
+    Represents the response to either a successful or failed account
+    provisioning
+    """
+
     userName: str = None
     accountName: str = None
     userId: str = None

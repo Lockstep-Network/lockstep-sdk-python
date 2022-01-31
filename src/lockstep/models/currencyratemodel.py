@@ -8,18 +8,19 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
 from dataclasses import dataclass
 
-"""
-Represents a currency rate for specific currencies and date
-"""
 @dataclass
 class CurrencyRateModel:
+    """
+    Represents a currency rate for specific currencies and date
+    """
+
     sourceCurrency: str = None
     destinationCurrency: str = None
     date: str = None

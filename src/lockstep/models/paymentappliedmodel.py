@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -16,16 +16,17 @@
 from dataclasses import dataclass
 from lockstep.models.invoicemodel import InvoiceModel
 
-"""
-A Payment Application is created by a business who receives a Payment 
-from a customer. A customer may make a single Payment to match an 
-Invoice exactly, a partial Payment for an Invoice, or a single Payment 
-may be made for multiple smaller Invoices. The Payment Application 
-contains information about which Invoices are connected to which 
-Payments and for which amounts.
-"""
 @dataclass
 class PaymentAppliedModel:
+    """
+    A Payment Application is created by a business who receives a
+    Payment from a customer. A customer may make a single Payment to
+    match an Invoice exactly, a partial Payment for an Invoice, or a
+    single Payment may be made for multiple smaller Invoices. The
+    Payment Application contains information about which Invoices are
+    connected to which Payments and for which amounts.
+    """
+
     groupKey: str = None
     paymentAppliedId: str = None
     invoiceId: str = None

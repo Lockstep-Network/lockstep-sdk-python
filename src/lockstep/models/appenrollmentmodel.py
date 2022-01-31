@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -22,18 +22,19 @@ from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.erpinfodatamodel import ErpInfoDataModel
 from lockstep.models.connectorinfomodel import ConnectorInfoModel
 
-"""
-An AppEnrollment represents an app that has been enrolled to the current 
-account. When you sign up for an app using the Lockstep Platform, you 
-obtain an enrollment record for that app. Example types of apps include 
-connectors and feature enhancement apps. The App Enrollment object 
-contains information about this app, its configuration, and settings. 
-See [Applications and 
-Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) 
-for more information.
-"""
 @dataclass
 class AppEnrollmentModel:
+    """
+    An AppEnrollment represents an app that has been enrolled to the
+    current account. When you sign up for an app using the Lockstep
+    Platform, you obtain an enrollment record for that app. Example
+    types of apps include connectors and feature enhancement apps. The
+    App Enrollment object contains information about this app, its
+    configuration, and settings. See [Applications and
+    Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments)
+    for more information.
+    """
+
     appEnrollmentId: str = None
     appId: str = None
     groupKey: str = None

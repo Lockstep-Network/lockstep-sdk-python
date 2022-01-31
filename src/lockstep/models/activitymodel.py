@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -21,15 +21,17 @@ from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionMode
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.activityxrefmodel import ActivityXRefModel
 
-"""
-An Activity contains information about work being done on a specific 
-accounting task. You can use Activities to track information about who 
-has been assigned a specific task, the current status of the task, the 
-name and description given for the particular task, the priority of the 
-task, and any amounts collected, paid, or credited for the task.
-"""
 @dataclass
 class ActivityModel:
+    """
+    An Activity contains information about work being done on a specific
+    accounting task. You can use Activities to track information about
+    who has been assigned a specific task, the current status of the
+    task, the name and description given for the particular task, the
+    priority of the task, and any amounts collected, paid, or credited
+    for the task.
+    """
+
     activityId: str = None
     groupKey: str = None
     companyId: str = None

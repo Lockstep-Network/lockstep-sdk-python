@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -17,11 +17,12 @@ from dataclasses import dataclass
 from lockstep.models.companymodel import CompanyModel
 from lockstep.models.erpinfomodel import ErpInfoModel
 
-"""
-Represents the data to finalize onboarding for a user
-"""
 @dataclass
 class ProvisioningFinalizeRequestModel:
+    """
+    Represents the data to finalize onboarding for a user
+    """
+
     fullName: str = None
     timeZone: str = None
     defaultCurrency: str = None

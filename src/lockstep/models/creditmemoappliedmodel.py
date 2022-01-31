@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -19,17 +19,18 @@ from lockstep.models.notemodel import NoteModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
-"""
-Credit Memos reflect credits granted to a customer for various reasons, 
-such as discounts or refunds. Credit Memos may be applied to Invoices as 
-Payments. When a Credit Memo is applied as payment to an Invoice, 
-Lockstep creates a Credit Memo Application record to track the amount 
-from the Credit Memo that was applied as payment to the Invoice. You can 
-examine Credit Memo Application records to track which Invoices were 
-paid using this Credit.
-"""
 @dataclass
 class CreditMemoAppliedModel:
+    """
+    Credit Memos reflect credits granted to a customer for various
+    reasons, such as discounts or refunds. Credit Memos may be applied
+    to Invoices as Payments. When a Credit Memo is applied as payment to
+    an Invoice, Lockstep creates a Credit Memo Application record to
+    track the amount from the Credit Memo that was applied as payment to
+    the Invoice. You can examine Credit Memo Application records to
+    track which Invoices were paid using this Credit.
+    """
+
     creditMemoAppliedId: str = None
     groupKey: str = None
     invoiceId: str = None

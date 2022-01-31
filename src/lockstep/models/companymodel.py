@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -21,17 +21,18 @@ from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionMode
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 
-"""
-A Company represents a customer, a vendor, or a company within the 
-organization of the account holder. Companies can have parents and 
-children, representing an organizational hierarchy of corporate 
-entities. You can use Companies to track projects and financial data 
-under this Company label. See [Vendors, Customers, and 
-Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) 
-for more information.
-"""
 @dataclass
 class CompanyModel:
+    """
+    A Company represents a customer, a vendor, or a company within the
+    organization of the account holder. Companies can have parents and
+    children, representing an organizational hierarchy of corporate
+    entities. You can use Companies to track projects and financial data
+    under this Company label. See [Vendors, Customers, and
+    Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
+    for more information.
+    """
+
     companyId: str = None
     companyName: str = None
     erpKey: str = None

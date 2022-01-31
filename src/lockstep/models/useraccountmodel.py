@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.3
+# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -19,17 +19,18 @@ from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 
-"""
-A User represents a person who has the ability to authenticate against 
-the Lockstep Platform and use services such as Lockstep Inbox. A User is 
-uniquely identified by an Azure identity, and each user must have an 
-email address defined within their account. All Users must validate 
-their email to make use of Lockstep platform services. Users may have 
-different privileges and access control rights within the Lockstep 
-Platform.
-"""
 @dataclass
 class UserAccountModel:
+    """
+    A User represents a person who has the ability to authenticate
+    against the Lockstep Platform and use services such as Lockstep
+    Inbox. A User is uniquely identified by an Azure identity, and each
+    user must have an email address defined within their account. All
+    Users must validate their email to make use of Lockstep platform
+    services. Users may have different privileges and access control
+    rights within the Lockstep Platform.
+    """
+
     userId: str = None
     groupKey: str = None
     userName: str = None
