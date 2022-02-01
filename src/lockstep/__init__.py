@@ -89,5 +89,6 @@ from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.syncsubmitmodel import SyncSubmitModel
 from lockstep.models.transferownermodel import TransferOwnerModel
 from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
+from lockstep.models.urimodel import UriModel
 from lockstep.models.useraccountmodel import UserAccountModel
 from lockstep.models.userrolemodel import UserRoleModel
