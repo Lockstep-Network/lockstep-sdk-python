@@ -15,6 +15,7 @@
 import requests
 import urllib.parse
 import platform
+import time
 
 """Lockstep Platform API Client object
 
@@ -142,6 +143,8 @@ class LockstepApi:
         query_params : object
             The list of query parameters for the request
         """
+        start_time = time.time()
+
         if query_params:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
@@ -158,5 +161,9 @@ class LockstepApi:
             headers["Authorization"] = "Bearer " + self.bearerToken
     
         response = requests.request(method, url, headers=headers)
+
+        execution_time = time.time() - start_time
+        print('Execution time in seconds: ' + str(execution_time))
+
         return response.json()
         
