@@ -161,7 +161,8 @@ class LockstepApi:
             headers["Authorization"] = "Bearer " + self.bearerToken
 
         execution_time = time.time() - start_time
-        headers["ServerDuration"] = execution_time
+        headers["RoundTripTime"] = execution_time
+        headers["ServerDuration"] = "TODO"
 
         response = requests.request(method, url, headers=headers)
 
