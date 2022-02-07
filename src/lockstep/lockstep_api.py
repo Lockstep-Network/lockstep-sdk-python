@@ -159,11 +159,11 @@ class LockstepApi:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
-    
-        response = requests.request(method, url, headers=headers)
 
         execution_time = time.time() - start_time
-        print('Execution time in seconds: ' + str(execution_time))
+        headers["ServerDuration"] = execution_time
+
+        response = requests.request(method, url, headers=headers)
 
         return response.json()
         
