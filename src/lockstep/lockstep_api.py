@@ -100,6 +100,7 @@ class LockstepApi:
         self.sdkVersion = "2022.4.32.0"
         self.machineName = platform.uname().node
         self.applicationName = appname
+        self.serverDuration = 0
 
     
     def with_api_key(self, apiKey: str):
@@ -149,20 +150,19 @@ class LockstepApi:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
-        
+
+        execution_time = time.time() - start_time
         headers = {"Accept": "application/json",
                    "SdkName": self.sdkName,
                    "SdkVersion": self.sdkVersion,
                    "MachineName": self.machineName,
-                   "ApplicationName": self.applicationName}
+                   "ApplicationName": self.applicationName,
+                   "RoundTripTime": execution_time,
+                   "ServerDuration": self.serverDuration}
         if self.apiKey:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
-
-        execution_time = time.time() - start_time
-        headers["RoundTripTime"] = execution_time
-        headers["ServerDuration"] = "TODO"
 
         response = requests.request(method, url, headers=headers)
 
