@@ -151,14 +151,11 @@ class LockstepApi:
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
 
-        execution_time = time.time() - start_time
         headers = {"Accept": "application/json",
                    "SdkName": self.sdkName,
                    "SdkVersion": self.sdkVersion,
                    "MachineName": self.machineName,
-                   "ApplicationName": self.applicationName,
-                   "RoundTripTime": execution_time,
-                   "ServerDuration": self.serverDuration}
+                   "ApplicationName": self.applicationName}
         if self.apiKey:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
@@ -166,5 +163,12 @@ class LockstepApi:
 
         response = requests.request(method, url, headers=headers)
 
-        return response.json()
+        execution_time = time.time() - start_time
+        result = response.json()
+
+        # times are represented in milliseconds
+        result["RoundTripTime"] = execution_time * 1000
+        result["ServerDuration"] = response.elapsed.microseconds / 1000
+
+        return result
         
