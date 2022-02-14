@@ -8,7 +8,6 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -32,6 +31,8 @@ class AttachmentModel:
     originAttachmentId: str = None
     viewInternal: bool = None
     viewExternal: bool = None
+    erpKey: str = None
+    appEnrollmentId: str = None
     created: str = None
     createdUserId: str = None
 

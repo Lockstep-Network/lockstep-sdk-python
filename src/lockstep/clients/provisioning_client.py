@@ -8,7 +8,6 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -50,13 +49,5 @@ class ProvisioningClient:
         return self.client.send_request("POST", path, body, {"body": body})
 
     def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse:
-        """
-
-
-        Parameters
-        ----------
-        body : DeveloperAccountSubmitModel
-
-        """
         path = f"/api/v1/Provisioning/free-account"
         return self.client.send_request("POST", path, body, {"body": body})

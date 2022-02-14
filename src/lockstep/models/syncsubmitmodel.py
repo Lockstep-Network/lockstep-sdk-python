@@ -8,7 +8,6 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -18,7 +17,19 @@ from dataclasses import dataclass
 @dataclass
 class SyncSubmitModel:
     """
-    Model representing information for a sync request
+    A SyncSubmitModel represents a task that loads data from a connector
+    to load into the Lockstep Platform. Data contained in a sync will be
+    merged with your existing data. Each record will be matched with
+    existing data inside the Lockstep Platform using the [Identity
+    Column](https://developer.lockstep.io/docs/identity-columns) rules.
+    Any record that represents a new AppEnrollmentId+ErpKey will be
+    inserted. A record that matches an existing AppEnrollmentId+ErpKey
+    will be updated, but only if the data has changed. A Sync process
+    permits either a complete data file or a partial / delta data file.
+    Lockstep recommends using a sliding time window to avoid the risk of
+    clock skew errors that might accidentally omit records. Best
+    practice is to run a Sync process daily, and to export all data that
+    has changed in the past 48 hours.
     """
 
     appEnrollmentId: str = None

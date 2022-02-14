@@ -8,12 +8,13 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.4
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.syncsubmitmodel import SyncSubmitModel
+from lockstep.models.batchsyncmodel import BatchSyncModel
+from lockstep.models.file import File
 
 class SyncClient:
 
@@ -41,7 +42,32 @@ class SyncClient:
         path = f"/api/v1/Sync"
         return self.client.send_request("POST", path, body, {"body": body})
 
-    def upload_sync_file(self, ) -> LockstepResponse:
+    def create_batch_import(self, body: BatchSyncModel) -> LockstepResponse:
+        """
+        Creates a new batch import Sync task that imports all the models
+        provided to this API call.
+
+        A Sync task represents ingestion of data from a source. For each
+        data model in the source, the Sync process will determine
+        whether the data is new, updated, or unchanged from data that
+        already exists within the Lockstep Platform. For records that
+        are new, the Sync process will add them to the Lockstep Platform
+        data. For records that are updated, the Sync process will update
+        existing data to match the newly uploaded records. If records
+        have not changed, no action will be taken.
+
+        You can use this Batch Import process to load data in bulk
+        directly into the Lockstep Platform.
+
+        Parameters
+        ----------
+        body : BatchSyncModel
+            Information about the Sync to execute
+        """
+        path = f"/api/v1/Sync/batch"
+        return self.client.send_request("POST", path, body, {"body": body})
+
+    def upload_sync_file(self, filename: byte[]) -> LockstepResponse:
         """
         Requests a new Sync task from a ZIP file you provide. This ZIP
         file can contain one or more files with data from the customer's
@@ -57,9 +83,11 @@ class SyncClient:
 
         Parameters
         ----------
+        filename : byte[]
+            The full path of a file to upload to the API
         """
         path = f"/api/v1/Sync/zip"
-        return self.client.send_request("POST", path, None, None)
+        return self.client.send_request("POST", path, None, {"filename": filename})
 
     def update_sync(self, id: str, body: object) -> LockstepResponse:
         """
