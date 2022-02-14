@@ -15,6 +15,7 @@
 import requests
 import urllib.parse
 import platform
+import time
 
 """Lockstep Platform API Client object
 
@@ -101,6 +102,7 @@ class LockstepApi:
         self.sdkVersion = "2022.6.48.0"
         self.machineName = platform.uname().node
         self.applicationName = appname
+        self.serverDuration = 0
 
     
     def with_api_key(self, apiKey: str):
@@ -144,11 +146,13 @@ class LockstepApi:
         query_params : object
             The list of query parameters for the request
         """
+        start_time = time.time()
+
         if query_params:
             url = urllib.parse.urljoin(self.serverUrl, path) + "?" + urllib.parse.urlencode(query_params)
         else:
             url = urllib.parse.urljoin(self.serverUrl, path)
-        
+
         headers = {"Accept": "application/json",
                    "SdkName": self.sdkName,
                    "SdkVersion": self.sdkVersion,
@@ -158,7 +162,15 @@ class LockstepApi:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
-    
+
         response = requests.request(method, url, headers=headers)
-        return response.json()
+
+        execution_time = time.time() - start_time
+        result = response.json()
+
+        # times are represented in milliseconds
+        result["RoundTripTime"] = execution_time * 1000
+        result["ServerDuration"] = int(response.headers["ServerDuration"])
+
+        return result
         
