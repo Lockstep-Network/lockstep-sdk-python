@@ -12,6 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.file import File
 
 class AttachmentsClient:
 
@@ -127,7 +128,7 @@ class AttachmentsClient:
         path = f"/api/v1/Attachments/{id}/download"
         return self.client.send_request("GET", path, None, {"id": id})
 
-    def upload_attachment(self, tableName: str, objectId: str) -> LockstepResponse:
+    def upload_attachment(self, tableName: str, objectId: str, filename: byte[]) -> LockstepResponse:
         """
         Uploads and creates one or more Attachments from the provided
         arguments.
@@ -150,9 +151,11 @@ class AttachmentsClient:
         objectId : str
             The unique ID of the object to which this Attachment will be
             linked
+        filename : byte[]
+            The full path of a file to upload to the API
         """
         path = f"/api/v1/Attachments"
-        return self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId})
+        return self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId, "filename": filename})
 
     def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         """

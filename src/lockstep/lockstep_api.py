@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.5.7.0
+# @version    2022.6.48.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -63,6 +63,7 @@ class LockstepApi:
         from lockstep.clients.sync_client import SyncClient
         from lockstep.clients.useraccounts_client import UserAccountsClient
         from lockstep.clients.userroles_client import UserRolesClient
+        from lockstep.clients.webhooks_client import WebhooksClient
         self.activities = ActivitiesClient(self)
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
@@ -89,6 +90,7 @@ class LockstepApi:
         self.sync = SyncClient(self)
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
+        self.webhooks = WebhooksClient(self)
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         elif env == "prd":
@@ -96,7 +98,7 @@ class LockstepApi:
         else:
             self.serverUrl = env
         self.sdkName = "Python"
-        self.sdkVersion = "2022.5.7.0"
+        self.sdkVersion = "2022.6.48.0"
         self.machineName = platform.uname().node
         self.applicationName = appname
 

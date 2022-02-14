@@ -31,6 +31,8 @@ class AttachmentModel:
     originAttachmentId: str = None
     viewInternal: bool = None
     viewExternal: bool = None
+    erpKey: str = None
+    appEnrollmentId: str = None
     created: str = None
     createdUserId: str = None
 
