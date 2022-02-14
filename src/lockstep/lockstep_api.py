@@ -168,7 +168,7 @@ class LockstepApi:
 
         # times are represented in milliseconds
         result["RoundTripTime"] = execution_time * 1000
-        result["ServerDuration"] = response.elapsed.microseconds / 1000
+        result["ServerDuration"] = int(response.headers["ServerDuration"])
 
         return result
         
