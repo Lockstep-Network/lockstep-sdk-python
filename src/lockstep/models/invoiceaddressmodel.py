@@ -36,4 +36,5 @@ class InvoiceAddressModel:
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
+    appEnrollmentId: str = None
 

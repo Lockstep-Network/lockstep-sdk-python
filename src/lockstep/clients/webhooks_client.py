@@ -119,3 +119,27 @@ class WebhooksClient:
         """
         path = f"/api/v1/Webhooks/query"
         return self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+
+    def query_webhook_history(self, webhookId: str, filter: str, select: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+        """
+
+
+        Parameters
+        ----------
+        webhookId : str
+            The unique Lockstep Platform ID number of this Webhook
+        filter : str
+            The filter for this query. See [Azure Query
+            Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
+        select : str
+            The selection for this query. Selection is the desired
+            properties of an entity to pull from the set. If a property
+            is not selected, it will either return as null or empty. See
+            [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
+        pageSize : int
+            The page size for results (default 200).
+        pageNumber : int
+            The page number for results (default 0).
+        """
+        path = f"/api/v1/Webhooks/{webhookId}/history/query"
+        return self.client.send_request("GET", path, None, {"webhookId": webhookId, "filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber})

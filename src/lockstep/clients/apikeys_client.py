@@ -29,8 +29,10 @@ class ApiKeysClient:
         associated with a user, and may be revoked to prevent it from
         accessing the Lockstep API. When you create an API Key, make
         sure to save the value in a secure location. Lockstep cannot
-        retrieve an API Key once it is created. For more information,
-        see [API Keys](https://developer.lockstep.io/docs/api-keys).
+        retrieve an API Key once it is created.
+
+        For more information, see [API
+        Keys](https://developer.lockstep.io/docs/api-keys).
 
         Parameters
         ----------
@@ -47,11 +49,13 @@ class ApiKeysClient:
     def revoke_api_key(self, id: str) -> LockstepResponse:
         """
         Immediately revokes the API Key with the specified id so it
-        cannot be used to call the API. The Lockstep Platform guarantees
-        that revocation will be received by all servers within five
-        minutes of revocation. API calls made using this API key after
-        the revocation will fail. A revoked API Key cannot be un-revoked
-        and may be removed 60 days after revocation.
+        cannot be used to call the API.
+
+        The Lockstep Platform guarantees that revocation will be
+        received by all servers within five minutes of revocation. API
+        calls made using this API key after the revocation will fail. A
+        revoked API Key cannot be un-revoked and may be removed 60 days
+        after revocation.
 
         An API Key is an authentication token that you may use with the
         Lockstep API. Because API Keys do not have an expiration date,
@@ -59,8 +63,10 @@ class ApiKeysClient:
         associated with a user, and may be revoked to prevent it from
         accessing the Lockstep API. When you create an API Key, make
         sure to save the value in a secure location. Lockstep cannot
-        retrieve an API Key once it is created. For more information,
-        see [API Keys](https://developer.lockstep.io/docs/api-keys).
+        retrieve an API Key once it is created.
+
+        For more information, see [API
+        Keys](https://developer.lockstep.io/docs/api-keys).
 
         Parameters
         ----------
@@ -80,8 +86,10 @@ class ApiKeysClient:
         associated with a user, and may be revoked to prevent it from
         accessing the Lockstep API. When you create an API Key, make
         sure to save the value in a secure location. Lockstep cannot
-        retrieve an API Key once it is created. For more information,
-        see [API Keys](https://developer.lockstep.io/docs/api-keys).
+        retrieve an API Key once it is created.
+
+        For more information, see [API
+        Keys](https://developer.lockstep.io/docs/api-keys).
 
         Parameters
         ----------
@@ -94,15 +102,18 @@ class ApiKeysClient:
     def query_api_keys(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
         """
         Queries API Keys for this user using the specified filtering,
-        sorting, nested fetch, and pagination rules requested. An API
-        Key is an authentication token that you may use with the
+        sorting, nested fetch, and pagination rules requested.
+
+        An API Key is an authentication token that you may use with the
         Lockstep API. Because API Keys do not have an expiration date,
         they are well suited for unattended processes. Each API Key is
         associated with a user, and may be revoked to prevent it from
         accessing the Lockstep API. When you create an API Key, make
         sure to save the value in a secure location. Lockstep cannot
-        retrieve an API Key once it is created. For more information,
-        see [API Keys](https://developer.lockstep.io/docs/api-keys).
+        retrieve an API Key once it is created.
+
+        For more information, see [API
+        Keys](https://developer.lockstep.io/docs/api-keys).
 
         Parameters
         ----------

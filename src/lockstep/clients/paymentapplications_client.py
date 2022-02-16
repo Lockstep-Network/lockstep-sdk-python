@@ -53,13 +53,14 @@ class PaymentApplicationsClient:
         supply a list of field names and new values. If you do not
         provide the name of a field, that field will remain unchanged.
         This allows you to ensure that you are only updating the
-        specific fields desired. A Payment Application is created by a
-        business who receives a Payment from a customer. A customer may
-        make a single Payment to match an Invoice exactly, a partial
-        Payment for an Invoice, or a single Payment may be made for
-        multiple smaller Invoices. The Payment Application contains
-        information about which Invoices are connected to which Payments
-        and for which amounts.
+        specific fields desired.
+
+        A Payment Application is created by a business who receives a
+        Payment from a customer. A customer may make a single Payment to
+        match an Invoice exactly, a partial Payment for an Invoice, or a
+        single Payment may be made for multiple smaller Invoices. The
+        Payment Application contains information about which Invoices
+        are connected to which Payments and for which amounts.
 
         Parameters
         ----------
@@ -121,13 +122,14 @@ class PaymentApplicationsClient:
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. A Payment Application is
-        created by a business who receives a Payment from a customer. A
-        customer may make a single Payment to match an Invoice exactly,
-        a partial Payment for an Invoice, or a single Payment may be
-        made for multiple smaller Invoices. The Payment Application
-        contains information about which Invoices are connected to which
-        Payments and for which amounts.
+        page on the Lockstep Developer website.
+
+        A Payment Application is created by a business who receives a
+        Payment from a customer. A customer may make a single Payment to
+        match an Invoice exactly, a partial Payment for an Invoice, or a
+        single Payment may be made for multiple smaller Invoices. The
+        Payment Application contains information about which Invoices
+        are connected to which Payments and for which amounts.
 
         Parameters
         ----------

@@ -59,16 +59,18 @@ class ApplicationsClient:
         supply a list of field names and new values. For example, you
         can provide the field name "IsActive" and specify the new value
         "False"; this API will then change the value of IsActive to
-        false. An Application represents a feature available to
-        customers within the Lockstep Platform. You can create
-        Applications by working with your Lockstep business development
-        manager and publish them on the platform so that customers can
-        browse and find your Application on the Lockstep Platform
-        Marketplace. When a customer adds an Application to their
-        account, they obtain an AppEnrollment which represents that
-        customer's instance of this Application. The customer-specific
-        AppEnrollment contains a customer's configuration data for the
-        Application, which is not customer-specific.
+        false.
+
+        An Application represents a feature available to customers
+        within the Lockstep Platform. You can create Applications by
+        working with your Lockstep business development manager and
+        publish them on the platform so that customers can browse and
+        find your Application on the Lockstep Platform Marketplace. When
+        a customer adds an Application to their account, they obtain an
+        AppEnrollment which represents that customer's instance of this
+        Application. The customer-specific AppEnrollment contains a
+        customer's configuration data for the Application, which is not
+        customer-specific.
 
         See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments)
         for more information.
@@ -88,16 +90,17 @@ class ApplicationsClient:
         Deletes the Application referred to by this unique identifier.
         Information about this Application is retained but after the
         DELETE call, this Application is no longer available for use on
-        the Lockstep Platform. An Application represents a feature
-        available to customers within the Lockstep Platform. You can
-        create Applications by working with your Lockstep business
-        development manager and publish them on the platform so that
-        customers can browse and find your Application on the Lockstep
-        Platform Marketplace. When a customer adds an Application to
-        their account, they obtain an AppEnrollment which represents
-        that customer's instance of this Application. The
-        customer-specific AppEnrollment contains a customer's
-        configuration data for the Application, which is not
+        the Lockstep Platform.
+
+        An Application represents a feature available to customers
+        within the Lockstep Platform. You can create Applications by
+        working with your Lockstep business development manager and
+        publish them on the platform so that customers can browse and
+        find your Application on the Lockstep Platform Marketplace. When
+        a customer adds an Application to their account, they obtain an
+        AppEnrollment which represents that customer's instance of this
+        Application. The customer-specific AppEnrollment contains a
+        customer's configuration data for the Application, which is not
         customer-specific.
 
         See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments)
@@ -147,16 +150,17 @@ class ApplicationsClient:
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. An Application
-        represents a feature available to customers within the Lockstep
-        Platform. You can create Applications by working with your
-        Lockstep business development manager and publish them on the
-        platform so that customers can browse and find your Application
-        on the Lockstep Platform Marketplace. When a customer adds an
-        Application to their account, they obtain an AppEnrollment which
-        represents that customer's instance of this Application. The
-        customer-specific AppEnrollment contains a customer's
-        configuration data for the Application, which is not
+        page on the Lockstep Developer website.
+
+        An Application represents a feature available to customers
+        within the Lockstep Platform. You can create Applications by
+        working with your Lockstep business development manager and
+        publish them on the platform so that customers can browse and
+        find your Application on the Lockstep Platform Marketplace. When
+        a customer adds an Application to their account, they obtain an
+        AppEnrollment which represents that customer's instance of this
+        Application. The customer-specific AppEnrollment contains a
+        customer's configuration data for the Application, which is not
         customer-specific.
 
         See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments)

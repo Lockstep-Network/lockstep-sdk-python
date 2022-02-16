@@ -102,4 +102,5 @@ from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 from lockstep.models.urimodel import UriModel
 from lockstep.models.useraccountmodel import UserAccountModel
 from lockstep.models.userrolemodel import UserRoleModel
+from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
 from lockstep.models.webhookmodel import WebhookModel

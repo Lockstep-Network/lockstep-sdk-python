@@ -49,5 +49,14 @@ class ProvisioningClient:
         return self.client.send_request("POST", path, body, {"body": body})
 
     def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse:
+        """
+        Creates a new account for a developer, sending an email with
+        information on how to access the API.
+
+        Parameters
+        ----------
+        body : DeveloperAccountSubmitModel
+
+        """
         path = f"/api/v1/Provisioning/free-account"
         return self.client.send_request("POST", path, body, {"body": body})

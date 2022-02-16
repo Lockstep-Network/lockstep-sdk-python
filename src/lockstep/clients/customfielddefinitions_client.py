@@ -30,8 +30,9 @@ class CustomFieldDefinitionsClient:
         compatibility that provides support across most accounting
         systems and products. When a user or developer requires
         information beyond this core definition, you can use Custom
-        Fields to represent this information. See
-        [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        Fields to represent this information.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
         for more information.
 
         Parameters
@@ -66,8 +67,9 @@ class CustomFieldDefinitionsClient:
         compatibility that provides support across most accounting
         systems and products. When a user or developer requires
         information beyond this core definition, you can use Custom
-        Fields to represent this information. See
-        [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        Fields to represent this information.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
         for more information.
 
         Parameters
@@ -92,8 +94,9 @@ class CustomFieldDefinitionsClient:
         compatibility that provides support across most accounting
         systems and products. When a user or developer requires
         information beyond this core definition, you can use Custom
-        Fields to represent this information. See
-        [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        Fields to represent this information.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
         for more information.
 
         Parameters
@@ -108,14 +111,17 @@ class CustomFieldDefinitionsClient:
     def create_field_definitions(self, body: list[CustomFieldDefinitionModel]) -> LockstepResponse:
         """
         Creates one or more Custom Field Definitions and returns the
-        records as created. A Custom Field represents metadata added to
-        an object within the Lockstep Platform. Lockstep provides a core
-        definition for each object. The core definition is intended to
-        represent a level of compatibility that provides support across
-        most accounting systems and products. When a user or developer
-        requires information beyond this core definition, you can use
-        Custom Fields to represent this information. See
-        [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        records as created.
+
+        A Custom Field represents metadata added to an object within the
+        Lockstep Platform. Lockstep provides a core definition for each
+        object. The core definition is intended to represent a level of
+        compatibility that provides support across most accounting
+        systems and products. When a user or developer requires
+        information beyond this core definition, you can use Custom
+        Fields to represent this information.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
         for more information.
 
         Parameters
@@ -142,8 +148,9 @@ class CustomFieldDefinitionsClient:
         compatibility that provides support across most accounting
         systems and products. When a user or developer requires
         information beyond this core definition, you can use Custom
-        Fields to represent this information. See
-        [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        Fields to represent this information.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
         for more information.
 
         Parameters
