@@ -22,9 +22,12 @@ class WebhookHistoryTableStorageModel:
 
     groupKey: str = None
     webhookId: str = None
+    webhookHistoryId: str = None
     eventType: str = None
     requestSent: bool = None
+    isSuccessful: bool = None
     responseStatusCode: str = None
+    processResultMessage: str = None
     failureCount: int = None
     timestamp: str = None
 

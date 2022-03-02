@@ -15,6 +15,9 @@ from lockstep.clients.customfielddefinitions_client import CustomFieldDefinition
 from lockstep.clients.customfieldvalues_client import CustomFieldValuesClient
 from lockstep.clients.definitions_client import DefinitionsClient
 from lockstep.clients.emails_client import EmailsClient
+from lockstep.clients.financialaccount_client import FinancialAccountClient
+from lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
+from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
 from lockstep.clients.invoicehistory_client import InvoiceHistoryClient
 from lockstep.clients.invoices_client import InvoicesClient
 from lockstep.clients.leads_client import LeadsClient
@@ -68,6 +71,9 @@ from lockstep.models.emailmodel import EmailModel
 from lockstep.models.erpinfodatamodel import ErpInfoDataModel
 from lockstep.models.erpinfomodel import ErpInfoModel
 from lockstep.models.erpmodel import ErpModel
+from lockstep.models.financialaccountbalancehistorymodel import FinancialAccountBalanceHistoryModel
+from lockstep.models.financialaccountmodel import FinancialAccountModel
+from lockstep.models.financialyearsettingmodel import FinancialYearSettingModel
 from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel
 from lockstep.models.invitesubmitmodel import InviteSubmitModel
