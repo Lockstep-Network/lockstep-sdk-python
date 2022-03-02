@@ -22,12 +22,13 @@ class ContactsClient:
     def retrieve_contact(self, id: str, include: str) -> LockstepResponse:
         """
         Retrieves the Contact specified by this unique identifier,
-        optionally including nested data sets. A Contact contains
-        information about a person or role within a Company. You can use
-        Contacts to track information about who is responsible for a
-        specific project, who handles invoices, or information about
-        which role at a particular customer or vendor you should speak
-        with about invoices.
+        optionally including nested data sets.
+
+        A Contact contains information about a person or role within a
+        Company. You can use Contacts to track information about who is
+        responsible for a specific project, who handles invoices, or
+        information about which role at a particular customer or vendor
+        you should speak with about invoices.
 
         Parameters
         ----------
@@ -52,12 +53,13 @@ class ContactsClient:
         supply a list of field names and new values. If you do not
         provide the name of a field, that field will remain unchanged.
         This allows you to ensure that you are only updating the
-        specific fields desired. A Contact contains information about a
-        person or role within a Company. You can use Contacts to track
-        information about who is responsible for a specific project, who
-        handles invoices, or information about which role at a
-        particular customer or vendor you should speak with about
-        invoices.
+        specific fields desired.
+
+        A Contact contains information about a person or role within a
+        Company. You can use Contacts to track information about who is
+        responsible for a specific project, who handles invoices, or
+        information about which role at a particular customer or vendor
+        you should speak with about invoices.
 
         Parameters
         ----------
@@ -114,12 +116,13 @@ class ContactsClient:
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. A Contact contains
-        information about a person or role within a Company. You can use
-        Contacts to track information about who is responsible for a
-        specific project, who handles invoices, or information about
-        which role at a particular customer or vendor you should speak
-        with about invoices.
+        page on the Lockstep Developer website.
+
+        A Contact contains information about a person or role within a
+        Company. You can use Contacts to track information about who is
+        responsible for a specific project, who handles invoices, or
+        information about which role at a particular customer or vendor
+        you should speak with about invoices.
 
         Parameters
         ----------

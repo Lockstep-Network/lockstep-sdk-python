@@ -15,14 +15,19 @@
 from dataclasses import dataclass
 
 @dataclass
-class ActivityXRefModel:
+class WebhookHistoryTableStorageModel:
     """
-    Represents links between an Activity and another record.
+    Represents the Webhook Trigger History
     """
 
-    activityXRefId: str = None
-    activityId: str = None
     groupKey: str = None
-    tableKey: str = None
-    objectKey: str = None
+    webhookId: str = None
+    webhookHistoryId: str = None
+    eventType: str = None
+    requestSent: bool = None
+    isSuccessful: bool = None
+    responseStatusCode: str = None
+    processResultMessage: str = None
+    failureCount: int = None
+    timestamp: str = None
 

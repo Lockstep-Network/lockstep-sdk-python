@@ -39,6 +39,7 @@ class CustomFieldSyncModel:
     customFieldLabel: str = None
     stringValue: str = None
     numericValue: float = None
+    value: str = None
     created: str = None
     modified: str = None
 

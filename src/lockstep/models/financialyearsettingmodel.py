@@ -15,26 +15,25 @@
 from dataclasses import dataclass
 
 @dataclass
-class InvoiceAddressModel:
+class FinancialYearSettingModel:
     """
-    Represents a single address for an invoice
+    A Financial Year Setting is used to to set the type, beginning, end,
+    and number of periods of a year used to calculate accounting
+    reports. The financial setting can either be for a specific app
+    enrollment id via a sync or, when the financial year setting is
+    manually created, will cover all account data without an app
+    enrollment id.
     """
 
-    invoiceAddressId: str = None
+    financialYearSettingId: str = None
     groupKey: str = None
-    invoiceId: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    region: str = None
-    postalCode: str = None
-    country: str = None
-    latitude: float = None
-    longitude: float = None
+    appEnrollmentId: str = None
+    yearType: str = None
+    totalPeriods: int = None
+    startDate: str = None
+    endDate: str = None
     created: str = None
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
-    appEnrollmentId: str = None
 

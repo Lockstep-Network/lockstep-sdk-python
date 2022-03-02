@@ -39,4 +39,5 @@ class WebhookModel:
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
+    partitionKey: str = None
 

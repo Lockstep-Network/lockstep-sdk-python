@@ -15,26 +15,26 @@
 from dataclasses import dataclass
 
 @dataclass
-class InvoiceAddressModel:
+class FinancialAccountModel:
     """
-    Represents a single address for an invoice
+    An Financial account refers to records of assets, liabilities,
+    income, expenses, and equity.
     """
 
-    invoiceAddressId: str = None
+    financialAccountId: str = None
     groupKey: str = None
-    invoiceId: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    region: str = None
-    postalCode: str = None
-    country: str = None
-    latitude: float = None
-    longitude: float = None
+    code: str = None
+    erpKey: str = None
+    appEnrollmentId: str = None
+    name: str = None
+    status: str = None
+    cashflowType: str = None
+    description: str = None
+    classification: str = None
+    category: str = None
+    subcategory: str = None
     created: str = None
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
-    appEnrollmentId: str = None
 

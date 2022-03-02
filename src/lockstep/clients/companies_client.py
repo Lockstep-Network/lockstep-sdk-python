@@ -22,12 +22,13 @@ class CompaniesClient:
     def retrieve_company(self, id: str, include: str) -> LockstepResponse:
         """
         Retrieves the Company specified by this unique identifier,
-        optionally including nested data sets. A Company represents a
-        customer, a vendor, or a company within the organization of the
-        account holder. Companies can have parents and children,
-        representing an organizational hierarchy of corporate entities.
-        You can use Companies to track projects and financial data under
-        this Company label.
+        optionally including nested data sets.
+
+        A Company represents a customer, a vendor, or a company within
+        the organization of the account holder. Companies can have
+        parents and children, representing an organizational hierarchy
+        of corporate entities. You can use Companies to track projects
+        and financial data under this Company label.
 
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
@@ -56,12 +57,13 @@ class CompaniesClient:
         supply a list of field names and new values. If you do not
         provide the name of a field, that field will remain unchanged.
         This allows you to ensure that you are only updating the
-        specific fields desired. A Company represents a customer, a
-        vendor, or a company within the organization of the account
-        holder. Companies can have parents and children, representing an
-        organizational hierarchy of corporate entities. You can use
-        Companies to track projects and financial data under this
-        Company label.
+        specific fields desired.
+
+        A Company represents a customer, a vendor, or a company within
+        the organization of the account holder. Companies can have
+        parents and children, representing an organizational hierarchy
+        of corporate entities. You can use Companies to track projects
+        and financial data under this Company label.
 
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
@@ -103,12 +105,13 @@ class CompaniesClient:
 
     def create_companies(self, body: list[CompanyModel]) -> LockstepResponse:
         """
-        Creates one or more Companies from a given model. A Company
-        represents a customer, a vendor, or a company within the
-        organization of the account holder. Companies can have parents
-        and children, representing an organizational hierarchy of
-        corporate entities. You can use Companies to track projects and
-        financial data under this Company label.
+        Creates one or more Companies from a given model.
+
+        A Company represents a customer, a vendor, or a company within
+        the organization of the account holder. Companies can have
+        parents and children, representing an organizational hierarchy
+        of corporate entities. You can use Companies to track projects
+        and financial data under this Company label.
 
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
@@ -130,12 +133,13 @@ class CompaniesClient:
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. A Company represents a
-        customer, a vendor, or a company within the organization of the
-        account holder. Companies can have parents and children,
-        representing an organizational hierarchy of corporate entities.
-        You can use Companies to track projects and financial data under
-        this Company label.
+        page on the Lockstep Developer website.
+
+        A Company represents a customer, a vendor, or a company within
+        the organization of the account holder. Companies can have
+        parents and children, representing an organizational hierarchy
+        of corporate entities. You can use Companies to track projects
+        and financial data under this Company label.
 
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
@@ -169,10 +173,13 @@ class CompaniesClient:
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. The Customer Summary
-        View represents a slightly different view of the data and
-        includes some extra fields that might be useful. For more
-        information, see the data format of the Customer Summary Model.
+        page on the Lockstep Developer website.
+
+        The Customer Summary View represents a slightly different view
+        of the data and includes some extra fields that might be useful.
+        For more information, see the data format of the Customer
+        Summary Model.
+
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
         for more information.
@@ -200,10 +207,13 @@ class CompaniesClient:
     def retrieve_customer_detail(self, id: str) -> LockstepResponse:
         """
         Retrieves the Customer Details specified by this unique
-        identifier, optionally including nested data sets. The Customer
-        Detail View represents a slightly different view of the data and
-        includes some extra fields that might be useful. For more
-        information, see the data format of the Customer Detail Model.
+        identifier, optionally including nested data sets.
+
+        The Customer Detail View represents a slightly different view of
+        the data and includes some extra fields that might be useful.
+        For more information, see the data format of the Customer Detail
+        Model.
+
         See [Vendors, Customers, and
         Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
         for more information.

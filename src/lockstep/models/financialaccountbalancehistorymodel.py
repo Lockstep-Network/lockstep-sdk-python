@@ -15,26 +15,24 @@
 from dataclasses import dataclass
 
 @dataclass
-class InvoiceAddressModel:
+class FinancialAccountBalanceHistoryModel:
     """
-    Represents a single address for an invoice
+    Represents a balance for a financial account for a given period of
+    time.
     """
 
-    invoiceAddressId: str = None
+    financialAccountBalanceHistoryId: str = None
     groupKey: str = None
-    invoiceId: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    region: str = None
-    postalCode: str = None
-    country: str = None
-    latitude: float = None
-    longitude: float = None
+    financialAccountId: str = None
+    appEnrollmentId: str = None
+    financialYear: int = None
+    periodNumber: int = None
+    periodStartDate: str = None
+    periodEndDate: str = None
+    status: str = None
+    balance: float = None
     created: str = None
     createdUserId: str = None
     modified: str = None
     modifiedUserId: str = None
-    appEnrollmentId: str = None
 

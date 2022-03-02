@@ -38,5 +38,6 @@ class CustomFieldValueModel:
     modified: str = None
     modifiedUserId: str = None
     appEnrollmentId: str = None
+    value: str = None
     customFieldDefinition: CustomFieldDefinitionModel = None
 
