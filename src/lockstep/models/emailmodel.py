@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from __future__ import annotations
 from lockstep.models.notemodel import NoteModel
 from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -57,7 +58,7 @@ class EmailModel:
     modified: str | None = None
     modifiedUserId: str | None = None
     responseOriginId: str | None = None
-    responseOrigin: object = None # Nested type: EmailModel
+    responseOrigin: EmailModel | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
