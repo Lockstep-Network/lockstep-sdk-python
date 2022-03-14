@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 from lockstep.models.currencyratemodel import CurrencyRateModel
@@ -20,6 +19,7 @@ class CurrenciesClient:
     """
     Lockstep Platform methods related to Currencies
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -48,7 +48,7 @@ class CurrenciesClient:
             Optionally, you can specify a data provider.
         """
         path = f"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"date": date, "dataProvider": dataProvider}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -68,7 +68,7 @@ class CurrenciesClient:
             A list of dates and source currencies.
         """
         path = "/api/v1/Currencies/bulk"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {"destinationCurrency": destinationCurrency}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

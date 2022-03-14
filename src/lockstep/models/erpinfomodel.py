@@ -21,6 +21,6 @@ class ErpInfoModel:
     Represents the ERP object sent in a provisioning request
     """
 
-    appId: str = None
-    data: ConnectorInfoModel = None
+    appId: str | None = None
+    data: ConnectorInfoModel | None = None
 

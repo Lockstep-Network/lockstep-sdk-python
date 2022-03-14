@@ -26,16 +26,16 @@ class NoteModel:
     for more information.
     """
 
-    noteId: str = None
-    groupKey: str = None
-    tableKey: str = None
-    objectKey: str = None
-    noteText: str = None
-    noteType: str = None
-    isArchived: bool = None
-    created: str = None
-    createdUserId: str = None
-    createdUserName: str = None
-    appEnrollmentId: str = None
-    recipientName: str = None
+    noteId: str | None = None
+    groupKey: str | None = None
+    tableKey: str | None = None
+    objectKey: str | None = None
+    noteText: str | None = None
+    noteType: str | None = None
+    isArchived: bool | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    createdUserName: str | None = None
+    appEnrollmentId: str | None = None
+    recipientName: str | None = None
 

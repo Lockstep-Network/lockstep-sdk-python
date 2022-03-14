@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.fetch_result import FetchResult
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -20,6 +19,7 @@ class CustomFieldDefinitionsClient:
     """
     Lockstep Platform methods related to CustomFieldDefinitions
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -52,7 +52,7 @@ class CustomFieldDefinitionsClient:
             the future.
         """
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -90,7 +90,7 @@ class CustomFieldDefinitionsClient:
             A list of changes to apply to this Custom Field Definition
         """
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -119,7 +119,7 @@ class CustomFieldDefinitionsClient:
             Definition to delete
         """
         path = f"/api/v1/CustomFieldDefinitions/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -147,7 +147,7 @@ class CustomFieldDefinitionsClient:
             The Custom Field Definitions to create
         """
         path = "/api/v1/CustomFieldDefinitions"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -195,7 +195,7 @@ class CustomFieldDefinitionsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/CustomFieldDefinitions/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

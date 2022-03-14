@@ -20,21 +20,21 @@ class InvoiceAddressModel:
     Represents a single address for an invoice
     """
 
-    invoiceAddressId: str = None
-    groupKey: str = None
-    invoiceId: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    region: str = None
-    postalCode: str = None
-    country: str = None
-    latitude: float = None
-    longitude: float = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
+    invoiceAddressId: str | None = None
+    groupKey: str | None = None
+    invoiceId: str | None = None
+    line1: str | None = None
+    line2: str | None = None
+    line3: str | None = None
+    city: str | None = None
+    region: str | None = None
+    postalCode: str | None = None
+    country: str | None = None
+    latitude: float | None = None
+    longitude: float | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
 

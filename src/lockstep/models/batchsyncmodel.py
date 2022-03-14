@@ -40,12 +40,12 @@ class BatchSyncModel:
     has changed in the past 48 hours.
     """
 
-    companies: list[CompanySyncModel] = None
-    contacts: list[ContactSyncModel] = None
-    creditMemoApplications: list[CreditMemoAppliedSyncModel] = None
-    invoices: list[InvoiceSyncModel] = None
-    invoiceLines: list[InvoiceLineSyncModel] = None
-    customFields: list[CustomFieldSyncModel] = None
-    payments: list[PaymentSyncModel] = None
-    paymentApplications: list[PaymentAppliedSyncModel] = None
+    companies: list[CompanySyncModel] | None = None
+    contacts: list[ContactSyncModel] | None = None
+    creditMemoApplications: list[CreditMemoAppliedSyncModel] | None = None
+    invoices: list[InvoiceSyncModel] | None = None
+    invoiceLines: list[InvoiceLineSyncModel] | None = None
+    customFields: list[CustomFieldSyncModel] | None = None
+    payments: list[PaymentSyncModel] | None = None
+    paymentApplications: list[PaymentAppliedSyncModel] | None = None
 

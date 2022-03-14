@@ -20,7 +20,7 @@ class ErpModel:
     Represents unsupported ERP systems
     """
 
-    erpSystemId: str = None
-    name: str = None
-    isSupported: bool = None
+    erpSystemId: str | None = None
+    name: str | None = None
+    isSupported: bool | None = None
 

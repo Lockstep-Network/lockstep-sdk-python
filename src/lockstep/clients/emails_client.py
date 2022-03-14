@@ -11,16 +11,17 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
 from lockstep.models.emailmodel import EmailModel
+from requests.models import Response
 
 class EmailsClient:
     """
     Lockstep Platform methods related to Emails
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -46,7 +47,7 @@ class EmailsClient:
             CustomFields, Notes, ResponseOrigin
         """
         path = f"/api/v1/Emails/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -80,7 +81,7 @@ class EmailsClient:
             A list of changes to apply to this Email
         """
         path = f"/api/v1/Emails/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -104,7 +105,7 @@ class EmailsClient:
             delete
         """
         path = f"/api/v1/Emails/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -130,7 +131,7 @@ class EmailsClient:
             The random nonce applied at time of url creation.
         """
         path = f"/api/v1/Emails/{emailId}/logo/{nonce}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         return result
 
     def create_emails(self, body: list[EmailModel]) -> LockstepResponse[list[EmailModel]]:
@@ -151,7 +152,7 @@ class EmailsClient:
             The array of emails to be created
         """
         path = "/api/v1/Emails"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -195,7 +196,7 @@ class EmailsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Emails/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

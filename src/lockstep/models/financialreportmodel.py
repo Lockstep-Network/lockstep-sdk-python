@@ -21,10 +21,10 @@ class FinancialReportModel:
     Represents a Financial Report
     """
 
-    reportName: str = None
-    groupKey: str = None
-    reportStartDate: str = None
-    reportEndDate: str = None
-    reportCreatedDate: str = None
-    rows: list[FinancialReportRowModel] = None
+    reportName: str | None = None
+    groupKey: str | None = None
+    reportStartDate: str | None = None
+    reportEndDate: str | None = None
+    reportCreatedDate: str | None = None
+    rows: list[FinancialReportRowModel] | None = None
 

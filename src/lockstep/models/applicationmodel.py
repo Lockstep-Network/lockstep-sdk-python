@@ -34,23 +34,23 @@ class ApplicationModel:
     for more information. --swaggerCategory:Platform
     """
 
-    appId: str = None
-    name: str = None
-    description: str = None
-    appType: str = None
-    ownerId: str = None
-    projectUrl: str = None
-    iconUrl: str = None
-    priceTerms: str = None
-    createdUserId: str = None
-    modifiedUserId: str = None
-    created: str = None
-    modified: str = None
-    isActive: bool = None
-    wikiURL: str = None
-    groupKey: str = None
-    notes: list[NoteModel] = None
-    attachments: list[AttachmentModel] = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
-    customFieldValues: list[CustomFieldValueModel] = None
+    appId: str | None = None
+    name: str | None = None
+    description: str | None = None
+    appType: str | None = None
+    ownerId: str | None = None
+    projectUrl: str | None = None
+    iconUrl: str | None = None
+    priceTerms: str | None = None
+    createdUserId: str | None = None
+    modifiedUserId: str | None = None
+    created: str | None = None
+    modified: str | None = None
+    isActive: bool | None = None
+    wikiURL: str | None = None
+    groupKey: str | None = None
+    notes: list[NoteModel] | None = None
+    attachments: list[AttachmentModel] | None = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
+    customFieldValues: list[CustomFieldValueModel] | None = None
 

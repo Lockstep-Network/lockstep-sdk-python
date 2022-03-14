@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from __future__ import annotations
 from lockstep.models.financialreportcellmodel import FinancialReportCellModel
 
 @dataclass
@@ -21,8 +22,8 @@ class FinancialReportRowModel:
     Represents a row of a financial Report report
     """
 
-    rowType: str = None
-    label: str = None
-    rows: any = None # Nested type: FinancialReportRowModel
-    cells: list[FinancialReportCellModel] = None
+    rowType: str | None = None
+    label: str | None = None
+    rows: list[FinancialReportRowModel] | None = None
+    cells: list[FinancialReportCellModel] | None = None
 

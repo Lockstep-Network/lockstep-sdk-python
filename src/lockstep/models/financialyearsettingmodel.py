@@ -25,15 +25,15 @@ class FinancialYearSettingModel:
     enrollment id.
     """
 
-    financialYearSettingId: str = None
-    groupKey: str = None
-    appEnrollmentId: str = None
-    yearType: str = None
-    totalPeriods: int = None
-    startDate: str = None
-    endDate: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
+    financialYearSettingId: str | None = None
+    groupKey: str | None = None
+    appEnrollmentId: str | None = None
+    yearType: str | None = None
+    totalPeriods: int | None = None
+    startDate: str | None = None
+    endDate: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

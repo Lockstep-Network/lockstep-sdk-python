@@ -20,5 +20,5 @@ class FinancialReportCellModel:
     Represents a cell of a financial report
     """
 
-    value: str = None
+    value: str | None = None
 

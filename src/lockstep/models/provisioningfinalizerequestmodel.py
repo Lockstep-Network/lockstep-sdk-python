@@ -22,9 +22,9 @@ class ProvisioningFinalizeRequestModel:
     Represents the data to finalize onboarding for a user
     """
 
-    fullName: str = None
-    timeZone: str = None
-    defaultCurrency: str = None
-    company: CompanyModel = None
-    emailConnector: ErpInfoModel = None
+    fullName: str | None = None
+    timeZone: str | None = None
+    defaultCurrency: str | None = None
+    company: CompanyModel | None = None
+    emailConnector: ErpInfoModel | None = None
 

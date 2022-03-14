@@ -30,12 +30,12 @@ class PaymentAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    invoiceErpKey: str = None
-    paymentErpKey: str = None
-    entryNumber: int = None
-    applyToInvoiceDate: str = None
-    paymentAppliedAmount: float = None
-    created: str = None
-    modified: str = None
+    erpKey: str | None = None
+    invoiceErpKey: str | None = None
+    paymentErpKey: str | None = None
+    entryNumber: int | None = None
+    applyToInvoiceDate: str | None = None
+    paymentAppliedAmount: float | None = None
+    created: str | None = None
+    modified: str | None = None
 

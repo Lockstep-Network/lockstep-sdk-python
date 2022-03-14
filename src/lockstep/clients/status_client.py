@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.statusmodel import StatusModel
 
@@ -19,6 +18,7 @@ class StatusClient:
     """
     Lockstep Platform methods related to Status
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -40,7 +40,7 @@ class StatusClient:
         ----------
         """
         path = "/api/v1/Status"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -74,7 +74,7 @@ class StatusClient:
             500, timeout
         """
         path = "/api/v1/Status/testing"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"err": err}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

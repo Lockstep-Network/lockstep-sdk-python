@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
@@ -22,6 +21,7 @@ class WebhooksClient:
     """
     Lockstep Platform methods related to Webhooks
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -36,7 +36,7 @@ class WebhooksClient:
             The unique Lockstep Platform ID number of this Webhook
         """
         path = f"/api/v1/Webhooks/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -63,7 +63,7 @@ class WebhooksClient:
             A list of changes to apply to this Webhook
         """
         path = f"/api/v1/Webhooks/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -80,7 +80,7 @@ class WebhooksClient:
             delete.
         """
         path = f"/api/v1/Webhooks/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -96,7 +96,7 @@ class WebhooksClient:
             The Webhooks to create
         """
         path = "/api/v1/Webhooks"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -114,7 +114,7 @@ class WebhooksClient:
             update.
         """
         path = f"/api/v1/Webhooks/{id}/regenerateclientsecret"
-        result = self.client.send_request("PATCH", path, None, {})
+        result = self.client.send_request("PATCH", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -145,7 +145,7 @@ class WebhooksClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Webhooks/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -173,7 +173,7 @@ class WebhooksClient:
             The page number for results (default 0).
         """
         path = f"/api/v1/Webhooks/{webhookId}/history/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

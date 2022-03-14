@@ -28,16 +28,16 @@ class CustomFieldValueModel:
     for more information.
     """
 
-    groupKey: str = None
-    customFieldDefinitionId: str = None
-    recordKey: str = None
-    stringValue: str = None
-    numericValue: float = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
-    value: str = None
-    customFieldDefinition: CustomFieldDefinitionModel = None
+    groupKey: str | None = None
+    customFieldDefinitionId: str | None = None
+    recordKey: str | None = None
+    stringValue: str | None = None
+    numericValue: float | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
+    value: str | None = None
+    customFieldDefinition: CustomFieldDefinitionModel | None = None
 

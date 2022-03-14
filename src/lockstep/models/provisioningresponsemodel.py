@@ -21,11 +21,11 @@ class ProvisioningResponseModel:
     provisioning
     """
 
-    userName: str = None
-    accountName: str = None
-    userId: str = None
-    groupKey: str = None
-    appEnrollmentId: str = None
-    syncRequestId: str = None
-    errorMessage: str = None
+    userName: str | None = None
+    accountName: str | None = None
+    userId: str | None = None
+    groupKey: str | None = None
+    appEnrollmentId: str | None = None
+    syncRequestId: str | None = None
+    errorMessage: str | None = None
 

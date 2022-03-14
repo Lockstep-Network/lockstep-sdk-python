@@ -22,29 +22,29 @@ class InvoiceLineModel:
     Represents a line in an invoice
     """
 
-    invoiceLineId: str = None
-    groupKey: str = None
-    invoiceId: str = None
-    erpKey: str = None
-    lineNumber: str = None
-    productCode: str = None
-    description: str = None
-    unitMeasureCode: str = None
-    unitPrice: float = None
-    quantity: float = None
-    quantityShipped: float = None
-    quantityReceived: float = None
-    totalAmount: float = None
-    exemptionCode: str = None
-    reportingDate: str = None
-    overrideOriginAddressId: str = None
-    overrideBillToAddressId: str = None
-    overrideShipToAddressId: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
-    notes: list[NoteModel] = None
-    attachments: list[AttachmentModel] = None
+    invoiceLineId: str | None = None
+    groupKey: str | None = None
+    invoiceId: str | None = None
+    erpKey: str | None = None
+    lineNumber: str | None = None
+    productCode: str | None = None
+    description: str | None = None
+    unitMeasureCode: str | None = None
+    unitPrice: float | None = None
+    quantity: float | None = None
+    quantityShipped: float | None = None
+    quantityReceived: float | None = None
+    totalAmount: float | None = None
+    exemptionCode: str | None = None
+    reportingDate: str | None = None
+    overrideOriginAddressId: str | None = None
+    overrideBillToAddressId: str | None = None
+    overrideShipToAddressId: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
+    notes: list[NoteModel] | None = None
+    attachments: list[AttachmentModel] | None = None
 

@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
@@ -26,6 +25,7 @@ class UserAccountsClient:
     """
     Lockstep Platform methods related to UserAccounts
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -52,7 +52,7 @@ class UserAccountsClient:
             Attachments, CustomFields, AccountingRole
         """
         path = f"/api/v1/UserAccounts/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -86,7 +86,7 @@ class UserAccountsClient:
             A list of changes to apply to this User
         """
         path = f"/api/v1/UserAccounts/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -110,7 +110,7 @@ class UserAccountsClient:
             The unique Lockstep Platform ID number of this User
         """
         path = f"/api/v1/UserAccounts/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -134,7 +134,7 @@ class UserAccountsClient:
             The unique Lockstep Platform ID number of this User
         """
         path = "/api/v1/UserAccounts/reenable"
-        result = self.client.send_request("POST", path, None, {})
+        result = self.client.send_request("POST", path, None, {"id": id}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -159,7 +159,7 @@ class UserAccountsClient:
             The user to invite
         """
         path = "/api/v1/UserAccounts/invite"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -183,7 +183,7 @@ class UserAccountsClient:
             The code of the invite
         """
         path = "/api/v1/UserAccounts/invite"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"code": code}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -208,7 +208,7 @@ class UserAccountsClient:
 
         """
         path = "/api/v1/UserAccounts/transfer-owner"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -246,7 +246,7 @@ class UserAccountsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/UserAccounts/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

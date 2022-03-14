@@ -21,14 +21,14 @@ class InvoicePaymentDetailModel:
     record.
     """
 
-    groupKey: str = None
-    paymentAppliedId: str = None
-    invoiceId: str = None
-    paymentId: str = None
-    applyToInvoiceDate: str = None
-    paymentAppliedAmount: float = None
-    referenceCode: str = None
-    companyId: str = None
-    paymentAmount: float = None
-    unappliedAmount: float = None
+    groupKey: str | None = None
+    paymentAppliedId: str | None = None
+    invoiceId: str | None = None
+    paymentId: str | None = None
+    applyToInvoiceDate: str | None = None
+    paymentAppliedAmount: float | None = None
+    referenceCode: str | None = None
+    companyId: str | None = None
+    paymentAmount: float | None = None
+    unappliedAmount: float | None = None
 

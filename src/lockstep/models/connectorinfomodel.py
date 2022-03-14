@@ -21,12 +21,12 @@ class ConnectorInfoModel:
     for a connector. Only send required fields for the given connector.
     """
 
-    authCode: str = None
-    realmId: str = None
-    redirectUri: str = None
-    email: str = None
-    username: str = None
-    password: str = None
-    serverName: str = None
-    serverPort: int = None
+    authCode: str | None = None
+    realmId: str | None = None
+    redirectUri: str | None = None
+    email: str | None = None
+    username: str | None = None
+    password: str | None = None
+    serverName: str | None = None
+    serverPort: int | None = None
 

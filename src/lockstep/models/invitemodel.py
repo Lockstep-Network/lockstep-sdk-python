@@ -21,8 +21,8 @@ class InviteModel:
     Model from the User invite process
     """
 
-    email: str = None
-    success: bool = None
-    invitedUser: UserAccountModel = None
-    errorMessage: str = None
+    email: str | None = None
+    success: bool | None = None
+    invitedUser: UserAccountModel | None = None
+    errorMessage: str | None = None
 

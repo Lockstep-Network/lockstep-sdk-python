@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
@@ -23,6 +22,7 @@ class ProvisioningClient:
     """
     Lockstep Platform methods related to Provisioning
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -38,7 +38,7 @@ class ProvisioningClient:
             Represents a User and their related metadata
         """
         path = "/api/v1/Provisioning"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -56,7 +56,7 @@ class ProvisioningClient:
             Represents a User and their related metadata
         """
         path = "/api/v1/Provisioning/finalize"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -73,7 +73,7 @@ class ProvisioningClient:
 
         """
         path = "/api/v1/Provisioning/free-account"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

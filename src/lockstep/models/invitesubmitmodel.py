@@ -20,5 +20,5 @@ class InviteSubmitModel:
     Model to invite a new user to your accounting group
     """
 
-    email: str = None
+    email: str | None = None
 

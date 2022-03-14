@@ -31,12 +31,12 @@ class CreditMemoAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    invoiceErpKey: str = None
-    creditMemoInvoiceErpKey: str = None
-    entryNumber: int = None
-    applyToInvoiceDate: str = None
-    creditMemoAppliedAmount: float = None
-    created: str = None
-    modified: str = None
+    erpKey: str | None = None
+    invoiceErpKey: str | None = None
+    creditMemoInvoiceErpKey: str | None = None
+    entryNumber: int | None = None
+    applyToInvoiceDate: str | None = None
+    creditMemoAppliedAmount: float | None = None
+    created: str | None = None
+    modified: str | None = None
 

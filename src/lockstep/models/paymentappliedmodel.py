@@ -26,18 +26,18 @@ class PaymentAppliedModel:
     connected to which Payments and for which amounts.
     """
 
-    groupKey: str = None
-    paymentAppliedId: str = None
-    invoiceId: str = None
-    paymentId: str = None
-    erpKey: str = None
-    entryNumber: int = None
-    applyToInvoiceDate: str = None
-    paymentAppliedAmount: float = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
-    invoice: InvoiceModel = None
+    groupKey: str | None = None
+    paymentAppliedId: str | None = None
+    invoiceId: str | None = None
+    paymentId: str | None = None
+    erpKey: str | None = None
+    entryNumber: int | None = None
+    applyToInvoiceDate: str | None = None
+    paymentAppliedAmount: float | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
+    invoice: InvoiceModel | None = None
 

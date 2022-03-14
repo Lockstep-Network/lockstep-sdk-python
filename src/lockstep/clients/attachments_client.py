@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
@@ -22,6 +21,7 @@ class AttachmentsClient:
     """
     Lockstep Platform methods related to Attachments
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -51,7 +51,7 @@ class AttachmentsClient:
             for querying but may be available in the future.
         """
         path = f"/api/v1/Attachments/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -88,7 +88,7 @@ class AttachmentsClient:
             A list of changes to apply to this Attachment
         """
         path = f"/api/v1/Attachments/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -117,7 +117,7 @@ class AttachmentsClient:
             The unique ID number of the Attachment to be archived
         """
         path = f"/api/v1/Attachments/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -145,13 +145,13 @@ class AttachmentsClient:
             returned
         """
         path = f"/api/v1/Attachments/{id}/download"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
             return LockstepResponse(False, result.status_code, None, result.json())
 
-    def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: Response) -> LockstepResponse[list[AttachmentModel]]:
+    def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: str) -> LockstepResponse[list[AttachmentModel]]:
         """
         Uploads and creates one or more Attachments from the provided
         arguments.
@@ -176,11 +176,11 @@ class AttachmentsClient:
             linked
         attachmentType : str
             The type of this attachment
-        filename : Response
+        filename : str
             The full path of a file to upload to the API
         """
         path = "/api/v1/Attachments"
-        result = self.client.send_request("POST", path, None, {"filename": filename})
+        result = self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId, "attachmentType": attachmentType}, filename)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -225,7 +225,7 @@ class AttachmentsClient:
             The page number for results (default 0)
         """
         path = "/api/v1/Attachments/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

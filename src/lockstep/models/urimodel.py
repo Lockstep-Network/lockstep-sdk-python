@@ -20,5 +20,5 @@ class UriModel:
     Represents a Uri for download link
     """
 
-    downloadLink: str = None
+    downloadLink: str | None = None
 

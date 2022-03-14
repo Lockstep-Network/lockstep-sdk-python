@@ -30,25 +30,25 @@ class ContactSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    companyErpKey: str = None
-    contactName: str = None
-    contactCode: str = None
-    title: str = None
-    roleCode: str = None
-    emailAddress: str = None
-    phone: str = None
-    fax: str = None
-    address1: str = None
-    address2: str = None
-    address3: str = None
-    city: str = None
-    stateRegion: str = None
-    postalCode: str = None
-    countryCode: str = None
-    isActive: bool = None
-    webpageUrl: str = None
-    pictureUrl: str = None
-    created: str = None
-    modified: str = None
+    erpKey: str | None = None
+    companyErpKey: str | None = None
+    contactName: str | None = None
+    contactCode: str | None = None
+    title: str | None = None
+    roleCode: str | None = None
+    emailAddress: str | None = None
+    phone: str | None = None
+    fax: str | None = None
+    address1: str | None = None
+    address2: str | None = None
+    address3: str | None = None
+    city: str | None = None
+    stateRegion: str | None = None
+    postalCode: str | None = None
+    countryCode: str | None = None
+    isActive: bool | None = None
+    webpageUrl: str | None = None
+    pictureUrl: str | None = None
+    created: str | None = None
+    modified: str | None = None
 

@@ -20,25 +20,25 @@ class ArHeaderInfoModel:
     Aggregated Accounts Receivable information.
     """
 
-    groupKey: str = None
-    reportPeriod: str = None
-    totalCustomers: int = None
-    totalInvoices: int = None
-    totalInvoicedAmount: float = None
-    totalUnappliedPayments: float = None
-    totalCollected: float = None
-    totalArAmount: float = None
-    totalInvoicesPaid: int = None
-    totalInvoicesPastDue: int = None
-    totalInvoices90DaysPastDue: int = None
-    totalPastDueAmount: float = None
-    totalPastDueAmount90Days: float = None
-    percentageOfTotalAr: float = None
-    dso: float = None
-    totalInvoiceAmountCurrentYear: float = None
-    totalInvoiceAmountPreviousYear: float = None
-    totalPaymentAmountCurrentYear: float = None
-    totalCollectedPastThirtyDays: int = None
-    totalInvoicesPaidPastThirtyDays: int = None
-    percentageOfTotalAr90DaysPastDue: float = None
+    groupKey: str | None = None
+    reportPeriod: str | None = None
+    totalCustomers: int | None = None
+    totalInvoices: int | None = None
+    totalInvoicedAmount: float | None = None
+    totalUnappliedPayments: float | None = None
+    totalCollected: float | None = None
+    totalArAmount: float | None = None
+    totalInvoicesPaid: int | None = None
+    totalInvoicesPastDue: int | None = None
+    totalInvoices90DaysPastDue: int | None = None
+    totalPastDueAmount: float | None = None
+    totalPastDueAmount90Days: float | None = None
+    percentageOfTotalAr: float | None = None
+    dso: float | None = None
+    totalInvoiceAmountCurrentYear: float | None = None
+    totalInvoiceAmountPreviousYear: float | None = None
+    totalPaymentAmountCurrentYear: float | None = None
+    totalCollectedPastThirtyDays: int | None = None
+    totalInvoicesPaidPastThirtyDays: int | None = None
+    percentageOfTotalAr90DaysPastDue: float | None = None
 

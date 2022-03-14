@@ -20,9 +20,9 @@ class SyncEntityResultModel:
     Contains information about a sync process for an entity.
     """
 
-    insertCount: int = None
-    updateCount: int = None
-    skipCount: int = None
-    errorCount: int = None
-    errors: object = None
+    insertCount: int | None = None
+    updateCount: int | None = None
+    skipCount: int | None = None
+    errorCount: int | None = None
+    errors: object | None = None
 

@@ -20,11 +20,11 @@ class ArAgingHeaderInfoModel:
     Aggregated Accounts Receivable Aging information.
     """
 
-    groupKey: str = None
-    reportBucket: str = None
-    totalCustomers: int = None
-    totalInvoicesOutstanding: int = None
-    totalOutstandingAmount: float = None
-    totalArAmount: float = None
-    percentageOfTotalAr: float = None
+    groupKey: str | None = None
+    reportBucket: str | None = None
+    totalCustomers: int | None = None
+    totalInvoicesOutstanding: int | None = None
+    totalOutstandingAmount: float | None = None
+    totalArAmount: float | None = None
+    percentageOfTotalAr: float | None = None
 

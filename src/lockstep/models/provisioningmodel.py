@@ -21,6 +21,6 @@ class ProvisioningModel:
     Represents the data sent during the onboarding flow
     """
 
-    fullName: str = None
-    erp: ErpInfoModel = None
+    fullName: str | None = None
+    erp: ErpInfoModel | None = None
 

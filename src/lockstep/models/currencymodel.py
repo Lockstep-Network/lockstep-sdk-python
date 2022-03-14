@@ -20,9 +20,9 @@ class CurrencyModel:
     Represents an ISO-4217 currency code definition
     """
 
-    alphaCode: str = None
-    numericCode: str = None
-    currencyName: str = None
-    minorUnit: int = None
-    symbol: str = None
+    alphaCode: str | None = None
+    numericCode: str | None = None
+    currencyName: str | None = None
+    minorUnit: int | None = None
+    symbol: str | None = None
 

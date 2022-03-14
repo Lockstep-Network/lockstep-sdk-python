@@ -20,11 +20,11 @@ class UserRoleModel:
     Represents a role for a user
     """
 
-    userRoleId: str = None
-    groupKey: str = None
-    userRoleName: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
+    userRoleId: str | None = None
+    groupKey: str | None = None
+    userRoleName: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

@@ -20,7 +20,7 @@ class DailySalesOutstandingReportModel:
     Represents the daily sales outstanding report
     """
 
-    timeframe: str = None
-    invoiceCount: int = None
-    dailySalesOutstanding: float = None
+    timeframe: str | None = None
+    invoiceCount: int | None = None
+    dailySalesOutstanding: float | None = None
 

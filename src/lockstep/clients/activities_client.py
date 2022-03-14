@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.fetch_result import FetchResult
 from lockstep.models.activitymodel import ActivityModel
@@ -21,6 +20,7 @@ class ActivitiesClient:
     """
     Lockstep Platform methods related to Activities
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
@@ -48,7 +48,7 @@ class ActivitiesClient:
             UserAssignedToName
         """
         path = f"/api/v1/Activities/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -82,7 +82,7 @@ class ActivitiesClient:
             A list of changes to apply to this Activity
         """
         path = f"/api/v1/Activities/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -106,7 +106,7 @@ class ActivitiesClient:
             delete
         """
         path = f"/api/v1/Activities/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -129,7 +129,7 @@ class ActivitiesClient:
             The Activities to create
         """
         path = "/api/v1/Activities"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -173,7 +173,7 @@ class ActivitiesClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Activities/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -197,7 +197,7 @@ class ActivitiesClient:
             The unique Lockstep Platform ID number of this Activity
         """
         path = f"/api/v1/Activities/{id}/stream"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -223,7 +223,7 @@ class ActivitiesClient:
 
         """
         path = f"/api/v1/Activities/{activityId}/forward/{userId}"
-        result = self.client.send_request("POST", path, None, {})
+        result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

@@ -20,9 +20,9 @@ class LeadModel:
     Represents leads for creating new ERP connectors
     """
 
-    leadId: str = None
-    name: str = None
-    company: str = None
-    email: str = None
-    erpSystem: str = None
+    leadId: str | None = None
+    name: str | None = None
+    company: str | None = None
+    email: str | None = None
+    erpSystem: str | None = None
 

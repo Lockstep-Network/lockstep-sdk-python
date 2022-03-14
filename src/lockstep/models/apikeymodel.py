@@ -27,15 +27,15 @@ class ApiKeyModel:
     Keys](https://developer.lockstep.io/docs/api-keys).
     """
 
-    apiKeyId: str = None
-    groupKey: str = None
-    name: str = None
-    environment: str = None
-    apiKey: str = None
-    keyPrefix: str = None
-    created: str = None
-    createdUserId: str = None
-    revoked: str = None
-    revokedUserId: str = None
-    expires: str = None
+    apiKeyId: str | None = None
+    groupKey: str | None = None
+    name: str | None = None
+    environment: str | None = None
+    apiKey: str | None = None
+    keyPrefix: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    revoked: str | None = None
+    revokedUserId: str | None = None
+    expires: str | None = None
 

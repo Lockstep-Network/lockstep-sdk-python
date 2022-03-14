@@ -20,7 +20,7 @@ class StateModel:
     State model for ISO-3166-2
     """
 
-    name: str = None
-    alpha2: str = None
-    aliases: str = None
+    name: str | None = None
+    alpha2: str | None = None
+    aliases: str | None = None
 

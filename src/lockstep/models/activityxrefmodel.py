@@ -20,9 +20,9 @@ class ActivityXRefModel:
     Represents links between an Activity and another record.
     """
 
-    activityXRefId: str = None
-    activityId: str = None
-    groupKey: str = None
-    tableKey: str = None
-    objectKey: str = None
+    activityXRefId: str | None = None
+    activityId: str | None = None
+    groupKey: str | None = None
+    tableKey: str | None = None
+    objectKey: str | None = None
 
