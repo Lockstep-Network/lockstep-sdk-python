@@ -8,19 +8,22 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
+# @version    2021.39
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 
+from typing import Generic, TypeVar
 from dataclasses import dataclass
-from lockstep.models.erpinfomodel import ErpInfoModel
+
+T = TypeVar('T')
 
 @dataclass
-class ProvisioningModel:
+class FetchResult(Generic[T]):
     """
-    Represents the data sent during the onboarding flow
+    Represents a query response from a Lockstep Platform API call
     """
-
-    fullName: str = None
-    erp: ErpInfoModel = None
-
+    records: list[T]
+    totalCount: int
+    pageSize: int
+    pageNumber: int

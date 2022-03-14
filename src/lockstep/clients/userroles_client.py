@@ -11,14 +11,20 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.models.userrolemodel import UserRoleModel
+from src.lockstep.fetch_result import FetchResult
 
 class UserRolesClient:
+    """
+    Lockstep Platform methods related to UserRoles
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_user_role(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_user_role(self, id: str, include: str) -> LockstepResponse[UserRoleModel]:
         """
         Retrieves the User Role with this identifier.
 
@@ -32,9 +38,13 @@ class UserRolesClient:
             but may be offered in the future
         """
         path = f"/api/v1/UserRoles/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_user_roles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_user_roles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserRoleModel]]:
         """
         Queries User Roles for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -59,5 +69,9 @@ class UserRolesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/UserRoles/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/UserRoles/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

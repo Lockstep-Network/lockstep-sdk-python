@@ -11,14 +11,26 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.models.agingmodel import AgingModel
+from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
+from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
+from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
+from lockstep.models.cashflowreportmodel import CashflowReportModel
+from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
+from lockstep.models.financialreportmodel import FinancialReportModel
+from lockstep.models.riskratemodel import RiskRateModel
 
 class ReportsClient:
+    """
+    Lockstep Platform methods related to Reports
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def cash_flow(self, timeframe: int) -> LockstepResponse:
+    def cash_flow(self, timeframe: int) -> LockstepResponse[CashflowReportModel]:
         """
         Retrieves a current Cash Flow report for this account.
 
@@ -33,10 +45,14 @@ class ReportsClient:
             Number of days of data to include for the Cash Flow Report
             (default is 30 days from today)
         """
-        path = f"/api/v1/Reports/cashflow"
-        return self.client.send_request("GET", path, None, {"timeframe": timeframe})
+        path = "/api/v1/Reports/cashflow"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def daily_sales_outstanding(self, ) -> LockstepResponse:
+    def daily_sales_outstanding(self, ) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
         """
         Retrieves a current Daily Sales Outstanding (DSO) report for
         this account.
@@ -49,10 +65,14 @@ class ReportsClient:
         Parameters
         ----------
         """
-        path = f"/api/v1/Reports/dailysalesoutstanding"
-        return self.client.send_request("GET", path, None, None)
+        path = "/api/v1/Reports/dailysalesoutstanding"
+        result = self.client.send_request("GET", path, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def risk_rates(self, ) -> LockstepResponse:
+    def risk_rates(self, ) -> LockstepResponse[list[RiskRateModel]]:
         """
         Retrieves a current Risk Rate report for this account.
 
@@ -64,10 +84,14 @@ class ReportsClient:
         Parameters
         ----------
         """
-        path = f"/api/v1/Reports/riskrates"
-        return self.client.send_request("GET", path, None, None)
+        path = "/api/v1/Reports/riskrates"
+        result = self.client.send_request("GET", path, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse:
+    def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ArHeaderInfoModel]:
         """
         Retrieves AR header information up to the date specified.
 
@@ -79,10 +103,14 @@ class ReportsClient:
             Include a company to get AR data for a specific company,
             leave as null to include all Companies.
         """
-        path = f"/api/v1/Reports/ar-header"
-        return self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId})
+        path = "/api/v1/Reports/ar-header"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse:
+    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse[list[AgingModel]]:
         """
         The Aging Report contains information about the total dollar
         value of invoices broken down by their age. Last default or
@@ -124,10 +152,14 @@ class ReportsClient:
             buckets [0,30,60,90,120,180] will be used if buckets not
             specified)
         """
-        path = f"/api/v1/Reports/aging"
-        return self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets})
+        path = "/api/v1/Reports/aging"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def accounts_receivable_aging_header(self, ) -> LockstepResponse:
+    def accounts_receivable_aging_header(self, ) -> LockstepResponse[list[ArAgingHeaderInfoModel]]:
         """
         Retrieves AR Aging Header information report broken down by
         aging bucket.
@@ -140,10 +172,14 @@ class ReportsClient:
         Parameters
         ----------
         """
-        path = f"/api/v1/Reports/ar-aging-header"
-        return self.client.send_request("GET", path, None, None)
+        path = "/api/v1/Reports/ar-aging-header"
+        result = self.client.send_request("GET", path, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def attachments_header_information(self, companyId: str) -> LockstepResponse:
+    def attachments_header_information(self, companyId: str) -> LockstepResponse[AttachmentHeaderInfoModel]:
         """
         Retrieves Attachment Header information for the requested
         companyId.
@@ -158,5 +194,31 @@ class ReportsClient:
             Include a specific company to get Attachment data for, leave
             as null to include all Companies.
         """
-        path = f"/api/v1/Reports/attachments-header"
-        return self.client.send_request("GET", path, None, {"companyId": companyId})
+        path = "/api/v1/Reports/attachments-header"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
+
+    def trial_balance_report(self, startDate: str, endDate: str) -> LockstepResponse[FinancialReportModel]:
+        """
+        Generates a Trial Balance Report for the given time range.
+
+        The Attachment Header report contains aggregated information
+        about the `TotalAttachments`, `TotalArchived`, and `TotalActive`
+        attachment classifications.
+
+        Parameters
+        ----------
+        startDate : str
+
+        endDate : str
+
+        """
+        path = "/api/v1/Reports/trial-balance"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

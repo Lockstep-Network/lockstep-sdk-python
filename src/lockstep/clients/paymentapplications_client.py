@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
 from lockstep.models.paymentappliedmodel import PaymentAppliedModel
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
 
 class PaymentApplicationsClient:
+    """
+    Lockstep Platform methods related to PaymentApplications
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_payment_application(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_payment_application(self, id: str, include: str) -> LockstepResponse[PaymentAppliedModel]:
         """
         Retrieves the Payment Application specified by this unique
         identifier, optionally including nested data sets.
@@ -41,9 +47,13 @@ class PaymentApplicationsClient:
             elements to retrieve. Available collections: Invoice
         """
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_payment_application(self, id: str, body: object) -> LockstepResponse:
+    def update_payment_application(self, id: str, body: object) -> LockstepResponse[PaymentAppliedModel]:
         """
         Updates an existing Payment Application with the information
         supplied to this PATCH call.
@@ -71,9 +81,13 @@ class PaymentApplicationsClient:
             A list of changes to apply to this Payment Application
         """
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_payment_application(self, id: str) -> LockstepResponse:
+    def delete_payment_application(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Payment Application referred to by this unique
         identifier.
@@ -92,9 +106,13 @@ class PaymentApplicationsClient:
             Application to delete; NOT the customer's ERP key
         """
         path = f"/api/v1/PaymentApplications/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_payment_applications(self, body: list[PaymentAppliedModel]) -> LockstepResponse:
+    def create_payment_applications(self, body: list[PaymentAppliedModel]) -> LockstepResponse[list[PaymentAppliedModel]]:
         """
         Creates one or more Payment Applications within this account and
         returns the records as created.
@@ -111,10 +129,14 @@ class PaymentApplicationsClient:
         body : list[PaymentAppliedModel]
             The Payment Applications to create
         """
-        path = f"/api/v1/PaymentApplications"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/PaymentApplications"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_payment_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_payment_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
         """
         Queries Payment Applications for this account using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -149,5 +171,9 @@ class PaymentApplicationsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/PaymentApplications/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/PaymentApplications/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

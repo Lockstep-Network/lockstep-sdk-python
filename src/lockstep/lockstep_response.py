@@ -12,19 +12,20 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-
-# from typing import Generic, TypeVar
-from lockstep.error_result import ErrorResult
+from typing import Generic, TypeVar
 from dataclasses import dataclass
+from lockstep.error_result import ErrorResult
 
-# T = TypeVar("T")
+T = TypeVar('T')
 
-"""
-Represents a response from a Lockstep Platform API call
-"""
 @dataclass
-class LockstepResponse: #(Generic[T]):
+class LockstepResponse(Generic[T]):
+    """
+    Represents a response from a Lockstep Platform API call
+    """
     success: bool
-    value: any # This could be replaced with TypeVar("T") in the future
-    error: ErrorResult
+    status_code: int
+    value: T | None
+    error: ErrorResult | None
+
 

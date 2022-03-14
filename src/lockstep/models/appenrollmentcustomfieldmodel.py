@@ -31,4 +31,5 @@ class AppEnrollmentCustomFieldModel:
     sortOrder: int = None
     stringValue: str = None
     numericValue: float = None
+    value: str = None
 

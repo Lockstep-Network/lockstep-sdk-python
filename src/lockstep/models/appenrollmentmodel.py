@@ -18,7 +18,6 @@ from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionMode
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.syncrequestmodel import SyncRequestModel
-from lockstep.models.erpinfodatamodel import ErpInfoDataModel
 from lockstep.models.connectorinfomodel import ConnectorInfoModel
 
 @dataclass
@@ -49,6 +48,5 @@ class AppEnrollmentModel:
     customFieldValues: list[CustomFieldValueModel] = None
     lastSync: SyncRequestModel = None
     lastSuccessfulSync: SyncRequestModel = None
-    erpInfo: ErpInfoDataModel = None
     connectorInfo: ConnectorInfoModel = None
 

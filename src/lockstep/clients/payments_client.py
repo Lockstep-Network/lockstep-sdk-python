@@ -11,15 +11,24 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
+from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
+from lockstep.models.paymentsummarymodel import PaymentSummaryModel
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
 
 class PaymentsClient:
+    """
+    Lockstep Platform methods related to Payments
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_payment(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_payment(self, id: str, include: str) -> LockstepResponse[PaymentModel]:
         """
         Retrieves the Payment specified by this unique identifier,
         optionally including nested data sets.
@@ -47,9 +56,13 @@ class PaymentsClient:
             Notes, Attachments, CustomFields
         """
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_payment(self, id: str, body: object) -> LockstepResponse:
+    def update_payment(self, id: str, body: object) -> LockstepResponse[PaymentModel]:
         """
         Updates an existing Payment with the information supplied to
         this PATCH call.
@@ -82,9 +95,13 @@ class PaymentsClient:
             A list of changes to apply to this Payment
         """
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_payment(self, id: str) -> LockstepResponse:
+    def delete_payment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Payment referred to by this unique identifier.
 
@@ -107,9 +124,13 @@ class PaymentsClient:
             delete; NOT the customer's ERP key
         """
         path = f"/api/v1/Payments/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_payments(self, body: list[PaymentModel]) -> LockstepResponse:
+    def create_payments(self, body: list[PaymentModel]) -> LockstepResponse[list[PaymentModel]]:
         """
         Creates one or more Payments within this account and returns the
         records as created.
@@ -131,10 +152,14 @@ class PaymentsClient:
         body : list[PaymentModel]
             The Payments to create
         """
-        path = f"/api/v1/Payments"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Payments"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_payments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_payments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentModel]]:
         """
         Queries Payments for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -174,10 +199,31 @@ class PaymentsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Payments/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Payments/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def retrieve_payment_pdf(self, id: str) -> Response:
+        """
+        Retrieves a PDF file for this payment if it has been synced
+        using an app enrollment to one of the supported apps.
+
+        Supported apps: Quickbooks Online
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this payment; NOT
+            the customer's ERP key
+        """
+        path = f"/api/v1/Payments/{id}/pdf"
+        result = self.client.send_request("GET", path, None, {})
+        return result
+
+    def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentSummaryModel]]:
         """
         Queries Payments for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. This
@@ -221,20 +267,28 @@ class PaymentsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Payments/views/summary"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Payments/views/summary"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def retrieve_payment_detail_header(self, ) -> LockstepResponse:
+    def retrieve_payment_detail_header(self, ) -> LockstepResponse[PaymentDetailHeaderModel]:
         """
         Retrieves aggregated payment data from your account.
 
         Parameters
         ----------
         """
-        path = f"/api/v1/Payments/views/detail-header"
-        return self.client.send_request("GET", path, None, None)
+        path = "/api/v1/Payments/views/detail-header"
+        result = self.client.send_request("GET", path, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_payment_detail_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_payment_detail_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentDetailModel]]:
         """
         Queries Payments within the Lockstep platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -276,5 +330,9 @@ class PaymentsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Payments/views/detail"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Payments/views/detail"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

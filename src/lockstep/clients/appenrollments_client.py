@@ -11,15 +11,22 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
 from lockstep.models.appenrollmentmodel import AppEnrollmentModel
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
 
 class AppEnrollmentsClient:
+    """
+    Lockstep Platform methods related to AppEnrollments
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_app_enrollment(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_app_enrollment(self, id: str, include: str) -> LockstepResponse[AppEnrollmentModel]:
         """
         Retrieves the App Enrollment with this identifier.
 
@@ -43,9 +50,13 @@ class AppEnrollmentsClient:
             CustomFields, LastSync, LastSuccessfulSync
         """
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_app_enrollment(self, id: str, body: object) -> LockstepResponse:
+    def update_app_enrollment(self, id: str, body: object) -> LockstepResponse[AppEnrollmentModel]:
         """
         Updates an existing App Enrollment with the information supplied
         to this PATCH call.
@@ -75,9 +86,13 @@ class AppEnrollmentsClient:
             A list of changes to apply to this App Enrollment
         """
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse:
+    def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the App Enrollment referred to by this unique
         identifier. An App Enrollment represents an app that has been
@@ -99,9 +114,13 @@ class AppEnrollmentsClient:
             deleting app enrollment (default false)
         """
         path = f"/api/v1/AppEnrollments/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id, "removeEnrollmentData": removeEnrollmentData})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_app_enrollments(self, body: list[AppEnrollmentModel]) -> LockstepResponse:
+    def create_app_enrollments(self, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
         """
         Creates one or more App Enrollments within this account and
         returns the records as created.
@@ -121,10 +140,14 @@ class AppEnrollmentsClient:
         body : list[AppEnrollmentModel]
             The App Enrollments to create
         """
-        path = f"/api/v1/AppEnrollments"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/AppEnrollments"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AppEnrollmentModel]]:
         """
         Queries App Enrollments for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -163,10 +186,14 @@ class AppEnrollmentsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/AppEnrollments/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/AppEnrollments/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_enrollment_fields(self, id: str) -> LockstepResponse:
+    def query_enrollment_fields(self, id: str) -> LockstepResponse[FetchResult[AppEnrollmentCustomFieldModel]]:
         """
         Queries custom fields settings for app enrollment within the
         Lockstep platform using the specified filtering, sorting, nested
@@ -193,4 +220,8 @@ class AppEnrollmentsClient:
             retrieve custom fields
         """
         path = f"/api/v1/AppEnrollments/settings/{id}"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

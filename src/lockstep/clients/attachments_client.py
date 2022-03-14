@@ -11,15 +11,22 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.file import File
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.urimodel import UriModel
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
 
 class AttachmentsClient:
+    """
+    Lockstep Platform methods related to Attachments
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_attachment(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_attachment(self, id: str, include: str) -> LockstepResponse[AttachmentModel]:
         """
         Retrieves the Attachment with the provided Attachment
         identifier.
@@ -44,9 +51,13 @@ class AttachmentsClient:
             for querying but may be available in the future.
         """
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_attachment(self, id: str, body: object) -> LockstepResponse:
+    def update_attachment(self, id: str, body: object) -> LockstepResponse[AttachmentModel]:
         """
         Updates an existing Attachment with the information supplied to
         this PATCH call.
@@ -77,9 +88,13 @@ class AttachmentsClient:
             A list of changes to apply to this Attachment
         """
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def archive_attachment(self, id: str) -> LockstepResponse:
+    def archive_attachment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Flag this attachment as archived, which can distinguish between
         attachments currently active and attachments not intended for
@@ -102,9 +117,13 @@ class AttachmentsClient:
             The unique ID number of the Attachment to be archived
         """
         path = f"/api/v1/Attachments/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def download_attachment(self, id: str) -> LockstepResponse:
+    def download_attachment(self, id: str) -> LockstepResponse[UriModel]:
         """
         Returns a URI for the Attachment file to be downloaded, based on
         the ID provided.
@@ -126,9 +145,13 @@ class AttachmentsClient:
             returned
         """
         path = f"/api/v1/Attachments/{id}/download"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def upload_attachment(self, tableName: str, objectId: str, filename: byte[]) -> LockstepResponse:
+    def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: Response) -> LockstepResponse[list[AttachmentModel]]:
         """
         Uploads and creates one or more Attachments from the provided
         arguments.
@@ -151,13 +174,19 @@ class AttachmentsClient:
         objectId : str
             The unique ID of the object to which this Attachment will be
             linked
-        filename : byte[]
+        attachmentType : str
+            The type of this attachment
+        filename : Response
             The full path of a file to upload to the API
         """
-        path = f"/api/v1/Attachments"
-        return self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId, "filename": filename})
+        path = "/api/v1/Attachments"
+        result = self.client.send_request("POST", path, None, {"filename": filename})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AttachmentModel]]:
         """
         Queries Attachments for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -195,5 +224,9 @@ class AttachmentsClient:
         pageNumber : int
             The page number for results (default 0)
         """
-        path = f"/api/v1/Attachments/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Attachments/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
