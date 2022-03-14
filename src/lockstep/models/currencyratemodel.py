@@ -20,8 +20,8 @@ class CurrencyRateModel:
     Represents a currency rate for specific currencies and date
     """
 
-    sourceCurrency: str = None
-    destinationCurrency: str = None
-    date: str = None
-    currencyRate: float = None
+    sourceCurrency: str | None = None
+    destinationCurrency: str | None = None
+    date: str | None = None
+    currencyRate: float | None = None
 

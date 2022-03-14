@@ -20,14 +20,14 @@ class WebhookHistoryTableStorageModel:
     Represents the Webhook Trigger History
     """
 
-    groupKey: str = None
-    webhookId: str = None
-    webhookHistoryId: str = None
-    eventType: str = None
-    requestSent: bool = None
-    isSuccessful: bool = None
-    responseStatusCode: str = None
-    processResultMessage: str = None
-    failureCount: int = None
-    timestamp: str = None
+    groupKey: str | None = None
+    webhookId: str | None = None
+    webhookHistoryId: str | None = None
+    eventType: str | None = None
+    requestSent: bool | None = None
+    isSuccessful: bool | None = None
+    responseStatusCode: str | None = None
+    processResultMessage: str | None = None
+    failureCount: int | None = None
+    timestamp: str | None = None
 

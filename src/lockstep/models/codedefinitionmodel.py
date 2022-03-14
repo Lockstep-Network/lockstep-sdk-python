@@ -22,13 +22,13 @@ class CodeDefinitionModel:
     lists of system values for Lockstep objects.
     """
 
-    codeDefinitionId: str = None
-    groupKey: str = None
-    codeType: str = None
-    code: str = None
-    codeDescription: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
+    codeDefinitionId: str | None = None
+    groupKey: str | None = None
+    codeType: str | None = None
+    code: str | None = None
+    codeDescription: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

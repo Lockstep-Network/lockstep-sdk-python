@@ -32,5 +32,5 @@ class SyncSubmitModel:
     has changed in the past 48 hours.
     """
 
-    appEnrollmentId: str = None
+    appEnrollmentId: str | None = None
 

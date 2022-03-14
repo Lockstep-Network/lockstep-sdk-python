@@ -20,18 +20,18 @@ class StatusModel:
     Represents the status of a user's credentials
     """
 
-    userName: str = None
-    accountName: str = None
-    accountCompanyId: str = None
-    userId: str = None
-    groupKey: str = None
-    loggedIn: bool = None
-    errorMessage: str = None
-    roles: list[str] = None
-    lastLoggedIn: str = None
-    apiKeyId: str = None
-    userStatus: str = None
-    environment: str = None
-    version: str = None
-    dependencies: object = None
+    userName: str | None = None
+    accountName: str | None = None
+    accountCompanyId: str | None = None
+    userId: str | None = None
+    groupKey: str | None = None
+    loggedIn: bool | None = None
+    errorMessage: str | None = None
+    roles: list[str] | None = None
+    lastLoggedIn: str | None = None
+    apiKeyId: str | None = None
+    userStatus: str | None = None
+    environment: str | None = None
+    version: str | None = None
+    dependencies: object | None = None
 

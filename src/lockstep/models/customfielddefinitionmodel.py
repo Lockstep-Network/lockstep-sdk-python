@@ -27,16 +27,16 @@ class CustomFieldDefinitionModel:
     for more information.
     """
 
-    groupKey: str = None
-    customFieldDefinitionId: str = None
-    tableKey: str = None
-    appId: str = None
-    customFieldLabel: str = None
-    dataType: str = None
-    sortOrder: int = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
+    groupKey: str | None = None
+    customFieldDefinitionId: str | None = None
+    tableKey: str | None = None
+    appId: str | None = None
+    customFieldLabel: str | None = None
+    dataType: str | None = None
+    sortOrder: int | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
 

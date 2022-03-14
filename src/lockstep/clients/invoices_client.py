@@ -17,6 +17,7 @@ from lockstep.fetch_result import FetchResult
 from lockstep.models.atriskinvoicesummarymodel import AtRiskInvoiceSummaryModel
 from lockstep.models.invoicemodel import InvoiceModel
 from lockstep.models.invoicesummarymodel import InvoiceSummaryModel
+from requests.models import Response
 
 class InvoicesClient:
     """
@@ -54,7 +55,7 @@ class InvoicesClient:
             CustomFields, CreditMemos
         """
         path = f"/api/v1/Invoices/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -91,7 +92,7 @@ class InvoicesClient:
             A list of changes to apply to this Invoice
         """
         path = f"/api/v1/Invoices/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -117,7 +118,7 @@ class InvoicesClient:
             delete; NOT the customer's ERP key
         """
         path = f"/api/v1/Invoices/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -144,7 +145,7 @@ class InvoicesClient:
             The Invoices to create
         """
         path = "/api/v1/Invoices"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -190,7 +191,7 @@ class InvoicesClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Invoices/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -213,7 +214,7 @@ class InvoicesClient:
             the customer's ERP key
         """
         path = f"/api/v1/Invoices/{id}/pdf"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         return result
 
     def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceSummaryModel]]:
@@ -251,7 +252,7 @@ class InvoicesClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Invoices/views/summary"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -293,7 +294,7 @@ class InvoicesClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Invoices/views/at-risk-summary"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

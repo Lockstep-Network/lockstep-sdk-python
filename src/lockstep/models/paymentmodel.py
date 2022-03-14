@@ -35,30 +35,30 @@ class PaymentModel:
     paid and not yet applied to an Invoice.
     """
 
-    groupKey: str = None
-    paymentId: str = None
-    companyId: str = None
-    erpKey: str = None
-    paymentType: str = None
-    tenderType: str = None
-    isOpen: bool = None
-    memoText: str = None
-    paymentDate: str = None
-    postDate: str = None
-    paymentAmount: float = None
-    unappliedAmount: float = None
-    currencyCode: str = None
-    referenceCode: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
-    isVoided: bool = None
-    inDispute: bool = None
-    applications: list[PaymentAppliedModel] = None
-    notes: list[NoteModel] = None
-    attachments: list[AttachmentModel] = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
-    customFieldValues: list[CustomFieldValueModel] = None
+    groupKey: str | None = None
+    paymentId: str | None = None
+    companyId: str | None = None
+    erpKey: str | None = None
+    paymentType: str | None = None
+    tenderType: str | None = None
+    isOpen: bool | None = None
+    memoText: str | None = None
+    paymentDate: str | None = None
+    postDate: str | None = None
+    paymentAmount: float | None = None
+    unappliedAmount: float | None = None
+    currencyCode: str | None = None
+    referenceCode: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
+    isVoided: bool | None = None
+    inDispute: bool | None = None
+    applications: list[PaymentAppliedModel] | None = None
+    notes: list[NoteModel] | None = None
+    attachments: list[AttachmentModel] | None = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
+    customFieldValues: list[CustomFieldValueModel] | None = None
 

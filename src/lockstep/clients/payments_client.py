@@ -18,6 +18,7 @@ from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
 from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
 from lockstep.models.paymentsummarymodel import PaymentSummaryModel
+from requests.models import Response
 
 class PaymentsClient:
     """
@@ -56,7 +57,7 @@ class PaymentsClient:
             Notes, Attachments, CustomFields
         """
         path = f"/api/v1/Payments/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -95,7 +96,7 @@ class PaymentsClient:
             A list of changes to apply to this Payment
         """
         path = f"/api/v1/Payments/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -124,7 +125,7 @@ class PaymentsClient:
             delete; NOT the customer's ERP key
         """
         path = f"/api/v1/Payments/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -153,7 +154,7 @@ class PaymentsClient:
             The Payments to create
         """
         path = "/api/v1/Payments"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -200,7 +201,7 @@ class PaymentsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Payments/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -220,7 +221,7 @@ class PaymentsClient:
             the customer's ERP key
         """
         path = f"/api/v1/Payments/{id}/pdf"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         return result
 
     def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentSummaryModel]]:
@@ -268,7 +269,7 @@ class PaymentsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Payments/views/summary"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -282,7 +283,7 @@ class PaymentsClient:
         ----------
         """
         path = "/api/v1/Payments/views/detail-header"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -331,7 +332,7 @@ class PaymentsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Payments/views/detail"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

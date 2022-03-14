@@ -30,21 +30,21 @@ class CreditMemoAppliedModel:
     track which Invoices were paid using this Credit.
     """
 
-    creditMemoAppliedId: str = None
-    groupKey: str = None
-    invoiceId: str = None
-    creditMemoInvoiceId: str = None
-    erpKey: str = None
-    entryNumber: int = None
-    applyToInvoiceDate: str = None
-    creditMemoAppliedAmount: float = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    appEnrollmentId: str = None
-    attachments: list[AttachmentModel] = None
-    notes: list[NoteModel] = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
-    customFieldValues: list[CustomFieldValueModel] = None
+    creditMemoAppliedId: str | None = None
+    groupKey: str | None = None
+    invoiceId: str | None = None
+    creditMemoInvoiceId: str | None = None
+    erpKey: str | None = None
+    entryNumber: int | None = None
+    applyToInvoiceDate: str | None = None
+    creditMemoAppliedAmount: float | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    appEnrollmentId: str | None = None
+    attachments: list[AttachmentModel] | None = None
+    notes: list[NoteModel] | None = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
+    customFieldValues: list[CustomFieldValueModel] | None = None
 

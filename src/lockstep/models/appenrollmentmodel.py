@@ -33,20 +33,20 @@ class AppEnrollmentModel:
     for more information.
     """
 
-    appEnrollmentId: str = None
-    appId: str = None
-    groupKey: str = None
-    isActive: bool = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    cronSettings: str = None
-    syncScheduleIsActive: bool = None
-    app: ApplicationModel = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] = None
-    customFieldValues: list[CustomFieldValueModel] = None
-    lastSync: SyncRequestModel = None
-    lastSuccessfulSync: SyncRequestModel = None
-    connectorInfo: ConnectorInfoModel = None
+    appEnrollmentId: str | None = None
+    appId: str | None = None
+    groupKey: str | None = None
+    isActive: bool | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    cronSettings: str | None = None
+    syncScheduleIsActive: bool | None = None
+    app: ApplicationModel | None = None
+    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
+    customFieldValues: list[CustomFieldValueModel] | None = None
+    lastSync: SyncRequestModel | None = None
+    lastSuccessfulSync: SyncRequestModel | None = None
+    connectorInfo: ConnectorInfoModel | None = None
 

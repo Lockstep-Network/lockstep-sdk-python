@@ -40,7 +40,7 @@ class FinancialAccountBalanceHistoryClient:
             Account Balance History
         """
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -71,7 +71,7 @@ class FinancialAccountBalanceHistoryClient:
             History
         """
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -92,7 +92,7 @@ class FinancialAccountBalanceHistoryClient:
             Account Balance History to disable
         """
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -111,7 +111,7 @@ class FinancialAccountBalanceHistoryClient:
             The Financial Account Balance Histories to create
         """
         path = "/api/v1/FinancialAccountBalanceHistory"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -146,7 +146,7 @@ class FinancialAccountBalanceHistoryClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/FinancialAccountBalanceHistory/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

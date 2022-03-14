@@ -20,20 +20,20 @@ class AtRiskInvoiceSummaryModel:
     Contains summarized data for an invoice
     """
 
-    reportDate: str = None
-    groupKey: str = None
-    customerId: str = None
-    invoiceId: str = None
-    invoiceNumber: str = None
-    invoiceDate: str = None
-    customerName: str = None
-    status: str = None
-    paymentDueDate: str = None
-    invoiceAmount: float = None
-    outstandingBalance: float = None
-    invoiceTypeCode: str = None
-    newestActivity: str = None
-    daysPastDue: int = None
-    paymentNumbers: list[str] = None
-    paymentIds: list[str] = None
+    reportDate: str | None = None
+    groupKey: str | None = None
+    customerId: str | None = None
+    invoiceId: str | None = None
+    invoiceNumber: str | None = None
+    invoiceDate: str | None = None
+    customerName: str | None = None
+    status: str | None = None
+    paymentDueDate: str | None = None
+    invoiceAmount: float | None = None
+    outstandingBalance: float | None = None
+    invoiceTypeCode: str | None = None
+    newestActivity: str | None = None
+    daysPastDue: int | None = None
+    paymentNumbers: list[str] | None = None
+    paymentIds: list[str] | None = None
 

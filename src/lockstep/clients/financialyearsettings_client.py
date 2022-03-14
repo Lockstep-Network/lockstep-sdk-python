@@ -44,7 +44,7 @@ class FinancialYearSettingsClient:
             Year Setting
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -78,7 +78,7 @@ class FinancialYearSettingsClient:
             A list of changes to apply to this Financial Year Setting
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -103,7 +103,7 @@ class FinancialYearSettingsClient:
             Setting to disable
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -126,7 +126,7 @@ class FinancialYearSettingsClient:
             The Financial Year Setting to create
         """
         path = "/api/v1/FinancialYearSettings"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -164,7 +164,7 @@ class FinancialYearSettingsClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/FinancialYearSettings/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

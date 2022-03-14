@@ -20,7 +20,7 @@ class AgingModel:
     Represents an aging record
     """
 
-    bucket: int = None
-    currencyCode: str = None
-    outstandingBalance: float = None
+    bucket: int | None = None
+    currencyCode: str | None = None
+    outstandingBalance: float | None = None
 

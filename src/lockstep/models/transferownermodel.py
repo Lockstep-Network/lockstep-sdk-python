@@ -22,6 +22,6 @@ class TransferOwnerModel:
     Model from the transfer ownership process.
     """
 
-    previousOwner: UserAccountModel = None
-    newOwner: UserAccountModel = None
+    previousOwner: UserAccountModel | None = None
+    newOwner: UserAccountModel | None = None
 

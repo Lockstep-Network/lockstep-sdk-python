@@ -30,20 +30,20 @@ class PaymentSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    companyErpKey: str = None
-    paymentType: str = None
-    tenderType: str = None
-    isOpen: bool = None
-    memoText: str = None
-    paymentDate: str = None
-    postDate: str = None
-    paymentAmount: float = None
-    unappliedAmount: float = None
-    currencyCode: str = None
-    created: str = None
-    modified: str = None
-    referenceCode: str = None
-    isVoided: bool = None
-    inDispute: bool = None
+    erpKey: str | None = None
+    companyErpKey: str | None = None
+    paymentType: str | None = None
+    tenderType: str | None = None
+    isOpen: bool | None = None
+    memoText: str | None = None
+    paymentDate: str | None = None
+    postDate: str | None = None
+    paymentAmount: float | None = None
+    unappliedAmount: float | None = None
+    currencyCode: str | None = None
+    created: str | None = None
+    modified: str | None = None
+    referenceCode: str | None = None
+    isVoided: bool | None = None
+    inDispute: bool | None = None
 

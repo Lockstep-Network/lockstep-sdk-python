@@ -30,28 +30,28 @@ class CompanySyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    companyName: str = None
-    companyType: str = None
-    companyStatus: str = None
-    parentCompanyErpKey: str = None
-    isActive: bool = None
-    defaultCurrencyCode: str = None
-    companyLogoUrl: str = None
-    primaryContactErpKey: str = None
-    address1: str = None
-    address2: str = None
-    address3: str = None
-    city: str = None
-    stateRegion: str = None
-    postalCode: str = None
-    country: str = None
-    phoneNumber: str = None
-    faxNumber: str = None
-    created: str = None
-    modified: str = None
-    taxId: str = None
-    dunsNumber: str = None
-    apEmailAddress: str = None
-    arEmailAddress: str = None
+    erpKey: str | None = None
+    companyName: str | None = None
+    companyType: str | None = None
+    companyStatus: str | None = None
+    parentCompanyErpKey: str | None = None
+    isActive: bool | None = None
+    defaultCurrencyCode: str | None = None
+    companyLogoUrl: str | None = None
+    primaryContactErpKey: str | None = None
+    address1: str | None = None
+    address2: str | None = None
+    address3: str | None = None
+    city: str | None = None
+    stateRegion: str | None = None
+    postalCode: str | None = None
+    country: str | None = None
+    phoneNumber: str | None = None
+    faxNumber: str | None = None
+    created: str | None = None
+    modified: str | None = None
+    taxId: str | None = None
+    dunsNumber: str | None = None
+    apEmailAddress: str | None = None
+    arEmailAddress: str | None = None
 

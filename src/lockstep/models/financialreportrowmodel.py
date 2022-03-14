@@ -21,8 +21,8 @@ class FinancialReportRowModel:
     Represents a row of a financial Report report
     """
 
-    rowType: str = None
-    label: str = None
-    rows: any = None # Nested type: FinancialReportRowModel
-    cells: list[FinancialReportCellModel] = None
+    rowType: str | None = None
+    label: str | None = None
+    rows: object = None # Nested type: FinancialReportRowModel
+    cells: list[FinancialReportCellModel] | None = None
 

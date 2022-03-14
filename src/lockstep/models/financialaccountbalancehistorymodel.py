@@ -21,18 +21,18 @@ class FinancialAccountBalanceHistoryModel:
     time.
     """
 
-    financialAccountBalanceHistoryId: str = None
-    groupKey: str = None
-    financialAccountId: str = None
-    appEnrollmentId: str = None
-    financialYear: int = None
-    periodNumber: int = None
-    periodStartDate: str = None
-    periodEndDate: str = None
-    status: str = None
-    balance: float = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
+    financialAccountBalanceHistoryId: str | None = None
+    groupKey: str | None = None
+    financialAccountId: str | None = None
+    appEnrollmentId: str | None = None
+    financialYear: int | None = None
+    periodNumber: int | None = None
+    periodStartDate: str | None = None
+    periodEndDate: str | None = None
+    status: str | None = None
+    balance: float | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

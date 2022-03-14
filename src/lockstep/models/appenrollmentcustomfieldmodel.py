@@ -20,16 +20,16 @@ class AppEnrollmentCustomFieldModel:
     App enrollment and custom field merged into one
     """
 
-    appEnrollmentId: str = None
-    appId: str = None
-    name: str = None
-    appType: str = None
-    groupKey: str = None
-    customFieldDefinitionId: str = None
-    customFieldLabel: str = None
-    dataType: str = None
-    sortOrder: int = None
-    stringValue: str = None
-    numericValue: float = None
-    value: str = None
+    appEnrollmentId: str | None = None
+    appId: str | None = None
+    name: str | None = None
+    appType: str | None = None
+    groupKey: str | None = None
+    customFieldDefinitionId: str | None = None
+    customFieldLabel: str | None = None
+    dataType: str | None = None
+    sortOrder: int | None = None
+    stringValue: str | None = None
+    numericValue: float | None = None
+    value: str | None = None
 

@@ -30,13 +30,13 @@ class SyncRequestModel:
     sync.
     """
 
-    syncRequestId: str = None
-    groupKey: str = None
-    statusCode: str = None
-    processResultMessage: str = None
-    appEnrollmentId: str = None
-    created: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    details: object = None
+    syncRequestId: str | None = None
+    groupKey: str | None = None
+    statusCode: str | None = None
+    processResultMessage: str | None = None
+    appEnrollmentId: str | None = None
+    created: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    details: object | None = None
 

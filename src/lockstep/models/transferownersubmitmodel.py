@@ -20,5 +20,5 @@ class TransferOwnerSubmitModel:
     Model used to submit a transfer ownership request
     """
 
-    targetUserId: str = None
+    targetUserId: str | None = None
 

@@ -45,7 +45,7 @@ class SyncClient:
             Information about the Sync to execute
         """
         path = "/api/v1/Sync"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -74,13 +74,13 @@ class SyncClient:
             Information about the Sync to execute
         """
         path = "/api/v1/Sync/batch"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
             return LockstepResponse(False, result.status_code, None, result.json())
 
-    def upload_sync_file(self, filename: Response) -> LockstepResponse[SyncRequestModel]:
+    def upload_sync_file(self, filename: str) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from a ZIP file you provide. This ZIP
         file can contain one or more files with data from the customer's
@@ -96,11 +96,11 @@ class SyncClient:
 
         Parameters
         ----------
-        filename : Response
+        filename : str
             The full path of a file to upload to the API
         """
         path = "/api/v1/Sync/zip"
-        result = self.client.send_request("POST", path, None, {"filename": filename})
+        result = self.client.send_request("POST", path, None, {}, filename)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -136,7 +136,7 @@ class SyncClient:
             A list of changes to apply to this Application
         """
         path = f"/api/v1/Sync/{id}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -164,7 +164,7 @@ class SyncClient:
             elements to retrieve. Available collections: Details
         """
         path = f"/api/v1/Sync/{id}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -206,7 +206,7 @@ class SyncClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Sync/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

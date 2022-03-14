@@ -46,7 +46,7 @@ class ReportsClient:
             (default is 30 days from today)
         """
         path = "/api/v1/Reports/cashflow"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"timeframe": timeframe}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -66,7 +66,7 @@ class ReportsClient:
         ----------
         """
         path = "/api/v1/Reports/dailysalesoutstanding"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -85,7 +85,7 @@ class ReportsClient:
         ----------
         """
         path = "/api/v1/Reports/riskrates"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -104,7 +104,7 @@ class ReportsClient:
             leave as null to include all Companies.
         """
         path = "/api/v1/Reports/ar-header"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -153,7 +153,7 @@ class ReportsClient:
             specified)
         """
         path = "/api/v1/Reports/aging"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -173,7 +173,7 @@ class ReportsClient:
         ----------
         """
         path = "/api/v1/Reports/ar-aging-header"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -195,7 +195,7 @@ class ReportsClient:
             as null to include all Companies.
         """
         path = "/api/v1/Reports/attachments-header"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"companyId": companyId}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -217,7 +217,7 @@ class ReportsClient:
 
         """
         path = "/api/v1/Reports/trial-balance"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

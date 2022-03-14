@@ -21,6 +21,6 @@ class InviteDataModel:
     process.
     """
 
-    email: str = None
-    userStatus: str = None
+    email: str | None = None
+    userStatus: str | None = None
 

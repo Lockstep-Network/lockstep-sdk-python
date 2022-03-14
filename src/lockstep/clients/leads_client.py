@@ -40,7 +40,7 @@ class LeadsClient:
             The Leads to create
         """
         path = "/api/v1/Leads"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

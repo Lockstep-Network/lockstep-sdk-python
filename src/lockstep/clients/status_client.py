@@ -40,7 +40,7 @@ class StatusClient:
         ----------
         """
         path = "/api/v1/Status"
-        result = self.client.send_request("GET", path, None, None)
+        result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -74,7 +74,7 @@ class StatusClient:
             500, timeout
         """
         path = "/api/v1/Status/testing"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"err": err}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:

@@ -20,16 +20,16 @@ class CreditMemoInvoiceModel:
     Contains information about a credit memo invoice
     """
 
-    groupKey: str = None
-    creditMemoAppliedId: str = None
-    invoiceId: str = None
-    creditMemoInvoiceId: str = None
-    applyToInvoiceDate: str = None
-    creditMemoAppliedAmount: float = None
-    referenceCode: str = None
-    companyId: str = None
-    customerId: str = None
-    invoiceStatusCode: str = None
-    totalAmount: float = None
-    outstandingBalanceAmount: float = None
+    groupKey: str | None = None
+    creditMemoAppliedId: str | None = None
+    invoiceId: str | None = None
+    creditMemoInvoiceId: str | None = None
+    applyToInvoiceDate: str | None = None
+    creditMemoAppliedAmount: float | None = None
+    referenceCode: str | None = None
+    companyId: str | None = None
+    customerId: str | None = None
+    invoiceStatusCode: str | None = None
+    totalAmount: float | None = None
+    outstandingBalanceAmount: float | None = None
 

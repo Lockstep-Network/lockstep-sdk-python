@@ -34,12 +34,12 @@ class CustomFieldSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    erpKey: str = None
-    entityType: str = None
-    customFieldLabel: str = None
-    stringValue: str = None
-    numericValue: float = None
-    value: str = None
-    created: str = None
-    modified: str = None
+    erpKey: str | None = None
+    entityType: str | None = None
+    customFieldLabel: str | None = None
+    stringValue: str | None = None
+    numericValue: float | None = None
+    value: str | None = None
+    created: str | None = None
+    modified: str | None = None
 

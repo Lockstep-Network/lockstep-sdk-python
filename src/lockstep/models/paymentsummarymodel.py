@@ -20,18 +20,18 @@ class PaymentSummaryModel:
     Contains summary information for a Payment
     """
 
-    groupKey: str = None
-    paymentId: str = None
-    memoText: str = None
-    referenceCode: str = None
-    paymentType: str = None
-    paymentDate: str = None
-    paymentAmount: float = None
-    unappliedAmount: float = None
-    invoiceCount: int = None
-    totalPaymentsApplied: float = None
-    invoiceList: list[str] = None
-    invoiceIdList: list[str] = None
-    customerName: str = None
-    customerId: str = None
+    groupKey: str | None = None
+    paymentId: str | None = None
+    memoText: str | None = None
+    referenceCode: str | None = None
+    paymentType: str | None = None
+    paymentDate: str | None = None
+    paymentAmount: float | None = None
+    unappliedAmount: float | None = None
+    invoiceCount: int | None = None
+    totalPaymentsApplied: float | None = None
+    invoiceList: list[str] | None = None
+    invoiceIdList: list[str] | None = None
+    customerName: str | None = None
+    customerId: str | None = None
 

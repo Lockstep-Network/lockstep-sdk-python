@@ -20,14 +20,14 @@ class ActivityStreamItemModel:
     Represents an item belonging to the activity stream.
     """
 
-    objectKey: str = None
-    activityStreamType: str = None
-    textValue: str = None
-    created: str = None
-    createdUserId: str = None
-    groupKey: str = None
-    fromEmailAddress: str = None
-    toEmailAddress: str = None
-    fromContactName: str = None
-    toContactName: str = None
+    objectKey: str | None = None
+    activityStreamType: str | None = None
+    textValue: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    groupKey: str | None = None
+    fromEmailAddress: str | None = None
+    toEmailAddress: str | None = None
+    fromContactName: str | None = None
+    toContactName: str | None = None
 

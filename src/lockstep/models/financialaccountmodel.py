@@ -21,20 +21,20 @@ class FinancialAccountModel:
     income, expenses, and equity.
     """
 
-    financialAccountId: str = None
-    groupKey: str = None
-    code: str = None
-    erpKey: str = None
-    appEnrollmentId: str = None
-    name: str = None
-    status: str = None
-    cashflowType: str = None
-    description: str = None
-    classification: str = None
-    category: str = None
-    subcategory: str = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
+    financialAccountId: str | None = None
+    groupKey: str | None = None
+    code: str | None = None
+    erpKey: str | None = None
+    appEnrollmentId: str | None = None
+    name: str | None = None
+    status: str | None = None
+    cashflowType: str | None = None
+    description: str | None = None
+    classification: str | None = None
+    category: str | None = None
+    subcategory: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

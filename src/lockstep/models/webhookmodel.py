@@ -24,20 +24,20 @@ class WebhookModel:
     key.
     """
 
-    webhookId: str = None
-    groupKey: str = None
-    name: str = None
-    statusCode: str = None
-    statusMessage: str = None
-    clientSecret: str = None
-    requestContentType: str = None
-    callbackHttpMethod: str = None
-    callbackUrl: str = None
-    expirationDate: str = None
-    retryCount: int = None
-    created: str = None
-    createdUserId: str = None
-    modified: str = None
-    modifiedUserId: str = None
-    partitionKey: str = None
+    webhookId: str | None = None
+    groupKey: str | None = None
+    name: str | None = None
+    statusCode: str | None = None
+    statusMessage: str | None = None
+    clientSecret: str | None = None
+    requestContentType: str | None = None
+    callbackHttpMethod: str | None = None
+    callbackUrl: str | None = None
+    expirationDate: str | None = None
+    retryCount: int | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
+    partitionKey: str | None = None
 

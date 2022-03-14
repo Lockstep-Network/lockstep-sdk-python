@@ -26,20 +26,20 @@ class AttachmentModel:
     for more information.
     """
 
-    attachmentId: str = None
-    groupKey: str = None
-    tableKey: str = None
-    objectKey: str = None
-    fileName: str = None
-    fileExt: str = None
-    attachmentTypeId: str = None
-    isArchived: bool = None
-    originAttachmentId: str = None
-    viewInternal: bool = None
-    viewExternal: bool = None
-    erpKey: str = None
-    appEnrollmentId: str = None
-    created: str = None
-    createdUserId: str = None
-    attachmentType: str = None
+    attachmentId: str | None = None
+    groupKey: str | None = None
+    tableKey: str | None = None
+    objectKey: str | None = None
+    fileName: str | None = None
+    fileExt: str | None = None
+    attachmentTypeId: str | None = None
+    isArchived: bool | None = None
+    originAttachmentId: str | None = None
+    viewInternal: bool | None = None
+    viewExternal: bool | None = None
+    erpKey: str | None = None
+    appEnrollmentId: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    attachmentType: str | None = None
 

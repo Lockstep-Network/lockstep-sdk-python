@@ -54,7 +54,7 @@ class CustomFieldValuesClient:
             CustomFieldDefinition
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -95,7 +95,7 @@ class CustomFieldValuesClient:
             A list of changes to apply to this Custom Field
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        result = self.client.send_request("PATCH", path, body, {})
+        result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -126,7 +126,7 @@ class CustomFieldValuesClient:
             Platform object the Custom Field Value is attached to.
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        result = self.client.send_request("DELETE", path, None, {})
+        result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -154,7 +154,7 @@ class CustomFieldValuesClient:
             The Custom Fields to create
         """
         path = "/api/v1/CustomFieldValues"
-        result = self.client.send_request("POST", path, body, {})
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
@@ -201,7 +201,7 @@ class CustomFieldValuesClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/CustomFieldValues/query"
-        result = self.client.send_request("GET", path, None, {})
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, result.json(), None)
         else:
