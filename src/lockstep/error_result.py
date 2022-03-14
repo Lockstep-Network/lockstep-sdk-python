@@ -19,9 +19,9 @@ class ErrorResult:
     """
     Represents an error in an API call
     """
-    type: str
-    title: str
-    status: int
-    detail: str
-    instance: str
+    type: str | None
+    title: str | None
+    status: int | None
+    detail: str | None
+    instance: str | None
 

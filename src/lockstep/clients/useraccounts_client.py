@@ -12,6 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
+from lockstep.error_result import ErrorResult
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
 from lockstep.models.invitedatamodel import InviteDataModel
@@ -54,9 +55,9 @@ class UserAccountsClient:
         path = f"/api/v1/UserAccounts/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_user(self, id: str, body: object) -> LockstepResponse[UserAccountModel]:
         """
@@ -88,9 +89,9 @@ class UserAccountsClient:
         path = f"/api/v1/UserAccounts/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def disable_user(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -112,9 +113,9 @@ class UserAccountsClient:
         path = f"/api/v1/UserAccounts/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def reenable_user(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -136,9 +137,9 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/reenable"
         result = self.client.send_request("POST", path, None, {"id": id}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def invite_user(self, body: list[InviteSubmitModel]) -> LockstepResponse[list[InviteModel]]:
         """
@@ -161,9 +162,9 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/invite"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[InviteModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def retrieve_invite_data(self, code: str) -> LockstepResponse[InviteDataModel]:
         """
@@ -185,9 +186,9 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/invite"
         result = self.client.send_request("GET", path, None, {"code": code}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, InviteDataModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def transfer_owner(self, body: TransferOwnerSubmitModel) -> LockstepResponse[TransferOwnerModel]:
         """
@@ -210,9 +211,9 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/transfer-owner"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, TransferOwnerModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_users(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserAccountModel]]:
         """
@@ -248,6 +249,6 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, FetchResult[UserAccountModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

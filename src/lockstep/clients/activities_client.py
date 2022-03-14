@@ -12,6 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
+from lockstep.error_result import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.activitymodel import ActivityModel
 from lockstep.models.activitystreamitemmodel import ActivityStreamItemModel
@@ -50,9 +51,9 @@ class ActivitiesClient:
         path = f"/api/v1/Activities/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActivityModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_activity(self, id: str, body: object) -> LockstepResponse[ActivityModel]:
         """
@@ -84,9 +85,9 @@ class ActivitiesClient:
         path = f"/api/v1/Activities/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActivityModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def delete_activity(self, id: str) -> LockstepResponse[ActivityModel]:
         """
@@ -108,9 +109,9 @@ class ActivitiesClient:
         path = f"/api/v1/Activities/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActivityModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_activities(self, body: list[ActivityModel]) -> LockstepResponse[list[ActivityModel]]:
         """
@@ -131,9 +132,9 @@ class ActivitiesClient:
         path = "/api/v1/Activities"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[ActivityModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_activities(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ActivityModel]]:
         """
@@ -175,9 +176,9 @@ class ActivitiesClient:
         path = "/api/v1/Activities/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, FetchResult[ActivityModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def retrieve_activity_stream(self, id: str) -> LockstepResponse[list[ActivityStreamItemModel]]:
         """
@@ -199,9 +200,9 @@ class ActivitiesClient:
         path = f"/api/v1/Activities/{id}/stream"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[ActivityStreamItemModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def forward_activity(self, activityId: str, userId: str) -> LockstepResponse[ActivityModel]:
         """
@@ -225,6 +226,6 @@ class ActivitiesClient:
         path = f"/api/v1/Activities/{activityId}/forward/{userId}"
         result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActivityModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
