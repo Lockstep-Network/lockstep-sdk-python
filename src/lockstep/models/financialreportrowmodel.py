@@ -12,8 +12,8 @@
 #
 
 
-from dataclasses import dataclass
 from __future__ import annotations
+from dataclasses import dataclass
 from lockstep.models.financialreportcellmodel import FinancialReportCellModel
 
 @dataclass
