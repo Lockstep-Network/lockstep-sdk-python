@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.fetch_result import FetchResult
 from lockstep.models.batchsyncmodel import BatchSyncModel
@@ -22,6 +21,7 @@ class SyncClient:
     """
     Lockstep Platform methods related to Sync
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client

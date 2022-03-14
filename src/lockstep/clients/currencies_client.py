@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 from lockstep.models.currencyratemodel import CurrencyRateModel
@@ -20,6 +19,7 @@ class CurrenciesClient:
     """
     Lockstep Platform methods related to Currencies
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client

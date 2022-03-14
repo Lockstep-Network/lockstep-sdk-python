@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.agingmodel import AgingModel
 from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
@@ -26,6 +25,7 @@ class ReportsClient:
     """
     Lockstep Platform methods related to Reports
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client

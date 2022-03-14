@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.fetch_result import FetchResult
 from lockstep.models.creditmemoappliedmodel import CreditMemoAppliedModel
@@ -20,6 +19,7 @@ class CreditMemoAppliedClient:
     """
     Lockstep Platform methods related to CreditMemoApplied
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client

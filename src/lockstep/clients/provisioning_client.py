@@ -11,7 +11,6 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.action_result_model import ActionResultModel
 from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
@@ -23,6 +22,7 @@ class ProvisioningClient:
     """
     Lockstep Platform methods related to Provisioning
     """
+    from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
