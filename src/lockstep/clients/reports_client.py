@@ -12,6 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
+from lockstep.error_result import ErrorResult
 from lockstep.models.agingmodel import AgingModel
 from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
 from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
@@ -48,9 +49,9 @@ class ReportsClient:
         path = "/api/v1/Reports/cashflow"
         result = self.client.send_request("GET", path, None, {"timeframe": timeframe}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, CashflowReportModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def daily_sales_outstanding(self, ) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
         """
@@ -68,9 +69,9 @@ class ReportsClient:
         path = "/api/v1/Reports/dailysalesoutstanding"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[DailySalesOutstandingReportModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def risk_rates(self, ) -> LockstepResponse[list[RiskRateModel]]:
         """
@@ -87,9 +88,9 @@ class ReportsClient:
         path = "/api/v1/Reports/riskrates"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[RiskRateModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ArHeaderInfoModel]:
         """
@@ -106,9 +107,9 @@ class ReportsClient:
         path = "/api/v1/Reports/ar-header"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ArHeaderInfoModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse[list[AgingModel]]:
         """
@@ -155,9 +156,9 @@ class ReportsClient:
         path = "/api/v1/Reports/aging"
         result = self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[AgingModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def accounts_receivable_aging_header(self, ) -> LockstepResponse[list[ArAgingHeaderInfoModel]]:
         """
@@ -175,9 +176,9 @@ class ReportsClient:
         path = "/api/v1/Reports/ar-aging-header"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[ArAgingHeaderInfoModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def attachments_header_information(self, companyId: str) -> LockstepResponse[AttachmentHeaderInfoModel]:
         """
@@ -197,9 +198,9 @@ class ReportsClient:
         path = "/api/v1/Reports/attachments-header"
         result = self.client.send_request("GET", path, None, {"companyId": companyId}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, AttachmentHeaderInfoModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def trial_balance_report(self, startDate: str, endDate: str) -> LockstepResponse[FinancialReportModel]:
         """
@@ -219,6 +220,6 @@ class ReportsClient:
         path = "/api/v1/Reports/trial-balance"
         result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, FinancialReportModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))

@@ -12,6 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
+from lockstep.error_result import ErrorResult
 from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
 from lockstep.models.contactmodel import ContactModel
@@ -49,9 +50,9 @@ class ContactsClient:
         path = f"/api/v1/Contacts/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ContactModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def update_contact(self, id: str, body: object) -> LockstepResponse[ContactModel]:
         """
@@ -82,9 +83,9 @@ class ContactsClient:
         path = f"/api/v1/Contacts/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ContactModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def disable_contact(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -105,9 +106,9 @@ class ContactsClient:
         path = f"/api/v1/Contacts/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def create_contacts(self, body: list[ContactModel]) -> LockstepResponse[list[ContactModel]]:
         """
@@ -127,9 +128,9 @@ class ContactsClient:
         path = "/api/v1/Contacts"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, list[ContactModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
 
     def query_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ContactModel]]:
         """
@@ -168,6 +169,6 @@ class ContactsClient:
         path = "/api/v1/Contacts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, result.json(), None)
+            return LockstepResponse(True, result.status_code, FetchResult[ContactModel](result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, result.json())
+            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))

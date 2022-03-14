@@ -23,7 +23,7 @@ class FetchResult(Generic[T]):
     """
     Represents a query response from a Lockstep Platform API call
     """
-    records: list[T]
-    totalCount: int
-    pageSize: int
-    pageNumber: int
+    records: list[T] | None
+    totalCount: int | None
+    pageSize: int | None
+    pageNumber: int | None
