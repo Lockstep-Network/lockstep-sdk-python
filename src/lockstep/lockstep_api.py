@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.10.63.0
+# @version    2022.10.64.0
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -16,36 +16,36 @@ import requests
 import urllib.parse
 import platform
 
-from src.lockstep.clients.activities_client import ActivitiesClient
-from src.lockstep.clients.apikeys_client import ApiKeysClient
-from src.lockstep.clients.appenrollments_client import AppEnrollmentsClient
-from src.lockstep.clients.applications_client import ApplicationsClient
-from src.lockstep.clients.attachments_client import AttachmentsClient
-from src.lockstep.clients.codedefinitions_client import CodeDefinitionsClient
-from src.lockstep.clients.companies_client import CompaniesClient
-from src.lockstep.clients.contacts_client import ContactsClient
-from src.lockstep.clients.creditmemoapplied_client import CreditMemoAppliedClient
-from src.lockstep.clients.currencies_client import CurrenciesClient
-from src.lockstep.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
-from src.lockstep.clients.customfieldvalues_client import CustomFieldValuesClient
-from src.lockstep.clients.definitions_client import DefinitionsClient
-from src.lockstep.clients.emails_client import EmailsClient
-from src.lockstep.clients.financialaccount_client import FinancialAccountClient
-from src.lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
-from src.lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
-from src.lockstep.clients.invoicehistory_client import InvoiceHistoryClient
-from src.lockstep.clients.invoices_client import InvoicesClient
-from src.lockstep.clients.leads_client import LeadsClient
-from src.lockstep.clients.notes_client import NotesClient
-from src.lockstep.clients.paymentapplications_client import PaymentApplicationsClient
-from src.lockstep.clients.payments_client import PaymentsClient
-from src.lockstep.clients.provisioning_client import ProvisioningClient
-from src.lockstep.clients.reports_client import ReportsClient
-from src.lockstep.clients.status_client import StatusClient
-from src.lockstep.clients.sync_client import SyncClient
-from src.lockstep.clients.useraccounts_client import UserAccountsClient
-from src.lockstep.clients.userroles_client import UserRolesClient
-from src.lockstep.clients.webhooks_client import WebhooksClient
+from lockstep.clients.activities_client import ActivitiesClient
+from lockstep.clients.apikeys_client import ApiKeysClient
+from lockstep.clients.appenrollments_client import AppEnrollmentsClient
+from lockstep.clients.applications_client import ApplicationsClient
+from lockstep.clients.attachments_client import AttachmentsClient
+from lockstep.clients.codedefinitions_client import CodeDefinitionsClient
+from lockstep.clients.companies_client import CompaniesClient
+from lockstep.clients.contacts_client import ContactsClient
+from lockstep.clients.creditmemoapplied_client import CreditMemoAppliedClient
+from lockstep.clients.currencies_client import CurrenciesClient
+from lockstep.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
+from lockstep.clients.customfieldvalues_client import CustomFieldValuesClient
+from lockstep.clients.definitions_client import DefinitionsClient
+from lockstep.clients.emails_client import EmailsClient
+from lockstep.clients.financialaccount_client import FinancialAccountClient
+from lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
+from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
+from lockstep.clients.invoicehistory_client import InvoiceHistoryClient
+from lockstep.clients.invoices_client import InvoicesClient
+from lockstep.clients.leads_client import LeadsClient
+from lockstep.clients.notes_client import NotesClient
+from lockstep.clients.paymentapplications_client import PaymentApplicationsClient
+from lockstep.clients.payments_client import PaymentsClient
+from lockstep.clients.provisioning_client import ProvisioningClient
+from lockstep.clients.reports_client import ReportsClient
+from lockstep.clients.status_client import StatusClient
+from lockstep.clients.sync_client import SyncClient
+from lockstep.clients.useraccounts_client import UserAccountsClient
+from lockstep.clients.userroles_client import UserRolesClient
+from lockstep.clients.webhooks_client import WebhooksClient
 from requests.models import Response
 
 class LockstepApi:
@@ -106,7 +106,7 @@ class LockstepApi:
         else:
             self.serverUrl = env
         self.sdkName = "Python"
-        self.sdkVersion = "2022.10.63.0"
+        self.sdkVersion = "2022.10.64.0"
         self.machineName = platform.uname().node
         self.applicationName = appname
 
