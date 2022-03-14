@@ -11,16 +11,16 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_api import LockstepApi
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.action_result_model import ActionResultModel
-from src.lockstep.fetch_result import FetchResult
-from src.lockstep.models.invitedatamodel import InviteDataModel
-from src.lockstep.models.invitemodel import InviteModel
-from src.lockstep.models.invitesubmitmodel import InviteSubmitModel
-from src.lockstep.models.transferownermodel import TransferOwnerModel
-from src.lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
-from src.lockstep.models.useraccountmodel import UserAccountModel
+from lockstep.lockstep_api import LockstepApi
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.action_result_model import ActionResultModel
+from lockstep.fetch_result import FetchResult
+from lockstep.models.invitedatamodel import InviteDataModel
+from lockstep.models.invitemodel import InviteModel
+from lockstep.models.invitesubmitmodel import InviteSubmitModel
+from lockstep.models.transferownermodel import TransferOwnerModel
+from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
+from lockstep.models.useraccountmodel import UserAccountModel
 
 class UserAccountsClient:
     """

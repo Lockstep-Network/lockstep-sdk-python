@@ -11,9 +11,9 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_api import LockstepApi
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.models.statusmodel import StatusModel
+from lockstep.lockstep_api import LockstepApi
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.models.statusmodel import StatusModel
 
 class StatusClient:
     """

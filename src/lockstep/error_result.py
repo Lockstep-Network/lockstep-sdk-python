@@ -14,11 +14,11 @@
 
 from dataclasses import dataclass
 
-"""
-Represents an error in an API call
-"""
 @dataclass
 class ErrorResult:
+    """
+    Represents an error in an API call
+    """
     type: str
     title: str
     status: int

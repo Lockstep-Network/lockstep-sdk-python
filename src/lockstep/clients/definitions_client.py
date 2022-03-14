@@ -11,13 +11,13 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_api import LockstepApi
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.fetch_result import FetchResult
-from src.lockstep.models.countrymodel import CountryModel
-from src.lockstep.models.currencymodel import CurrencyModel
-from src.lockstep.models.erpmodel import ErpModel
-from src.lockstep.models.statemodel import StateModel
+from lockstep.lockstep_api import LockstepApi
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.fetch_result import FetchResult
+from lockstep.models.countrymodel import CountryModel
+from lockstep.models.currencymodel import CurrencyModel
+from lockstep.models.erpmodel import ErpModel
+from lockstep.models.statemodel import StateModel
 
 class DefinitionsClient:
     """

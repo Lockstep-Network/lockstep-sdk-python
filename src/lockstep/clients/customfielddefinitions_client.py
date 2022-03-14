@@ -11,10 +11,10 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from src.lockstep.lockstep_api import LockstepApi
-from src.lockstep.lockstep_response import LockstepResponse
-from src.lockstep.fetch_result import FetchResult
-from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
+from lockstep.lockstep_api import LockstepApi
+from lockstep.lockstep_response import LockstepResponse
+from lockstep.fetch_result import FetchResult
+from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 class CustomFieldDefinitionsClient:
     """
