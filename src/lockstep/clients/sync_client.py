@@ -13,10 +13,10 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.batchsyncmodel import BatchSyncModel
-from lockstep.models.syncrequestmodel import SyncRequestModel
-from lockstep.models.syncsubmitmodel import SyncSubmitModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.batchsyncmodel import BatchSyncModel
+from src.lockstep.models.syncrequestmodel import SyncRequestModel
+from src.lockstep.models.syncsubmitmodel import SyncSubmitModel
 
 class SyncClient:
     """

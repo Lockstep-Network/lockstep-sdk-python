@@ -13,8 +13,8 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
-from lockstep.models.currencyratemodel import CurrencyRateModel
+from src.lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
+from src.lockstep.models.currencyratemodel import CurrencyRateModel
 
 class CurrenciesClient:
     """

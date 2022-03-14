@@ -13,8 +13,8 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.apikeymodel import ApiKeyModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.apikeymodel import ApiKeyModel
 
 class ApiKeysClient:
     """

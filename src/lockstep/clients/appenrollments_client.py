@@ -13,10 +13,10 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
-from lockstep.models.appenrollmentmodel import AppEnrollmentModel
 from src.lockstep.action_result_model import ActionResultModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
+from src.lockstep.models.appenrollmentmodel import AppEnrollmentModel
 
 class AppEnrollmentsClient:
     """

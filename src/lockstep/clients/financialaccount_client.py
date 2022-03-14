@@ -13,9 +13,9 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.financialaccountmodel import FinancialAccountModel
 from src.lockstep.action_result_model import ActionResultModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.financialaccountmodel import FinancialAccountModel
 
 class FinancialAccountClient:
     """

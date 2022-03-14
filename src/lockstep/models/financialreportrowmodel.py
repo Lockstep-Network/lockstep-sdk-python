@@ -23,6 +23,6 @@ class FinancialReportRowModel:
 
     rowType: str = None
     label: str = None
-    rows: list[any] = None # nested type
-    cells: list[FinancialReportCellModel] = None # test
+    rows: any = None # Nested type: FinancialReportRowModel
+    cells: list[FinancialReportCellModel] = None
 

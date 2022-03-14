@@ -13,8 +13,8 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.userrolemodel import UserRoleModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.userrolemodel import UserRoleModel
 
 class UserRolesClient:
     """

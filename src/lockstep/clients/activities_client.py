@@ -13,9 +13,9 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.activitymodel import ActivityModel
-from lockstep.models.activitystreamitemmodel import ActivityStreamItemModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.activitymodel import ActivityModel
+from src.lockstep.models.activitystreamitemmodel import ActivityStreamItemModel
 
 class ActivitiesClient:
     """

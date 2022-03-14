@@ -13,7 +13,7 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.leadmodel import LeadModel
+from src.lockstep.models.leadmodel import LeadModel
 
 class LeadsClient:
     """

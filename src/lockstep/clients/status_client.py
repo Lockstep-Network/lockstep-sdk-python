@@ -13,7 +13,7 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.statusmodel import StatusModel
+from src.lockstep.models.statusmodel import StatusModel
 
 class StatusClient:
     """

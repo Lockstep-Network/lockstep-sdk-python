@@ -13,14 +13,14 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.agingmodel import AgingModel
-from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
-from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
-from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
-from lockstep.models.cashflowreportmodel import CashflowReportModel
-from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
-from lockstep.models.financialreportmodel import FinancialReportModel
-from lockstep.models.riskratemodel import RiskRateModel
+from src.lockstep.models.agingmodel import AgingModel
+from src.lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
+from src.lockstep.models.arheaderinfomodel import ArHeaderInfoModel
+from src.lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
+from src.lockstep.models.cashflowreportmodel import CashflowReportModel
+from src.lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
+from src.lockstep.models.financialreportmodel import FinancialReportModel
+from src.lockstep.models.riskratemodel import RiskRateModel
 
 class ReportsClient:
     """

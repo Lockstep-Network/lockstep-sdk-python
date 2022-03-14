@@ -13,9 +13,7 @@
 
 
 from dataclasses import dataclass
-
-from src.lockstep.models.financialreportrowmodel import FinancialReportRowModel
-
+from lockstep.models.financialreportrowmodel import FinancialReportRowModel
 
 @dataclass
 class FinancialReportModel:

@@ -13,8 +13,8 @@
 
 from src.lockstep.lockstep_api import LockstepApi
 from src.lockstep.lockstep_response import LockstepResponse
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 class CustomFieldDefinitionsClient:
     """
