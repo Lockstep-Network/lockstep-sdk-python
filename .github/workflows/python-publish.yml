@@ -32,6 +32,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install build
+    - name: Run Pyre
+      run: |
+        python -m pip install pyre-check
+        pyre --source-directory src check
     - name: Build package
       run: python -m build
     - name: Publish package
