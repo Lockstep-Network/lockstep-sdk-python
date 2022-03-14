@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 class CustomFieldValuesClient:
+    """
+    Lockstep Platform methods related to CustomFieldValues
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_field(self, definitionId: str, recordKey: str, include: str) -> LockstepResponse:
+    def retrieve_field(self, definitionId: str, recordKey: str, include: str) -> LockstepResponse[CustomFieldValueModel]:
         """
         Retrieves all Custom Field Definitions.
 
@@ -48,9 +54,13 @@ class CustomFieldValuesClient:
             CustomFieldDefinition
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("GET", path, None, {"definitionId": definitionId, "recordKey": recordKey, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_field(self, definitionId: str, recordKey: str, body: object) -> LockstepResponse:
+    def update_field(self, definitionId: str, recordKey: str, body: object) -> LockstepResponse[CustomFieldValueModel]:
         """
         Updates an existing Custom Field with the information supplied
         to this PATCH call.
@@ -85,9 +95,13 @@ class CustomFieldValuesClient:
             A list of changes to apply to this Custom Field
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("PATCH", path, body, {"definitionId": definitionId, "recordKey": recordKey, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_field(self, definitionId: str, recordKey: str) -> LockstepResponse:
+    def delete_field(self, definitionId: str, recordKey: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Custom Field referred to by this unique identifier.
 
@@ -112,9 +126,13 @@ class CustomFieldValuesClient:
             Platform object the Custom Field Value is attached to.
         """
         path = f"/api/v1/CustomFieldValues/{definitionId}/{recordKey}"
-        return self.client.send_request("DELETE", path, None, {"definitionId": definitionId, "recordKey": recordKey})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse:
+    def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Creates one or more Custom Fields and returns the records as
         created.
@@ -135,10 +153,14 @@ class CustomFieldValuesClient:
         body : list[CustomFieldValueModel]
             The Custom Fields to create
         """
-        path = f"/api/v1/CustomFieldValues"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/CustomFieldValues"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_fields(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_fields(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomFieldValueModel]]:
         """
         Queries Custom Fields within the Lockstep platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -178,5 +200,9 @@ class CustomFieldValuesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/CustomFieldValues/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/CustomFieldValues/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

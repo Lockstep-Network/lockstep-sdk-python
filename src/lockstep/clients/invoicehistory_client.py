@@ -11,14 +11,20 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.invoicehistorymodel import InvoiceHistoryModel
 
 class InvoiceHistoryClient:
+    """
+    Lockstep Platform methods related to InvoiceHistory
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_invoice_history(self, id: str) -> LockstepResponse:
+    def retrieve_invoice_history(self, id: str) -> LockstepResponse[FetchResult[InvoiceHistoryModel]]:
         """
         Retrieves the history of the Invoice specified by this unique
         identifier.
@@ -36,9 +42,13 @@ class InvoiceHistoryClient:
             the customer's ERP key
         """
         path = f"/api/v1/InvoiceHistory/{id}"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_invoice_history(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_invoice_history(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceHistoryModel]]:
         """
         Queries Invoice History for this account using the specified
         filtering, sorting, and pagination rules requested.
@@ -68,5 +78,9 @@ class InvoiceHistoryClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/InvoiceHistory/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/InvoiceHistory/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

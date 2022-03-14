@@ -47,12 +47,6 @@ class CompanyModel:
     address1: str = None
     address2: str = None
     address3: str = None
-    corpCity: str = None
-    corpState: str = None
-    corpPostalCode: str = None
-    corpCountry: str = None
-    corpPhone: str = None
-    corpFax: str = None
     city: str = None
     stateRegion: str = None
     postalCode: str = None

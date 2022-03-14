@@ -11,15 +11,23 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.companymodel import CompanyModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.companymodel import CompanyModel
+from src.lockstep.models.customerdetailsmodel import CustomerDetailsModel
+from src.lockstep.models.customersummarymodel import CustomerSummaryModel
 
 class CompaniesClient:
+    """
+    Lockstep Platform methods related to Companies
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_company(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_company(self, id: str, include: str) -> LockstepResponse[CompanyModel]:
         """
         Retrieves the Company specified by this unique identifier,
         optionally including nested data sets.
@@ -45,9 +53,13 @@ class CompaniesClient:
             Contacts, CustomFields, Invoices, Notes, Classification
         """
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_company(self, id: str, body: object) -> LockstepResponse:
+    def update_company(self, id: str, body: object) -> LockstepResponse[CompanyModel]:
         """
         Updates a Company that matches the specified id with the
         requested information.
@@ -78,9 +90,13 @@ class CompaniesClient:
             A list of changes to apply to this Company
         """
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def disable_company(self, id: str) -> LockstepResponse:
+    def disable_company(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Disable the Company referred to by this unique identifier.
 
@@ -101,9 +117,13 @@ class CompaniesClient:
             the customer's ERP key
         """
         path = f"/api/v1/Companies/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_companies(self, body: list[CompanyModel]) -> LockstepResponse:
+    def create_companies(self, body: list[CompanyModel]) -> LockstepResponse[list[CompanyModel]]:
         """
         Creates one or more Companies from a given model.
 
@@ -122,10 +142,14 @@ class CompaniesClient:
         body : list[CompanyModel]
             The Companies to create
         """
-        path = f"/api/v1/Companies"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Companies"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_companies(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_companies(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CompanyModel]]:
         """
         Queries Companies for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -162,10 +186,14 @@ class CompaniesClient:
         pageNumber : int
             The page number for results (default 0)
         """
-        path = f"/api/v1/Companies/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Companies/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
         """
         Queries Customer Summaries for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -201,10 +229,14 @@ class CompaniesClient:
         pageNumber : int
             The page number for results (default 0)
         """
-        path = f"/api/v1/Companies/views/customer-summary"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Companies/views/customer-summary"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def retrieve_customer_detail(self, id: str) -> LockstepResponse:
+    def retrieve_customer_detail(self, id: str) -> LockstepResponse[CustomerDetailsModel]:
         """
         Retrieves the Customer Details specified by this unique
         identifier, optionally including nested data sets.
@@ -225,4 +257,8 @@ class CompaniesClient:
             the customer's ERP key
         """
         path = f"/api/v1/Companies/views/customer-details/{id}"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

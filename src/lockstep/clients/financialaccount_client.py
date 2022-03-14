@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.financialaccountmodel import FinancialAccountModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.financialaccountmodel import FinancialAccountModel
 
 class FinancialAccountClient:
+    """
+    Lockstep Platform methods related to FinancialAccount
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_financial_account(self, body: list[FinancialAccountModel]) -> LockstepResponse:
+    def create_financial_account(self, body: list[FinancialAccountModel]) -> LockstepResponse[FinancialAccountModel]:
         """
         Creates a financial account with the specified name.
 
@@ -28,10 +34,14 @@ class FinancialAccountClient:
         body : list[FinancialAccountModel]
             Metadata about the financial account to create.
         """
-        path = f"/api/v1/FinancialAccount"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/FinancialAccount"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def retrieve_financial_account(self, id: str) -> LockstepResponse:
+    def retrieve_financial_account(self, id: str) -> LockstepResponse[FinancialAccountModel]:
         """
         Retrieves the financial account specified by this unique
         identifier.
@@ -43,9 +53,13 @@ class FinancialAccountClient:
             the customer's ERP key
         """
         path = f"/api/v1/FinancialAccount/{id}"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_financial_account(self, id: str, body: object) -> LockstepResponse:
+    def update_financial_account(self, id: str, body: object) -> LockstepResponse[FinancialAccountModel]:
         """
 
 
@@ -58,9 +72,13 @@ class FinancialAccountClient:
             A list of changes to apply to this Account
         """
         path = f"/api/v1/FinancialAccount/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def deletes_financial_account(self, id: str) -> LockstepResponse:
+    def deletes_financial_account(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Financial Account referred to by this unique
         identifier.
@@ -72,9 +90,13 @@ class FinancialAccountClient:
             Account to disable; NOT the customer's ERP key
         """
         path = f"/api/v1/FinancialAccount/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_financial_accounts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_financial_accounts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountModel]]:
         """
 
 
@@ -96,5 +118,9 @@ class FinancialAccountClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/FinancialAccount/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/FinancialAccount/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.financialyearsettingmodel import FinancialYearSettingModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.financialyearsettingmodel import FinancialYearSettingModel
 
 class FinancialYearSettingsClient:
+    """
+    Lockstep Platform methods related to FinancialYearSettings
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_financial_year_setting(self, id: str) -> LockstepResponse:
+    def retrieve_financial_year_setting(self, id: str) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Retrieves the Financial Year Setting specified by this unique
         identifier.
@@ -38,9 +44,13 @@ class FinancialYearSettingsClient:
             Year Setting
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_financial_year_setting(self, id: str, body: object) -> LockstepResponse:
+    def update_financial_year_setting(self, id: str, body: object) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Updates a financial year setting that matches the specified id
         with the requested information.
@@ -68,9 +78,13 @@ class FinancialYearSettingsClient:
             A list of changes to apply to this Financial Year Setting
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_financial_year_setting(self, id: str) -> LockstepResponse:
+    def delete_financial_year_setting(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Delete the Financial Year Setting referred to by this unique
         identifier.
@@ -89,9 +103,13 @@ class FinancialYearSettingsClient:
             Setting to disable
         """
         path = f"/api/v1/FinancialYearSettings/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_financial_year_setting(self, body: FinancialYearSettingModel) -> LockstepResponse:
+    def create_financial_year_setting(self, body: FinancialYearSettingModel) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Creates a financial year setting from a given model.
 
@@ -107,10 +125,14 @@ class FinancialYearSettingsClient:
         body : FinancialYearSettingModel
             The Financial Year Setting to create
         """
-        path = f"/api/v1/FinancialYearSettings"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/FinancialYearSettings"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_financial_year_settings(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_financial_year_settings(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialYearSettingModel]]:
         """
         Queries Financial Year Settings for this account using the
         specified filtering, sorting, and pagination rules requested.
@@ -141,5 +163,9 @@ class FinancialYearSettingsClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/FinancialYearSettings/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/FinancialYearSettings/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

@@ -11,15 +11,23 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.invoicemodel import InvoiceModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.atriskinvoicesummarymodel import AtRiskInvoiceSummaryModel
+from src.lockstep.models.invoicemodel import InvoiceModel
+from src.lockstep.models.invoicesummarymodel import InvoiceSummaryModel
 
 class InvoicesClient:
+    """
+    Lockstep Platform methods related to Invoices
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_invoice(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_invoice(self, id: str, include: str) -> LockstepResponse[InvoiceModel]:
         """
         Retrieves the Invoice specified by this unique identifier,
         optionally including nested data sets.
@@ -46,9 +54,13 @@ class InvoicesClient:
             CustomFields, CreditMemos
         """
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_invoice(self, id: str, body: object) -> LockstepResponse:
+    def update_invoice(self, id: str, body: object) -> LockstepResponse[InvoiceModel]:
         """
         Updates an existing Invoice with the information supplied to
         this PATCH call.
@@ -79,9 +91,13 @@ class InvoicesClient:
             A list of changes to apply to this Invoice
         """
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_invoice(self, id: str) -> LockstepResponse:
+    def delete_invoice(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Invoice referred to by this unique identifier. An
         Invoice represents a bill sent from one company to another. The
@@ -101,9 +117,13 @@ class InvoicesClient:
             delete; NOT the customer's ERP key
         """
         path = f"/api/v1/Invoices/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse:
+    def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse[list[InvoiceModel]]:
         """
         Creates one or more Invoices within this account and returns the
         records as created.
@@ -123,10 +143,14 @@ class InvoicesClient:
         body : list[InvoiceModel]
             The Invoices to create
         """
-        path = f"/api/v1/Invoices"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Invoices"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_invoices(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_invoices(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceModel]]:
         """
         Queries Invoices for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -165,10 +189,34 @@ class InvoicesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Invoices/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Invoices/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def retrieve_invoice_pdf(self, id: str) -> Response:
+        """
+        Retrieves a PDF file for this invoice if it is of one of the
+        supported invoice types and has been synced using an app
+        enrollment to one of the supported apps.
+
+        Supported apps: Quickbooks Online, Xero
+
+        Supported invoice types: Invoice, Credit Memo
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this invoice; NOT
+            the customer's ERP key
+        """
+        path = f"/api/v1/Invoices/{id}/pdf"
+        result = self.client.send_request("GET", path, None, {})
+        return result
+
+    def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceSummaryModel]]:
         """
         Queries Invoices for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. Display
@@ -202,10 +250,14 @@ class InvoicesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Invoices/views/summary"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Invoices/views/summary"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_at_risk_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_at_risk_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
         """
         Queries At Risk Invoices for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -240,5 +292,9 @@ class InvoicesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Invoices/views/at-risk-summary"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Invoices/views/at-risk-summary"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

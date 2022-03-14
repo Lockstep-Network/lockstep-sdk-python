@@ -8,19 +8,15 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
+# @version    2021.39
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-
 from dataclasses import dataclass
-from lockstep.models.erpinfomodel import ErpInfoModel
 
 @dataclass
-class ProvisioningModel:
+class ActionResultModel:
     """
-    Represents the data sent during the onboarding flow
+    Represents a response to an API action that does not return data
     """
-
-    fullName: str = None
-    erp: ErpInfoModel = None
-
+    messages: list[str] | None

@@ -11,17 +11,23 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.provisioningmodel import ProvisioningModel
-from lockstep.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
-from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
+from src.lockstep.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
+from src.lockstep.models.provisioningmodel import ProvisioningModel
+from src.lockstep.models.provisioningresponsemodel import ProvisioningResponseModel
 
 class ProvisioningClient:
+    """
+    Lockstep Platform methods related to Provisioning
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def provision_user_account(self, body: ProvisioningModel) -> LockstepResponse:
+    def provision_user_account(self, body: ProvisioningModel) -> LockstepResponse[ProvisioningResponseModel]:
         """
         Creates a new User or updates an Invited user based on metadata
         provided by the User during the onboarding process
@@ -31,10 +37,14 @@ class ProvisioningClient:
         body : ProvisioningModel
             Represents a User and their related metadata
         """
-        path = f"/api/v1/Provisioning"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Provisioning"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def finalize_user_account_provisioning(self, body: ProvisioningFinalizeRequestModel) -> LockstepResponse:
+    def finalize_user_account_provisioning(self, body: ProvisioningFinalizeRequestModel) -> LockstepResponse[ProvisioningResponseModel]:
         """
         Updates user, company and group metadata for a User of status
         'Onboarding' and finalizes a user's onboarding process by
@@ -45,10 +55,14 @@ class ProvisioningClient:
         body : ProvisioningFinalizeRequestModel
             Represents a User and their related metadata
         """
-        path = f"/api/v1/Provisioning/finalize"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Provisioning/finalize"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse:
+    def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse[ActionResultModel]:
         """
         Creates a new account for a developer, sending an email with
         information on how to access the API.
@@ -58,5 +72,9 @@ class ProvisioningClient:
         body : DeveloperAccountSubmitModel
 
         """
-        path = f"/api/v1/Provisioning/free-account"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Provisioning/free-account"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

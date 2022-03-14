@@ -57,7 +57,7 @@ class EmailModel:
     modified: str = None
     modifiedUserId: str = None
     responseOriginId: str = None
-    responseOrigin: 'EmailModel' = None
+    responseOrigin: any = None # Nested type: EmailModel
     notes: list[NoteModel] = None
     attachments: list[AttachmentModel] = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] = None

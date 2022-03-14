@@ -25,4 +25,8 @@ class ConnectorInfoModel:
     realmId: str = None
     redirectUri: str = None
     email: str = None
+    username: str = None
+    password: str = None
+    serverName: str = None
+    serverPort: int = None
 

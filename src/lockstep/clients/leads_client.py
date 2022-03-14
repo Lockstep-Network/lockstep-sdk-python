@@ -11,15 +11,19 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.leadmodel import LeadModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.models.leadmodel import LeadModel
 
 class LeadsClient:
+    """
+    Lockstep Platform methods related to Leads
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_leads(self, body: list[LeadModel]) -> LockstepResponse:
+    def create_leads(self, body: list[LeadModel]) -> LockstepResponse[list[LeadModel]]:
         """
         Creates one or more Leads within the Lockstep platform and
         returns the records as created.
@@ -35,5 +39,9 @@ class LeadsClient:
         body : list[LeadModel]
             The Leads to create
         """
-        path = f"/api/v1/Leads"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Leads"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

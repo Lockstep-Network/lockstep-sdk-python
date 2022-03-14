@@ -11,15 +11,20 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.creditmemoappliedmodel import CreditMemoAppliedModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.creditmemoappliedmodel import CreditMemoAppliedModel
 
 class CreditMemoAppliedClient:
+    """
+    Lockstep Platform methods related to CreditMemoApplied
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_credit_memo_application(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_credit_memo_application(self, id: str, include: str) -> LockstepResponse[CreditMemoAppliedModel]:
         """
         Retrieves the Credit Memo Application specified by this unique
         identifier, optionally including nested data sets.
@@ -44,9 +49,13 @@ class CreditMemoAppliedClient:
             CustomFields, Notes
         """
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_credit_memo_application(self, id: str, body: object) -> LockstepResponse:
+    def update_credit_memo_application(self, id: str, body: object) -> LockstepResponse[CreditMemoAppliedModel]:
         """
         Updates an existing Credit memo Application with the information
         supplied to this PATCH call.
@@ -76,9 +85,13 @@ class CreditMemoAppliedClient:
             A list of changes to apply to this Credit Memo Application
         """
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_credit_memo_application(self, id: str) -> LockstepResponse:
+    def delete_credit_memo_application(self, id: str) -> LockstepResponse[CreditMemoAppliedModel]:
         """
         Deletes the Credit Memo Application referred to by this unique
         identifier.
@@ -99,9 +112,13 @@ class CreditMemoAppliedClient:
             Application to delete; NOT the customer's ERP key
         """
         path = f"/api/v1/CreditMemoApplied/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_credit_memo_applications(self, body: list[CreditMemoAppliedModel]) -> LockstepResponse:
+    def create_credit_memo_applications(self, body: list[CreditMemoAppliedModel]) -> LockstepResponse[list[CreditMemoAppliedModel]]:
         """
         Creates one or more Credit Memo Applications within this account
         and returns the records as created.
@@ -120,10 +137,14 @@ class CreditMemoAppliedClient:
         body : list[CreditMemoAppliedModel]
             The Credit Memo Applications to create
         """
-        path = f"/api/v1/CreditMemoApplied"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/CreditMemoApplied"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_credit_memo_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_credit_memo_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CreditMemoAppliedModel]]:
         """
         Queries Credit Memo Applications for this account using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -161,5 +182,9 @@ class CreditMemoAppliedClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/CreditMemoApplied/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/CreditMemoApplied/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

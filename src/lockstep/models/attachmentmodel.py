@@ -17,7 +17,13 @@ from dataclasses import dataclass
 @dataclass
 class AttachmentModel:
     """
-    Represents a user uploaded attachment
+    An Attachment is a file that can be attached to various account
+    attributes within Lockstep. This data model contains metadata about
+    the attachment. You can upload and download attachments into the
+    Lockstep Platform along with this metadata. Attachments can be used
+    for invoices, payments, legal documents, or any other external files
+    that you wish to track. See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+    for more information.
     """
 
     attachmentId: str = None
@@ -35,4 +41,5 @@ class AttachmentModel:
     appEnrollmentId: str = None
     created: str = None
     createdUserId: str = None
+    attachmentType: str = None
 

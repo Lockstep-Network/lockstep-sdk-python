@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.notemodel import NoteModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.action_result_model import ActionResultModel
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.notemodel import NoteModel
 
 class NotesClient:
+    """
+    Lockstep Platform methods related to Notes
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_note(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_note(self, id: str, include: str) -> LockstepResponse[NoteModel]:
         """
         Retrieves the note with the specified note identifier.
 
@@ -43,9 +49,13 @@ class NotesClient:
             but may be offered in the future
         """
         path = f"/api/v1/Notes/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def archive_note(self, id: str) -> LockstepResponse:
+    def archive_note(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Archives the Note with the unique ID specified.
 
@@ -65,9 +75,13 @@ class NotesClient:
             Note id to be archived
         """
         path = f"/api/v1/Notes/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_notes(self, body: list[NoteModel]) -> LockstepResponse:
+    def create_notes(self, body: list[NoteModel]) -> LockstepResponse[list[NoteModel]]:
         """
         Creates one or more notes from the specified array of Note
         Models
@@ -87,10 +101,14 @@ class NotesClient:
         body : list[NoteModel]
             The array of notes to be created
         """
-        path = f"/api/v1/Notes"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Notes"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_notes(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_notes(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[NoteModel]]:
         """
         Queries Notes on the Lockstep Platform using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -128,5 +146,9 @@ class NotesClient:
         pageNumber : int
             The page number for results (default 0)
         """
-        path = f"/api/v1/Notes/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Notes/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

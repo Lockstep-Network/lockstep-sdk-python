@@ -11,14 +11,19 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.models.statusmodel import StatusModel
 
 class StatusClient:
+    """
+    Lockstep Platform methods related to Status
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def ping(self, ) -> LockstepResponse:
+    def ping(self, ) -> LockstepResponse[StatusModel]:
         """
         Verifies that your application can successfully call the
         Lockstep Platform API and returns a successful code regardless
@@ -34,10 +39,14 @@ class StatusClient:
         Parameters
         ----------
         """
-        path = f"/api/v1/Status"
-        return self.client.send_request("GET", path, None, None)
+        path = "/api/v1/Status"
+        result = self.client.send_request("GET", path, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def error_test(self, err: str) -> LockstepResponse:
+    def error_test(self, err: str) -> LockstepResponse[str]:
         """
         Generates an error code that your program may use to test
         handling of common types of error conditions.
@@ -64,5 +73,9 @@ class StatusClient:
             The type of error test to execute. Supported error types:
             500, timeout
         """
-        path = f"/api/v1/Status/testing"
-        return self.client.send_request("GET", path, None, {"err": err})
+        path = "/api/v1/Status/testing"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

@@ -13,14 +13,16 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.erpinfomodel import ErpInfoModel
+from lockstep.models.financialreportcellmodel import FinancialReportCellModel
 
 @dataclass
-class ProvisioningModel:
+class FinancialReportRowModel:
     """
-    Represents the data sent during the onboarding flow
+    Represents a row of a financial Report report
     """
 
-    fullName: str = None
-    erp: ErpInfoModel = None
+    rowType: str = None
+    label: str = None
+    rows: any = None # Nested type: FinancialReportRowModel
+    cells: list[FinancialReportCellModel] = None
 

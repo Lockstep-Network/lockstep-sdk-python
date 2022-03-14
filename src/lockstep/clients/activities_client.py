@@ -11,15 +11,21 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.activitymodel import ActivityModel
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.activitymodel import ActivityModel
+from src.lockstep.models.activitystreamitemmodel import ActivityStreamItemModel
 
 class ActivitiesClient:
+    """
+    Lockstep Platform methods related to Activities
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_activity(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_activity(self, id: str, include: str) -> LockstepResponse[ActivityModel]:
         """
         Retrieves the Activity specified by this unique identifier,
         optionally including nested data sets.
@@ -42,9 +48,13 @@ class ActivitiesClient:
             UserAssignedToName
         """
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_activity(self, id: str, body: object) -> LockstepResponse:
+    def update_activity(self, id: str, body: object) -> LockstepResponse[ActivityModel]:
         """
         Updates an activity that matches the specified id with the
         requested information.
@@ -72,9 +82,13 @@ class ActivitiesClient:
             A list of changes to apply to this Activity
         """
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def delete_activity(self, id: str) -> LockstepResponse:
+    def delete_activity(self, id: str) -> LockstepResponse[ActivityModel]:
         """
         Delete the Activity referred to by this unique identifier.
 
@@ -92,9 +106,13 @@ class ActivitiesClient:
             delete
         """
         path = f"/api/v1/Activities/{id}"
-        return self.client.send_request("DELETE", path, None, {"id": id})
+        result = self.client.send_request("DELETE", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_activities(self, body: list[ActivityModel]) -> LockstepResponse:
+    def create_activities(self, body: list[ActivityModel]) -> LockstepResponse[list[ActivityModel]]:
         """
         Creates one or more activities from a given model.
 
@@ -110,10 +128,14 @@ class ActivitiesClient:
         body : list[ActivityModel]
             The Activities to create
         """
-        path = f"/api/v1/Activities"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Activities"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_activities(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_activities(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ActivityModel]]:
         """
         Queries Activities for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -150,10 +172,14 @@ class ActivitiesClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Activities/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Activities/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def retrieve_activity_stream(self, id: str) -> LockstepResponse:
+    def retrieve_activity_stream(self, id: str) -> LockstepResponse[list[ActivityStreamItemModel]]:
         """
         Retrieves a list of items representing the activity stream for
         the supplied activity id.
@@ -171,9 +197,13 @@ class ActivitiesClient:
             The unique Lockstep Platform ID number of this Activity
         """
         path = f"/api/v1/Activities/{id}/stream"
-        return self.client.send_request("GET", path, None, {"id": id})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def forward_activity(self, activityId: str, userId: str) -> LockstepResponse:
+    def forward_activity(self, activityId: str, userId: str) -> LockstepResponse[ActivityModel]:
         """
         Forwards an activity by creating a new activity with all child
         references and assigning the new activity to a new user.
@@ -193,4 +223,8 @@ class ActivitiesClient:
 
         """
         path = f"/api/v1/Activities/{activityId}/forward/{userId}"
-        return self.client.send_request("POST", path, None, {"activityId": activityId, "userId": userId})
+        result = self.client.send_request("POST", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())

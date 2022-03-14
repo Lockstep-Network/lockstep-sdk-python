@@ -11,17 +11,22 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
-from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.syncsubmitmodel import SyncSubmitModel
-from lockstep.models.batchsyncmodel import BatchSyncModel
-from lockstep.models.file import File
+from src.lockstep.lockstep_api import LockstepApi
+from src.lockstep.lockstep_response import LockstepResponse
+from src.lockstep.fetch_result import FetchResult
+from src.lockstep.models.batchsyncmodel import BatchSyncModel
+from src.lockstep.models.syncrequestmodel import SyncRequestModel
+from src.lockstep.models.syncsubmitmodel import SyncSubmitModel
 
 class SyncClient:
+    """
+    Lockstep Platform methods related to Sync
+    """
 
-    def __init__(self, client):
+    def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_sync(self, body: SyncSubmitModel) -> LockstepResponse:
+    def create_sync(self, body: SyncSubmitModel) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from the Application specified in the
         request and returns a token that can be used to check the
@@ -39,10 +44,14 @@ class SyncClient:
         body : SyncSubmitModel
             Information about the Sync to execute
         """
-        path = f"/api/v1/Sync"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Sync"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def create_batch_import(self, body: BatchSyncModel) -> LockstepResponse:
+    def create_batch_import(self, body: BatchSyncModel) -> LockstepResponse[SyncRequestModel]:
         """
         Creates a new batch import Sync task that imports all the models
         provided to this API call.
@@ -64,10 +73,14 @@ class SyncClient:
         body : BatchSyncModel
             Information about the Sync to execute
         """
-        path = f"/api/v1/Sync/batch"
-        return self.client.send_request("POST", path, body, {"body": body})
+        path = "/api/v1/Sync/batch"
+        result = self.client.send_request("POST", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def upload_sync_file(self, filename: byte[]) -> LockstepResponse:
+    def upload_sync_file(self, filename: Response) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from a ZIP file you provide. This ZIP
         file can contain one or more files with data from the customer's
@@ -83,13 +96,17 @@ class SyncClient:
 
         Parameters
         ----------
-        filename : byte[]
+        filename : Response
             The full path of a file to upload to the API
         """
-        path = f"/api/v1/Sync/zip"
-        return self.client.send_request("POST", path, None, {"filename": filename})
+        path = "/api/v1/Sync/zip"
+        result = self.client.send_request("POST", path, None, {"filename": filename})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def update_sync(self, id: str, body: object) -> LockstepResponse:
+    def update_sync(self, id: str, body: object) -> LockstepResponse[SyncRequestModel]:
         """
         Updates an existing Sync with the information supplied to this
         PATCH call.
@@ -119,9 +136,13 @@ class SyncClient:
             A list of changes to apply to this Application
         """
         path = f"/api/v1/Sync/{id}"
-        return self.client.send_request("PATCH", path, body, {"id": id, "body": body})
+        result = self.client.send_request("PATCH", path, body, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def retrieve_sync(self, id: str, include: str) -> LockstepResponse:
+    def retrieve_sync(self, id: str, include: str) -> LockstepResponse[SyncRequestModel]:
         """
         Retrieves the status and information about a Sync operation by
         the requested ID. Provides status and progress information about
@@ -143,9 +164,13 @@ class SyncClient:
             elements to retrieve. Available collections: Details
         """
         path = f"/api/v1/Sync/{id}"
-        return self.client.send_request("GET", path, None, {"id": id, "include": include})
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
 
-    def query_syncs(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse:
+    def query_syncs(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[SyncRequestModel]]:
         """
         Queries Sync tasks for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -180,5 +205,9 @@ class SyncClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = f"/api/v1/Sync/query"
-        return self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber})
+        path = "/api/v1/Sync/query"
+        result = self.client.send_request("GET", path, None, {})
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, result.json(), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, result.json())
