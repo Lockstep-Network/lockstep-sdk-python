@@ -51,9 +51,9 @@ class CurrenciesClient:
         path = f"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}"
         result = self.client.send_request("GET", path, None, {"date": date, "dataProvider": dataProvider}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, CurrencyRateModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, CurrencyRateModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse[list[CurrencyRateModel]]:
         """
@@ -71,6 +71,6 @@ class CurrenciesClient:
         path = "/api/v1/Currencies/bulk"
         result = self.client.send_request("POST", path, body, {"destinationCurrency": destinationCurrency}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CurrencyRateModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[CurrencyRateModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

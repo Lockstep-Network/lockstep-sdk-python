@@ -43,6 +43,6 @@ class LeadsClient:
         path = "/api/v1/Leads"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[LeadModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[LeadModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

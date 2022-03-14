@@ -58,9 +58,9 @@ class InvoicesClient:
         path = f"/api/v1/Invoices/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, InvoiceModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, InvoiceModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_invoice(self, id: str, body: object) -> LockstepResponse[InvoiceModel]:
         """
@@ -95,9 +95,9 @@ class InvoicesClient:
         path = f"/api/v1/Invoices/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, InvoiceModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, InvoiceModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def delete_invoice(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -121,9 +121,9 @@ class InvoicesClient:
         path = f"/api/v1/Invoices/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse[list[InvoiceModel]]:
         """
@@ -148,9 +148,9 @@ class InvoicesClient:
         path = "/api/v1/Invoices"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[InvoiceModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[InvoiceModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_invoices(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceModel]]:
         """
@@ -194,9 +194,9 @@ class InvoicesClient:
         path = "/api/v1/Invoices/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[InvoiceModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[InvoiceModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def retrieve_invoice_pdf(self, id: str) -> Response:
         """
@@ -255,9 +255,9 @@ class InvoicesClient:
         path = "/api/v1/Invoices/views/summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[InvoiceSummaryModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[InvoiceSummaryModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_at_risk_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
         """
@@ -297,6 +297,6 @@ class InvoicesClient:
         path = "/api/v1/Invoices/views/at-risk-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AtRiskInvoiceSummaryModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[AtRiskInvoiceSummaryModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

@@ -41,9 +41,9 @@ class UserRolesClient:
         path = f"/api/v1/UserRoles/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, UserRoleModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, UserRoleModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_user_roles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserRoleModel]]:
         """
@@ -73,6 +73,6 @@ class UserRolesClient:
         path = "/api/v1/UserRoles/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[UserRoleModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[UserRoleModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

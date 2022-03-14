@@ -47,9 +47,9 @@ class FinancialYearSettingsClient:
         path = f"/api/v1/FinancialYearSettings/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_financial_year_setting(self, id: str, body: object) -> LockstepResponse[FinancialYearSettingModel]:
         """
@@ -81,9 +81,9 @@ class FinancialYearSettingsClient:
         path = f"/api/v1/FinancialYearSettings/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def delete_financial_year_setting(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -106,9 +106,9 @@ class FinancialYearSettingsClient:
         path = f"/api/v1/FinancialYearSettings/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_financial_year_setting(self, body: FinancialYearSettingModel) -> LockstepResponse[FinancialYearSettingModel]:
         """
@@ -129,9 +129,9 @@ class FinancialYearSettingsClient:
         path = "/api/v1/FinancialYearSettings"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, FinancialYearSettingModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_financial_year_settings(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialYearSettingModel]]:
         """
@@ -167,6 +167,6 @@ class FinancialYearSettingsClient:
         path = "/api/v1/FinancialYearSettings/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[FinancialYearSettingModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[FinancialYearSettingModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

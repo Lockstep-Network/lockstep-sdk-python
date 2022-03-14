@@ -52,9 +52,9 @@ class NotesClient:
         path = f"/api/v1/Notes/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, NoteModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, NoteModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def archive_note(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -78,9 +78,9 @@ class NotesClient:
         path = f"/api/v1/Notes/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_notes(self, body: list[NoteModel]) -> LockstepResponse[list[NoteModel]]:
         """
@@ -105,9 +105,9 @@ class NotesClient:
         path = "/api/v1/Notes"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[NoteModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[NoteModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_notes(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[NoteModel]]:
         """
@@ -150,6 +150,6 @@ class NotesClient:
         path = "/api/v1/Notes/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[NoteModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[NoteModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

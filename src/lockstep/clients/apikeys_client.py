@@ -52,9 +52,9 @@ class ApiKeysClient:
         path = f"/api/v1/ApiKeys/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ApiKeyModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ApiKeyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def revoke_api_key(self, id: str) -> LockstepResponse[ApiKeyModel]:
         """
@@ -86,9 +86,9 @@ class ApiKeysClient:
         path = f"/api/v1/ApiKeys/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ApiKeyModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ApiKeyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_api_key(self, body: ApiKeyModel) -> LockstepResponse[ApiKeyModel]:
         """
@@ -113,9 +113,9 @@ class ApiKeysClient:
         path = "/api/v1/ApiKeys"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ApiKeyModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ApiKeyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_api_keys(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ApiKeyModel]]:
         """
@@ -155,6 +155,6 @@ class ApiKeysClient:
         path = "/api/v1/ApiKeys/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[ApiKeyModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[ApiKeyModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

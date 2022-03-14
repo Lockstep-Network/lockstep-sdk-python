@@ -54,9 +54,9 @@ class AttachmentsClient:
         path = f"/api/v1/Attachments/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, AttachmentModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, AttachmentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_attachment(self, id: str, body: object) -> LockstepResponse[AttachmentModel]:
         """
@@ -91,9 +91,9 @@ class AttachmentsClient:
         path = f"/api/v1/Attachments/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, AttachmentModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, AttachmentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def archive_attachment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -120,9 +120,9 @@ class AttachmentsClient:
         path = f"/api/v1/Attachments/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def download_attachment(self, id: str) -> LockstepResponse[UriModel]:
         """
@@ -148,9 +148,9 @@ class AttachmentsClient:
         path = f"/api/v1/Attachments/{id}/download"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, UriModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, UriModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: str) -> LockstepResponse[list[AttachmentModel]]:
         """
@@ -183,9 +183,9 @@ class AttachmentsClient:
         path = "/api/v1/Attachments"
         result = self.client.send_request("POST", path, None, {"tableName": tableName, "objectId": objectId, "attachmentType": attachmentType}, filename)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AttachmentModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[AttachmentModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AttachmentModel]]:
         """
@@ -228,6 +228,6 @@ class AttachmentsClient:
         path = "/api/v1/Attachments/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AttachmentModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[AttachmentModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

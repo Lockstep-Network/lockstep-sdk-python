@@ -41,9 +41,9 @@ class ProvisioningClient:
         path = "/api/v1/Provisioning"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ProvisioningResponseModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ProvisioningResponseModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def finalize_user_account_provisioning(self, body: ProvisioningFinalizeRequestModel) -> LockstepResponse[ProvisioningResponseModel]:
         """
@@ -59,9 +59,9 @@ class ProvisioningClient:
         path = "/api/v1/Provisioning/finalize"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ProvisioningResponseModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ProvisioningResponseModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse[ActionResultModel]:
         """
@@ -76,6 +76,6 @@ class ProvisioningClient:
         path = "/api/v1/Provisioning/free-account"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

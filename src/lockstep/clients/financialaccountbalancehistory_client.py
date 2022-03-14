@@ -43,9 +43,9 @@ class FinancialAccountBalanceHistoryClient:
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def update_financial_account_balance_history(self, id: str, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
         """
@@ -74,9 +74,9 @@ class FinancialAccountBalanceHistoryClient:
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def delete_financial_account_balance_history(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -95,9 +95,9 @@ class FinancialAccountBalanceHistoryClient:
         path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(result.json()), None)
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def create_financial_account_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
         """
@@ -114,9 +114,9 @@ class FinancialAccountBalanceHistoryClient:
         path = "/api/v1/FinancialAccountBalanceHistory"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[FinancialAccountBalanceHistoryModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, list[FinancialAccountBalanceHistoryModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
     def query_financial_account_balance_history(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
         """
@@ -149,6 +149,6 @@ class FinancialAccountBalanceHistoryClient:
         path = "/api/v1/FinancialAccountBalanceHistory/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[FinancialAccountBalanceHistoryModel](result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[FinancialAccountBalanceHistoryModel](**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
