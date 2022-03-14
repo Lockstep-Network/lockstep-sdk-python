@@ -12,6 +12,7 @@
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
+import typing
 import requests
 import urllib.parse
 import platform
@@ -140,7 +141,8 @@ class LockstepApi:
         self.apiKey = None
         self.bearerToken = bearerToken
     
-    def send_request(self, method: str, path: str, body: object, query_params: object, filename: str | None) -> Response:
+    def send_request(self, method: str, path: str, body: object, 
+        query_params: typing.Dict[str, typing.Any] | None, filename: str | None) -> Response:
         """Send a request and parse the result
         
         Parameters
