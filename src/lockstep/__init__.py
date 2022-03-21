@@ -101,6 +101,7 @@ from lockstep.models.paymentsyncmodel import PaymentSyncModel
 from lockstep.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
 from lockstep.models.provisioningmodel import ProvisioningModel
 from lockstep.models.provisioningresponsemodel import ProvisioningResponseModel
+from lockstep.models.reportdepth import ReportDepth
 from lockstep.models.riskratemodel import RiskRateModel
 from lockstep.models.statemodel import StateModel
 from lockstep.models.statusmodel import StatusModel

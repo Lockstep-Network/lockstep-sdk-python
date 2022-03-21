@@ -221,7 +221,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: ReportDepth) -> LockstepResponse[FinancialReportModel]:
+    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: integer) -> LockstepResponse[FinancialReportModel]:
         """
         Generates an Income Statement for the given time range.
 
@@ -239,7 +239,7 @@ class ReportsClient:
             dates Quarterly - a column for every quarter within the
             reporting dates Annually - a column for every year within
             the reporting dates
-        displayDepth : ReportDepth
+        displayDepth : integer
             The desired row splitting of the report data. Options are as
             follows: 1 - combine all accounts by their category 2 -
             combine all accounts by their subcategory 3 - display all
