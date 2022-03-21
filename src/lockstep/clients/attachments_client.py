@@ -17,6 +17,7 @@ from lockstep.action_result_model import ActionResultModel
 from lockstep.fetch_result import FetchResult
 from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.urimodel import UriModel
+from requests.models import Response
 
 class AttachmentsClient:
     """
@@ -124,7 +125,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def download_attachment(self, id: str) -> LockstepResponse[UriModel]:
+    def download_attachment_url(self, id: str) -> LockstepResponse[UriModel]:
         """
         Returns a URI for the Attachment file to be downloaded, based on
         the ID provided.
@@ -145,12 +146,37 @@ class AttachmentsClient:
             The unique ID number of the Attachment whose URI will be
             returned
         """
-        path = f"/api/v1/Attachments/{id}/download"
+        path = f"/api/v1/Attachments/{id}/download-url"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UriModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def download_attachment_file(self, id: str) -> Response:
+        """
+        Returns the Attachment file to be downloaded, based on the ID
+        provided.
+
+        An Attachment is a file that can be attached to various account
+        attributes within Lockstep. Attachments can be used for
+        invoices, bills, or any other external files that you wish to
+        track and have access to. Attachments represents an Attachment
+        and a number of different metadata attributes related to the
+        creation, storage, and ownership of the Attachment.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        for more information.
+
+        Parameters
+        ----------
+        id : str
+            The unique ID number of the Attachment whose URI will be
+            returned
+        """
+        path = f"/api/v1/Attachments/{id}/download-file"
+        result = self.client.send_request("GET", path, None, {}, None)
+        return result
 
     def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: str) -> LockstepResponse[list[AttachmentModel]]:
         """

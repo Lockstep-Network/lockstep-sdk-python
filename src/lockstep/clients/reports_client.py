@@ -206,10 +206,6 @@ class ReportsClient:
         """
         Generates a Trial Balance Report for the given time range.
 
-        The Attachment Header report contains aggregated information
-        about the `TotalAttachments`, `TotalArchived`, and `TotalActive`
-        attachment classifications.
-
         Parameters
         ----------
         startDate : str
@@ -219,6 +215,37 @@ class ReportsClient:
         """
         path = "/api/v1/Reports/trial-balance"
         result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int) -> LockstepResponse[FinancialReportModel]:
+        """
+        Generates an Income Statement for the given time range.
+
+        Parameters
+        ----------
+        startDate : str
+            The start date of the report
+        endDate : str
+            The end date of the report
+        columnOption : str
+            The desired column splitting of the report data. An empty
+            string or anything unrecognized will result in only totals
+            being displayed. Options are as follows: By Period - a
+            column for every month/fiscal period within the reporting
+            dates Quarterly - a column for every quarter within the
+            reporting dates Annually - a column for every year within
+            the reporting dates
+        displayDepth : int
+            The desired row splitting of the report data. Options are as
+            follows: 1 - combine all accounts by their category 2 -
+            combine all accounts by their subcategory 3 - display all
+            accounts
+        """
+        path = "/api/v1/Reports/income-statement"
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:

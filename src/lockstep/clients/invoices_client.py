@@ -259,7 +259,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_at_risk_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
+    def query_at_risk_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
         """
         Queries At Risk Invoices for this account using the specified
         filtering, sorting, nested fetch, and pagination rules

@@ -26,7 +26,7 @@ class FinancialAccountBalanceHistoryClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_financial_account_balance_history(self, id: str) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def retrieve_balance_history(self, id: str) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
         """
         Retrieves the Financial Account Balance History specified by
         this unique identifier.
@@ -47,7 +47,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def update_financial_account_balance_history(self, id: str, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def update_balance_history(self, id: str, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
         """
         Updates a Financial Account Balance History that matches the
         specified id with the requested information.
@@ -78,7 +78,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def delete_financial_account_balance_history(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_balance_history(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Delete the Financial Account Balance History referred to by this
         unique identifier.
@@ -99,7 +99,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def create_financial_account_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
+    def create_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
         """
         Creates a Financial Account Balance History from a given model.
 
@@ -118,7 +118,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_financial_account_balance_history(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
+    def query_balance_history(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
         """
         Queries Financial Account Balance History for this account using
         the specified filtering, sorting, and pagination rules
