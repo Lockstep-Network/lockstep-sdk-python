@@ -54,6 +54,7 @@ class UserAccountModel:
     stateRegion: str | None = None
     postalCode: str | None = None
     country: str | None = None
+    timeZone: str | None = None
     imageURL: str | None = None
     description: str | None = None
     b2CLastLoggedIn: str | None = None

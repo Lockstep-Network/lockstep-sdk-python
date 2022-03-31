@@ -51,6 +51,7 @@ class CompanyModel:
     stateRegion: str | None = None
     postalCode: str | None = None
     country: str | None = None
+    timeZone: str | None = None
     phoneNumber: str | None = None
     faxNumber: str | None = None
     created: str | None = None

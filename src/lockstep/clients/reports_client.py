@@ -220,7 +220,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int) -> LockstepResponse[FinancialReportModel]:
+    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
         Generates an Income Statement for the given time range.
 
@@ -239,13 +239,32 @@ class ReportsClient:
             reporting dates Annually - a column for every year within
             the reporting dates
         displayDepth : int
-            The desired row splitting of the report data. Options are as
+            The desired row splitting of the report data. For Income
+            Statements, the minimum report depth is 1. Options are as
             follows: 1 - combine all accounts by their category 2 -
             combine all accounts by their subcategory 3 - display all
             accounts
+        comparisonPeriod : str
+            Add a column for historical data with the following options
+            and use showCurrencyDifference and/or show
+            percentageDifference to display a comparison of that
+            historical data to the report period. Options are as follows
+            (note for YTD the data will be compared as a percentage of
+            YTD and showCurrencyDifference and showPercentageDifference
+            should not be used): "PP" - previous period (will show the
+            previous quarter or year if Quarterly or Annually is chosen
+            for columnOption) "PY" - previous year (the same date range
+            as the report, but for the year prior) "YTD" - year to date
+            (the current financial year to the current period)
+        showCurrencyDifference : bool
+            A boolean to turn on a currency based difference between the
+            reporting period and the comparison period.
+        showPercentageDifference : bool
+            A boolean to turn on a percent based difference between the
+            reporting period and the comparison period.
         """
         path = "/api/v1/Reports/income-statement"
-        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth}, None)
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
