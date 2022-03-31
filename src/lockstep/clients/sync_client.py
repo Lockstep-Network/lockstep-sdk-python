@@ -171,6 +171,33 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
+    def cancel_sync(self, id: str) -> LockstepResponse[SyncRequestModel]:
+        """
+        Cancels a Sync process for an Application if the request is
+        still being processed within the Application. This does not
+        cancel Sync processes which have already proceeded to completion
+        within the Application, or Sync processes outside of
+        Applications such as from a Zip file or Batch Import.
+
+        A Sync task represents an action performed by an Application for
+        a particular account. An Application can provide many different
+        tasks as part of their capabilities. Sync tasks are executed in
+        the background and will continue running after they are created.
+        Use one of the creation APIs to request execution of a task. To
+        check on the progress of the task, call GetSync or QuerySync.
+
+        Parameters
+        ----------
+        id : str
+            The unique ID number of the Sync task to cancel
+        """
+        path = f"/api/v1/Sync/{id}"
+        result = self.client.send_request("DELETE", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, SyncRequestModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
     def query_syncs(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[SyncRequestModel]]:
         """
         Queries Sync tasks for this account using the specified

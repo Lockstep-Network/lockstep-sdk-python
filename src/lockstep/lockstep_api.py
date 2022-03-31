@@ -8,7 +8,7 @@
 #
 # @author     Ted Spence <tspence@lockstep.io>
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.11.60
+# @version    2022.13.29
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -109,7 +109,7 @@ class LockstepApi:
         else:
             self.serverUrl = env
         self.sdkName = "Python"
-        self.sdkVersion = "2022.11.60"
+        self.sdkVersion = "2022.13.29"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None
