@@ -1,12 +1,13 @@
 #
-# Lockstep Software Development Kit for Python
+# Lockstep Platform SDK for Python
 #
 # (c) 2021-2022 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
-# @author     Ted Spence <tspence@lockstep.io>
+# @author     Lockstep Network <support@lockstep.io>
+#             
 # @copyright  2021-2022 Lockstep, Inc.
 # @version    2022.13.29
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
@@ -21,9 +22,9 @@ from requests.models import Response
 
 class LockstepApi:
     """
-    Lockstep Platform API Client object
+    Lockstep Platform SDK API Client object
     
-    Use this object to connect to the Lockstep Platform API.
+    Use this object to connect to the API.
     """
     apiKey: str | None
     bearerToken: str | None
@@ -34,9 +35,8 @@ class LockstepApi:
         Parameters
         ----------
         env : str
-            Select the Lockstep Platform environment to use for this client. You
-            may select from either "prd", "sbx", or provide a full URL of a custom
-            environment.
+            Select the environment to use for this client. You may either 
+            provide an environment name or a full URL of a custom environment.
         appname : str
             Provide a name for your application for logging and debugging. This
             name will be recorded alongside API calls so that you can identify
@@ -102,12 +102,11 @@ class LockstepApi:
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
         self.webhooks = WebhooksClient(self)
+        self.serverUrl = env
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
-        elif env == "prd":
+        if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
-        else:
-            self.serverUrl = env
         self.sdkName = "Python"
         self.sdkVersion = "2022.13.29"
         self.machineName = platform.uname().node
@@ -121,9 +120,7 @@ class LockstepApi:
         Parameters
         ----------
         apiKey : str
-            The [Lockstep Platform API 
-            key](https://developer.lockstep.io/docs/api-keys) to use for 
-            authentication.
+            The API Key to use for authentication.
         """
         self.apiKey = apiKey
         self.bearerToken = None
@@ -134,9 +131,7 @@ class LockstepApi:
         Parameters
         ----------
         bearerToken : str
-            The [Lockstep Platform JWT Bearer 
-            Token](https://developer.lockstep.io/docs/jwt-bearer-tokens) to use 
-            for authentication.
+            The Bearer Token to use for authentication.
         """
         self.apiKey = None
         self.bearerToken = bearerToken
