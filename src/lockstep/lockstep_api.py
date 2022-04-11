@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.13.29
+# @version    2022.14.30
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -108,7 +108,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2022.13.29"
+        self.sdkVersion = "2022.14.30"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None
@@ -116,6 +116,8 @@ class LockstepApi:
     
     def with_api_key(self, apiKey: str):
         """Configure this API client to use API Key authentication
+        
+        Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
         
         Parameters
         ----------
@@ -128,6 +130,8 @@ class LockstepApi:
     def with_bearer_token(self, bearerToken: str):
         """Configure this API client to use Bearer Token authentication
         
+        Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
+
         Parameters
         ----------
         bearerToken : str

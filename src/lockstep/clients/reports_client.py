@@ -269,3 +269,49 @@ class ReportsClient:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def balance_sheet_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
+        """
+        Generates a balance sheet for the given time range.
+
+        Parameters
+        ----------
+        startDate : str
+            The start date of the report
+        endDate : str
+            The end date of the report
+        columnOption : str
+            The desired column splitting of the report data. An empty
+            string or anything unrecognized will result in only totals
+            being displayed. Options are as follows: By Period - a
+            column for every month/fiscal period within the reporting
+            dates Quarterly - a column for every quarter within the
+            reporting dates Annually - a column for every year within
+            the reporting dates
+        displayDepth : int
+            The desired row splitting of the report data. For Balance
+            Sheets, the minimum report depth is 1. Options are as
+            follows: 1 - combine all accounts by their category 2 -
+            combine all accounts by their subcategory 3 - display all
+            accounts
+        comparisonPeriod : str
+            Add a column for historical data with the following options
+            and use showCurrencyDifference and/or show
+            percentageDifference to display a comparison of that
+            historical data to the report period. "PP" - previous period
+            (will show the previous quarter or year if Quarterly or
+            Annually is chosen for columnOption) "PY" - previous year
+            (the same date range as the report, but for the year prior)
+        showCurrencyDifference : bool
+            A boolean to turn on a currency based difference between the
+            reporting period and the comparison period.
+        showPercentageDifference : bool
+            A boolean to turn on a percent based difference between the
+            reporting period and the comparison period.
+        """
+        path = "/api/v1/Reports/balance-sheet"
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
