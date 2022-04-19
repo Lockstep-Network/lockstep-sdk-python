@@ -209,9 +209,9 @@ class ReportsClient:
         Parameters
         ----------
         startDate : str
-
+            The start date of the report
         endDate : str
-
+            The end date of the report
         """
         path = "/api/v1/Reports/trial-balance"
         result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate}, None)
