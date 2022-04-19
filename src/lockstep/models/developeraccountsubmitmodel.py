@@ -21,6 +21,8 @@ class DeveloperAccountSubmitModel:
     """
 
     name: str | None = None
+    firstName: str | None = None
+    lastName: str | None = None
     email: str | None = None
     companyName: str | None = None
 
