@@ -54,4 +54,5 @@ class CompanySyncModel:
     dunsNumber: str | None = None
     apEmailAddress: str | None = None
     arEmailAddress: str | None = None
+    preferredDeliveryMethod: str | None = None
 

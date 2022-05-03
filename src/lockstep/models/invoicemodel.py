@@ -74,6 +74,7 @@ class InvoiceModel:
     isVoided: bool | None = None
     inDispute: bool | None = None
     excludeFromAging: bool | None = None
+    preferredDeliveryMethod: str | None = None
     addresses: list[InvoiceAddressModel] | None = None
     lines: list[InvoiceLineModel] | None = None
     payments: list[InvoicePaymentDetailModel] | None = None
