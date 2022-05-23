@@ -148,6 +148,24 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
+    def reconnect_app_enrollment_oauth(self, id: str, body: str) -> LockstepResponse[AppEnrollmentModel]:
+        """
+        Updates the OAuth settings associated with this App Enrollment
+
+        Parameters
+        ----------
+        id : str
+
+        body : str
+
+        """
+        path = f"/api/v1/AppEnrollments/{id}/reconnect"
+        result = self.client.send_request("PATCH", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, AppEnrollmentModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
     def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AppEnrollmentModel]]:
         """
         Queries App Enrollments for this account using the specified

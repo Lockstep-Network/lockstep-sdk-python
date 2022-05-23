@@ -18,6 +18,7 @@ from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
 from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
 from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
 from lockstep.models.cashflowreportmodel import CashflowReportModel
+from lockstep.models.dailypayableoutstandingreportmodel import DailyPayableOutstandingReportModel
 from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
 from lockstep.models.financialreportmodel import FinancialReportModel
 from lockstep.models.riskratemodel import RiskRateModel
@@ -73,6 +74,26 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
+    def days_payable_outstanding(self, ) -> LockstepResponse[list[DailyPayableOutstandingReportModel]]:
+        """
+        Retrieves a current Days Payable Outstanding (DPO) report for
+        this account.
+
+        Days payable outstanding (DPO) is a financial ratio that
+        indicates the average time (in days) that a company takes to pay
+        its bills to its trade creditors, which may include suppliers,
+        vendors, or financiers.
+
+        Parameters
+        ----------
+        """
+        path = "/api/v1/Reports/daily-payable-outstanding"
+        result = self.client.send_request("GET", path, None, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[DailyPayableOutstandingReportModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
     def risk_rates(self, ) -> LockstepResponse[list[RiskRateModel]]:
         """
         Retrieves a current Risk Rate report for this account.
@@ -111,7 +132,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int]) -> LockstepResponse[list[AgingModel]]:
+    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
         """
         The Aging Report contains information about the total dollar
         value of invoices broken down by their age. Last default or
@@ -152,9 +173,11 @@ class ReportsClient:
             Customized buckets used for aging calculations (default
             buckets [0,30,60,90,120,180] will be used if buckets not
             specified)
+        ApReport : bool
+            A boolean to turn on AP Aging reports
         """
         path = "/api/v1/Reports/aging"
-        result = self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets}, None)
+        result = self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets, "ApReport": ApReport}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[AgingModel](**result.json()), None)
         else:
@@ -202,7 +225,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def trial_balance_report(self, startDate: str, endDate: str) -> LockstepResponse[FinancialReportModel]:
+    def trial_balance_report(self, startDate: str, endDate: str, appEnrollmentId: str) -> LockstepResponse[FinancialReportModel]:
         """
         Generates a Trial Balance Report for the given time range.
 
@@ -212,15 +235,18 @@ class ReportsClient:
             The start date of the report
         endDate : str
             The end date of the report
+        appEnrollmentId : str
+            The app enrollment id of the app enrollment whose data will
+            be used.
         """
         path = "/api/v1/Reports/trial-balance"
-        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate}, None)
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "appEnrollmentId": appEnrollmentId}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def income_statement_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
+    def income_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
         Generates an Income Statement for the given time range.
 
@@ -230,6 +256,9 @@ class ReportsClient:
             The start date of the report
         endDate : str
             The end date of the report
+        appEnrollmentId : str
+            The app enrollment id of the app enrollment whose data will
+            be used.
         columnOption : str
             The desired column splitting of the report data. An empty
             string or anything unrecognized will result in only totals
@@ -264,13 +293,13 @@ class ReportsClient:
             reporting period and the comparison period.
         """
         path = "/api/v1/Reports/income-statement"
-        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "appEnrollmentId": appEnrollmentId, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def balance_sheet_report(self, startDate: str, endDate: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
+    def balance_sheet_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
         Generates a balance sheet for the given time range.
 
@@ -280,6 +309,9 @@ class ReportsClient:
             The start date of the report
         endDate : str
             The end date of the report
+        appEnrollmentId : str
+            The app enrollment id of the app enrollment whose data will
+            be used.
         columnOption : str
             The desired column splitting of the report data. An empty
             string or anything unrecognized will result in only totals
@@ -310,7 +342,41 @@ class ReportsClient:
             reporting period and the comparison period.
         """
         path = "/api/v1/Reports/balance-sheet"
-        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "appEnrollmentId": appEnrollmentId, "columnOption": columnOption, "displayDepth": displayDepth, "comparisonPeriod": comparisonPeriod, "showCurrencyDifference": showCurrencyDifference, "showPercentageDifference": showPercentageDifference}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def cash_flow_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int) -> LockstepResponse[FinancialReportModel]:
+        """
+        Generates a cash flow statement for the given time range.
+
+        Parameters
+        ----------
+        startDate : str
+            The start date of the report
+        endDate : str
+            The end date of the report
+        appEnrollmentId : str
+            The app enrollment id of the app enrollment whose data will
+            be used.
+        columnOption : str
+            The desired column splitting of the report data. An empty
+            string or anything unrecognized will result in only totals
+            being displayed. Options are as follows: By Period - a
+            column for every month/fiscal period within the reporting
+            dates Quarterly - a column for every quarter within the
+            reporting dates Annually - a column for every year within
+            the reporting dates
+        displayDepth : int
+            The desired row splitting of the report data. Options are as
+            follows: 0 - combine all accounts by their classification 1
+            - combine all accounts by their category 2 - combine all
+            accounts by their subcategory 3 - display all accounts
+        """
+        path = "/api/v1/Reports/cash-flow-statement"
+        result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "appEnrollmentId": appEnrollmentId, "columnOption": columnOption, "displayDepth": displayDepth}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:

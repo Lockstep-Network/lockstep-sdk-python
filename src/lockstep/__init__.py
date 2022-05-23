@@ -67,6 +67,7 @@ from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 from lockstep.models.customerdetailsmodel import CustomerDetailsModel
 from lockstep.models.customerdetailspaymentmodel import CustomerDetailsPaymentModel
 from lockstep.models.customersummarymodel import CustomerSummaryModel
+from lockstep.models.dailypayableoutstandingreportmodel import DailyPayableOutstandingReportModel
 from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
 from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
 from lockstep.models.emailmodel import EmailModel
@@ -112,5 +113,6 @@ from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 from lockstep.models.urimodel import UriModel
 from lockstep.models.useraccountmodel import UserAccountModel
 from lockstep.models.userrolemodel import UserRoleModel
+from lockstep.models.vendorsummarymodel import VendorSummaryModel
 from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
 from lockstep.models.webhookmodel import WebhookModel

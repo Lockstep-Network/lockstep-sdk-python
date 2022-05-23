@@ -18,6 +18,7 @@ from lockstep.fetch_result import FetchResult
 from lockstep.models.companymodel import CompanyModel
 from lockstep.models.customerdetailsmodel import CustomerDetailsModel
 from lockstep.models.customersummarymodel import CustomerSummaryModel
+from lockstep.models.vendorsummarymodel import VendorSummaryModel
 
 class CompaniesClient:
     """
@@ -234,6 +235,49 @@ class CompaniesClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[CustomerSummaryModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def query_vendor_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
+        """
+        Queries Vendor Summaries for this account using the specified
+        filtering, sorting, nested fetch, and pagination rules
+        requested.
+
+        More information on querying can be found on the [Searchlight
+        Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        page on the Lockstep Developer website.
+
+        The Vendor Summary View represents a slightly different view of
+        the data and includes some extra fields that might be useful.
+        For more information, see the data format of the Vendor Summary
+        Model.
+
+        See [Vendors, Customers, and
+        Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
+        for more information.
+
+        Parameters
+        ----------
+        filter : str
+            The filter for this query. See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. No collections are currently available
+            but may be offered in the future
+        order : str
+            The sort order for the results, in the [Searchlight order
+            syntax](https://github.com/tspence/csharp-searchlight).
+        pageSize : int
+            The page size for results (default 200, maximum of 10,000)
+        pageNumber : int
+            The page number for results (default 0)
+        """
+        path = "/api/v1/Companies/views/vendor-summary"
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FetchResult[VendorSummaryModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 

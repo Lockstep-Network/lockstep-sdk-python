@@ -83,4 +83,5 @@ class InvoiceSyncModel:
     modified: str | None = None
     isVoided: bool | None = None
     inDispute: bool | None = None
+    preferredDeliveryMethod: str | None = None
 
