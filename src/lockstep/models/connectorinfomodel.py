@@ -22,7 +22,10 @@ class ConnectorInfoModel:
     """
 
     authCode: str | None = None
+    tokenId: str | None = None
+    tokenSecret: str | None = None
     realmId: str | None = None
+    subsidiaryId: str | None = None
     redirectUri: str | None = None
     email: str | None = None
     username: str | None = None

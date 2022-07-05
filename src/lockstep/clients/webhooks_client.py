@@ -12,9 +12,9 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
 from lockstep.models.webhookmodel import WebhookModel
 
@@ -121,7 +121,7 @@ class WebhooksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_webhooks(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookModel]]:
+    def query_webhooks(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookModel]]:
         """
         Queries Webhooks for this account using the specified filtering,
         sorting, and pagination rules requested.
@@ -135,6 +135,9 @@ class WebhooksClient:
         filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. Available collection: WebhookRules
         order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -146,7 +149,7 @@ class WebhooksClient:
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Webhooks/query"
-        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[WebhookModel](**result.json()), None)
         else:
@@ -177,5 +180,25 @@ class WebhooksClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[WebhookHistoryTableStorageModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def retry_failed_webhook_history(self, webhookId: str, webhookHistoryId: str) -> LockstepResponse[str]:
+        """
+
+
+        Parameters
+        ----------
+        webhookId : str
+            The unique Lockstep Platform ID number of this Webhook
+        webhookHistoryId : str
+            The unique Lockstep Platform ID number of the Webhook
+            History to be retried. Note: the webhook history supplied
+            must have a isSuccessful status of false to be retried.
+        """
+        path = f"/api/v1/Webhooks/{webhookId}/history/{webhookHistoryId}/retry"
+        result = self.client.send_request("GET", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, str(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

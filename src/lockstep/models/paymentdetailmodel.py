@@ -31,6 +31,7 @@ class PaymentDetailModel:
     paymentAmount: float | None = None
     unappliedAmount: float | None = None
     paymentType: str | None = None
+    tenderType: str | None = None
     paymentDate: str | None = None
     postDate: str | None = None
     phone: str | None = None

@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.paymentmodel import PaymentModel
 from lockstep.models.invoicemodel import InvoiceModel
 
 @dataclass
@@ -39,5 +40,6 @@ class PaymentAppliedModel:
     modified: str | None = None
     modifiedUserId: str | None = None
     appEnrollmentId: str | None = None
+    payment: PaymentModel | None = None
     invoice: InvoiceModel | None = None
 

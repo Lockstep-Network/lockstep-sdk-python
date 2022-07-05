@@ -21,6 +21,5 @@ class DailySalesOutstandingReportModel:
     """
 
     timeframe: str | None = None
-    invoiceCount: int | None = None
     dailySalesOutstanding: float | None = None
 

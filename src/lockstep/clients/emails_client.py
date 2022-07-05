@@ -12,9 +12,9 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.emailmodel import EmailModel
 from requests.models import Response
 

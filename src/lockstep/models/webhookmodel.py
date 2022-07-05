@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.webhookrulemodel import WebhookRuleModel
 
 @dataclass
 class WebhookModel:
@@ -39,5 +40,6 @@ class WebhookModel:
     createdUserId: str | None = None
     modified: str | None = None
     modifiedUserId: str | None = None
+    webhookRules: list[WebhookRuleModel] | None = None
     partitionKey: str | None = None
 
