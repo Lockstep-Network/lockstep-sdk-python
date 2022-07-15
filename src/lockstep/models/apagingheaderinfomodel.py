@@ -15,19 +15,19 @@
 from dataclasses import dataclass
 
 @dataclass
-class ArAgingHeaderInfoModel:
+class ApAgingHeaderInfoModel:
     """
-    Aggregated Accounts Receivable Aging information.
+    Aggregated Accounts Payable Aging information.
     """
 
     groupKey: str | None = None
     reportBucket: str | None = None
-    totalCustomers: int | None = None
-    totalInvoicesOutstanding: int | None = None
-    totalInvoiceOutstandingAmount: float | None = None
+    totalVendors: int | None = None
+    totalBillsOutstanding: int | None = None
+    totalBillsOutstandingAmount: float | None = None
     totalCreditMemoOutstandingAmount: float | None = None
-    totalUnappliedPaymentAmount: float | None = None
+    totalAdvancePaymentAmount: float | None = None
     totalOutstandingAmount: float | None = None
-    totalArAmount: float | None = None
-    percentageOfTotalAr: float | None = None
+    totalApAmount: float | None = None
+    percentageOfTotalAp: float | None = None
 

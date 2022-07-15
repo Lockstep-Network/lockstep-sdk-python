@@ -15,15 +15,15 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class DpoSummaryGroupTotalModel:
     """
-    Contains information about a sync process for an entity.
+    Represents the group totals for the values found in the daily
+    payable outstanding summary
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    groupKey: str | None = None
+    vendors: int | None = None
+    bills: int | None = None
+    amountOutstanding: float | None = None
+    dpo: float | None = None
 

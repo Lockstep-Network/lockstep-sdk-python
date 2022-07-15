@@ -27,9 +27,13 @@ class VendorSummaryModel:
     primaryContactName: str | None = None
     primaryContactId: str | None = None
     amountPaidLast30: float | None = None
+    advancePayLast30: float | None = None
     advancePayOutstanding: float | None = None
     amountBilledLast30: float | None = None
+    amountBilledOutstandingLast30: float | None = None
     amountBilledOutstanding: float | None = None
+    billCountLast30: int | None = None
+    paidBillCountLast30: int | None = None
     openBillCount: int | None = None
     paidBillCount: int | None = None
     totalBillCount: int | None = None

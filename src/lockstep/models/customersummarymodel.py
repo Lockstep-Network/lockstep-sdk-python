@@ -28,10 +28,16 @@ class CustomerSummaryModel:
     totalInvoicesOpen: int | None = None
     totalInvoicesPastDue: int | None = None
     closedInvoices: int | None = None
+    closedInvoicesPastThirtyDays: int | None = None
     amountCollected: float | None = None
+    amountCollectedPastThirtyDays: float | None = None
     outstandingAmount: float | None = None
+    invoicedAmountPastThirtyDays: float | None = None
+    outstandingAmountPastThirtyDays: float | None = None
+    invoicesPastThirtyDays: int | None = None
     amountPastDue: float | None = None
     unappliedPayments: float | None = None
+    unappliedAmountPastThirtyDays: float | None = None
     percentOfTotalAr: float | None = None
     dso: float | None = None
     newestActivity: str | None = None

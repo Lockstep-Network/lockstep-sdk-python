@@ -25,6 +25,7 @@ class InvoiceSummaryModel:
     invoiceId: str | None = None
     invoiceNumber: str | None = None
     invoiceDate: str | None = None
+    invoiceClosedDate: str | None = None
     customerName: str | None = None
     status: str | None = None
     paymentDueDate: str | None = None

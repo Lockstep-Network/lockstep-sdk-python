@@ -15,15 +15,15 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class PayablesComingDueHeaderModel:
     """
-    Contains information about a sync process for an entity.
+    Contains summary information for payables that will be due soon
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    groupKey: str | None = None
+    numberOfBillsDue: int | None = None
+    numberOfVendors: int | None = None
+    percentageOfTotal: float | None = None
+    totalAmountDue: float | None = None
+    dueDate: str | None = None
 

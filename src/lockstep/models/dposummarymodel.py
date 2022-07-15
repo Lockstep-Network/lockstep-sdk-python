@@ -15,19 +15,17 @@
 from dataclasses import dataclass
 
 @dataclass
-class CustomerDetailsPaymentModel:
+class DpoSummaryModel:
     """
-    Customer payment collected information
+    Represents a summary of outstanding amounts for bills to vendors and
+    their associated daily payable outstanding value.
     """
 
     groupKey: str | None = None
-    paymentId: str | None = None
-    paymentAppliedId: str | None = None
-    paymentType: str | None = None
-    invoiceId: str | None = None
-    invoiceTypeCode: str | None = None
-    invoiceReferenceCode: str | None = None
-    invoiceTotalAmount: float | None = None
-    paymentDate: str | None = None
-    paymentAmount: float | None = None
+    vendorId: str | None = None
+    vendorName: str | None = None
+    primaryContact: str | None = None
+    bills: int | None = None
+    amountOutstanding: float | None = None
+    dpo: float | None = None
 

@@ -12,9 +12,9 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.paymentappliedmodel import PaymentAppliedModel
 
 class PaymentApplicationsClient:
@@ -45,7 +45,8 @@ class PaymentApplicationsClient:
             Application; NOT the customer's ERP key
         include : str
             To fetch additional data on this object, specify the list of
-            elements to retrieve. Available collections: Invoice
+            elements to retrieve. Available collections: Invoice,
+            Payment
         """
         path = f"/api/v1/PaymentApplications/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)

@@ -13,12 +13,12 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.customerdetailspaymentmodel import CustomerDetailsPaymentModel
+from lockstep.models.companydetailspaymentmodel import CompanyDetailsPaymentModel
 
 @dataclass
-class CustomerDetailsModel:
+class CompanyDetailsModel:
     """
-    Contains customer details data
+    Contains company details data
     """
 
     groupKey: str | None = None
@@ -40,5 +40,5 @@ class CustomerDetailsModel:
     outstandingInvoices: int | None = None
     outstandingAmount: float | None = None
     amountPastDue: float | None = None
-    payments: list[CustomerDetailsPaymentModel] | None = None
+    payments: list[CompanyDetailsPaymentModel] | None = None
 

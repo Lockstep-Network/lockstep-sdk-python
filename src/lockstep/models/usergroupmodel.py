@@ -15,15 +15,14 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class UserGroupModel:
     """
-    Contains information about a sync process for an entity.
+    A UserGroup represents the groups that the user is a member of. A
+    user may have varying permissions/access within a Group.
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    groupKey: str | None = None
+    userRole: str | None = None
+    groupName: str | None = None
+    status: str | None = None
 

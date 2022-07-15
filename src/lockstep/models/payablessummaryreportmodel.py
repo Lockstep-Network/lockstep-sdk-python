@@ -15,15 +15,15 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class PayablesSummaryReportModel:
     """
-    Contains information about a sync process for an entity.
+    Represents the payables summary report based on a timeframe
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    groupKey: str | None = None
+    timeframe: int | None = None
+    totalPaymentsAmount: float | None = None
+    totalPaymentsCount: int | None = None
+    totalAmountBilled: float | None = None
+    totalBillsCount: int | None = None
 

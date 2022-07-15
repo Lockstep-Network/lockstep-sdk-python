@@ -55,4 +55,5 @@ class CompanySyncModel:
     apEmailAddress: str | None = None
     arEmailAddress: str | None = None
     preferredDeliveryMethod: str | None = None
+    externalReference: str | None = None
 

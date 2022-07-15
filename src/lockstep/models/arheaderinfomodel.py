@@ -38,7 +38,13 @@ class ArHeaderInfoModel:
     totalInvoiceAmountCurrentYear: float | None = None
     totalInvoiceAmountPreviousYear: float | None = None
     totalPaymentAmountCurrentYear: float | None = None
-    totalCollectedPastThirtyDays: int | None = None
-    totalInvoicesPaidPastThirtyDays: int | None = None
     percentageOfTotalAr90DaysPastDue: float | None = None
+    customersPaidPastThirtyDays: int | None = None
+    amountCollectedPastThirtyDays: float | None = None
+    unappliedAmountPastThirtyDays: float | None = None
+    invoicesPaidPastThirtyDays: int | None = None
+    customersInvoicedPastThirtyDays: int | None = None
+    amountInvoicedPastThirtyDays: float | None = None
+    amountDuePastThirtyDays: float | None = None
+    invoicesPastThirtyDays: int | None = None
 

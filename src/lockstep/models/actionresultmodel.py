@@ -15,15 +15,16 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class ActionResultModel:
     """
-    Contains information about a sync process for an entity.
+    Represents the result of an action.
+
+    In the Lockstep API, an Action is returned when an API call does not
+    produce any data but does produce messages that can be useful in
+    understanding what work was performed. You may use the messages text
+    to display user visible error messages or the results of various
+    operations.
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    messages: list[str] | None = None
 

@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.usergroupmodel import UserGroupModel
 
 @dataclass
 class StatusModel:
@@ -33,5 +34,7 @@ class StatusModel:
     userStatus: str | None = None
     environment: str | None = None
     version: str | None = None
+    onboardingScheduled: bool | None = None
     dependencies: object | None = None
+    userGroups: list[UserGroupModel] | None = None
 

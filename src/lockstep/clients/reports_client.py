@@ -12,15 +12,24 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
+from lockstep.models.errorresult import ErrorResult
+from lockstep.fetch_result import FetchResult
 from lockstep.models.agingmodel import AgingModel
+from lockstep.models.apagingheaderinfomodel import ApAgingHeaderInfoModel
+from lockstep.models.apheaderinfomodel import ApHeaderInfoModel
 from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
 from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
 from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
 from lockstep.models.cashflowreportmodel import CashflowReportModel
 from lockstep.models.dailypayableoutstandingreportmodel import DailyPayableOutstandingReportModel
 from lockstep.models.dailysalesoutstandingreportmodel import DailySalesOutstandingReportModel
+from lockstep.models.dposummarygrouptotalmodel import DpoSummaryGroupTotalModel
+from lockstep.models.dposummarymodel import DpoSummaryModel
 from lockstep.models.financialreportmodel import FinancialReportModel
+from lockstep.models.payablescomingdueheadermodel import PayablesComingDueHeaderModel
+from lockstep.models.payablescomingduemodel import PayablesComingDueModel
+from lockstep.models.payablescomingduewidgetmodel import PayablesComingDueWidgetModel
+from lockstep.models.payablessummaryreportmodel import PayablesSummaryReportModel
 from lockstep.models.riskratemodel import RiskRateModel
 
 class ReportsClient:
@@ -51,6 +60,29 @@ class ReportsClient:
         result = self.client.send_request("GET", path, None, {"timeframe": timeframe}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CashflowReportModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def payables_summary_report(self, timeframe: int) -> LockstepResponse[PayablesSummaryReportModel]:
+        """
+        Retrieves a current Payables Summary report for this account.
+
+        The Payables Summary report indicates the amount of payments
+        sent and bills received within a given timeframe. You can use
+        this report to determine the overall balance of money coming
+        into and out of your accounts receivable and accounts payable
+        businesses.
+
+        Parameters
+        ----------
+        timeframe : int
+            Number of days of data to include for the Payables Summary
+            Report (default is 30 days from today)
+        """
+        path = "/api/v1/Reports/payables-summary"
+        result = self.client.send_request("GET", path, None, {"timeframe": timeframe}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, PayablesSummaryReportModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -94,6 +126,72 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
+    def payables_coming_due(self, ) -> LockstepResponse[list[PayablesComingDueWidgetModel]]:
+        """
+        Retrieves payable amount due for 4 time buckets (Today, 7 Days
+        from Today, 14 Days from Today, and 30 Days from Today).
+
+        Parameters
+        ----------
+        """
+        path = "/api/v1/Reports/payables-coming-due"
+        result = self.client.send_request("GET", path, None, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[PayablesComingDueWidgetModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def payables_coming_due_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PayablesComingDueModel]]:
+        """
+        Payables coming due represents the amount of cash required to
+        pay vendor bills based on the due dates of the bills. Each
+        bucket represents total amount due within the time period based
+        on open Payables as of today.
+
+        Parameters
+        ----------
+        filter : str
+            The filter for this query. See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. No collections are currently available
+            but may be offered in the future
+        order : str
+            The sort order for the results, in the [Searchlight order
+            syntax](https://github.com/tspence/csharp-searchlight).
+        pageSize : int
+            The page size for results (default 200, maximum of 10,000)
+        pageNumber : int
+            The page number for results (default 0)
+        """
+        path = "/api/v1/Reports/payables-coming-due-summary"
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FetchResult[PayablesComingDueModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def payables_coming_due_header(self, reportDate: str) -> LockstepResponse[list[PayablesComingDueHeaderModel]]:
+        """
+        Retrieves total number of vendors, bills, the total amount
+        outstanding, for a group.
+
+        Parameters
+        ----------
+        reportDate : str
+            The date the outstanding values are calculated on. Should be
+            either the current day, 7 days after the current day, 14
+            days after the current day, or 30 days after the current
+            day.
+        """
+        path = "/api/v1/Reports/payables-coming-due-header"
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[PayablesComingDueHeaderModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
     def risk_rates(self, ) -> LockstepResponse[list[RiskRateModel]]:
         """
         Retrieves a current Risk Rate report for this account.
@@ -129,6 +227,25 @@ class ReportsClient:
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ArHeaderInfoModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def accounts_payable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ApHeaderInfoModel]:
+        """
+        Retrieves AP header information up to the date specified.
+
+        Parameters
+        ----------
+        reportDate : str
+            The date of the report.
+        companyId : str
+            Include a company to get AP data for a specific company,
+            leave as null to include all Companies.
+        """
+        path = "/api/v1/Reports/ap-header"
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "companyId": companyId}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, ApHeaderInfoModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -200,6 +317,25 @@ class ReportsClient:
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[ArAgingHeaderInfoModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def accounts_payable_aging_header(self, ) -> LockstepResponse[list[ApAgingHeaderInfoModel]]:
+        """
+        Retrieves AP Aging Header information report broken down by
+        aging bucket.
+
+        The AP Aging Header report contains aggregated information about
+        the `TotalBillsPastDue`, `TotalVendors`, and their respective
+        `PercentageOfTotalAp` grouped by their aging `ReportBucket`.
+
+        Parameters
+        ----------
+        """
+        path = "/api/v1/Reports/ap-aging-header"
+        result = self.client.send_request("GET", path, None, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[ApAgingHeaderInfoModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -379,5 +515,71 @@ class ReportsClient:
         result = self.client.send_request("GET", path, None, {"startDate": startDate, "endDate": endDate, "appEnrollmentId": appEnrollmentId, "columnOption": columnOption, "displayDepth": displayDepth}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def days_payable_outstanding_summary(self, reportDate: str, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[list[DpoSummaryModel]]:
+        """
+        Retrieves a summary for each vendor that includes a count of
+        their outstanding bills, the total amount outstanding, and their
+        daily payable outstanding value.
+
+        Days payable outstanding (DPO) is a financial ratio that
+        indicates the average time (in days) that a company takes to pay
+        its bills to its trade creditors, which may include suppliers,
+        vendors, or financiers.
+
+        More information on querying can be found on the [Searchlight
+        Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        page on the Lockstep Developer website.
+
+        Parameters
+        ----------
+        reportDate : str
+            The date the outstanding values are calculated on. Should be
+            either the current day or the end of a previous quarter.
+        filter : str
+            The filter for this query. See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. No collections are currently available
+            but may be offered in the future
+        order : str
+            The sort order for the results, in the [Searchlight order
+            syntax](https://github.com/tspence/csharp-searchlight).
+        pageSize : int
+            The page size for results (default 200, maximum of 10,000)
+        pageNumber : int
+            The page number for results (default 0)
+        """
+        path = "/api/v1/Reports/daily-payable-outstanding-summary"
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[DpoSummaryModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def days_payable_outstanding_summary_total(self, reportDate: str) -> LockstepResponse[list[DpoSummaryGroupTotalModel]]:
+        """
+        Retrieves total number of vendors, bills, the total amount
+        outstanding, and the daily payable outstanding value for a
+        group.
+
+        Days payable outstanding (DPO) is a financial ratio that
+        indicates the average time (in days) that a company takes to pay
+        its bills to its trade creditors, which may include suppliers,
+        vendors, or financiers.
+
+        Parameters
+        ----------
+        reportDate : str
+            The date the outstanding values are calculated on. Should be
+            either the current day or the end of a previous quarter.
+        """
+        path = "/api/v1/Reports/daily-payable-outstanding-summary-total"
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, list[DpoSummaryGroupTotalModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
