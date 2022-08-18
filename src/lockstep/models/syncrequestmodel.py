@@ -34,6 +34,7 @@ class SyncRequestModel:
     groupKey: str | None = None
     statusCode: str | None = None
     processResultMessage: str | None = None
+    runFullSync: str | None = None
     appEnrollmentId: str | None = None
     created: str | None = None
     modified: str | None = None

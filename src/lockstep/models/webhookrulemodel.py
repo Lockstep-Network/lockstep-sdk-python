@@ -17,10 +17,10 @@ from dataclasses import dataclass
 @dataclass
 class WebhookRuleModel:
     """
-    A Webhook Rule is a subscription to receive notifications
-    automatically for Currently supported objects: * `SyncRequest` -
-    Receive a notification when a new sync request has completed for the
-    group key.
+    A Webhook Rule is a subscription to receive notifications whenever a
+    specific event occurs. With the rule, you specify the Table and
+    event you want to subscribe to. You can also optionally specify a
+    filter to further refine the updates you want to receive.
     """
 
     webhookRuleId: str | None = None
@@ -28,9 +28,7 @@ class WebhookRuleModel:
     groupKey: str | None = None
     tableKey: str | None = None
     eventType: str | None = None
-    expirationDate: str | None = None
     filter: str | None = None
-    requestContentType: str | None = None
     created: str | None = None
     createdUserId: str | None = None
     modified: str | None = None

@@ -17,6 +17,8 @@ from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.notemodel import NoteModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.invoicemodel import InvoiceModel
+from lockstep.models.invoicemodel import InvoiceModel
 
 @dataclass
 class CreditMemoAppliedModel:
@@ -47,4 +49,6 @@ class CreditMemoAppliedModel:
     notes: list[NoteModel] | None = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
     customFieldValues: list[CustomFieldValueModel] | None = None
+    creditMemoInvoice: InvoiceModel | None = None
+    invoice: InvoiceModel | None = None
 

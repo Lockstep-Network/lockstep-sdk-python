@@ -47,7 +47,7 @@ class CreditMemoAppliedClient:
         include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
-            CustomFields, Notes
+            CustomFields, Notes, Invoice, CreditMemoInvoice
         """
         path = f"/api/v1/CreditMemoApplied/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)

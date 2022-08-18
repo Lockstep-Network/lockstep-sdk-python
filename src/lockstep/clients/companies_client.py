@@ -195,7 +195,7 @@ class CompaniesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
+    def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
         """
         Queries Customer Summaries for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -230,15 +230,18 @@ class CompaniesClient:
             The page size for results (default 200, maximum of 10,000)
         pageNumber : int
             The page number for results (default 0)
+        reportDate : str
+            The date to calculate the fields on. If no date is entered
+            the current UTC date will be used.
         """
         path = "/api/v1/Companies/views/customer-summary"
-        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[CustomerSummaryModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_vendor_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
+    def query_vendor_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
         """
         Queries Vendor Summaries for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -273,9 +276,12 @@ class CompaniesClient:
             The page size for results (default 200, maximum of 10,000)
         pageNumber : int
             The page number for results (default 0)
+        reportDate : str
+            The date to calculate the fields on. If no date is entered
+            the current UTC date will be used.
         """
         path = "/api/v1/Companies/views/vendor-summary"
-        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[VendorSummaryModel](**result.json()), None)
         else:
@@ -305,5 +311,38 @@ class CompaniesClient:
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyDetailsModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def set_company_logo(self, id: str, filename: str) -> LockstepResponse[CompanyModel]:
+        """
+        Sets the logo for specified company. The logo will be stored in
+        the Lockstep Platform and will be **publicly accessible**.
+
+        .jpg, .jpeg, and .png are supported. 5MB maximum. If no logo is
+        uploaded, the existing logo will be deleted.
+
+        A Company represents a customer, a vendor, or a company within
+        the organization of the account holder. Companies can have
+        parents and children, representing an organizational hierarchy
+        of corporate entities. You can use Companies to track projects
+        and financial data under this Company label.
+
+        See [Vendors, Customers, and
+        Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
+        for more information.
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this Company; NOT
+            the customer's ERP key
+        filename : str
+            The full path of a file to upload to the API
+        """
+        path = f"/api/v1/Companies/{id}/logo"
+        result = self.client.send_request("POST", path, None, {}, filename)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

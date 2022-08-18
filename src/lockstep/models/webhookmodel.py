@@ -20,9 +20,9 @@ class WebhookModel:
     """
     A Webhook is a subscription to receive notifications automatically
     to the supplied callback url when changes are made to a supported
-    object. Currently supported objects: * `SyncRequest` - Receive a
-    notification when a new sync request has completed for the group
-    key.
+    object. You will need to create at least one Webhook rule to receive
+    notifications when a specific type of object is inserted, deleted,
+    or updated.
     """
 
     webhookId: str | None = None

@@ -24,6 +24,7 @@ class CustomerSummaryModel:
     companyId: str | None = None
     companyName: str | None = None
     primaryContact: str | None = None
+    appEnrollmentId: str | None = None
     outstandingInvoices: int | None = None
     totalInvoicesOpen: int | None = None
     totalInvoicesPastDue: int | None = None

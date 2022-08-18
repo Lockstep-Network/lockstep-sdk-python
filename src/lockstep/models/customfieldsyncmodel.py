@@ -25,7 +25,7 @@ class CustomFieldSyncModel:
     that does not match Lockstep's official schema, you can store it in
     the Custom Field system using CustomFieldSyncModel. To store a
     custom field for an object, create a CustomFieldSyncModel record
-    containing the `EntityType` and `ErpKey` of the entity to which you
+    containing the `TableKey` and `ErpKey` of the entity to which you
     will attach a custom field. Next specify the field's
     `CustomFieldLabel` and either a `StringValue` or `NumericValue`.
     Once imported, this record will be available in the Lockstep API as
@@ -35,7 +35,7 @@ class CustomFieldSyncModel:
     """
 
     erpKey: str | None = None
-    entityType: str | None = None
+    tableKey: str | None = None
     customFieldLabel: str | None = None
     stringValue: str | None = None
     numericValue: float | None = None

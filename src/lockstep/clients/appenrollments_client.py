@@ -17,6 +17,8 @@ from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
 from lockstep.models.appenrollmentmodel import AppEnrollmentModel
+from lockstep.models.appenrollmentreconnectrequest import AppEnrollmentReconnectRequest
+from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 class AppEnrollmentsClient:
     """
@@ -121,7 +123,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def create_app_enrollments(self, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
+    def create_app_enrollments(self, startSync: bool, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
         """
         Creates one or more App Enrollments within this account and
         returns the records as created.
@@ -138,31 +140,34 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
+        startSync : bool
+            Option to start sync immediately after creation of app
+            enrollments (default false)
         body : list[AppEnrollmentModel]
             The App Enrollments to create
         """
         path = "/api/v1/AppEnrollments"
-        result = self.client.send_request("POST", path, body, {}, None)
+        result = self.client.send_request("POST", path, body, {"startSync": startSync}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[AppEnrollmentModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def reconnect_app_enrollment_oauth(self, id: str, body: str) -> LockstepResponse[AppEnrollmentModel]:
+    def reconnect_app_enrollment_oauth(self, id: str, body: AppEnrollmentReconnectRequest) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Updates the OAuth settings associated with this App Enrollment
 
         Parameters
         ----------
         id : str
-
-        body : str
-
+            The unique ID number of the App Enrollment to reconnect
+        body : AppEnrollmentReconnectRequest
+            Information to reconnect the App Enrollment
         """
         path = f"/api/v1/AppEnrollments/{id}/reconnect"
-        result = self.client.send_request("PATCH", path, body, {}, None)
+        result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, AppEnrollmentModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, list[CustomFieldValueModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 

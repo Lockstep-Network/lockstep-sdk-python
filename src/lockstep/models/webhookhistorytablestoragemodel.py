@@ -30,4 +30,7 @@ class WebhookHistoryTableStorageModel:
     processResultMessage: str | None = None
     failureCount: int | None = None
     timestamp: str | None = None
+    records: str | None = None
+    requestMessage: str | None = None
+    responseMessage: str | None = None
 
