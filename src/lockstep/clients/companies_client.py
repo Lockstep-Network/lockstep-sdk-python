@@ -12,11 +12,11 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
+from lockstep.models.companydetailsmodel import CompanyDetailsModel
 from lockstep.models.companymodel import CompanyModel
-from lockstep.models.customerdetailsmodel import CustomerDetailsModel
 from lockstep.models.customersummarymodel import CustomerSummaryModel
 from lockstep.models.vendorsummarymodel import VendorSummaryModel
 
@@ -281,14 +281,14 @@ class CompaniesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def retrieve_customer_detail(self, id: str) -> LockstepResponse[CustomerDetailsModel]:
+    def retrieve_company_detail(self, id: str) -> LockstepResponse[CompanyDetailsModel]:
         """
-        Retrieves the Customer Details specified by this unique
+        Retrieves the Company Details specified by this unique
         identifier, optionally including nested data sets.
 
-        The Customer Detail View represents a slightly different view of
+        The Company Detail View represents a slightly different view of
         the data and includes some extra fields that might be useful.
-        For more information, see the data format of the Customer Detail
+        For more information, see the data format of the Company Detail
         Model.
 
         See [Vendors, Customers, and
@@ -299,11 +299,11 @@ class CompaniesClient:
         ----------
         id : str
             The unique Lockstep Platform ID number of this Company; NOT
-            the customer's ERP key
+            the company's ERP key
         """
-        path = f"/api/v1/Companies/views/customer-details/{id}"
+        path = f"/api/v1/Companies/views/details/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, CustomerDetailsModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, CompanyDetailsModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

@@ -12,9 +12,9 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel
 from lockstep.models.invitesubmitmodel import InviteSubmitModel
@@ -250,5 +250,29 @@ class UserAccountsClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[UserAccountModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def change_user_group(self, groupKey: str) -> LockstepResponse[UserAccountModel]:
+        """
+        Change the active GroupKey of the calling user.
+
+        A User represents a person who has the ability to authenticate
+        against the Lockstep Platform and use services such as Lockstep
+        Inbox. A User is uniquely identified by an Azure identity, and
+        each user must have an email address defined within their
+        account. All Users must validate their email to make use of
+        Lockstep platform services. Users may have different privileges
+        and access control rights within the Lockstep Platform.
+
+        Parameters
+        ----------
+        groupKey : str
+
+        """
+        path = "/api/v1/UserAccounts/change-group"
+        result = self.client.send_request("POST", path, None, {"groupKey": groupKey}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

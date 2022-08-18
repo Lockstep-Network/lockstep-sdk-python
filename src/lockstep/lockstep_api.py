@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.17.35
+# @version    2022.26.12
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -59,6 +59,7 @@ class LockstepApi:
         from lockstep.clients.financialaccount_client import FinancialAccountClient
         from lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
         from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
+        from lockstep.clients.groupaccounts_client import GroupAccountsClient
         from lockstep.clients.invoicehistory_client import InvoiceHistoryClient
         from lockstep.clients.invoices_client import InvoicesClient
         from lockstep.clients.leads_client import LeadsClient
@@ -71,6 +72,7 @@ class LockstepApi:
         from lockstep.clients.sync_client import SyncClient
         from lockstep.clients.useraccounts_client import UserAccountsClient
         from lockstep.clients.userroles_client import UserRolesClient
+        from lockstep.clients.webhookrules_client import WebhookRulesClient
         from lockstep.clients.webhooks_client import WebhooksClient
         self.activities = ActivitiesClient(self)
         self.apiKeys = ApiKeysClient(self)
@@ -89,6 +91,7 @@ class LockstepApi:
         self.financialAccount = FinancialAccountClient(self)
         self.financialAccountBalanceHistory = FinancialAccountBalanceHistoryClient(self)
         self.financialYearSettings = FinancialYearSettingsClient(self)
+        self.groupAccounts = GroupAccountsClient(self)
         self.invoiceHistory = InvoiceHistoryClient(self)
         self.invoices = InvoicesClient(self)
         self.leads = LeadsClient(self)
@@ -101,6 +104,7 @@ class LockstepApi:
         self.sync = SyncClient(self)
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
+        self.webhookRules = WebhookRulesClient(self)
         self.webhooks = WebhooksClient(self)
         self.serverUrl = env
         if env == "sbx":
@@ -108,7 +112,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2022.17.35"
+        self.sdkVersion = "2022.26.12"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None
@@ -117,7 +121,7 @@ class LockstepApi:
     def with_api_key(self, apiKey: str):
         """Configure this API client to use API Key authentication
         
-        Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
+                Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
         
         Parameters
         ----------

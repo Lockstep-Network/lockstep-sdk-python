@@ -15,15 +15,19 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class GroupAccountModel:
     """
-    Contains information about a sync process for an entity.
+    Represents an account for an entire group
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
+    groupKey: str | None = None
+    groupName: str | None = None
+    primaryUserId: str | None = None
+    groupCompanyId: str | None = None
+    isActive: bool | None = None
+    onboardingScheduled: bool | None = None
+    created: str | None = None
+    createdUserId: str | None = None
+    modified: str | None = None
+    modifiedUserId: str | None = None
 

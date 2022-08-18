@@ -12,9 +12,9 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.error_result import ErrorResult
-from lockstep.action_result_model import ActionResultModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
+from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.financialaccountmodel import FinancialAccountModel
 
 class FinancialAccountClient:
@@ -79,7 +79,7 @@ class FinancialAccountClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def deletes_financial_account(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_financial_account(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Financial Account referred to by this unique
         identifier.

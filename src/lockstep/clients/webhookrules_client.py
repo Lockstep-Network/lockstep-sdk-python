@@ -15,42 +15,37 @@ from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
-from lockstep.models.financialaccountbalancehistorymodel import FinancialAccountBalanceHistoryModel
+from lockstep.models.webhookrulemodel import WebhookRuleModel
 
-class FinancialAccountBalanceHistoryClient:
+class WebhookRulesClient:
     """
-    API methods related to FinancialAccountBalanceHistory
+    API methods related to WebhookRules
     """
     from lockstep.lockstep_api import LockstepApi
 
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_balance_history(self, id: str) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def retrieve_webhook_rule(self, id: str) -> LockstepResponse[WebhookRuleModel]:
         """
-        Retrieves the Financial Account Balance History specified by
-        this unique identifier.
-
-        A Financial Account Balance History records either the current
-        or end of period balance for a corresponding financial account.
+        Retrieves the Webhook Rule specified by this unique identifier.
 
         Parameters
         ----------
         id : str
-            The unique Lockstep Platform ID number of this Financial
-            Account Balance History
+            The unique Lockstep Platform ID number of this Webhook Rule
         """
-        path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
+        path = f"/api/v1/WebhookRules/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, WebhookRuleModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def update_balance_history(self, id: str, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def update_webhook_rule(self, id: str, body: object) -> LockstepResponse[WebhookRuleModel]:
         """
-        Updates a Financial Account Balance History that matches the
-        specified id with the requested information.
+        Updates a webhook rule that matches the specified id with the
+        requested information.
 
         The PATCH method allows you to change specific values on the
         object while leaving other values alone. As input you should
@@ -59,83 +54,72 @@ class FinancialAccountBalanceHistoryClient:
         This allows you to ensure that you are only updating the
         specific fields desired.
 
-        A Financial Account Balance History records either the current
-        or end of period balance for a corresponding financial account.
-
         Parameters
         ----------
         id : str
-            The unique Lockstep Platform ID number of the Financial
-            Account Balance History to update
+            The unique Lockstep Platform ID number of the Webhook Rule
+            to update.
         body : object
-            A list of changes to apply to this Financial Account Balance
-            History
+            A list of changes to apply to this Webhook Rule
         """
-        path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
+        path = f"/api/v1/WebhookRules/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FinancialAccountBalanceHistoryModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, WebhookRuleModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def delete_balance_history(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_webhook_rule(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
-        Delete the Financial Account Balance History referred to by this
-        unique identifier.
-
-        A Financial Account Balance History records either the current
-        or end of period balance for a corresponding financial account.
+        Deletes the Webhook Rule referred to by this unique identifier.
 
         Parameters
         ----------
         id : str
-            The unique Lockstep Platform ID number of the Financial
-            Account Balance History to disable
+            The unique Lockstep Platform ID number of the Webhook Rule
+            to delete.
         """
-        path = f"/api/v1/FinancialAccountBalanceHistory/{id}"
+        path = f"/api/v1/WebhookRules/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def create_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
+    def create_webhook_rules(self, body: list[WebhookRuleModel]) -> LockstepResponse[list[WebhookRuleModel]]:
         """
-        Creates a Financial Account Balance History from a given model.
-
-        A Financial Account Balance History records either the current
-        or end of period balance for a corresponding financial account.
+        Creates one or more webhook rules from a given model.
 
         Parameters
         ----------
-        body : list[FinancialAccountBalanceHistoryModel]
-            The Financial Account Balance Histories to create
+        body : list[WebhookRuleModel]
+            The Webhook Rules to create
         """
-        path = "/api/v1/FinancialAccountBalanceHistory"
+        path = "/api/v1/WebhookRules"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[FinancialAccountBalanceHistoryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, list[WebhookRuleModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_balance_history(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
+    def query_webhook_rules(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookRuleModel]]:
         """
-        Queries Financial Account Balance History for this account using
-        the specified filtering, sorting, and pagination rules
-        requested.
+        Queries Webhook Rules for this account using the specified
+        filtering, sorting, and pagination rules requested.
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         page on the Lockstep Developer website.
-
-        A Financial Account Balance History records either the current
-        or end of period balance for a corresponding financial account.
 
         Parameters
         ----------
         filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. No collections are currently available
+            but may be offered in the future
         order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -146,9 +130,9 @@ class FinancialAccountBalanceHistoryClient:
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
-        path = "/api/v1/FinancialAccountBalanceHistory/query"
-        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        path = "/api/v1/WebhookRules/query"
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[FinancialAccountBalanceHistoryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[WebhookRuleModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

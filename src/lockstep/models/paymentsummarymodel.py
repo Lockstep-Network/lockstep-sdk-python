@@ -24,14 +24,20 @@ class PaymentSummaryModel:
     paymentId: str | None = None
     memoText: str | None = None
     referenceCode: str | None = None
+    tenderType: str | None = None
     paymentType: str | None = None
     paymentDate: str | None = None
     paymentAmount: float | None = None
     unappliedAmount: float | None = None
+    isOpen: bool | None = None
     invoiceCount: int | None = None
     totalPaymentsApplied: float | None = None
     invoiceList: list[str] | None = None
     invoiceIdList: list[str] | None = None
-    customerName: str | None = None
-    customerId: str | None = None
+    paymentCompanyId: str | None = None
+    paymentCompanyName: str | None = None
+    customerIds: list[str] | None = None
+    customerNames: list[str] | None = None
+    companyIds: list[str] | None = None
+    companyNames: list[str] | None = None
 
