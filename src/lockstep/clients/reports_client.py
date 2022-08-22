@@ -86,7 +86,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def daily_sales_outstanding(self, ) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
+    def daily_sales_outstanding(self, reportDate: str) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
         """
         Retrieves a current Daily Sales Outstanding (DSO) report for
         this account.
@@ -98,9 +98,12 @@ class ReportsClient:
 
         Parameters
         ----------
+        reportDate : str
+            Optional: Specify the specific report date to generate the
+            from (default UTC now)
         """
         path = "/api/v1/Reports/dailysalesoutstanding"
-        result = self.client.send_request("GET", path, None, None, None)
+        result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[DailySalesOutstandingReportModel](**result.json()), None)
         else:

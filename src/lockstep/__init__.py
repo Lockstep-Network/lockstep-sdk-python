@@ -43,6 +43,7 @@ from lockstep.models.apheaderinfomodel import ApHeaderInfoModel
 from lockstep.models.apikeymodel import ApiKeyModel
 from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
 from lockstep.models.appenrollmentmodel import AppEnrollmentModel
+from lockstep.models.appenrollmentreconnectrequest import AppEnrollmentReconnectRequest
 from lockstep.models.applicationmodel import ApplicationModel
 from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
 from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
@@ -80,11 +81,14 @@ from lockstep.models.erpinfomodel import ErpInfoModel
 from lockstep.models.erpmodel import ErpModel
 from lockstep.models.errorresult import ErrorResult
 from lockstep.models.financialaccountbalancehistorymodel import FinancialAccountBalanceHistoryModel
+from lockstep.models.financialaccountbalancehistorysyncmodel import FinancialAccountBalanceHistorySyncModel
 from lockstep.models.financialaccountmodel import FinancialAccountModel
+from lockstep.models.financialaccountsyncmodel import FinancialAccountSyncModel
 from lockstep.models.financialreportcellmodel import FinancialReportCellModel
 from lockstep.models.financialreportmodel import FinancialReportModel
 from lockstep.models.financialreportrowmodel import FinancialReportRowModel
 from lockstep.models.financialyearsettingmodel import FinancialYearSettingModel
+from lockstep.models.financialyearsettingsyncmodel import FinancialYearSettingSyncModel
 from lockstep.models.groupaccountmodel import GroupAccountModel
 from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel

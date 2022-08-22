@@ -69,6 +69,7 @@ class CompanyModel:
     description: str | None = None
     website: str | None = None
     appEnrollmentId: str | None = None
+    emailAddress: str | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
     contacts: list[ContactModel] | None = None

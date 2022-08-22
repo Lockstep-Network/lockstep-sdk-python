@@ -30,6 +30,7 @@ class CompanySyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     erpKey: str | None = None
     companyName: str | None = None
     companyType: str | None = None
@@ -55,5 +56,6 @@ class CompanySyncModel:
     apEmailAddress: str | None = None
     arEmailAddress: str | None = None
     preferredDeliveryMethod: str | None = None
+    emailAddress: str | None = None
     externalReference: str | None = None
 

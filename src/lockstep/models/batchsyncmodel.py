@@ -21,6 +21,9 @@ from lockstep.models.invoicelinesyncmodel import InvoiceLineSyncModel
 from lockstep.models.customfieldsyncmodel import CustomFieldSyncModel
 from lockstep.models.paymentsyncmodel import PaymentSyncModel
 from lockstep.models.paymentappliedsyncmodel import PaymentAppliedSyncModel
+from lockstep.models.financialyearsettingsyncmodel import FinancialYearSettingSyncModel
+from lockstep.models.financialaccountsyncmodel import FinancialAccountSyncModel
+from lockstep.models.financialaccountbalancehistorysyncmodel import FinancialAccountBalanceHistorySyncModel
 
 @dataclass
 class BatchSyncModel:
@@ -48,4 +51,7 @@ class BatchSyncModel:
     customFields: list[CustomFieldSyncModel] | None = None
     payments: list[PaymentSyncModel] | None = None
     paymentApplications: list[PaymentAppliedSyncModel] | None = None
+    financialYearSettings: list[FinancialYearSettingSyncModel] | None = None
+    financialAccounts: list[FinancialAccountSyncModel] | None = None
+    financialAccountBalanceHistories: list[FinancialAccountBalanceHistorySyncModel] | None = None
 

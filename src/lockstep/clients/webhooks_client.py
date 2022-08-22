@@ -155,7 +155,7 @@ class WebhooksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def query_webhook_history(self, webhookId: str, filter: str, select: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookHistoryTableStorageModel]]:
+    def query_webhook_history(self, webhookId: str, include: str, filter: str, select: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookHistoryTableStorageModel]]:
         """
 
 
@@ -163,6 +163,10 @@ class WebhooksClient:
         ----------
         webhookId : str
             The unique Lockstep Platform ID number of this Webhook
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. Available collection: Records,
+            RequestMessage, ResponseMessage
         filter : str
             The filter for this query. See [Azure Query
             Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
@@ -177,7 +181,7 @@ class WebhooksClient:
             The page number for results (default 0).
         """
         path = f"/api/v1/Webhooks/{webhookId}/history/query"
-        result = self.client.send_request("GET", path, None, {"filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        result = self.client.send_request("GET", path, None, {"include": include, "filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[WebhookHistoryTableStorageModel](**result.json()), None)
         else:

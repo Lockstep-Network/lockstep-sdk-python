@@ -33,4 +33,5 @@ class SyncSubmitModel:
     """
 
     appEnrollmentId: str | None = None
+    runFullSync: bool | None = None
 

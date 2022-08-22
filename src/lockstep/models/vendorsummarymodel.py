@@ -37,4 +37,5 @@ class VendorSummaryModel:
     openBillCount: int | None = None
     paidBillCount: int | None = None
     totalBillCount: int | None = None
+    dpo: float | None = None
 
