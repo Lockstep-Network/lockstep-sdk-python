@@ -13,6 +13,7 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.updateaction import UpdateAction
 
 @dataclass
 class CompanySyncModel:

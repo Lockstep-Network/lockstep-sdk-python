@@ -25,6 +25,7 @@ from lockstep.clients.leads_client import LeadsClient
 from lockstep.clients.notes_client import NotesClient
 from lockstep.clients.paymentapplications_client import PaymentApplicationsClient
 from lockstep.clients.payments_client import PaymentsClient
+from lockstep.clients.profiles_client import ProfilesClient
 from lockstep.clients.provisioning_client import ProvisioningClient
 from lockstep.clients.reports_client import ReportsClient
 from lockstep.clients.status_client import StatusClient
@@ -117,6 +118,7 @@ from lockstep.models.paymentsyncmodel import PaymentSyncModel
 from lockstep.models.provisioningfinalizerequestmodel import ProvisioningFinalizeRequestModel
 from lockstep.models.provisioningmodel import ProvisioningModel
 from lockstep.models.provisioningresponsemodel import ProvisioningResponseModel
+from lockstep.models.publiccompanyprofilemodel import PublicCompanyProfileModel
 from lockstep.models.riskratemodel import RiskRateModel
 from lockstep.models.statemodel import StateModel
 from lockstep.models.statusmodel import StatusModel

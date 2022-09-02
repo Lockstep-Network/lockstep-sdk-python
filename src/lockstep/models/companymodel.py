@@ -70,6 +70,7 @@ class CompanyModel:
     website: str | None = None
     appEnrollmentId: str | None = None
     emailAddress: str | None = None
+    publicUrlSlug: str | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
     contacts: list[ContactModel] | None = None
