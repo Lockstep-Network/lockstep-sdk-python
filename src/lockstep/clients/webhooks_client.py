@@ -114,7 +114,7 @@ class WebhooksClient:
             The unique Lockstep Platform ID number of the Webhook to
             update.
         """
-        path = f"/api/v1/Webhooks/{id}/regenerateclientsecret"
+        path = f"/api/v1/Webhooks/{id}/regenerate-client-secret"
         result = self.client.send_request("PATCH", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)

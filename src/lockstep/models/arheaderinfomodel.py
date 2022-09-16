@@ -21,6 +21,7 @@ class ArHeaderInfoModel:
     """
 
     groupKey: str | None = None
+    reportDate: str | None = None
     reportPeriod: str | None = None
     totalCustomers: int | None = None
     totalInvoices: int | None = None

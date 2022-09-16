@@ -31,9 +31,8 @@ class ProfilesClient:
         slug.
 
         A Public Company Profile makes available the following
-        information: <list type="bullet"><item>Company
-        Name</item><item>Company Logo
-        Url</item><item>Description</item><item>Website</item></list>
+        information: <ul><li>Company Name</li><li>Company Logo
+        Url</li><li>Description</li><li>Website</li></ul>
 
         Parameters
         ----------
@@ -49,15 +48,17 @@ class ProfilesClient:
 
     def query_public_company_profiles(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PublicCompanyProfileModel]]:
         """
-        Queries Public Company Profiles <p> More information on querying
-        can be found on the [Searchlight Query
-        Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        page on the Lockstep Developer website. </p><p> A Public Company
-        Profile makes available the following information:
+        Queries Public Company Profiles
 
-        <list type="bullet"><item>`Company Name` </item><item>`Company
-        Logo Url` </item><item>`Description` </item><item>`Website`
-        </item></list></p>
+        More information on querying can be found on the [Searchlight
+        Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        page on the Lockstep Developer website.
+
+        A Public Company Profile makes available the following
+        information:
+
+        <ul><li>Company Name</li><li>Company Logo
+        Url</li><li>Description</li><li>Website</li></ul>
 
         Parameters
         ----------

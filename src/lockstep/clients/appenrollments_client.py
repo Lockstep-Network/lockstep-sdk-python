@@ -153,9 +153,9 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def reconnect_app_enrollment_oauth(self, id: str, body: AppEnrollmentReconnectRequest) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def reconnect_app_enrollment(self, id: str, body: AppEnrollmentReconnectRequest) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
-        Updates the OAuth settings associated with this App Enrollment
+        Updates the settings associated with this App Enrollment
 
         Parameters
         ----------

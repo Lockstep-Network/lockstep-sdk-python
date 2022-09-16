@@ -102,7 +102,7 @@ class ReportsClient:
             Optional: Specify the specific report date to generate the
             from (default UTC now)
         """
-        path = "/api/v1/Reports/dailysalesoutstanding"
+        path = "/api/v1/Reports/daily-sales-outstanding"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[DailySalesOutstandingReportModel](**result.json()), None)
@@ -207,7 +207,7 @@ class ReportsClient:
         Parameters
         ----------
         """
-        path = "/api/v1/Reports/riskrates"
+        path = "/api/v1/Reports/risk-rates"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[RiskRateModel](**result.json()), None)
