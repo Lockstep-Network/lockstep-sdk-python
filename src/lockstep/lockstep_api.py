@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.35.5
+# @version    2022.37.24
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -114,7 +114,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2022.35.5"
+        self.sdkVersion = "2022.37.24"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None

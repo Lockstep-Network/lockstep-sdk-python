@@ -21,6 +21,7 @@ class ApHeaderInfoModel:
     """
 
     groupKey: str | None = None
+    reportDate: str | None = None
     reportPeriod: str | None = None
     totalVendors: int | None = None
     totalBills: int | None = None

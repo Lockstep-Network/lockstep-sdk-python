@@ -49,6 +49,7 @@ class ApplicationModel:
     isActive: bool | None = None
     wikiURL: str | None = None
     groupKey: str | None = None
+    b2CClientId: str | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None

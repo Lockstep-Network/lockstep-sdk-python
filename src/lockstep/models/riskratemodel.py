@@ -22,6 +22,7 @@ class RiskRateModel:
 
     groupKey: str | None = None
     reportPeriod: str | None = None
+    reportDate: str | None = None
     invoiceMonthName: str | None = None
     totalInvoiceCount: int | None = None
     totalInvoiceAmount: float | None = None

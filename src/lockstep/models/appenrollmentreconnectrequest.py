@@ -21,4 +21,8 @@ class AppEnrollmentReconnectRequest:
     """
 
     authCode: str | None = None
+    username: str | None = None
+    password: str | None = None
+    tokenId: str | None = None
+    tokenSecret: str | None = None
 
