@@ -1,21 +1,22 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
-from lockstep.models.actionresultmodel import ActionResultModel
+from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.contactmodel import ContactModel
+from lockstep.models.deleteresult import DeleteResult
 
 class ContactsClient:
     """
@@ -87,9 +88,9 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def disable_contact(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_contact(self, id: str) -> LockstepResponse[DeleteResult]:
         """
-        Disable the Contact referred to by this unique identifier.
+        Delete the Contact referred to by this unique identifier.
 
         A Contact contains information about a person or role within a
         Company. You can use Contacts to track information about who is
@@ -101,12 +102,12 @@ class ContactsClient:
         ----------
         id : str
             The unique Lockstep Platform ID number of the Contact to
-            disable; NOT the customer's ERP key
+            delete; NOT the customer's ERP key
         """
         path = f"/api/v1/Contacts/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -129,6 +130,29 @@ class ContactsClient:
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, list[ContactModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def delete_contacts(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
+        """
+        Delete the Contacts referred to by these unique identifiers.
+
+        A Contact contains information about a person or role within a
+        Company. You can use Contacts to track information about who is
+        responsible for a specific project, who handles invoices, or
+        information about which role at a particular customer or vendor
+        you should speak with about invoices.
+
+        Parameters
+        ----------
+        body : BulkDeleteRequestModel
+            The unique Lockstep Platform ID numbers of the Contacts to
+            delete; NOT the customer's ERP keys
+        """
+        path = "/api/v1/Contacts"
+        result = self.client.send_request("DELETE", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -160,8 +184,8 @@ class ContactsClient:
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)

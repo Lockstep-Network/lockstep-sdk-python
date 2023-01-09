@@ -1,24 +1,24 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
-from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
 from lockstep.models.appenrollmentmodel import AppEnrollmentModel
-from lockstep.models.appenrollmentreconnectrequest import AppEnrollmentReconnectRequest
+from lockstep.models.appenrollmentreconnectinfo import AppEnrollmentReconnectInfo
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
+from lockstep.models.deleteresult import DeleteResult
 
 class AppEnrollmentsClient:
     """
@@ -95,7 +95,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse[ActionResultModel]:
+    def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse[DeleteResult]:
         """
         Deletes the App Enrollment referred to by this unique
         identifier. An App Enrollment represents an app that has been
@@ -119,7 +119,7 @@ class AppEnrollmentsClient:
         path = f"/api/v1/AppEnrollments/{id}"
         result = self.client.send_request("DELETE", path, None, {"removeEnrollmentData": removeEnrollmentData}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
+            return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -153,15 +153,15 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def reconnect_app_enrollment(self, id: str, body: AppEnrollmentReconnectRequest) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def reconnect_app_enrollment(self, id: str, body: AppEnrollmentReconnectInfo) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Updates the settings associated with this App Enrollment
 
         Parameters
         ----------
         id : str
-            The unique ID number of the App Enrollment to reconnect
-        body : AppEnrollmentReconnectRequest
+            The id for the app enrollment
+        body : AppEnrollmentReconnectInfo
             Information to reconnect the App Enrollment
         """
         path = f"/api/v1/AppEnrollments/{id}/reconnect"
@@ -204,8 +204,8 @@ class AppEnrollmentsClient:
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)

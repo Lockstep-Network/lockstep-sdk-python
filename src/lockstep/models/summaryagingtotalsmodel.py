@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -15,14 +15,11 @@
 from dataclasses import dataclass
 
 @dataclass
-class ActivityXRefModel:
+class SummaryAgingTotalsModel:
     """
-    Represents links between an Activity and another record.
+    Represents summary aging bucket total.
     """
 
-    activityXRefId: str | None = None
-    activityId: str | None = None
-    groupKey: str | None = None
-    tableKey: str | None = None
-    objectKey: str | None = None
+    bucket: str | None = None
+    outstandingBalance: float | None = None
 

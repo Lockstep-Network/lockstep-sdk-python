@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -164,7 +164,7 @@ class ReportsClient:
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
         pageSize : int
-            The page size for results (default 200, maximum of 10,000)
+            The page size for results (default 250, maximum of 500)
         pageNumber : int
             The page number for results (default 0)
         """
@@ -521,7 +521,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def days_payable_outstanding_summary(self, reportDate: str, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[list[DpoSummaryModel]]:
+    def days_payable_outstanding_summary(self, reportDate: str, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[DpoSummaryModel]]:
         """
         Retrieves a summary for each vendor that includes a count of
         their outstanding bills, the total amount outstanding, and their
@@ -552,18 +552,18 @@ class ReportsClient:
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
         pageSize : int
-            The page size for results (default 200, maximum of 10,000)
+            The page size for results (default 250, maximum of 500)
         pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/Reports/daily-payable-outstanding-summary"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[DpoSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult[DpoSummaryModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def days_payable_outstanding_summary_total(self, reportDate: str) -> LockstepResponse[list[DpoSummaryGroupTotalModel]]:
+    def days_payable_outstanding_summary_total(self, reportDate: str) -> LockstepResponse[DpoSummaryGroupTotalModel]:
         """
         Retrieves total number of vendors, bills, the total amount
         outstanding, and the daily payable outstanding value for a
@@ -583,6 +583,6 @@ class ReportsClient:
         path = "/api/v1/Reports/daily-payable-outstanding-summary-total"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[DpoSummaryGroupTotalModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, DpoSummaryGroupTotalModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
