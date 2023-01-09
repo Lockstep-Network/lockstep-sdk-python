@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -18,7 +18,7 @@ from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
 from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
-from lockstep.models.paymentsummarymodel import PaymentSummaryModel
+from lockstep.models.paymentsummarymodelpaymentsummarytotalsmodelsummaryfetchresult import PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult
 from requests.models import Response
 
 class PaymentsClient:
@@ -195,8 +195,8 @@ class PaymentsClient:
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -225,7 +225,7 @@ class PaymentsClient:
         result = self.client.send_request("GET", path, None, {}, None)
         return result
 
-    def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentSummaryModel]]:
+    def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult]:
         """
         Queries Payments for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. This
@@ -257,14 +257,13 @@ class PaymentsClient:
             To fetch additional data on this object, specify the list of
             elements to retrieve.
 
-            No collections are currently available but may be offered in
-            the future
+            Available collections: Summary, Aging
         order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -272,7 +271,7 @@ class PaymentsClient:
         path = "/api/v1/Payments/views/summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PaymentSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
@@ -326,8 +325,8 @@ class PaymentsClient:
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)

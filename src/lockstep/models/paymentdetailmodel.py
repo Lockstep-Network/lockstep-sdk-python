@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -28,8 +28,12 @@ class PaymentDetailModel:
     referenceCode: str | None = None
     primaryContact: str | None = None
     email: str | None = None
+    currencyCode: str | None = None
     paymentAmount: float | None = None
     unappliedAmount: float | None = None
+    baseCurrencyCode: str | None = None
+    baseCurrencyPaymentAmount: float | None = None
+    baseCurrencyUnappliedAmount: float | None = None
     paymentType: str | None = None
     tenderType: str | None = None
     paymentDate: str | None = None

@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -75,6 +75,7 @@ class InvoiceModel:
     inDispute: bool | None = None
     excludeFromAging: bool | None = None
     preferredDeliveryMethod: str | None = None
+    currencyRate: float | None = None
     addresses: list[InvoiceAddressModel] | None = None
     lines: list[InvoiceLineModel] | None = None
     payments: list[InvoicePaymentDetailModel] | None = None

@@ -1,13 +1,13 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
-# @copyright  2021-2022 Lockstep, Inc.
+# @copyright  2021-2023 Lockstep, Inc.
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -21,6 +21,7 @@ from lockstep.models.invitesubmitmodel import InviteSubmitModel
 from lockstep.models.transferownermodel import TransferOwnerModel
 from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 from lockstep.models.useraccountmodel import UserAccountModel
+from lockstep.models.userdataresponsemodel import UserDataResponseModel
 
 class UserAccountsClient:
     """
@@ -112,30 +113,6 @@ class UserAccountsClient:
         """
         path = f"/api/v1/UserAccounts/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
-        else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
-
-    def reenable_user(self, id: str) -> LockstepResponse[ActionResultModel]:
-        """
-        Reenable the user referred to by this unique identifier.
-
-        A User represents a person who has the ability to authenticate
-        against the Lockstep Platform and use services such as Lockstep
-        Inbox. A User is uniquely identified by an Azure identity, and
-        each user must have an email address defined within their
-        account. All Users must validate their email to make use of
-        Lockstep platform services. Users may have different privileges
-        and access control rights within the Lockstep Platform.
-
-        Parameters
-        ----------
-        id : str
-            The unique Lockstep Platform ID number of this User
-        """
-        path = "/api/v1/UserAccounts/reenable"
-        result = self.client.send_request("POST", path, None, {"id": id}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
@@ -240,8 +217,8 @@ class UserAccountsClient:
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageSize : int
-            The page size for results (default 200). See [Searchlight
-            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -274,5 +251,24 @@ class UserAccountsClient:
         result = self.client.send_request("POST", path, None, {"groupKey": groupKey}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def get_user_data(self, include: list[str]) -> LockstepResponse[UserDataResponseModel]:
+        """
+        Retrieves the user data for the current user. This allows for
+        retrieving extended user data such as UTM parameters.
+
+        Parameters
+        ----------
+        include : list[str]
+            The set of data to retrieve. To avoid any casing confusion,
+            these values are converted to upper case in storage.
+            Possible values are: UTM
+        """
+        path = "/api/v1/UserAccounts/user-data"
+        result = self.client.send_request("GET", path, None, {"include": include}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, UserDataResponseModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

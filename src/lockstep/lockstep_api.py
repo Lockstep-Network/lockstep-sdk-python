@@ -1,15 +1,15 @@
 #
 # Lockstep Platform SDK for Python
 #
-# (c) 2021-2022 Lockstep, Inc.
+# (c) 2021-2023 Lockstep, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     Lockstep Network <support@lockstep.io>
 #             
-# @copyright  2021-2022 Lockstep, Inc.
-# @version    2022.37.24
+# @copyright  2021-2023 Lockstep, Inc.
+# @version    2023.1.3
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -42,7 +42,6 @@ class LockstepApi:
             name will be recorded alongside API calls so that you can identify
             the source of errors. 
         """
-        from lockstep.clients.activities_client import ActivitiesClient
         from lockstep.clients.apikeys_client import ApiKeysClient
         from lockstep.clients.appenrollments_client import AppEnrollmentsClient
         from lockstep.clients.applications_client import ApplicationsClient
@@ -50,32 +49,38 @@ class LockstepApi:
         from lockstep.clients.codedefinitions_client import CodeDefinitionsClient
         from lockstep.clients.companies_client import CompaniesClient
         from lockstep.clients.contacts_client import ContactsClient
-        from lockstep.clients.creditmemoapplied_client import CreditMemoAppliedClient
+        from lockstep.clients.creditmemosapplied_client import CreditMemosAppliedClient
         from lockstep.clients.currencies_client import CurrenciesClient
         from lockstep.clients.customfielddefinitions_client import CustomFieldDefinitionsClient
         from lockstep.clients.customfieldvalues_client import CustomFieldValuesClient
         from lockstep.clients.definitions_client import DefinitionsClient
-        from lockstep.clients.emails_client import EmailsClient
+        from lockstep.clients.featureflags_client import FeatureFlagsClient
         from lockstep.clients.financialaccount_client import FinancialAccountClient
         from lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
         from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
         from lockstep.clients.groupaccounts_client import GroupAccountsClient
+        from lockstep.clients.invoiceaddresses_client import InvoiceAddressesClient
         from lockstep.clients.invoicehistory_client import InvoiceHistoryClient
+        from lockstep.clients.invoicelines_client import InvoiceLinesClient
         from lockstep.clients.invoices_client import InvoicesClient
         from lockstep.clients.leads_client import LeadsClient
+        from lockstep.clients.magiclinks_client import MagicLinksClient
         from lockstep.clients.notes_client import NotesClient
-        from lockstep.clients.paymentapplications_client import PaymentApplicationsClient
         from lockstep.clients.payments_client import PaymentsClient
-        from lockstep.clients.profiles_client import ProfilesClient
+        from lockstep.clients.paymentsapplied_client import PaymentsAppliedClient
+        from lockstep.clients.profilesaccounting_client import ProfilesAccountingClient
+        from lockstep.clients.profilesaccountingcontacts_client import ProfilesAccountingContactsClient
+        from lockstep.clients.profilescompanies_client import ProfilesCompaniesClient
         from lockstep.clients.provisioning_client import ProvisioningClient
         from lockstep.clients.reports_client import ReportsClient
         from lockstep.clients.status_client import StatusClient
         from lockstep.clients.sync_client import SyncClient
+        from lockstep.clients.transactions_client import TransactionsClient
+        from lockstep.clients.transcriptions_client import TranscriptionsClient
         from lockstep.clients.useraccounts_client import UserAccountsClient
         from lockstep.clients.userroles_client import UserRolesClient
         from lockstep.clients.webhookrules_client import WebhookRulesClient
         from lockstep.clients.webhooks_client import WebhooksClient
-        self.activities = ActivitiesClient(self)
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
         self.applications = ApplicationsClient(self)
@@ -83,27 +88,34 @@ class LockstepApi:
         self.codeDefinitions = CodeDefinitionsClient(self)
         self.companies = CompaniesClient(self)
         self.contacts = ContactsClient(self)
-        self.creditMemoApplied = CreditMemoAppliedClient(self)
+        self.creditMemosApplied = CreditMemosAppliedClient(self)
         self.currencies = CurrenciesClient(self)
         self.customFieldDefinitions = CustomFieldDefinitionsClient(self)
         self.customFieldValues = CustomFieldValuesClient(self)
         self.definitions = DefinitionsClient(self)
-        self.emails = EmailsClient(self)
+        self.featureFlags = FeatureFlagsClient(self)
         self.financialAccount = FinancialAccountClient(self)
         self.financialAccountBalanceHistory = FinancialAccountBalanceHistoryClient(self)
         self.financialYearSettings = FinancialYearSettingsClient(self)
         self.groupAccounts = GroupAccountsClient(self)
+        self.invoiceAddresses = InvoiceAddressesClient(self)
         self.invoiceHistory = InvoiceHistoryClient(self)
+        self.invoiceLines = InvoiceLinesClient(self)
         self.invoices = InvoicesClient(self)
         self.leads = LeadsClient(self)
+        self.magicLinks = MagicLinksClient(self)
         self.notes = NotesClient(self)
-        self.paymentApplications = PaymentApplicationsClient(self)
         self.payments = PaymentsClient(self)
-        self.profiles = ProfilesClient(self)
+        self.paymentsApplied = PaymentsAppliedClient(self)
+        self.profilesAccounting = ProfilesAccountingClient(self)
+        self.profilesAccountingContacts = ProfilesAccountingContactsClient(self)
+        self.profilesCompanies = ProfilesCompaniesClient(self)
         self.provisioning = ProvisioningClient(self)
         self.reports = ReportsClient(self)
         self.status = StatusClient(self)
         self.sync = SyncClient(self)
+        self.transactions = TransactionsClient(self)
+        self.transcriptions = TranscriptionsClient(self)
         self.userAccounts = UserAccountsClient(self)
         self.userRoles = UserRolesClient(self)
         self.webhookRules = WebhookRulesClient(self)
@@ -114,7 +126,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2022.37.24"
+        self.sdkVersion = "2023.1.3"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None
