@@ -164,20 +164,20 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def creates_a_lockstepapi2.models.transcriptionvalidationrequestitemmodel(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
+    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
         """
-        Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        specified by this unique identifier.
+        Retrieves the TranscriptionValidationRequestItemModel specified
+        by this unique identifier.
 
-        A LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        represents a file sent from the client to verify the file type
-        using the machine learning platform Sage AI.
+        A TranscriptionValidationRequestItemModel represents a file sent
+        from the client to verify the file type using the machine
+        learning platform Sage AI.
 
         Parameters
         ----------
         body : list[TranscriptionRequestSubmit]
-            The LockstepApi2.Models.TranscriptionValidationRequestItemModels
-            to add to an existing LockstepApi2.Models.TranscriptionValidationRequestItemModel
+            The TranscriptionValidationRequestItemModels to add to an
+            existing TranscriptionValidationRequestItemModel
         """
         path = "/api/v1/Transcriptions/validation-items"
         result = self.client.send_request("POST", path, body, {}, None)
@@ -186,20 +186,20 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def retrieve_a_lockstepapi2.models.transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
+    def retrieve_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
-        Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        specified by this unique identifier.
+        Retrieves the TranscriptionValidationRequestItemModel specified
+        by this unique identifier.
 
-        A LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        represents a file sent from the client to verify the file type
-        using the machine learning platform Sage AI.
+        A TranscriptionValidationRequestItemModel represents a file sent
+        from the client to verify the file type using the machine
+        learning platform Sage AI.
 
         Parameters
         ----------
         id : str
             The unique Lockstep Platform ID number of the
-            LockstepApi2.Models.TranscriptionValidationRequestItemModel
+            TranscriptionValidationRequestItemModel
         """
         path = f"/api/v1/Transcriptions/validation-items/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
@@ -208,10 +208,10 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def update_a_lockstepapi2.models.transcriptionvalidationrequestitemmodel(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
+    def update_a_transcriptionvalidationrequestitemmodel(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
-        Updates the LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        specified by this unique identifier.
+        Updates the TranscriptionValidationRequestItemModel specified by
+        this unique identifier.
 
         The PATCH method allows you to change specific values on the
         object while leaving other values alone. As input you should
@@ -220,18 +220,18 @@ class TranscriptionsClient:
         This allows you to ensure that you are only updating the
         specific fields desired.
 
-        A LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        represents a file sent from the client to verify the file type
-        using the machine learning platform Sage AI.
+        A TranscriptionValidationRequestItemModel represents a file sent
+        from the client to verify the file type using the machine
+        learning platform Sage AI.
 
         Parameters
         ----------
         id : str
             The unique Lockstep Platform ID number of the
-            LockstepApi2.Models.TranscriptionValidationRequestItemModel
+            TranscriptionValidationRequestItemModel
         body : object
             A list of changes to apply to this
-            LockstepApi2.Models.TranscriptionValidationRequestItemModel
+            TranscriptionValidationRequestItemModel
         """
         path = f"/api/v1/Transcriptions/validation-items/{id}"
         result = self.client.send_request("PATCH", path, body, {}, None)
@@ -240,20 +240,20 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def delete_a_lockstepapi2.models.transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[DeleteResult]:
+    def delete_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[DeleteResult]:
         """
-        Deletes the LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        specified by this unique identifier.
+        Deletes the TranscriptionValidationRequestItemModel specified by
+        this unique identifier.
 
-        A LockstepApi2.Models.TranscriptionValidationRequestItemModel
-        represents a file sent from the client to verify the file type
-        using the machine learning platform Sage AI.
+        A TranscriptionValidationRequestItemModel represents a file sent
+        from the client to verify the file type using the machine
+        learning platform Sage AI.
 
         Parameters
         ----------
         id : str
             The unique Lockstep Platform ID number of the
-            LockstepApi2.Models.TranscriptionValidationRequestItemModel
+            TranscriptionValidationRequestItemModel
         """
         path = f"/api/v1/Transcriptions/validation-items/{id}"
         result = self.client.send_request("DELETE", path, None, {}, None)
@@ -264,9 +264,9 @@ class TranscriptionsClient:
 
     def query_transcription_validation_request_items(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[TranscriptionValidationRequestItemModel]]:
         """
-        Queries LockstepApi2.Models.TranscriptionValidationRequestItemModels
-        for this account using the specified filtering, sorting, nested
-        fetch, and pagination rules requested.
+        Queries TranscriptionValidationRequestItemModels for this
+        account using the specified filtering, sorting, nested fetch,
+        and pagination rules requested.
 
         More information on querying can be found on the [Searchlight
         Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
