@@ -232,9 +232,12 @@ class InvoicesClient:
         supported invoice types and has been synced using an app
         enrollment to one of the supported apps.
 
-        Supported apps: Quickbooks Online, Xero
+        Sage Intacct supports AR Invoices.
 
-        Supported invoice types: Invoice, Credit Memo
+        Quickbooks Online supports AR Invoices, and AR Credit Memos.
+
+        Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP
+        Credit Memos.
 
         Parameters
         ----------

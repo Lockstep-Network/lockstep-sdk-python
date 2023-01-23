@@ -15,16 +15,11 @@
 from dataclasses import dataclass
 
 @dataclass
-class PayablesSummaryReportModel:
+class SupportAccessModel:
     """
-    Represents the payables summary report based on a timeframe
+    Contains information for Lockstep to support/assist a user.
     """
 
-    groupKey: str | None = None
-    timeframe: int | None = None
-    baseCurrencyCode: str | None = None
-    totalPaymentsAmount: float | None = None
-    totalPaymentsCount: int | None = None
-    totalAmountBilled: float | None = None
-    totalBillsCount: int | None = None
+    code: str | None = None
+    expiresAt: str | None = None
 

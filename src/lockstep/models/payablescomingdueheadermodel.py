@@ -24,6 +24,7 @@ class PayablesComingDueHeaderModel:
     numberOfBillsDue: int | None = None
     numberOfVendors: int | None = None
     percentageOfTotal: float | None = None
+    baseCurrencyCode: str | None = None
     totalAmountDue: float | None = None
     dueDate: str | None = None
 

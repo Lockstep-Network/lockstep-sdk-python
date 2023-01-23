@@ -22,5 +22,6 @@ class PayablesComingDueWidgetModel:
 
     groupKey: str | None = None
     date: str | None = None
+    baseCurrencyCode: str | None = None
     amountDue: float | None = None
 

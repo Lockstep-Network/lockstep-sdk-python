@@ -15,16 +15,10 @@
 from dataclasses import dataclass
 
 @dataclass
-class PayablesSummaryReportModel:
+class SupportAccessRequest:
     """
-    Represents the payables summary report based on a timeframe
+    Sets support access data for a user.
     """
 
-    groupKey: str | None = None
-    timeframe: int | None = None
-    baseCurrencyCode: str | None = None
-    totalPaymentsAmount: float | None = None
-    totalPaymentsCount: int | None = None
-    totalAmountBilled: float | None = None
-    totalBillsCount: int | None = None
+    expiresAt: str | None = None
 

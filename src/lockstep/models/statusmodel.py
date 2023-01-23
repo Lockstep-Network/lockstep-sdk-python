@@ -14,6 +14,7 @@
 
 from dataclasses import dataclass
 from lockstep.models.magiclinkstatusmodel import MagicLinkStatusModel
+from lockstep.models.supportaccessmodel import SupportAccessModel
 from lockstep.models.usergroupmodel import UserGroupModel
 
 @dataclass
@@ -40,6 +41,8 @@ class StatusModel:
     magicLinkId: str | None = None
     magicLinkCompanyId: str | None = None
     magicLink: MagicLinkStatusModel | None = None
+    supportAccess: SupportAccessModel | None = None
+    isImpersonated: bool | None = None
     dependencies: object | None = None
     userGroups: list[UserGroupModel] | None = None
     baseCurrencyCode: str | None = None

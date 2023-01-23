@@ -165,3 +165,26 @@ class ProfilesAccountingContactsClient:
             return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def swap_secondary_and_primary_contact(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
+        """
+        Updates an accounting profile contact that matches the specified
+        id with the primary contact attached to the accounting profile
+
+        An Accounting Profile Contact has a link to a Contact that is
+        associated with your company's Accounting Profile. These
+        Contacts are secondary contacts to the primary that is on the
+        profile.
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of the Accounting
+            Profile Contact to update
+        """
+        path = f"/api/v1/profiles/accounting/contacts/{id}/primary"
+        result = self.client.send_request("PATCH", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, AccountingProfileContactModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

@@ -18,6 +18,8 @@ from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel
 from lockstep.models.invitesubmitmodel import InviteSubmitModel
+from lockstep.models.supportaccessmodel import SupportAccessModel
+from lockstep.models.supportaccessrequest import SupportAccessRequest
 from lockstep.models.transferownermodel import TransferOwnerModel
 from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 from lockstep.models.useraccountmodel import UserAccountModel
@@ -263,12 +265,35 @@ class UserAccountsClient:
         ----------
         include : list[str]
             The set of data to retrieve. To avoid any casing confusion,
-            these values are converted to upper case in storage.
-            Possible values are: UTM
+            these values are converted to upper case. Possible values
+            are: UTM
         """
         path = "/api/v1/UserAccounts/user-data"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserDataResponseModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def set_support_access(self, body: SupportAccessRequest) -> LockstepResponse[SupportAccessModel]:
+        """
+        Set support access for the calling user.
+
+        Support access allows Lockstep to access the user's account to
+        troubleshoot issues. Access is granted for a limited time, can
+        be revoked at any time, and requires a code to verify the
+        access.
+
+        Every call to this API will regenerate the support access code.
+
+        Parameters
+        ----------
+        body : SupportAccessRequest
+
+        """
+        path = "/api/v1/UserAccounts/support-access"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, SupportAccessModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

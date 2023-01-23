@@ -24,6 +24,7 @@ from lockstep.models.paymentappliedsyncmodel import PaymentAppliedSyncModel
 from lockstep.models.financialyearsettingsyncmodel import FinancialYearSettingSyncModel
 from lockstep.models.financialaccountsyncmodel import FinancialAccountSyncModel
 from lockstep.models.financialaccountbalancehistorysyncmodel import FinancialAccountBalanceHistorySyncModel
+from lockstep.models.basecurrencysyncmodel import BaseCurrencySyncModel
 
 @dataclass
 class BatchSyncModel:
@@ -54,4 +55,5 @@ class BatchSyncModel:
     financialYearSettings: list[FinancialYearSettingSyncModel] | None = None
     financialAccounts: list[FinancialAccountSyncModel] | None = None
     financialAccountBalanceHistories: list[FinancialAccountBalanceHistorySyncModel] | None = None
+    baseCurrencies: list[BaseCurrencySyncModel] | None = None
 
