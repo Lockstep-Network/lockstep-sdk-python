@@ -71,6 +71,9 @@ class CompanyModel:
     appEnrollmentId: str | None = None
     emailAddress: str | None = None
     publicUrlSlug: str | None = None
+    stateTaxId: str | None = None
+    stateOfIncorporation: str | None = None
+    linkedInUrlSlug: str | None = None
     viewBoxSettings: ViewBoxSettingsModel | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None

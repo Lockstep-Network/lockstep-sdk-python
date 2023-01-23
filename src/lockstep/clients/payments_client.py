@@ -213,7 +213,7 @@ class PaymentsClient:
         Retrieves a PDF file for this payment if it has been synced
         using an app enrollment to one of the supported apps.
 
-        Supported apps: Quickbooks Online
+        Quickbooks Online supports AR Payments.
 
         Parameters
         ----------

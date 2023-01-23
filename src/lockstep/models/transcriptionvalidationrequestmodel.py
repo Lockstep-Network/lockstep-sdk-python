@@ -13,29 +13,21 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.transcriptionvalidationrequestitemmodel import TranscriptionValidationRequestItemModel
 
 @dataclass
-class TranscriptionValidationRequestItem:
+class TranscriptionValidationRequestModel:
     """
-    Represents a transcription validation request item to be validated.
+    Represents a transcription validation request that is used to
+    validate if file is of a specific type.
     """
 
-    transcriptionValidationRequestItemId: str | None = None
     transcriptionValidationRequestId: str | None = None
     groupKey: str | None = None
-    fileHash: str | None = None
-    fileName: str | None = None
-    fileExt: str | None = None
-    fileLocation: str | None = None
-    transcriptionResult: str | None = None
-    processStart: str | None = None
-    processEnd: str | None = None
-    retryCount: int | None = None
-    feedbackResult: str | None = None
-    feedbackSent: str | None = None
     statusCode: str | None = None
     created: str | None = None
     createdUserId: str | None = None
     modified: str | None = None
     modifiedUserId: str | None = None
+    items: list[TranscriptionValidationRequestItemModel] | None = None
 

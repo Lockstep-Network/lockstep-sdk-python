@@ -56,6 +56,7 @@ from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
 from lockstep.models.atriskinvoicesummarymodel import AtRiskInvoiceSummaryModel
 from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
 from lockstep.models.attachmentmodel import AttachmentModel
+from lockstep.models.basecurrencysyncmodel import BaseCurrencySyncModel
 from lockstep.models.batchsyncmodel import BatchSyncModel
 from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
@@ -133,6 +134,8 @@ from lockstep.models.riskratemodel import RiskRateModel
 from lockstep.models.statemodel import StateModel
 from lockstep.models.statusmodel import StatusModel
 from lockstep.models.summaryagingtotalsmodel import SummaryAgingTotalsModel
+from lockstep.models.supportaccessmodel import SupportAccessModel
+from lockstep.models.supportaccessrequest import SupportAccessRequest
 from lockstep.models.syncentityresultmodel import SyncEntityResultModel
 from lockstep.models.syncrequestmodel import SyncRequestModel
 from lockstep.models.syncsubmitmodel import SyncSubmitModel
@@ -141,8 +144,8 @@ from lockstep.models.transactionmodel import TransactionModel
 from lockstep.models.transactionmodeltransactionsummarytotalmodelsummaryfetchresult import TransactionModelTransactionSummaryTotalModelSummaryFetchResult
 from lockstep.models.transactionsummarytotalmodel import TransactionSummaryTotalModel
 from lockstep.models.transcriptionrequestsubmit import TranscriptionRequestSubmit
-from lockstep.models.transcriptionvalidationrequest import TranscriptionValidationRequest
-from lockstep.models.transcriptionvalidationrequestitem import TranscriptionValidationRequestItem
+from lockstep.models.transcriptionvalidationrequestitemmodel import TranscriptionValidationRequestItemModel
+from lockstep.models.transcriptionvalidationrequestmodel import TranscriptionValidationRequestModel
 from lockstep.models.transferownermodel import TransferOwnerModel
 from lockstep.models.transferownersubmitmodel import TransferOwnerSubmitModel
 from lockstep.models.urimodel import UriModel

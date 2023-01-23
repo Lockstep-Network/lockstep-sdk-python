@@ -26,6 +26,7 @@ class PayablesComingDueModel:
     vendorName: str | None = None
     primaryContact: str | None = None
     percentageOfTotal: float | None = None
+    baseCurrencyCode: str | None = None
     totalAmountDue: float | None = None
     dueDate: str | None = None
 

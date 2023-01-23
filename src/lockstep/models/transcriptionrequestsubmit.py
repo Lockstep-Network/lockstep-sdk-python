@@ -26,4 +26,5 @@ class TranscriptionRequestSubmit:
     fileContentUrl: str | None = None
     fileName: str | None = None
     invoiceTypeCode: str | None = None
+    transcriptionValidationRequestId: str | None = None
 

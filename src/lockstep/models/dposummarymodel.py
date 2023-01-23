@@ -26,6 +26,7 @@ class DpoSummaryModel:
     vendorName: str | None = None
     primaryContact: str | None = None
     bills: int | None = None
+    baseCurrencyCode: str | None = None
     amountOutstanding: float | None = None
     dpo: float | None = None
 

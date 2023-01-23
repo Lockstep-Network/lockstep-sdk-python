@@ -38,6 +38,7 @@ class CompanyDetailsModel:
     contactName: str | None = None
     contactEmail: str | None = None
     outstandingInvoices: int | None = None
+    groupBaseCurrencyCode: str | None = None
     outstandingAmount: float | None = None
     amountPastDue: float | None = None
     payments: list[CompanyDetailsPaymentModel] | None = None

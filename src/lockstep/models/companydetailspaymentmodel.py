@@ -27,7 +27,9 @@ class CompanyDetailsPaymentModel:
     invoiceId: str | None = None
     invoiceTypeCode: str | None = None
     invoiceReferenceCode: str | None = None
+    invoiceCurrencyCode: str | None = None
     invoiceTotalAmount: float | None = None
     paymentDate: str | None = None
+    paymentCurrencyCode: str | None = None
     paymentAmount: float | None = None
 
