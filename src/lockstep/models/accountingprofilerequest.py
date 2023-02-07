@@ -19,7 +19,7 @@ from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionMode
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 @dataclass
-class AccountingProfileModel:
+class AccountingProfileRequest:
     """
     An Accounting Profile is a child of a Company Profile, and
     collectively, they comprise the identity and necessary information
@@ -51,4 +51,5 @@ class AccountingProfileModel:
     attachments: list[AttachmentModel] | None = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
     customFieldValues: list[CustomFieldValueModel] | None = None
+    primaryContactId: str | None = None
 

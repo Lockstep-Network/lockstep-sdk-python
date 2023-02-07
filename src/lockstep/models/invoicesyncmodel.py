@@ -85,4 +85,8 @@ class InvoiceSyncModel:
     inDispute: bool | None = None
     preferredDeliveryMethod: str | None = None
     currencyRate: float | None = None
+    baseCurrencyTotalAmount: float | None = None
+    baseCurrencySalesTaxAmount: float | None = None
+    baseCurrencyDiscountAmount: float | None = None
+    baseCurrencyOutstandingBalanceAmount: float | None = None
 

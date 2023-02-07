@@ -74,6 +74,8 @@ class CompanyModel:
     stateTaxId: str | None = None
     stateOfIncorporation: str | None = None
     linkedInUrlSlug: str | None = None
+    isVerified: bool | None = None
+    lastVerifiedDate: str | None = None
     viewBoxSettings: ViewBoxSettingsModel | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None

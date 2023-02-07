@@ -47,4 +47,6 @@ class PaymentSyncModel:
     isVoided: bool | None = None
     inDispute: bool | None = None
     currencyRate: float | None = None
+    baseCurrencyPaymentAmount: float | None = None
+    baseCurrencyUnappliedAmount: float | None = None
 
