@@ -57,6 +57,8 @@ class PaymentModel:
     isVoided: bool | None = None
     inDispute: bool | None = None
     currencyRate: float | None = None
+    baseCurrencyPaymentAmount: float | None = None
+    baseCurrencyUnappliedAmount: float | None = None
     applications: list[PaymentAppliedModel] | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None

@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2023 Lockstep, Inc.
-# @version    2023.3.18
+# @version    2023.5.21
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -45,6 +45,7 @@ class LockstepApi:
         from lockstep.clients.apikeys_client import ApiKeysClient
         from lockstep.clients.appenrollments_client import AppEnrollmentsClient
         from lockstep.clients.applications_client import ApplicationsClient
+        from lockstep.clients.attachmentlinks_client import AttachmentLinksClient
         from lockstep.clients.attachments_client import AttachmentsClient
         from lockstep.clients.codedefinitions_client import CodeDefinitionsClient
         from lockstep.clients.companies_client import CompaniesClient
@@ -84,6 +85,7 @@ class LockstepApi:
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
         self.applications = ApplicationsClient(self)
+        self.attachmentLinks = AttachmentLinksClient(self)
         self.attachments = AttachmentsClient(self)
         self.codeDefinitions = CodeDefinitionsClient(self)
         self.companies = CompaniesClient(self)
@@ -126,7 +128,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2023.3.18"
+        self.sdkVersion = "2023.5.21"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None

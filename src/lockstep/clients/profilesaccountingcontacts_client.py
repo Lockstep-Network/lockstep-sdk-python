@@ -15,6 +15,7 @@ from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilecontactmodel import AccountingProfileContactModel
+from lockstep.models.accountingprofilecontactresultmodel import AccountingProfileContactResultModel
 from lockstep.models.deleteresult import DeleteResult
 
 class ProfilesAccountingContactsClient:
@@ -32,8 +33,8 @@ class ProfilesAccountingContactsClient:
         unique identifier, optionally including nested data sets.
 
         A Contact has a link to a Contact that is associated with your
-        company's Accounting Profile. These Contacts are secondary
-        contacts to the primary that is on the profile.
+        company's Accounting Profile. A profile has one primary contact
+        and any number of secondary contacts.
 
         Parameters
         ----------
@@ -54,9 +55,8 @@ class ProfilesAccountingContactsClient:
         identifier.
 
         An Accounting Profile Contact has a link to a Contact that is
-        associated with your company's Accounting Profile. These
-        Contacts are secondary contacts to the primary that is on the
-        profile.
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
 
         Parameters
         ----------
@@ -77,9 +77,8 @@ class ProfilesAccountingContactsClient:
         model.
 
         An Accounting Profile Contact has a link to a Contact that is
-        associated with your company's Accounting Profile. These
-        Contacts are secondary contacts to the primary that is on the
-        profile.
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
 
         Parameters
         ----------
@@ -106,9 +105,8 @@ class ProfilesAccountingContactsClient:
         specific fields desired.
 
         An Accounting Profile Contact has a link to a Contact that is
-        associated with your company's Accounting Profile. These
-        Contacts are secondary contacts to the primary that is on the
-        profile.
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
 
         Parameters
         ----------
@@ -137,9 +135,8 @@ class ProfilesAccountingContactsClient:
         page on the Lockstep Developer website.
 
         An Accounting Profile Contact has a link to a Contact that is
-        associated with your company's Accounting Profile. These
-        Contacts are secondary contacts to the primary that is on the
-        profile.
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
 
         Parameters
         ----------
@@ -166,15 +163,59 @@ class ProfilesAccountingContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def swap_secondary_and_primary_contact(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
+    def query_linked_accounting_profile_contacts(self, filter: str, order: str, include: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileContactResultModel]]:
+        """
+        Queries Accounting Profile Contacts and Contacts for this
+        account using the specified filtering, sorting, nested fetch,
+        and pagination rules requested.
+
+        More information on querying can be found on the [Searchlight
+        Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        page on the Lockstep Developer website.
+
+        An Accounting Profile Contact has a link to a Contact that is
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
+
+        A Contact contains information about a person or role within a
+        Company. You can use Contacts to track information about who is
+        responsible for a specific project, who handles invoices, or
+        information about which role at a particular customer or vendor
+        you should speak with about invoices.
+
+        Parameters
+        ----------
+        filter : str
+            The filter for this query. See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        order : str
+            The sort order for this query. See See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. Available collections: None
+        pageSize : int
+            The page size for results (default 250, maximum of 500). See
+            [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        pageNumber : int
+            The page number for results (default 0). See [Searchlight
+            Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        """
+        path = "/api/v1/profiles/accounting/contacts/query/models"
+        result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "include": include, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactResultModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def set_secondary_contact_as_primary(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
         """
         Updates an accounting profile contact that matches the specified
         id with the primary contact attached to the accounting profile
 
         An Accounting Profile Contact has a link to a Contact that is
-        associated with your company's Accounting Profile. These
-        Contacts are secondary contacts to the primary that is on the
-        profile.
+        associated with your company's Accounting Profile. A profile has
+        one primary contact and any number of secondary contacts.
 
         Parameters
         ----------

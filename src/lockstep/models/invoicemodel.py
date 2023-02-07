@@ -76,6 +76,10 @@ class InvoiceModel:
     excludeFromAging: bool | None = None
     preferredDeliveryMethod: str | None = None
     currencyRate: float | None = None
+    baseCurrencyTotalAmount: float | None = None
+    baseCurrencySalesTaxAmount: float | None = None
+    baseCurrencyDiscountAmount: float | None = None
+    baseCurrencyOutstandingBalanceAmount: float | None = None
     addresses: list[InvoiceAddressModel] | None = None
     lines: list[InvoiceLineModel] | None = None
     payments: list[InvoicePaymentDetailModel] | None = None

@@ -15,8 +15,8 @@ from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilemodel import AccountingProfileModel
+from lockstep.models.accountingprofilerequest import AccountingProfileRequest
 from lockstep.models.actionresultmodel import ActionResultModel
-from lockstep.models.contactmodel import ContactModel
 
 class ProfilesAccountingClient:
     """
@@ -115,7 +115,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def create_accounting_profiles(self, body: list[AccountingProfileModel]) -> LockstepResponse[list[AccountingProfileModel]]:
+    def create_accounting_profiles(self, body: list[AccountingProfileRequest]) -> LockstepResponse[list[AccountingProfileModel]]:
         """
         Creates one or more accounting profiles from a given model.
 
@@ -128,7 +128,7 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileModel]
+        body : list[AccountingProfileRequest]
             The Accounting Profiles to create
         """
         path = "/api/v1/profiles/accounting"
@@ -178,27 +178,5 @@ class ProfilesAccountingClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileModel](**result.json()), None)
-        else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
-
-    def retrieve_all_accounting_profile_contacts(self, id: str) -> LockstepResponse[list[ContactModel]]:
-        """
-        Retrieves all the Contacts associated with the Accounting
-        Profile by this unique identifier, optionally including nested
-        data sets.
-
-        A Contact has a link to a Contact that is associated with your
-        company's Accounting Profile.
-
-        Parameters
-        ----------
-        id : str
-            The unique Lockstep Platform ID number of this Accounting
-            Profile
-        """
-        path = f"/api/v1/profiles/accounting/{id}/contacts/models"
-        result = self.client.send_request("GET", path, None, {}, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ContactModel](**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

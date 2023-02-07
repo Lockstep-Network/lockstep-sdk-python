@@ -4,6 +4,7 @@ from lockstep.fetch_result import FetchResult
 from lockstep.clients.apikeys_client import ApiKeysClient
 from lockstep.clients.appenrollments_client import AppEnrollmentsClient
 from lockstep.clients.applications_client import ApplicationsClient
+from lockstep.clients.attachmentlinks_client import AttachmentLinksClient
 from lockstep.clients.attachments_client import AttachmentsClient
 from lockstep.clients.codedefinitions_client import CodeDefinitionsClient
 from lockstep.clients.companies_client import CompaniesClient
@@ -41,7 +42,9 @@ from lockstep.clients.userroles_client import UserRolesClient
 from lockstep.clients.webhookrules_client import WebhookRulesClient
 from lockstep.clients.webhooks_client import WebhooksClient
 from lockstep.models.accountingprofilecontactmodel import AccountingProfileContactModel
+from lockstep.models.accountingprofilecontactresultmodel import AccountingProfileContactResultModel
 from lockstep.models.accountingprofilemodel import AccountingProfileModel
+from lockstep.models.accountingprofilerequest import AccountingProfileRequest
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.agingmodel import AgingModel
 from lockstep.models.apagingheaderinfomodel import ApAgingHeaderInfoModel
@@ -55,6 +58,7 @@ from lockstep.models.aragingheaderinfomodel import ArAgingHeaderInfoModel
 from lockstep.models.arheaderinfomodel import ArHeaderInfoModel
 from lockstep.models.atriskinvoicesummarymodel import AtRiskInvoiceSummaryModel
 from lockstep.models.attachmentheaderinfomodel import AttachmentHeaderInfoModel
+from lockstep.models.attachmentlinkmodel import AttachmentLinkModel
 from lockstep.models.attachmentmodel import AttachmentModel
 from lockstep.models.basecurrencysyncmodel import BaseCurrencySyncModel
 from lockstep.models.batchsyncmodel import BatchSyncModel

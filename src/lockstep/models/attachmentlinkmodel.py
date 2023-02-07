@@ -15,16 +15,16 @@
 from dataclasses import dataclass
 
 @dataclass
-class AppEnrollmentReconnectInfo:
+class AttachmentLinkModel:
     """
-    Information to reconnect an ERP.
+    An Attachment Link represents a single link between any nestable
+    object and an attachment
     """
 
-    authCode: str | None = None
-    username: str | None = None
-    password: str | None = None
-    realmId: str | None = None
-    tokenId: str | None = None
-    tokenSecret: str | None = None
-    redirectUri: str | None = None
+    groupKey: str | None = None
+    attachmentId: str | None = None
+    objectKey: str | None = None
+    tableKey: str | None = None
+    created: str | None = None
+    createdUserId: str | None = None
 

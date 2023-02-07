@@ -25,6 +25,7 @@ class AccountingProfileContactModel:
     accountingProfileContactId: str | None = None
     accountingProfileId: str | None = None
     contactId: str | None = None
+    isPrimary: bool | None = None
     groupKey: str | None = None
     created: str | None = None
     createdUserId: str | None = None

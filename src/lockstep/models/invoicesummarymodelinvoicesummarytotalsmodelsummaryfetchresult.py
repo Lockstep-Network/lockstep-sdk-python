@@ -20,10 +20,10 @@ from lockstep.models.summaryagingtotalsmodel import SummaryAgingTotalsModel
 @dataclass
 class InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult:
 
+    records: list[InvoiceSummaryModel] | None = None
     totalCount: int | None = None
     pageSize: int | None = None
     pageNumber: int | None = None
-    records: list[InvoiceSummaryModel] | None = None
     summary: InvoiceSummaryTotalsModel | None = None
     agingSummary: list[SummaryAgingTotalsModel] | None = None
 
