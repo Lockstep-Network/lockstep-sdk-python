@@ -37,7 +37,7 @@ class SyncRequestModel:
     operationType: int | None = None
     processResultMessage: str | None = None
     failureCount: int | None = None
-    runFullSync: str | None = None
+    runFullSync: bool | None = None
     appEnrollmentId: str | None = None
     created: str | None = None
     modified: str | None = None

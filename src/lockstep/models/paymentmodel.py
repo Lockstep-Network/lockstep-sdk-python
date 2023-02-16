@@ -59,6 +59,7 @@ class PaymentModel:
     currencyRate: float | None = None
     baseCurrencyPaymentAmount: float | None = None
     baseCurrencyUnappliedAmount: float | None = None
+    serviceFabricStatus: str | None = None
     applications: list[PaymentAppliedModel] | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None

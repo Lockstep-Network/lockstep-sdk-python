@@ -44,6 +44,8 @@ class BatchSyncModel:
     has changed in the past 48 hours.
     """
 
+    appEnrollmentId: str | None = None
+    isFullSync: bool | None = None
     companies: list[CompanySyncModel] | None = None
     contacts: list[ContactSyncModel] | None = None
     creditMemoApplications: list[CreditMemoAppliedSyncModel] | None = None
