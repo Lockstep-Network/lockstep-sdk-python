@@ -81,7 +81,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
 
-    def upload_sync_file(self, filename: str) -> LockstepResponse[SyncRequestModel]:
+    def upload_sync_file(self, appEnrollmentId: str, isFullSync: bool, filename: str) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from a ZIP file you provide. This ZIP
         file can contain one or more files with data from the customer's
@@ -97,11 +97,17 @@ class SyncClient:
 
         Parameters
         ----------
+        appEnrollmentId : str
+            The optional existing app enrollment to associate with the
+            data in the zip file.
+        isFullSync : bool
+            True if this is a full sync, false if this is a partial
+            sync. Defaults to false.
         filename : str
             The full path of a file to upload to the API
         """
         path = "/api/v1/Sync/zip"
-        result = self.client.send_request("POST", path, None, {}, filename)
+        result = self.client.send_request("POST", path, None, {"appEnrollmentId": appEnrollmentId, "isFullSync": isFullSync}, filename)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, SyncRequestModel(**result.json()), None)
         else:
