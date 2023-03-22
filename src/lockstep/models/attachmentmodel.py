@@ -32,11 +32,7 @@ class AttachmentModel:
     objectKey: str | None = None
     fileName: str | None = None
     fileExt: str | None = None
-    attachmentTypeId: str | None = None
     isArchived: bool | None = None
-    originAttachmentId: str | None = None
-    viewInternal: bool | None = None
-    viewExternal: bool | None = None
     erpKey: str | None = None
     appEnrollmentId: str | None = None
     created: str | None = None

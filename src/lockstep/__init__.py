@@ -20,7 +20,6 @@ from lockstep.clients.financialaccountbalancehistory_client import FinancialAcco
 from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
 from lockstep.clients.groupaccounts_client import GroupAccountsClient
 from lockstep.clients.invoiceaddresses_client import InvoiceAddressesClient
-from lockstep.clients.invoicehistory_client import InvoiceHistoryClient
 from lockstep.clients.invoicelines_client import InvoiceLinesClient
 from lockstep.clients.invoices_client import InvoicesClient
 from lockstep.clients.leads_client import LeadsClient
@@ -107,7 +106,6 @@ from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel
 from lockstep.models.invitesubmitmodel import InviteSubmitModel
 from lockstep.models.invoiceaddressmodel import InvoiceAddressModel
-from lockstep.models.invoicehistorymodel import InvoiceHistoryModel
 from lockstep.models.invoicelinemodel import InvoiceLineModel
 from lockstep.models.invoicelinesyncmodel import InvoiceLineSyncModel
 from lockstep.models.invoicemodel import InvoiceModel

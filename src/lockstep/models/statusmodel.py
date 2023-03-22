@@ -38,12 +38,13 @@ class StatusModel:
     environment: str | None = None
     version: str | None = None
     onboardingScheduled: bool | None = None
+    baseCurrencyCode: str | None = None
+    countryCode: str | None = None
     magicLinkId: str | None = None
     magicLinkCompanyId: str | None = None
     magicLink: MagicLinkStatusModel | None = None
     supportAccess: SupportAccessModel | None = None
     isImpersonated: bool | None = None
-    dependencies: object | None = None
     userGroups: list[UserGroupModel] | None = None
-    baseCurrencyCode: str | None = None
+    dependencies: object | None = None
 

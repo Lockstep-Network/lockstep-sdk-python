@@ -30,6 +30,7 @@ class FinancialAccountSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     code: str | None = None
     erpKey: str | None = None
     name: str | None = None

@@ -57,4 +57,5 @@ class CompanySyncModel:
     preferredDeliveryMethod: str | None = None
     emailAddress: str | None = None
     externalReference: str | None = None
+    companyRegistrationNumber: str | None = None
 

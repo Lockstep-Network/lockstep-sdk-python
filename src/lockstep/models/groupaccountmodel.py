@@ -31,4 +31,5 @@ class GroupAccountModel:
     createdUserId: str | None = None
     modified: str | None = None
     modifiedUserId: str | None = None
+    countryCode: str | None = None
 
