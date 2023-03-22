@@ -30,6 +30,7 @@ class InvoiceSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     erpKey: str | None = None
     companyErpKey: str | None = None
     customerErpKey: str | None = None

@@ -79,6 +79,7 @@ class CompanyModel:
     viewBoxSettings: ViewBoxSettingsModel | None = None
     serviceFabricOrgId: str | None = None
     serviceFabricCompanyId: str | None = None
+    companyRegistrationNumber: str | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
     contacts: list[ContactModel] | None = None

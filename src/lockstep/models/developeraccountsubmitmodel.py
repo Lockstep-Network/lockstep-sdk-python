@@ -20,7 +20,6 @@ class DeveloperAccountSubmitModel:
     Model containing information to create a new developer account.
     """
 
-    name: str | None = None
     firstName: str | None = None
     lastName: str | None = None
     email: str | None = None

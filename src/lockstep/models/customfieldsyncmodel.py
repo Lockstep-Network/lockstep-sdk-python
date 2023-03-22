@@ -34,6 +34,7 @@ class CustomFieldSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     erpKey: str | None = None
     tableKey: str | None = None
     customFieldLabel: str | None = None

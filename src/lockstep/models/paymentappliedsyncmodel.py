@@ -30,6 +30,7 @@ class PaymentAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     erpKey: str | None = None
     invoiceErpKey: str | None = None
     paymentErpKey: str | None = None

@@ -41,13 +41,11 @@ class ApplicationModel:
     ownerId: str | None = None
     projectUrl: str | None = None
     iconUrl: str | None = None
-    priceTerms: str | None = None
     createdUserId: str | None = None
     modifiedUserId: str | None = None
     created: str | None = None
     modified: str | None = None
     isActive: bool | None = None
-    wikiURL: str | None = None
     groupKey: str | None = None
     b2CClientId: str | None = None
     notes: list[NoteModel] | None = None

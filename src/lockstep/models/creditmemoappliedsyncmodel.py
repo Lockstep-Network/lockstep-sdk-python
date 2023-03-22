@@ -31,6 +31,7 @@ class CreditMemoAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
+    onMatchAction: int | None = None
     erpKey: str | None = None
     invoiceErpKey: str | None = None
     creditMemoInvoiceErpKey: str | None = None
