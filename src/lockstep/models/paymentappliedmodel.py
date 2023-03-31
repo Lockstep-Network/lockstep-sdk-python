@@ -32,6 +32,8 @@ class PaymentAppliedModel:
     invoiceId: str | None = None
     paymentId: str | None = None
     erpKey: str | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
     entryNumber: int | None = None
     applyToInvoiceDate: str | None = None
     paymentAppliedAmount: float | None = None
@@ -40,6 +42,7 @@ class PaymentAppliedModel:
     modified: str | None = None
     modifiedUserId: str | None = None
     appEnrollmentId: str | None = None
+    sourceModifiedDate: str | None = None
     payment: PaymentModel | None = None
     invoice: InvoiceModel | None = None
 

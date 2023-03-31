@@ -31,6 +31,8 @@ class FinancialAccountBalanceHistoryModel:
     periodEndDate: str | None = None
     status: str | None = None
     balance: float | None = None
+    balanceType: int | None = None
+    balanceTypeName: str | None = None
     created: str | None = None
     createdUserId: str | None = None
     modified: str | None = None

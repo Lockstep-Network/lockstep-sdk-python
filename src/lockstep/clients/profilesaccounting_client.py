@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.errorresult import ErrorResult
+from lockstep.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilemodel import AccountingProfileModel
 from lockstep.models.accountingprofilerequest import AccountingProfileRequest

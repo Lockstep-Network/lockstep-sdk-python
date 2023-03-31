@@ -12,9 +12,11 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.errorresult import ErrorResult
+from lockstep.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.deleteresult import DeleteResult
+from lockstep.models.emailreplygeneratorrequest import EmailReplyGeneratorRequest
+from lockstep.models.emailreplygeneratorresponse import EmailReplyGeneratorResponse
 from lockstep.models.transcriptionrequestsubmit import TranscriptionRequestSubmit
 from lockstep.models.transcriptionvalidationrequestitemmodel import TranscriptionValidationRequestItemModel
 from lockstep.models.transcriptionvalidationrequestmodel import TranscriptionValidationRequestModel
@@ -295,5 +297,25 @@ class TranscriptionsClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult[TranscriptionValidationRequestItemModel](**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+
+    def retrieve_an_emailreplygeneratorresponse(self, body: EmailReplyGeneratorRequest) -> LockstepResponse[EmailReplyGeneratorResponse]:
+        """
+        Retrieves the Email Reply Generator Response containing a list
+        of email reply suggestions
+
+        An Email Reply Generator Request represents an email to be sent
+        for a list of email reply suggestions.
+
+        Parameters
+        ----------
+        body : EmailReplyGeneratorRequest
+            The Email Reply Generator Request to be sent
+        """
+        path = "/api/v1/Transcriptions/email-reply-suggestions"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, EmailReplyGeneratorResponse(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))

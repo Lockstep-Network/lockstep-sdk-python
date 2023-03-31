@@ -13,18 +13,14 @@
 
 
 from dataclasses import dataclass
+from lockstep.models.emailreplygeneratorsuggestions import EmailReplyGeneratorSuggestions
 
 @dataclass
-class SyncEntityResultModel:
+class EmailReplyGeneratorResponse:
     """
-    Contains information about a sync process for an entity.
+    Represents the response from SAGE GMS API
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
-    skips: object | None = None
+    message_id: str | None = None
+    suggestions: list[EmailReplyGeneratorSuggestions] | None = None
 

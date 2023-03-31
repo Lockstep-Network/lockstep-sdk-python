@@ -28,6 +28,8 @@ class PaymentDetailModel:
     referenceCode: str | None = None
     primaryContact: str | None = None
     email: str | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
     currencyCode: str | None = None
     paymentAmount: float | None = None
     unappliedAmount: float | None = None

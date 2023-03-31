@@ -37,6 +37,8 @@ class CreditMemoAppliedModel:
     invoiceId: str | None = None
     creditMemoInvoiceId: str | None = None
     erpKey: str | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
     entryNumber: int | None = None
     applyToInvoiceDate: str | None = None
     creditMemoAppliedAmount: float | None = None
@@ -45,6 +47,7 @@ class CreditMemoAppliedModel:
     modified: str | None = None
     modifiedUserId: str | None = None
     appEnrollmentId: str | None = None
+    sourceModifiedDate: str | None = None
     attachments: list[AttachmentModel] | None = None
     notes: list[NoteModel] | None = None
     customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
