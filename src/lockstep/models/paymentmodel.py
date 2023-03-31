@@ -39,6 +39,8 @@ class PaymentModel:
     paymentId: str | None = None
     companyId: str | None = None
     erpKey: str | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
     paymentType: str | None = None
     tenderType: str | None = None
     isOpen: bool | None = None
@@ -60,6 +62,7 @@ class PaymentModel:
     baseCurrencyPaymentAmount: float | None = None
     baseCurrencyUnappliedAmount: float | None = None
     serviceFabricStatus: str | None = None
+    sourceModifiedDate: str | None = None
     applications: list[PaymentAppliedModel] | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None

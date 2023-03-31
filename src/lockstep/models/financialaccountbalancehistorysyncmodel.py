@@ -42,4 +42,5 @@ class FinancialAccountBalanceHistorySyncModel:
     periodEndDate: str | None = None
     status: str | None = None
     balance: float | None = None
+    balanceType: int | None = None
 

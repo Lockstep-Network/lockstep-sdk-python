@@ -15,16 +15,11 @@
 from dataclasses import dataclass
 
 @dataclass
-class SyncEntityResultModel:
+class EmailReplyGeneratorSuggestions:
     """
-    Contains information about a sync process for an entity.
+    Represents the email reply suggestion from the SAGE GMS API
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
-    errors: object | None = None
-    skips: object | None = None
+    kind: str | None = None
+    body: str | None = None
 

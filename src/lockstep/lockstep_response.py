@@ -13,7 +13,7 @@
 
 from typing import Generic, TypeVar
 from dataclasses import dataclass
-from lockstep.models.errorresult import ErrorResult
+from lockstep.errorresult import ErrorResult
 
 T = TypeVar('T')
 

@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.models.errorresult import ErrorResult
+from lockstep.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.batchsyncmodel import BatchSyncModel
 from lockstep.models.syncrequestmodel import SyncRequestModel
