@@ -21,6 +21,7 @@ class CashflowReportModel:
     """
 
     timeframe: int | None = None
+    baseCurrencyCode: str | None = None
     paymentsCollected: float | None = None
     paymentsCollectedCount: int | None = None
     invoicesBilled: float | None = None

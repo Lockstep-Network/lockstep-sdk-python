@@ -45,6 +45,9 @@ class InvoiceLineModel:
     modified: str | None = None
     modifiedUserId: str | None = None
     appEnrollmentId: str | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
+    sourceModifiedDate: str | None = None
     notes: list[NoteModel] | None = None
     attachments: list[AttachmentModel] | None = None
 

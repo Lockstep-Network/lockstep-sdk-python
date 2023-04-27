@@ -80,6 +80,9 @@ class InvoiceModel:
     baseCurrencySalesTaxAmount: float | None = None
     baseCurrencyDiscountAmount: float | None = None
     baseCurrencyOutstandingBalanceAmount: float | None = None
+    erpWriteStatus: int | None = None
+    erpWriteStatusName: str | None = None
+    sourceModifiedDate: str | None = None
     addresses: list[InvoiceAddressModel] | None = None
     lines: list[InvoiceLineModel] | None = None
     payments: list[InvoicePaymentDetailModel] | None = None
