@@ -234,7 +234,7 @@ class InvoicesClient:
 
         Sage Intacct supports AR Invoices.
 
-        Quickbooks Online supports AR Invoices, and AR Credit Memos.
+        QuickBooks Online supports AR Invoices, and AR Credit Memos.
 
         Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP
         Credit Memos.
