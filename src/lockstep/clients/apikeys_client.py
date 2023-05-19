@@ -26,7 +26,7 @@ class ApiKeysClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_api_key(self, id: object, include: object) -> LockstepResponse[ApiKeyModel]:
+    def retrieve_api_key(self, id: str, include: str) -> LockstepResponse[ApiKeyModel]:
         """
         Retrieves the API Key with this identifier.
 
@@ -43,9 +43,9 @@ class ApiKeysClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the API Key to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future.
@@ -57,7 +57,7 @@ class ApiKeysClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def revoke_api_key(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def revoke_api_key(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Immediately revokes the API Key with the specified id so it
         cannot be used to call the API.
@@ -81,7 +81,7 @@ class ApiKeysClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this API Key
         """
         path = f"/api/v1/ApiKeys/{id}"
@@ -91,7 +91,7 @@ class ApiKeysClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_api_key(self, body: object) -> LockstepResponse[ApiKeyModel]:
+    def create_api_key(self, body: ApiKeyModel) -> LockstepResponse[ApiKeyModel]:
         """
         Creates an API key with the specified name.
 
@@ -108,7 +108,7 @@ class ApiKeysClient:
 
         Parameters
         ----------
-        body : object
+        body : ApiKeyModel
             Metadata about the API Key to create.
         """
         path = "/api/v1/ApiKeys"
@@ -118,7 +118,7 @@ class ApiKeysClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_api_keys(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[ApiKeyModel]]:
+    def query_api_keys(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ApiKeyModel]]:
         """
         Queries API Keys for this user using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -136,20 +136,20 @@ class ApiKeysClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future.
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

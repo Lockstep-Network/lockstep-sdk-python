@@ -26,7 +26,7 @@ class CustomFieldDefinitionsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_field_definition(self, id: object, include: object) -> LockstepResponse[CustomFieldDefinitionModel]:
+    def retrieve_field_definition(self, id: str, include: str) -> LockstepResponse[CustomFieldDefinitionModel]:
         """
         Retrieves the Custom Field Definition specified by this unique
         identifier.
@@ -44,10 +44,10 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Custom Field
             Definition
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No additional data collections are
             currently defined on this object, but may be supported in
@@ -60,7 +60,7 @@ class CustomFieldDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_field_definition(self, id: object, body: object) -> LockstepResponse[CustomFieldDefinitionModel]:
+    def update_field_definition(self, id: str, body: object) -> LockstepResponse[CustomFieldDefinitionModel]:
         """
         Updates an existing Custom Field Definition with the information
         supplied to this PATCH call.
@@ -85,7 +85,7 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Custom Field
             Definition to update
         body : object
@@ -98,7 +98,7 @@ class CustomFieldDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_field_definition(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_field_definition(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Custom Field Definition referred to by this unique
         identifier.
@@ -116,7 +116,7 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Custom Field
             Definition to delete
         """
@@ -127,7 +127,7 @@ class CustomFieldDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_field_definitions(self, body: list[object]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
+    def create_field_definitions(self, body: list[CustomFieldDefinitionModel]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
         """
         Creates one or more Custom Field Definitions and returns the
         records as created.
@@ -145,7 +145,7 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[CustomFieldDefinitionModel]
             The Custom Field Definitions to create
         """
         path = "/api/v1/CustomFieldDefinitions"
@@ -155,7 +155,7 @@ class CustomFieldDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_field_definitions(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[CustomFieldDefinitionModel]]:
+    def query_field_definitions(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomFieldDefinitionModel]]:
         """
         Queries Custom Field Definitions within the Lockstep platform
         using the specified filtering, sorting, nested fetch, and
@@ -178,21 +178,21 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No additional data collections are
             currently defined on this object, but may be supported in
             the future.
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

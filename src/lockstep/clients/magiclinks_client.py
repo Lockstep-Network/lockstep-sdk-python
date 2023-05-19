@@ -26,16 +26,16 @@ class MagicLinksClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_magic_link(self, id: object, include: object) -> LockstepResponse[MagicLinkModel]:
+    def retrieve_magic_link(self, id: str, include: str) -> LockstepResponse[MagicLinkModel]:
         """
         Retrieves the Magic Link specified by this unique identifier,
         optionally including nested data sets.
 
         Parameters
         ----------
-        id : object
+        id : str
             The id of the Magic Link
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: User
         """
@@ -46,7 +46,7 @@ class MagicLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def revoke_magic_link(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def revoke_magic_link(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Revokes the magic link with the specified id so it cannot be
         used to call the API.
@@ -57,7 +57,7 @@ class MagicLinksClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this magic link
         """
         path = f"/api/v1/useraccounts/magic-links/{id}"
@@ -67,7 +67,7 @@ class MagicLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_magic_links(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[MagicLinkModel]]:
+    def query_magic_links(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[MagicLinkModel]]:
         """
         Queries Magic Links for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -75,18 +75,18 @@ class MagicLinksClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: User
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/useraccounts/magic-links/query"

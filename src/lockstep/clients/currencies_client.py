@@ -25,7 +25,7 @@ class CurrenciesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_currency_rate(self, sourceCurrency: object, destinationCurrency: object, date: object, dataProvider: object) -> LockstepResponse[CurrencyRateModel]:
+    def retrieve_currency_rate(self, sourceCurrency: str, destinationCurrency: str, date: str, dataProvider: str) -> LockstepResponse[CurrencyRateModel]:
         """
         Retrieve a currency conversation rate from one currency to
         another as of the specified date. Optionally, you can specify
@@ -36,16 +36,16 @@ class CurrenciesClient:
 
         Parameters
         ----------
-        sourceCurrency : object
+        sourceCurrency : str
             The ISO 4217 currency code of the origin currency. For a
             list of currency codes, call List Currencies.
-        destinationCurrency : object
+        destinationCurrency : str
             The ISO 4217 currency code of the target currency. For a
             list of currency codes, call List Currencies.
-        date : object
+        date : str
             The date for which we should cto use for this currency
             conversion.
-        dataProvider : object
+        dataProvider : str
             Optionally, you can specify a data provider.
         """
         path = f"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}"
@@ -55,7 +55,7 @@ class CurrenciesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def bulk_currency_data(self, destinationCurrency: object, body: list[object]) -> LockstepResponse[list[CurrencyRateModel]]:
+    def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse[list[CurrencyRateModel]]:
         """
         Receives an array of dates and currencies and a destination
         currency and returns an array of the corresponding currency
@@ -63,9 +63,9 @@ class CurrenciesClient:
 
         Parameters
         ----------
-        destinationCurrency : object
+        destinationCurrency : str
             The currency to convert to.
-        body : list[object]
+        body : list[BulkCurrencyConversionModel]
             A list of dates and source currencies.
         """
         path = "/api/v1/Currencies/bulk"

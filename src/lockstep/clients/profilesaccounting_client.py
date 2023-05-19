@@ -27,7 +27,7 @@ class ProfilesAccountingClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_accounting_profile(self, id: object, include: object) -> LockstepResponse[AccountingProfileModel]:
+    def retrieve_accounting_profile(self, id: str, include: str) -> LockstepResponse[AccountingProfileModel]:
         """
         Retrieves the Accounting Profile specified by this unique
         identifier, optionally including nested data sets.
@@ -41,10 +41,10 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Accounting
             Profile
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
@@ -56,7 +56,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_accounting_profile(self, id: object, body: object) -> LockstepResponse[AccountingProfileModel]:
+    def update_accounting_profile(self, id: str, body: object) -> LockstepResponse[AccountingProfileModel]:
         """
         Updates an accounting profile that matches the specified id with
         the requested information.
@@ -77,7 +77,7 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Accounting
             Profile to update
         body : object
@@ -90,7 +90,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_accounting_profile(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_accounting_profile(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Delete the Accounting Profile referred to by this unique
         identifier.
@@ -104,7 +104,7 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Accounting
             Profile to disable
         """
@@ -115,7 +115,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profiles(self, body: list[object]) -> LockstepResponse[list[AccountingProfileModel]]:
+    def create_accounting_profiles(self, body: list[AccountingProfileRequest]) -> LockstepResponse[list[AccountingProfileModel]]:
         """
         Creates one or more accounting profiles from a given model.
 
@@ -128,7 +128,7 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[AccountingProfileRequest]
             The Accounting Profiles to create
         """
         path = "/api/v1/profiles/accounting"
@@ -138,7 +138,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_accounting_profiles(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AccountingProfileModel]]:
+    def query_accounting_profiles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileModel]]:
         """
         Queries Accounting Profiles for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -157,20 +157,20 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

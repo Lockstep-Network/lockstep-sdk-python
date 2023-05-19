@@ -27,7 +27,7 @@ class ContactsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_contact(self, id: object, include: object) -> LockstepResponse[ContactModel]:
+    def retrieve_contact(self, id: str, include: str) -> LockstepResponse[ContactModel]:
         """
         Retrieves the Contact specified by this unique identifier,
         optionally including nested data sets.
@@ -40,10 +40,10 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Contact; NOT
             the customer's ERP key
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
@@ -55,7 +55,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_contact(self, id: object, body: object) -> LockstepResponse[ContactModel]:
+    def update_contact(self, id: str, body: object) -> LockstepResponse[ContactModel]:
         """
         Updates a contact that matches the specified id with the
         requested information.
@@ -75,7 +75,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Contact to
             update; NOT the customer's ERP key
         body : object
@@ -88,7 +88,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_contact(self, id: object) -> LockstepResponse[DeleteResult]:
+    def delete_contact(self, id: str) -> LockstepResponse[DeleteResult]:
         """
         Delete the Contact referred to by this unique identifier.
 
@@ -100,7 +100,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Contact to
             delete; NOT the customer's ERP key
         """
@@ -111,7 +111,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_contacts(self, body: list[object]) -> LockstepResponse[list[ContactModel]]:
+    def create_contacts(self, body: list[ContactModel]) -> LockstepResponse[list[ContactModel]]:
         """
         Creates one or more contacts from a given model.
 
@@ -123,7 +123,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[ContactModel]
             The Contacts to create
         """
         path = "/api/v1/Contacts"
@@ -133,7 +133,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_contacts(self, body: object) -> LockstepResponse[DeleteResult]:
+    def delete_contacts(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
         Delete the Contacts referred to by these unique identifiers.
 
@@ -145,7 +145,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : object
+        body : BulkDeleteRequestModel
             The unique Lockstep Platform ID numbers of the Contacts to
             delete; NOT the customer's ERP keys
         """
@@ -156,7 +156,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_contacts(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[ContactModel]]:
+    def query_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ContactModel]]:
         """
         Queries Contacts for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -173,20 +173,20 @@ class ContactsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

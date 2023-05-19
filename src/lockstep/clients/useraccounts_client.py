@@ -34,7 +34,7 @@ class UserAccountsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_user(self, id: object, include: object) -> LockstepResponse[UserAccountModel]:
+    def retrieve_user(self, id: str, include: str) -> LockstepResponse[UserAccountModel]:
         """
         Retrieves the User with this identifier.
 
@@ -48,9 +48,9 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the User to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields, AccountingRole
@@ -62,7 +62,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_user(self, id: object, body: object) -> LockstepResponse[UserAccountModel]:
+    def update_user(self, id: str, body: object) -> LockstepResponse[UserAccountModel]:
         """
         Updates a User that matches the specified id with the requested
         information.
@@ -84,7 +84,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the User to retrieve
         body : object
             A list of changes to apply to this User
@@ -96,7 +96,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def disable_user(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def disable_user(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Disable the user referred to by this unique identifier.
 
@@ -110,7 +110,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this User
         """
         path = f"/api/v1/UserAccounts/{id}"
@@ -120,7 +120,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invite_user(self, body: list[object]) -> LockstepResponse[list[InviteModel]]:
+    def invite_user(self, body: list[InviteSubmitModel]) -> LockstepResponse[list[InviteModel]]:
         """
         Invite a user with the specified email to join your accounting
         group. The user will receive an email to set up their account.
@@ -135,7 +135,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[InviteSubmitModel]
             The user to invite
         """
         path = "/api/v1/UserAccounts/invite"
@@ -145,7 +145,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_invite_data(self, code: object) -> LockstepResponse[InviteDataModel]:
+    def retrieve_invite_data(self, code: str) -> LockstepResponse[InviteDataModel]:
         """
         Retrieves invite information for the specified invite token.
 
@@ -159,7 +159,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        code : object
+        code : str
             The code of the invite
         """
         path = "/api/v1/UserAccounts/invite"
@@ -169,7 +169,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def transfer_owner(self, body: object) -> LockstepResponse[TransferOwnerModel]:
+    def transfer_owner(self, body: TransferOwnerSubmitModel) -> LockstepResponse[TransferOwnerModel]:
         """
         Transfer the ownership of a group to another user. This API must
         be called by the current owner of the group.
@@ -184,7 +184,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        body : object
+        body : TransferOwnerSubmitModel
 
         """
         path = "/api/v1/UserAccounts/transfer-owner"
@@ -194,7 +194,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_users(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[UserAccountModel]]:
+    def query_users(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserAccountModel]]:
         """
         Queries Users for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. A User
@@ -208,20 +208,20 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields, AccountingRole
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -232,7 +232,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def change_user_group(self, groupKey: object) -> LockstepResponse[UserAccountModel]:
+    def change_user_group(self, groupKey: str) -> LockstepResponse[UserAccountModel]:
         """
         Change the active GroupKey of the calling user.
 
@@ -246,7 +246,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        groupKey : object
+        groupKey : str
 
         """
         path = "/api/v1/UserAccounts/change-group"
@@ -256,14 +256,14 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def get_user_data(self, include: list[object]) -> LockstepResponse[UserDataResponseModel]:
+    def get_user_data(self, include: list[str]) -> LockstepResponse[UserDataResponseModel]:
         """
         Retrieves the user data for the current user. This allows for
         retrieving extended user data such as UTM parameters.
 
         Parameters
         ----------
-        include : list[object]
+        include : list[str]
             The set of data to retrieve. To avoid any casing confusion,
             these values are converted to upper case. Possible values
             are: UTM
@@ -275,7 +275,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def set_support_access(self, body: object) -> LockstepResponse[SupportAccessModel]:
+    def set_support_access(self, body: SupportAccessRequest) -> LockstepResponse[SupportAccessModel]:
         """
         Set support access for the calling user.
 
@@ -288,7 +288,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        body : object
+        body : SupportAccessRequest
 
         """
         path = "/api/v1/UserAccounts/support-access"

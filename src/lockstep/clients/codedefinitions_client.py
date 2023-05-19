@@ -25,7 +25,7 @@ class CodeDefinitionsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_codedefinition(self, id: object, include: object) -> LockstepResponse[CodeDefinitionModel]:
+    def retrieve_codedefinition(self, id: str, include: str) -> LockstepResponse[CodeDefinitionModel]:
         """
         Retrieves the CodeDefinition specified by this unique
         identifier, optionally including nested data sets.
@@ -35,10 +35,10 @@ class CodeDefinitionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this
             CodeDefinition
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
@@ -50,7 +50,7 @@ class CodeDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_codedefinitions(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[CodeDefinitionModel]]:
+    def query_codedefinitions(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CodeDefinitionModel]]:
         """
         Queries CodeDefinitions for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -65,20 +65,20 @@ class CodeDefinitionsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

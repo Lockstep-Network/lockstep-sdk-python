@@ -26,7 +26,7 @@ class AttachmentLinksClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_attachment_link(self, attachmentId: object, objectKey: object, tableName: object) -> LockstepResponse[AttachmentLinkModel]:
+    def retrieve_attachment_link(self, attachmentId: str, objectKey: str, tableName: str) -> LockstepResponse[AttachmentLinkModel]:
         """
         Retrieves the Attachment Link with the provided Attachment Link
         identifier.
@@ -39,11 +39,11 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        attachmentId : object
+        attachmentId : str
 
-        objectKey : object
+        objectKey : str
 
-        tableName : object
+        tableName : str
 
         """
         path = "/api/v1/AttachmentLinks"
@@ -53,7 +53,7 @@ class AttachmentLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def upload_attachment(self, body: list[object]) -> LockstepResponse[list[AttachmentLinkModel]]:
+    def upload_attachment(self, body: list[AttachmentLinkModel]) -> LockstepResponse[list[AttachmentLinkModel]]:
         """
         Creates one Attachment Link from the provided arguments.
 
@@ -65,7 +65,7 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[AttachmentLinkModel]
 
         """
         path = "/api/v1/AttachmentLinks"
@@ -75,7 +75,7 @@ class AttachmentLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_attachment_link(self, attachmentId: object, objectKey: object, tableName: object) -> LockstepResponse[DeleteResult]:
+    def delete_attachment_link(self, attachmentId: str, objectKey: str, tableName: str) -> LockstepResponse[DeleteResult]:
         """
         Delete the specified link between an object and its attachment.
 
@@ -87,11 +87,11 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        attachmentId : object
+        attachmentId : str
 
-        objectKey : object
+        objectKey : str
 
-        tableName : object
+        tableName : str
 
         """
         path = "/api/v1/AttachmentLinks"
@@ -101,7 +101,7 @@ class AttachmentLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_attachment_links(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AttachmentLinkModel]]:
+    def query_attachment_links(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AttachmentLinkModel]]:
         """
         Queries Attachment Links for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -119,20 +119,20 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter to use to select from the list of available
             Attachments, in the [Searchlight query
             syntax](https://github.com/tspence/csharp-searchlight).
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             for querying but may be available in the future.
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/AttachmentLinks/query"

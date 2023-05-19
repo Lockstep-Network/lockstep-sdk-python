@@ -25,7 +25,7 @@ class ProfilesCompaniesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_public_company_profile(self, urlSlug: object) -> LockstepResponse[PublicCompanyProfileModel]:
+    def retrieve_public_company_profile(self, urlSlug: str) -> LockstepResponse[PublicCompanyProfileModel]:
         """
         Retrieves the Public Company Profile specified by the public url
         slug.
@@ -36,7 +36,7 @@ class ProfilesCompaniesClient:
 
         Parameters
         ----------
-        urlSlug : object
+        urlSlug : str
 
         """
         path = f"/api/v1/profiles/companies/{urlSlug}"
@@ -46,7 +46,7 @@ class ProfilesCompaniesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_public_company_profiles(self, filter: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PublicCompanyProfileModel]]:
+    def query_public_company_profiles(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PublicCompanyProfileModel]]:
         """
         Queries Public Company Profiles
 
@@ -62,15 +62,15 @@ class ProfilesCompaniesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/profiles/companies/query"

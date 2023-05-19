@@ -25,14 +25,14 @@ class ProvisioningClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def provision_free_developer_account(self, body: object) -> LockstepResponse[ActionResultModel]:
+    def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse[ActionResultModel]:
         """
         Creates a new account for a developer, sending an email with
         information on how to access the API.
 
         Parameters
         ----------
-        body : object
+        body : DeveloperAccountSubmitModel
 
         """
         path = "/api/v1/Provisioning/free-account"

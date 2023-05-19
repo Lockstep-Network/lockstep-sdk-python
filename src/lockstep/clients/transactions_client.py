@@ -25,7 +25,7 @@ class TransactionsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def query_transactions(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object, currentDate: object) -> LockstepResponse[TransactionModelTransactionSummaryTotalModelSummaryFetchResult]:
+    def query_transactions(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, currentDate: str) -> LockstepResponse[TransactionModelTransactionSummaryTotalModelSummaryFetchResult]:
         """
         Queries transactions (invoices/credit memos/payments) for this
         account using the specified filtering, sorting, nested fetch,
@@ -37,23 +37,23 @@ class TransactionsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        currentDate : object
+        currentDate : str
             The date the days past due value will be calculated against.
             If no currentDate is provided the current UTC date will be
             used.
@@ -65,7 +65,7 @@ class TransactionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_transaction_details(self, id: object) -> LockstepResponse[list[TransactionDetailModel]]:
+    def retrieve_transaction_details(self, id: str) -> LockstepResponse[list[TransactionDetailModel]]:
         """
         Retrieves a list of transaction details for the supplied
         transaction id.
@@ -77,7 +77,7 @@ class TransactionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
 
         """
         path = f"/api/v1/Transactions/{id}/details"

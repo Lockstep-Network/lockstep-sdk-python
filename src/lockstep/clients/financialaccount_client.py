@@ -26,13 +26,13 @@ class FinancialAccountClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_financial_account(self, body: list[object]) -> LockstepResponse[FinancialAccountModel]:
+    def create_financial_account(self, body: list[FinancialAccountModel]) -> LockstepResponse[FinancialAccountModel]:
         """
         Creates a financial account with the specified name.
 
         Parameters
         ----------
-        body : list[object]
+        body : list[FinancialAccountModel]
             Metadata about the financial account to create.
         """
         path = "/api/v1/FinancialAccount"
@@ -42,14 +42,14 @@ class FinancialAccountClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_financial_account(self, id: object) -> LockstepResponse[FinancialAccountModel]:
+    def retrieve_financial_account(self, id: str) -> LockstepResponse[FinancialAccountModel]:
         """
         Retrieves the financial account specified by this unique
         identifier.
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Account; NOT
             the customer's ERP key
         """
@@ -60,13 +60,13 @@ class FinancialAccountClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_financial_account(self, id: object, body: object) -> LockstepResponse[FinancialAccountModel]:
+    def update_financial_account(self, id: str, body: object) -> LockstepResponse[FinancialAccountModel]:
         """
 
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Account to
             update; NOT the customer's ERP key
         body : object
@@ -79,14 +79,14 @@ class FinancialAccountClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_financial_account(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_financial_account(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Financial Account referred to by this unique
         identifier.
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Financial
             Account to disable; NOT the customer's ERP key
         """
@@ -97,25 +97,25 @@ class FinancialAccountClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_financial_accounts(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[FinancialAccountModel]]:
+    def query_financial_accounts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountModel]]:
         """
 
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve.
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

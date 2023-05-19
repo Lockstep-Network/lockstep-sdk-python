@@ -30,7 +30,7 @@ class PaymentsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_payment(self, id: object, include: object) -> LockstepResponse[PaymentModel]:
+    def retrieve_payment(self, id: str, include: str) -> LockstepResponse[PaymentModel]:
         """
         Retrieves the Payment specified by this unique identifier,
         optionally including nested data sets.
@@ -49,10 +49,10 @@ class PaymentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Payment; NOT
             the customer's ERP key
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Applications,
             Notes, Attachments, CustomFields
@@ -64,7 +64,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_payment(self, id: object, body: object) -> LockstepResponse[PaymentModel]:
+    def update_payment(self, id: str, body: object) -> LockstepResponse[PaymentModel]:
         """
         Updates an existing Payment with the information supplied to
         this PATCH call.
@@ -90,7 +90,7 @@ class PaymentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Payment to
             update; NOT the customer's ERP key
         body : object
@@ -103,7 +103,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_payment(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_payment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Payment referred to by this unique identifier.
 
@@ -121,7 +121,7 @@ class PaymentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Payment to
             delete; NOT the customer's ERP key
         """
@@ -132,7 +132,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments(self, body: list[object]) -> LockstepResponse[list[PaymentModel]]:
+    def create_payments(self, body: list[PaymentModel]) -> LockstepResponse[list[PaymentModel]]:
         """
         Creates one or more Payments within this account and returns the
         records as created.
@@ -151,7 +151,7 @@ class PaymentsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[PaymentModel]
             The Payments to create
         """
         path = "/api/v1/Payments"
@@ -161,7 +161,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_payments(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PaymentModel]]:
+    def query_payments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentModel]]:
         """
         Queries Payments for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -184,20 +184,20 @@ class PaymentsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Applications,
             Notes, Attachments, CustomFields
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -208,7 +208,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_payment_pdf(self, id: object) -> Response:
+    def retrieve_payment_pdf(self, id: str) -> Response:
         """
         Retrieves a PDF file for this payment if it has been synced
         using an app enrollment to one of the supported apps.
@@ -217,7 +217,7 @@ class PaymentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this payment; NOT
             the customer's ERP key
         """
@@ -225,7 +225,7 @@ class PaymentsClient:
         result = self.client.send_request("GET", path, None, {}, None)
         return result
 
-    def query_payment_summary_view(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult]:
+    def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult]:
         """
         Queries Payments for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. This
@@ -250,21 +250,21 @@ class PaymentsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve.
 
             Available collections: Summary, Aging
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -289,7 +289,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_payment_detail_view(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PaymentDetailModel]]:
+    def query_payment_detail_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentDetailModel]]:
         """
         Queries Payments within the Lockstep platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -312,22 +312,22 @@ class PaymentsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve.
 
             No collections are currently available but may be offered in
             the future
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

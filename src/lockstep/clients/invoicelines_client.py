@@ -27,14 +27,14 @@ class InvoiceLinesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_invoiceline(self, body: list[object]) -> LockstepResponse[list[InvoiceLineModel]]:
+    def create_invoiceline(self, body: list[InvoiceLineModel]) -> LockstepResponse[list[InvoiceLineModel]]:
         """
         Creates one or more invoice lines within this account and
         returns the created records
 
         Parameters
         ----------
-        body : list[object]
+        body : list[InvoiceLineModel]
 
         """
         path = "/api/v1/invoice-lines"
@@ -44,13 +44,13 @@ class InvoiceLinesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_invoice_lines(self, body: object) -> LockstepResponse[DeleteResult]:
+    def delete_invoice_lines(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
 
 
         Parameters
         ----------
-        body : object
+        body : BulkDeleteRequestModel
             The unique Lockstep Platform ID numbers of the Invoice Lines
             to delete; NOT the customer's ERP keys
         """
@@ -61,13 +61,13 @@ class InvoiceLinesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieves_invoice_line(self, invoiceLineId: object) -> LockstepResponse[InvoiceLineModel]:
+    def retrieves_invoice_line(self, invoiceLineId: str) -> LockstepResponse[InvoiceLineModel]:
         """
 
 
         Parameters
         ----------
-        invoiceLineId : object
+        invoiceLineId : str
             Unique id of the the InvoiceLine
         """
         path = f"/api/v1/invoice-lines/{invoiceLineId}"
@@ -77,7 +77,7 @@ class InvoiceLinesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_invoice_line(self, invoiceLineId: object, body: object) -> LockstepResponse[InvoiceLineModel]:
+    def update_invoice_line(self, invoiceLineId: str, body: object) -> LockstepResponse[InvoiceLineModel]:
         """
         Updates an existing Invoice Line with the information supplied
         to this PATCH call.
@@ -91,7 +91,7 @@ class InvoiceLinesClient:
 
         Parameters
         ----------
-        invoiceLineId : object
+        invoiceLineId : str
             Unique id of the the InvoiceLine
         body : object
             A list of changes to apply to this Invoice Line
@@ -103,13 +103,13 @@ class InvoiceLinesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def deletes_invoice_line(self, invoiceLineId: object) -> LockstepResponse[DeleteResult]:
+    def deletes_invoice_line(self, invoiceLineId: str) -> LockstepResponse[DeleteResult]:
         """
 
 
         Parameters
         ----------
-        invoiceLineId : object
+        invoiceLineId : str
             Unique id of the the InvoiceLine
         """
         path = f"/api/v1/invoice-lines/{invoiceLineId}"
@@ -119,7 +119,7 @@ class InvoiceLinesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_invoice_lines(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[InvoiceLineModel]]:
+    def query_invoice_lines(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceLineModel]]:
         """
         Queries Invoice Lines for the account using specified filtering
         More information on querying can be found on the [Searchlight
@@ -128,18 +128,18 @@ class InvoiceLinesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve.
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax]
-        pageSize : object
+        pageSize : int
             The page size for results (default 200, maximum of 10,000)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/invoice-lines/query"

@@ -26,7 +26,7 @@ class FinancialAccountBalanceHistoryClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_balance_history(self, id: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def retrieve_balance_history(self, id: str) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
         """
         Retrieves the Financial Account Balance History specified by
         this unique identifier.
@@ -36,7 +36,7 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Financial
             Account Balance History
         """
@@ -47,7 +47,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_balance_history(self, id: object, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
+    def update_balance_history(self, id: str, body: object) -> LockstepResponse[FinancialAccountBalanceHistoryModel]:
         """
         Updates a Financial Account Balance History that matches the
         specified id with the requested information.
@@ -64,7 +64,7 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Financial
             Account Balance History to update
         body : object
@@ -78,7 +78,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_balance_history(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_balance_history(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Delete the Financial Account Balance History referred to by this
         unique identifier.
@@ -88,7 +88,7 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Financial
             Account Balance History to disable
         """
@@ -99,7 +99,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_balance_history(self, body: list[object]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
+    def create_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
         """
         Creates a Financial Account Balance History from a given model.
 
@@ -108,7 +108,7 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[FinancialAccountBalanceHistoryModel]
             The Financial Account Balance Histories to create
         """
         path = "/api/v1/FinancialAccountBalanceHistory"
@@ -118,7 +118,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_balance_history(self, filter: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
+    def query_balance_history(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountBalanceHistoryModel]]:
         """
         Queries Financial Account Balance History for this account using
         the specified filtering, sorting, and pagination rules
@@ -133,16 +133,16 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

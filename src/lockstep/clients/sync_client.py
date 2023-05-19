@@ -27,7 +27,7 @@ class SyncClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_sync(self, body: object) -> LockstepResponse[SyncRequestModel]:
+    def create_sync(self, body: SyncSubmitModel) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from the Application specified in the
         request and returns a token that can be used to check the
@@ -42,7 +42,7 @@ class SyncClient:
 
         Parameters
         ----------
-        body : object
+        body : SyncSubmitModel
             Information about the Sync to execute
         """
         path = "/api/v1/Sync"
@@ -52,7 +52,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_batch_import(self, body: object) -> LockstepResponse[SyncRequestModel]:
+    def create_batch_import(self, body: BatchSyncModel) -> LockstepResponse[SyncRequestModel]:
         """
         Creates a new batch import Sync task that imports all the models
         provided to this API call.
@@ -71,7 +71,7 @@ class SyncClient:
 
         Parameters
         ----------
-        body : object
+        body : BatchSyncModel
             Information about the Sync to execute
         """
         path = "/api/v1/Sync/batch"
@@ -81,7 +81,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def upload_sync_file(self, appEnrollmentId: object, isFullSync: object, filename: object) -> LockstepResponse[SyncRequestModel]:
+    def upload_sync_file(self, appEnrollmentId: str, isFullSync: bool, filename: str) -> LockstepResponse[SyncRequestModel]:
         """
         Requests a new Sync task from a ZIP file you provide. This ZIP
         file can contain one or more files with data from the customer's
@@ -97,13 +97,13 @@ class SyncClient:
 
         Parameters
         ----------
-        appEnrollmentId : object
+        appEnrollmentId : str
             The optional existing app enrollment to associate with the
             data in the zip file.
-        isFullSync : object
+        isFullSync : bool
             True if this is a full sync, false if this is a partial
             sync. Defaults to false.
-        filename : object
+        filename : str
             The full path of a file to upload to the API
         """
         path = "/api/v1/Sync/zip"
@@ -113,7 +113,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_sync(self, id: object, body: object) -> LockstepResponse[SyncRequestModel]:
+    def update_sync(self, id: str, body: object) -> LockstepResponse[SyncRequestModel]:
         """
         Updates an existing Sync with the information supplied to this
         PATCH call.
@@ -137,7 +137,7 @@ class SyncClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Sync to update
         body : object
             A list of changes to apply to this Application
@@ -149,7 +149,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_sync(self, id: object, include: object) -> LockstepResponse[SyncRequestModel]:
+    def retrieve_sync(self, id: str, include: str) -> LockstepResponse[SyncRequestModel]:
         """
         Retrieves the status and information about a Sync operation by
         the requested ID. Provides status and progress information about
@@ -164,9 +164,9 @@ class SyncClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Sync task to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Details
         """
@@ -177,7 +177,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def cancel_sync(self, id: object) -> LockstepResponse[SyncRequestModel]:
+    def cancel_sync(self, id: str) -> LockstepResponse[SyncRequestModel]:
         """
         Cancels a Sync process for an Application if the request is
         still being processed within the Application. This does not
@@ -194,7 +194,7 @@ class SyncClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Sync task to cancel
         """
         path = f"/api/v1/Sync/{id}"
@@ -204,7 +204,7 @@ class SyncClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_syncs(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[SyncRequestModel]]:
+    def query_syncs(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[SyncRequestModel]]:
         """
         Queries Sync tasks for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -223,19 +223,19 @@ class SyncClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Details
-        order : object
+        order : str
             The sort order for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

@@ -28,7 +28,7 @@ class AttachmentsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_attachment(self, id: object, include: object) -> LockstepResponse[AttachmentModel]:
+    def retrieve_attachment(self, id: str, include: str) -> LockstepResponse[AttachmentModel]:
         """
         Retrieves the Attachment with the provided Attachment
         identifier.
@@ -45,9 +45,9 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Attachment to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             for querying but may be available in the future.
@@ -59,7 +59,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_attachment(self, id: object, body: object) -> LockstepResponse[AttachmentModel]:
+    def update_attachment(self, id: str, body: object) -> LockstepResponse[AttachmentModel]:
         """
         Updates an existing Attachment with the information supplied to
         this PATCH call.
@@ -83,7 +83,7 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the attachment to
             update
         body : object
@@ -96,7 +96,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def archive_attachment(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def archive_attachment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Flag this attachment as archived, which can distinguish between
         attachments currently active and attachments not intended for
@@ -115,7 +115,7 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Attachment to be archived
         """
         path = f"/api/v1/Attachments/{id}"
@@ -125,7 +125,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def download_attachment_url(self, id: object) -> LockstepResponse[UriModel]:
+    def download_attachment_url(self, id: str) -> LockstepResponse[UriModel]:
         """
         Returns a URI for the Attachment file to be downloaded, based on
         the ID provided.
@@ -142,7 +142,7 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Attachment whose URI will be
             returned
         """
@@ -153,7 +153,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def download_attachment_file(self, id: object) -> Response:
+    def download_attachment_file(self, id: str) -> Response:
         """
         Returns the Attachment file to be downloaded, based on the ID
         provided.
@@ -170,7 +170,7 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Attachment whose URI will be
             returned
         """
@@ -178,7 +178,7 @@ class AttachmentsClient:
         result = self.client.send_request("GET", path, None, {}, None)
         return result
 
-    def upload_attachment(self, tableName: object, objectId: object, attachmentType: object, filename: object) -> LockstepResponse[list[AttachmentModel]]:
+    def upload_attachment(self, tableName: str, objectId: str, attachmentType: str, filename: str) -> LockstepResponse[list[AttachmentModel]]:
         """
         Uploads and creates one or more Attachments from the provided
         arguments.
@@ -195,15 +195,15 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        tableName : object
+        tableName : str
             The name of the type of object to which this Attachment will
             be linked
-        objectId : object
+        objectId : str
             The unique ID of the object to which this Attachment will be
             linked
-        attachmentType : object
+        attachmentType : str
             The type of this attachment
-        filename : object
+        filename : str
             The full path of a file to upload to the API
         """
         path = "/api/v1/Attachments"
@@ -213,7 +213,7 @@ class AttachmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_attachments(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AttachmentModel]]:
+    def query_attachments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AttachmentModel]]:
         """
         Queries Attachments for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -235,20 +235,20 @@ class AttachmentsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter to use to select from the list of available
             Attachments, in the [Searchlight query
             syntax](https://github.com/tspence/csharp-searchlight).
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             for querying but may be available in the future.
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/Attachments/query"

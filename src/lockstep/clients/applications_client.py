@@ -26,7 +26,7 @@ class ApplicationsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_application(self, id: object, include: object) -> LockstepResponse[ApplicationModel]:
+    def retrieve_application(self, id: str, include: str) -> LockstepResponse[ApplicationModel]:
         """
         Retrieves the Application with this identifier.
 
@@ -46,9 +46,9 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Application to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields
@@ -60,7 +60,7 @@ class ApplicationsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_application(self, id: object, body: object) -> LockstepResponse[ApplicationModel]:
+    def update_application(self, id: str, body: object) -> LockstepResponse[ApplicationModel]:
         """
         Updates an existing Application with the information supplied to
         this PATCH call.
@@ -88,7 +88,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Application to update
         body : object
             A list of changes to apply to this Application
@@ -100,7 +100,7 @@ class ApplicationsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_application(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_application(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Application referred to by this unique identifier.
         Information about this Application is retained but after the
@@ -123,7 +123,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Application to delete
         """
         path = f"/api/v1/Applications/{id}"
@@ -133,7 +133,7 @@ class ApplicationsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_applications(self, body: list[object]) -> LockstepResponse[list[ApplicationModel]]:
+    def create_applications(self, body: list[ApplicationModel]) -> LockstepResponse[list[ApplicationModel]]:
         """
         Creates one or more Applications and returns the records as
         created. Applications are universal and available across all
@@ -155,7 +155,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[ApplicationModel]
             The Applications to create
         """
         path = "/api/v1/Applications"
@@ -165,7 +165,7 @@ class ApplicationsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_applications(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[ApplicationModel]]:
+    def query_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ApplicationModel]]:
         """
         Queries Applications on the Lockstep Platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -191,20 +191,20 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

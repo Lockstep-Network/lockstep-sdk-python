@@ -26,7 +26,7 @@ class NotesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_note(self, id: object, include: object) -> LockstepResponse[NoteModel]:
+    def retrieve_note(self, id: str, include: str) -> LockstepResponse[NoteModel]:
         """
         Retrieves the note with the specified note identifier.
 
@@ -42,9 +42,9 @@ class NotesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Note to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
@@ -56,7 +56,7 @@ class NotesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def archive_note(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def archive_note(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Archives the Note with the unique ID specified.
 
@@ -72,7 +72,7 @@ class NotesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             Note id to be archived
         """
         path = f"/api/v1/Notes/{id}"
@@ -82,7 +82,7 @@ class NotesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_notes(self, body: list[object]) -> LockstepResponse[list[NoteModel]]:
+    def create_notes(self, body: list[NoteModel]) -> LockstepResponse[list[NoteModel]]:
         """
         Creates one or more notes from the specified array of Note
         Models
@@ -99,7 +99,7 @@ class NotesClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[NoteModel]
             The array of notes to be created
         """
         path = "/api/v1/Notes"
@@ -109,7 +109,7 @@ class NotesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_notes(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[NoteModel]]:
+    def query_notes(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[NoteModel]]:
         """
         Queries Notes on the Lockstep Platform using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -131,20 +131,20 @@ class NotesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter to use to select from the list of available
             applications, in the [Searchlight query
             syntax](https://github.com/tspence/csharp-searchlight).
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/Notes/query"

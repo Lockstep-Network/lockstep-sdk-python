@@ -26,7 +26,7 @@ class CustomFieldValuesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_field(self, definitionId: object, recordKey: object, include: object) -> LockstepResponse[CustomFieldValueModel]:
+    def retrieve_field(self, definitionId: str, recordKey: str, include: str) -> LockstepResponse[CustomFieldValueModel]:
         """
         Retrieves all Custom Field Definitions.
 
@@ -43,13 +43,13 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        definitionId : object
+        definitionId : str
             The unique Lockstep Platform ID number of the Custom Field
             Definition for the Custom Field Value to retrieve.
-        recordKey : object
+        recordKey : str
             The unique Lockstep Platform ID number of the Lockstep
             Platform object the Custom Field Value is attached to.
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections:
             CustomFieldDefinition
@@ -61,7 +61,7 @@ class CustomFieldValuesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_field(self, definitionId: object, recordKey: object, body: object) -> LockstepResponse[CustomFieldValueModel]:
+    def update_field(self, definitionId: str, recordKey: str, body: object) -> LockstepResponse[CustomFieldValueModel]:
         """
         Updates an existing Custom Field with the information supplied
         to this PATCH call.
@@ -86,10 +86,10 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        definitionId : object
+        definitionId : str
             The unique Lockstep Platform ID number of the Custom Field
             Definition for the Custom Field Value to retrieve.
-        recordKey : object
+        recordKey : str
             The unique Lockstep Platform ID number of the Lockstep
             Platform object the Custom Field Value is attached to.
         body : object
@@ -102,7 +102,7 @@ class CustomFieldValuesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_field(self, definitionId: object, recordKey: object) -> LockstepResponse[ActionResultModel]:
+    def delete_field(self, definitionId: str, recordKey: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Custom Field referred to by this unique identifier.
 
@@ -119,10 +119,10 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        definitionId : object
+        definitionId : str
             The unique Lockstep Platform ID number of the Custom Field
             Definition for the Custom Field Value to retrieve.
-        recordKey : object
+        recordKey : str
             The unique Lockstep Platform ID number of the Lockstep
             Platform object the Custom Field Value is attached to.
         """
@@ -133,7 +133,7 @@ class CustomFieldValuesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_fields(self, body: list[object]) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Creates one or more Custom Fields and returns the records as
         created.
@@ -151,7 +151,7 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[CustomFieldValueModel]
             The Custom Fields to create
         """
         path = "/api/v1/CustomFieldValues"
@@ -161,7 +161,7 @@ class CustomFieldValuesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_fields(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[CustomFieldValueModel]]:
+    def query_fields(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomFieldValueModel]]:
         """
         Queries Custom Fields within the Lockstep platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -184,20 +184,20 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections:
             CustomFieldDefinition
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

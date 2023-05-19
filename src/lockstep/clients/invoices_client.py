@@ -30,7 +30,7 @@ class InvoicesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_invoice(self, id: object, include: object) -> LockstepResponse[InvoiceModel]:
+    def retrieve_invoice(self, id: str, include: str) -> LockstepResponse[InvoiceModel]:
         """
         Retrieves the Invoice specified by this unique identifier,
         optionally including nested data sets.
@@ -47,10 +47,10 @@ class InvoicesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this invoice; NOT
             the customer's ERP key
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Addresses,
             Lines, Payments, Notes, Attachments, Company, Customer,
@@ -63,7 +63,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_invoice(self, id: object, body: object) -> LockstepResponse[InvoiceModel]:
+    def update_invoice(self, id: str, body: object) -> LockstepResponse[InvoiceModel]:
         """
         Updates an existing Invoice with the information supplied to
         this PATCH call.
@@ -87,7 +87,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the invoice to
             update; NOT the customer's ERP key
         body : object
@@ -100,7 +100,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_invoice(self, id: object) -> LockstepResponse[DeleteResult]:
+    def delete_invoice(self, id: str) -> LockstepResponse[DeleteResult]:
         """
         Deletes the Invoice referred to by this unique identifier. An
         Invoice represents a bill sent from one company to another. The
@@ -115,7 +115,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the invoice to
             delete; NOT the customer's ERP key
         """
@@ -126,7 +126,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_invoices(self, body: list[object]) -> LockstepResponse[list[InvoiceModel]]:
+    def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse[list[InvoiceModel]]:
         """
         Creates one or more Invoices within this account and returns the
         records as created.
@@ -143,7 +143,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[InvoiceModel]
             The Invoices to create
         """
         path = "/api/v1/Invoices"
@@ -153,7 +153,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_invoices(self, body: object) -> LockstepResponse[DeleteResult]:
+    def delete_invoices(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
         Delete the Invoices referred to by these unique identifiers.
 
@@ -169,7 +169,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        body : object
+        body : BulkDeleteRequestModel
             The unique Lockstep Platform ID numbers of the Invoices to
             delete; NOT the customer's ERP keys
         """
@@ -180,7 +180,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_invoices(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[InvoiceModel]]:
+    def query_invoices(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceModel]]:
         """
         Queries Invoices for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -201,21 +201,21 @@ class InvoicesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Addresses,
             Lines, Payments, Notes, Attachments, Company, Customer,
             CustomFields, CreditMemos
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -226,7 +226,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_invoice_pdf(self, id: object) -> Response:
+    def retrieve_invoice_pdf(self, id: str) -> Response:
         """
         Retrieves a PDF file for this invoice if it is of one of the
         supported invoice types and has been synced using an app
@@ -241,7 +241,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this invoice; NOT
             the customer's ERP key
         """
@@ -249,7 +249,7 @@ class InvoicesClient:
         result = self.client.send_request("GET", path, None, {}, None)
         return result
 
-    def query_invoice_summary_view(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult]:
+    def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult]:
         """
         Queries Invoices for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested. Display
@@ -266,19 +266,19 @@ class InvoicesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Summary, Aging
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -289,7 +289,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_at_risk_view(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
+    def query_at_risk_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AtRiskInvoiceSummaryModel]]:
         """
         Queries At Risk Invoices for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -307,20 +307,20 @@ class InvoicesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

@@ -26,7 +26,7 @@ class FinancialYearSettingsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_financial_year_setting(self, id: object) -> LockstepResponse[FinancialYearSettingModel]:
+    def retrieve_financial_year_setting(self, id: str) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Retrieves the Financial Year Setting specified by this unique
         identifier.
@@ -40,7 +40,7 @@ class FinancialYearSettingsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Financial
             Year Setting
         """
@@ -51,7 +51,7 @@ class FinancialYearSettingsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_financial_year_setting(self, id: object, body: object) -> LockstepResponse[FinancialYearSettingModel]:
+    def update_financial_year_setting(self, id: str, body: object) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Updates a financial year setting that matches the specified id
         with the requested information.
@@ -72,7 +72,7 @@ class FinancialYearSettingsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Financial Year
             Setting to update
         body : object
@@ -85,7 +85,7 @@ class FinancialYearSettingsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_financial_year_setting(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_financial_year_setting(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Delete the Financial Year Setting referred to by this unique
         identifier.
@@ -99,7 +99,7 @@ class FinancialYearSettingsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Financial Year
             Setting to disable
         """
@@ -110,7 +110,7 @@ class FinancialYearSettingsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_financial_year_setting(self, body: object) -> LockstepResponse[FinancialYearSettingModel]:
+    def create_financial_year_setting(self, body: FinancialYearSettingModel) -> LockstepResponse[FinancialYearSettingModel]:
         """
         Creates a financial year setting from a given model.
 
@@ -123,7 +123,7 @@ class FinancialYearSettingsClient:
 
         Parameters
         ----------
-        body : object
+        body : FinancialYearSettingModel
             The Financial Year Setting to create
         """
         path = "/api/v1/FinancialYearSettings"
@@ -133,7 +133,7 @@ class FinancialYearSettingsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_financial_year_settings(self, filter: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[FinancialYearSettingModel]]:
+    def query_financial_year_settings(self, filter: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialYearSettingModel]]:
         """
         Queries Financial Year Settings for this account using the
         specified filtering, sorting, and pagination rules requested.
@@ -151,16 +151,16 @@ class FinancialYearSettingsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

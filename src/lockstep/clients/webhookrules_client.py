@@ -26,13 +26,13 @@ class WebhookRulesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_webhook_rule(self, id: object) -> LockstepResponse[WebhookRuleModel]:
+    def retrieve_webhook_rule(self, id: str) -> LockstepResponse[WebhookRuleModel]:
         """
         Retrieves the Webhook Rule specified by this unique identifier.
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Webhook Rule
         """
         path = f"/api/v1/WebhookRules/{id}"
@@ -42,7 +42,7 @@ class WebhookRulesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_webhook_rule(self, id: object, body: object) -> LockstepResponse[WebhookRuleModel]:
+    def update_webhook_rule(self, id: str, body: object) -> LockstepResponse[WebhookRuleModel]:
         """
         Updates a webhook rule that matches the specified id with the
         requested information.
@@ -56,7 +56,7 @@ class WebhookRulesClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Webhook Rule
             to update.
         body : object
@@ -69,13 +69,13 @@ class WebhookRulesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_webhook_rule(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_webhook_rule(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Webhook Rule referred to by this unique identifier.
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Webhook Rule
             to delete.
         """
@@ -86,13 +86,13 @@ class WebhookRulesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhook_rules(self, body: list[object]) -> LockstepResponse[list[WebhookRuleModel]]:
+    def create_webhook_rules(self, body: list[WebhookRuleModel]) -> LockstepResponse[list[WebhookRuleModel]]:
         """
         Creates one or more webhook rules from a given model.
 
         Parameters
         ----------
-        body : list[object]
+        body : list[WebhookRuleModel]
             The Webhook Rules to create
         """
         path = "/api/v1/WebhookRules"
@@ -102,7 +102,7 @@ class WebhookRulesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_webhook_rules(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[WebhookRuleModel]]:
+    def query_webhook_rules(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookRuleModel]]:
         """
         Queries Webhook Rules for this account using the specified
         filtering, sorting, and pagination rules requested.
@@ -113,20 +113,20 @@ class WebhookRulesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

@@ -25,15 +25,15 @@ class UserRolesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_user_role(self, id: object, include: object) -> LockstepResponse[UserRoleModel]:
+    def retrieve_user_role(self, id: str, include: str) -> LockstepResponse[UserRoleModel]:
         """
         Retrieves the User Role with this identifier.
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the User Role to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
@@ -45,7 +45,7 @@ class UserRolesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_user_roles(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[UserRoleModel]]:
+    def query_user_roles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserRoleModel]]:
         """
         Queries User Roles for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -53,20 +53,20 @@ class UserRolesClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """

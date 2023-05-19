@@ -38,7 +38,7 @@ class GroupAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_group_account(self, id: object, body: object) -> LockstepResponse[GroupAccountModel]:
+    def update_group_account(self, id: str, body: object) -> LockstepResponse[GroupAccountModel]:
         """
         Updates a group account that matches the specified id with the
         requested information.
@@ -52,7 +52,7 @@ class GroupAccountsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the Group Account to retrieve
         body : object
             A list of changes to apply to this Group Account

@@ -29,7 +29,7 @@ class AppEnrollmentsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_app_enrollment(self, id: object, include: object) -> LockstepResponse[AppEnrollmentModel]:
+    def retrieve_app_enrollment(self, id: str, include: str) -> LockstepResponse[AppEnrollmentModel]:
         """
         Retrieves the App Enrollment with this identifier.
 
@@ -45,9 +45,9 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the App Enrollment to retrieve
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: App,
             CustomFields, LastSync, LastSuccessfulSync
@@ -59,7 +59,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_app_enrollment(self, id: object, body: object) -> LockstepResponse[AppEnrollmentModel]:
+    def update_app_enrollment(self, id: str, body: object) -> LockstepResponse[AppEnrollmentModel]:
         """
         Updates an existing App Enrollment with the information supplied
         to this PATCH call.
@@ -83,7 +83,7 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the App Enrollment to update
         body : object
             A list of changes to apply to this App Enrollment
@@ -95,7 +95,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_app_enrollment(self, id: object, removeEnrollmentData: object) -> LockstepResponse[DeleteResult]:
+    def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse[DeleteResult]:
         """
         Deletes the App Enrollment referred to by this unique
         identifier. An App Enrollment represents an app that has been
@@ -110,9 +110,9 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the App Enrollment to delete
-        removeEnrollmentData : object
+        removeEnrollmentData : bool
             Option to remove all associated app enrollment data when
             deleting app enrollment (default false)
         """
@@ -123,7 +123,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_app_enrollments(self, startSync: object, body: list[object]) -> LockstepResponse[list[AppEnrollmentModel]]:
+    def create_app_enrollments(self, startSync: bool, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
         """
         Creates one or more App Enrollments within this account and
         returns the records as created.
@@ -140,10 +140,10 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        startSync : object
+        startSync : bool
             Option to start sync immediately after creation of app
             enrollments (default false)
-        body : list[object]
+        body : list[AppEnrollmentModel]
             The App Enrollments to create
         """
         path = "/api/v1/AppEnrollments"
@@ -153,15 +153,15 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def reconnect_app_enrollment(self, id: object, body: object) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def reconnect_app_enrollment(self, id: str, body: AppEnrollmentReconnectInfo) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Updates the settings associated with this App Enrollment
 
         Parameters
         ----------
-        id : object
+        id : str
             The id for the app enrollment
-        body : object
+        body : AppEnrollmentReconnectInfo
             Information to reconnect the App Enrollment
         """
         path = f"/api/v1/AppEnrollments/{id}/reconnect"
@@ -171,7 +171,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_app_enrollments(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AppEnrollmentModel]]:
+    def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AppEnrollmentModel]]:
         """
         Queries App Enrollments for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -193,20 +193,20 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: App,
             CustomFields, LastSync, LastSuccessfulSync
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -217,7 +217,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_enrollment_fields(self, id: object) -> LockstepResponse[FetchResult[AppEnrollmentCustomFieldModel]]:
+    def query_enrollment_fields(self, id: str) -> LockstepResponse[FetchResult[AppEnrollmentCustomFieldModel]]:
         """
         Queries custom fields settings for app enrollment within the
         Lockstep platform using the specified filtering, sorting, nested
@@ -239,7 +239,7 @@ class AppEnrollmentsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique ID number of the App Enrollment for which we
             retrieve custom fields
         """

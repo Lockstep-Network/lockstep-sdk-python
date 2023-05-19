@@ -41,7 +41,7 @@ class ReportsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def cash_flow(self, timeframe: object) -> LockstepResponse[CashflowReportModel]:
+    def cash_flow(self, timeframe: int) -> LockstepResponse[CashflowReportModel]:
         """
         Retrieves a current Cash Flow report for this account.
 
@@ -52,7 +52,7 @@ class ReportsClient:
 
         Parameters
         ----------
-        timeframe : object
+        timeframe : int
             Number of days of data to include for the Cash Flow Report
             (default is 30 days from today)
         """
@@ -63,7 +63,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def payables_summary_report(self, timeframe: object) -> LockstepResponse[PayablesSummaryReportModel]:
+    def payables_summary_report(self, timeframe: int) -> LockstepResponse[PayablesSummaryReportModel]:
         """
         Retrieves a current Payables Summary report for this account.
 
@@ -75,7 +75,7 @@ class ReportsClient:
 
         Parameters
         ----------
-        timeframe : object
+        timeframe : int
             Number of days of data to include for the Payables Summary
             Report (default is 30 days from today)
         """
@@ -86,7 +86,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def daily_sales_outstanding(self, reportDate: object) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
+    def daily_sales_outstanding(self, reportDate: str) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
         """
         Retrieves a current Daily Sales Outstanding (DSO) report for
         this account.
@@ -98,7 +98,7 @@ class ReportsClient:
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             Optional: Specify the specific report date to generate the
             from (default UTC now)
         """
@@ -144,7 +144,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def payables_coming_due_summary(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PayablesComingDueModel]]:
+    def payables_coming_due_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PayablesComingDueModel]]:
         """
         Payables coming due represents the amount of cash required to
         pay vendor bills based on the due dates of the bills. Each
@@ -153,19 +153,19 @@ class ReportsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/Reports/payables-coming-due-summary"
@@ -175,14 +175,14 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def payables_coming_due_header(self, reportDate: object) -> LockstepResponse[list[PayablesComingDueHeaderModel]]:
+    def payables_coming_due_header(self, reportDate: str) -> LockstepResponse[list[PayablesComingDueHeaderModel]]:
         """
         Retrieves total number of vendors, bills, the total amount
         outstanding, for a group.
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             The date the outstanding values are calculated on. Should be
             either the current day, 7 days after the current day, 14
             days after the current day, or 30 days after the current
@@ -214,15 +214,15 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def accounts_receivable_header(self, reportDate: object, companyId: object) -> LockstepResponse[ArHeaderInfoModel]:
+    def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ArHeaderInfoModel]:
         """
         Retrieves AR header information up to the date specified.
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             The date of the report.
-        companyId : object
+        companyId : str
             Include a company to get AR data for a specific company,
             leave as null to include all Companies.
         """
@@ -233,15 +233,15 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def accounts_payable_header(self, reportDate: object, companyId: object) -> LockstepResponse[ApHeaderInfoModel]:
+    def accounts_payable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ApHeaderInfoModel]:
         """
         Retrieves AP header information up to the date specified.
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             The date of the report.
-        companyId : object
+        companyId : str
             Include a company to get AP data for a specific company,
             leave as null to include all Companies.
         """
@@ -252,7 +252,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invoice_aging_report(self, CompanyId: object, Recalculate: object, CurrencyCode: object, CurrencyProvider: object, Buckets: list[object], ApReport: object) -> LockstepResponse[list[AgingModel]]:
+    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
         """
         The Aging Report contains information about the total dollar
         value of invoices broken down by their age. Last default or
@@ -275,25 +275,25 @@ class ReportsClient:
 
         Parameters
         ----------
-        CompanyId : object
+        CompanyId : str
             Company aging buckets are filtered by (all company aging
             returned if not company specified)
-        Recalculate : object
+        Recalculate : bool
             Force api to recalculate aging data, cached data may be
             returned when set to false
-        CurrencyCode : object
+        CurrencyCode : str
             Currency aging buckets are converted to (all aging data
             returned without currency conversion if no currency is
             specified)
-        CurrencyProvider : object
+        CurrencyProvider : str
             Currency provider currency rates should be returned from to
             convert aging amounts to (default Lockstep currency provider
             used if no data provider specified)
-        Buckets : list[object]
+        Buckets : list[int]
             Customized buckets used for aging calculations (default
             buckets [0,30,60,90,120,180] will be used if buckets not
             specified)
-        ApReport : object
+        ApReport : bool
             A boolean to turn on AP Aging reports
         """
         path = "/api/v1/Reports/aging"
@@ -342,7 +342,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def attachments_header_information(self, companyId: object) -> LockstepResponse[AttachmentHeaderInfoModel]:
+    def attachments_header_information(self, companyId: str) -> LockstepResponse[AttachmentHeaderInfoModel]:
         """
         Retrieves Attachment Header information for the requested
         companyId.
@@ -353,7 +353,7 @@ class ReportsClient:
 
         Parameters
         ----------
-        companyId : object
+        companyId : str
             Include a specific company to get Attachment data for, leave
             as null to include all Companies.
         """
@@ -364,17 +364,17 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def trial_balance_report(self, startDate: object, endDate: object, appEnrollmentId: object) -> LockstepResponse[FinancialReportModel]:
+    def trial_balance_report(self, startDate: str, endDate: str, appEnrollmentId: str) -> LockstepResponse[FinancialReportModel]:
         """
         Generates a Trial Balance Report for the given time range.
 
         Parameters
         ----------
-        startDate : object
+        startDate : str
             The start date of the report
-        endDate : object
+        endDate : str
             The end date of the report
-        appEnrollmentId : object
+        appEnrollmentId : str
             The app enrollment id of the app enrollment whose data will
             be used.
         """
@@ -385,20 +385,20 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def income_statement_report(self, startDate: object, endDate: object, appEnrollmentId: object, columnOption: object, displayDepth: object, comparisonPeriod: object, showCurrencyDifference: object, showPercentageDifference: object) -> LockstepResponse[FinancialReportModel]:
+    def income_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
         Generates an Income Statement for the given time range.
 
         Parameters
         ----------
-        startDate : object
+        startDate : str
             The start date of the report
-        endDate : object
+        endDate : str
             The end date of the report
-        appEnrollmentId : object
+        appEnrollmentId : str
             The app enrollment id of the app enrollment whose data will
             be used.
-        columnOption : object
+        columnOption : str
             The desired column splitting of the report data. An empty
             string or anything unrecognized will result in only totals
             being displayed. Options are as follows: By Period - a
@@ -406,13 +406,13 @@ class ReportsClient:
             dates Quarterly - a column for every quarter within the
             reporting dates Annually - a column for every year within
             the reporting dates
-        displayDepth : object
+        displayDepth : int
             The desired row splitting of the report data. For Income
             Statements, the minimum report depth is 1. Options are as
             follows: 1 - combine all accounts by their category 2 -
             combine all accounts by their subcategory 3 - display all
             accounts
-        comparisonPeriod : object
+        comparisonPeriod : str
             Add a column for historical data with the following options
             and use showCurrencyDifference and/or show
             percentageDifference to display a comparison of that
@@ -424,10 +424,10 @@ class ReportsClient:
             for columnOption) "PY" - previous year (the same date range
             as the report, but for the year prior) "YTD" - year to date
             (the current financial year to the current period)
-        showCurrencyDifference : object
+        showCurrencyDifference : bool
             A boolean to turn on a currency based difference between the
             reporting period and the comparison period.
-        showPercentageDifference : object
+        showPercentageDifference : bool
             A boolean to turn on a percent based difference between the
             reporting period and the comparison period.
         """
@@ -438,20 +438,20 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def balance_sheet_report(self, startDate: object, endDate: object, appEnrollmentId: object, columnOption: object, displayDepth: object, comparisonPeriod: object, showCurrencyDifference: object, showPercentageDifference: object) -> LockstepResponse[FinancialReportModel]:
+    def balance_sheet_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
         Generates a balance sheet for the given time range.
 
         Parameters
         ----------
-        startDate : object
+        startDate : str
             The start date of the report
-        endDate : object
+        endDate : str
             The end date of the report
-        appEnrollmentId : object
+        appEnrollmentId : str
             The app enrollment id of the app enrollment whose data will
             be used.
-        columnOption : object
+        columnOption : str
             The desired column splitting of the report data. An empty
             string or anything unrecognized will result in only totals
             being displayed. Options are as follows: By Period - a
@@ -459,13 +459,13 @@ class ReportsClient:
             dates Quarterly - a column for every quarter within the
             reporting dates Annually - a column for every year within
             the reporting dates
-        displayDepth : object
+        displayDepth : int
             The desired row splitting of the report data. For Balance
             Sheets, the minimum report depth is 1. Options are as
             follows: 1 - combine all accounts by their category 2 -
             combine all accounts by their subcategory 3 - display all
             accounts
-        comparisonPeriod : object
+        comparisonPeriod : str
             Add a column for historical data with the following options
             and use showCurrencyDifference and/or show
             percentageDifference to display a comparison of that
@@ -473,10 +473,10 @@ class ReportsClient:
             (will show the previous quarter or year if Quarterly or
             Annually is chosen for columnOption) "PY" - previous year
             (the same date range as the report, but for the year prior)
-        showCurrencyDifference : object
+        showCurrencyDifference : bool
             A boolean to turn on a currency based difference between the
             reporting period and the comparison period.
-        showPercentageDifference : object
+        showPercentageDifference : bool
             A boolean to turn on a percent based difference between the
             reporting period and the comparison period.
         """
@@ -487,20 +487,20 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def cash_flow_statement_report(self, startDate: object, endDate: object, appEnrollmentId: object, columnOption: object, displayDepth: object) -> LockstepResponse[FinancialReportModel]:
+    def cash_flow_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int) -> LockstepResponse[FinancialReportModel]:
         """
         Generates a cash flow statement for the given time range.
 
         Parameters
         ----------
-        startDate : object
+        startDate : str
             The start date of the report
-        endDate : object
+        endDate : str
             The end date of the report
-        appEnrollmentId : object
+        appEnrollmentId : str
             The app enrollment id of the app enrollment whose data will
             be used.
-        columnOption : object
+        columnOption : str
             The desired column splitting of the report data. An empty
             string or anything unrecognized will result in only totals
             being displayed. Options are as follows: By Period - a
@@ -508,7 +508,7 @@ class ReportsClient:
             dates Quarterly - a column for every quarter within the
             reporting dates Annually - a column for every year within
             the reporting dates
-        displayDepth : object
+        displayDepth : int
             The desired row splitting of the report data. Options are as
             follows: 0 - combine all accounts by their classification 1
             - combine all accounts by their category 2 - combine all
@@ -521,7 +521,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def days_payable_outstanding_summary(self, reportDate: object, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[DpoSummaryModel]]:
+    def days_payable_outstanding_summary(self, reportDate: str, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[DpoSummaryModel]]:
         """
         Retrieves a summary for each vendor that includes a count of
         their outstanding bills, the total amount outstanding, and their
@@ -538,22 +538,22 @@ class ReportsClient:
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             The date the outstanding values are calculated on. Should be
             either the current day or the end of a previous quarter.
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : object
+        order : str
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0)
         """
         path = "/api/v1/Reports/daily-payable-outstanding-summary"
@@ -563,7 +563,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def days_payable_outstanding_summary_total(self, reportDate: object) -> LockstepResponse[DpoSummaryGroupTotalModel]:
+    def days_payable_outstanding_summary_total(self, reportDate: str) -> LockstepResponse[DpoSummaryGroupTotalModel]:
         """
         Retrieves total number of vendors, bills, the total amount
         outstanding, and the daily payable outstanding value for a
@@ -576,7 +576,7 @@ class ReportsClient:
 
         Parameters
         ----------
-        reportDate : object
+        reportDate : str
             The date the outstanding values are calculated on. Should be
             either the current day or the end of a previous quarter.
         """

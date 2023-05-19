@@ -30,7 +30,7 @@ class TranscriptionsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_transcription_validation_request(self, id: object, include: object) -> LockstepResponse[TranscriptionValidationRequestModel]:
+    def retrieve_transcription_validation_request(self, id: str, include: str) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
         Retrieves the Transcription Validation Request specified by this
         unique identifier, optionally including nested data sets.
@@ -41,10 +41,10 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the transcription
             validation request
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Items
         """
@@ -55,7 +55,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_transcription_validation_request(self, id: object, body: object) -> LockstepResponse[TranscriptionValidationRequestModel]:
+    def update_transcription_validation_request(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
         Updates an existing Transcription Validation Request with the
         information supplied to this PATCH call.
@@ -73,7 +73,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Transcription
             Validation Request to update
         body : object
@@ -87,7 +87,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_transcription_validation_request(self, id: object) -> LockstepResponse[DeleteResult]:
+    def delete_transcription_validation_request(self, id: str) -> LockstepResponse[DeleteResult]:
         """
         Deletes the Transcription Validation Request and all associated
         items referred to by this unique identifier.
@@ -98,7 +98,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the transcription
             validation request to delete
         """
@@ -109,7 +109,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_transcription_validation_request(self, body: list[object]) -> LockstepResponse[TranscriptionValidationRequestModel]:
+    def create_transcription_validation_request(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
         Creates one Transcription Validation Request with all the
         associated request items within this account and returns the
@@ -121,7 +121,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[TranscriptionRequestSubmit]
             The files which will be verified
         """
         path = "/api/v1/Transcriptions/validate"
@@ -131,7 +131,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_transcription_validation_requests(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[TranscriptionValidationRequestModel]]:
+    def query_transcription_validation_requests(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[TranscriptionValidationRequestModel]]:
         """
         Queries transcription validation requests transactions for this
         account using the specified filtering, sorting, nested fetch,
@@ -143,19 +143,19 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Items
-        order : object
+        order : str
             The sort order for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -166,7 +166,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[object]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
+    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
         """
         Retrieves the TranscriptionValidationRequestItemModel specified
         by this unique identifier.
@@ -177,7 +177,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[TranscriptionRequestSubmit]
             The TranscriptionValidationRequestItemModels to add to an
             existing TranscriptionValidationRequestItemModel
         """
@@ -188,7 +188,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_a_transcriptionvalidationrequestitemmodel(self, id: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
+    def retrieve_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
         Retrieves the TranscriptionValidationRequestItemModel specified
         by this unique identifier.
@@ -199,7 +199,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the
             TranscriptionValidationRequestItemModel
         """
@@ -210,7 +210,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_a_transcriptionvalidationrequestitemmodel(self, id: object, body: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
+    def update_a_transcriptionvalidationrequestitemmodel(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
         Updates the TranscriptionValidationRequestItemModel specified by
         this unique identifier.
@@ -228,7 +228,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the
             TranscriptionValidationRequestItemModel
         body : object
@@ -242,7 +242,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_a_transcriptionvalidationrequestitemmodel(self, id: object) -> LockstepResponse[DeleteResult]:
+    def delete_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[DeleteResult]:
         """
         Deletes the TranscriptionValidationRequestItemModel specified by
         this unique identifier.
@@ -253,7 +253,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the
             TranscriptionValidationRequestItemModel
         """
@@ -264,7 +264,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_transcription_validation_request_items(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[TranscriptionValidationRequestItemModel]]:
+    def query_transcription_validation_request_items(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[TranscriptionValidationRequestItemModel]]:
         """
         Queries TranscriptionValidationRequestItemModels for this
         account using the specified filtering, sorting, nested fetch,
@@ -276,20 +276,20 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future ///
-        order : object
+        order : str
             The sort order for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
@@ -300,7 +300,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_an_emailreplygeneratorresponse(self, body: object) -> LockstepResponse[EmailReplyGeneratorResponse]:
+    def retrieve_an_emailreplygeneratorresponse(self, body: EmailReplyGeneratorRequest) -> LockstepResponse[EmailReplyGeneratorResponse]:
         """
         Retrieves the Email Reply Generator Response containing a list
         of email reply suggestions
@@ -310,7 +310,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : object
+        body : EmailReplyGeneratorRequest
             The Email Reply Generator Request to be sent
         """
         path = "/api/v1/Transcriptions/email-reply-suggestions"

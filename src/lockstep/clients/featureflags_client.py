@@ -25,14 +25,14 @@ class FeatureFlagsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_feature_flags(self, body: object) -> LockstepResponse[FeatureFlagsResponseModel]:
+    def retrieve_feature_flags(self, body: FeatureFlagsRequestModel) -> LockstepResponse[FeatureFlagsResponseModel]:
         """
         Retrieves the specified feature flags. True if they are enabled,
         false otherwise.
 
         Parameters
         ----------
-        body : object
+        body : FeatureFlagsRequestModel
 
         """
         path = "/api/v1/feature-flags"

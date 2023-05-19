@@ -26,7 +26,7 @@ class PaymentsAppliedClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_payment_applied(self, id: object, include: object) -> LockstepResponse[PaymentAppliedModel]:
+    def retrieve_payment_applied(self, id: str, include: str) -> LockstepResponse[PaymentAppliedModel]:
         """
         Retrieves the Payment Applied specified by this unique
         identifier, optionally including nested data sets.
@@ -40,10 +40,10 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of this Payment
             Applied; NOT the customer's ERP key
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Invoice,
             Payment
@@ -55,7 +55,7 @@ class PaymentsAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_payment_applied(self, id: object, body: object) -> LockstepResponse[PaymentAppliedModel]:
+    def update_payment_applied(self, id: str, body: object) -> LockstepResponse[PaymentAppliedModel]:
         """
         Updates an existing Payment Applied with the information
         supplied to this PATCH call.
@@ -76,7 +76,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Payment
             Applied to update; NOT the customer's ERP key
         body : object
@@ -89,7 +89,7 @@ class PaymentsAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_payment_applied(self, id: object) -> LockstepResponse[ActionResultModel]:
+    def delete_payment_applied(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Payment Applied referred to by this unique
         identifier.
@@ -103,7 +103,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : object
+        id : str
             The unique Lockstep Platform ID number of the Payment
             Applied to delete; NOT the customer's ERP key
         """
@@ -114,7 +114,7 @@ class PaymentsAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments_applied(self, body: list[object]) -> LockstepResponse[list[PaymentAppliedModel]]:
+    def create_payments_applied(self, body: list[PaymentAppliedModel]) -> LockstepResponse[list[PaymentAppliedModel]]:
         """
         Creates one or more Payments Applied within this account and
         returns the records as created.
@@ -128,7 +128,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        body : list[object]
+        body : list[PaymentAppliedModel]
             The Payments Applied to create
         """
         path = "/api/v1/payments-applied"
@@ -138,7 +138,7 @@ class PaymentsAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_payments_applied(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
+    def query_payments_applied(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
         """
         Queries Payments Applied for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -157,19 +157,19 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        filter : object
+        filter : str
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : object
+        include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Invoice
-        order : object
+        order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : object
+        pageSize : int
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : object
+        pageNumber : int
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
