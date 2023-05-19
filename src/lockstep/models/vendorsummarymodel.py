@@ -20,29 +20,31 @@ class VendorSummaryModel:
     Contains summarized data for a vendor
     """
 
-    groupKey: str | None = None
-    vendorId: str | None = None
-    vendorName: str | None = None
-    appEnrollmentId: str | None = None
-    primaryContactName: str | None = None
-    primaryContactId: str | None = None
-    amountPaidLast30: float | None = None
-    amountPaidPastThirtyDays: float | None = None
-    advancePayLast30: float | None = None
-    advancePayPastThirtyDays: float | None = None
-    advancePayOutstanding: float | None = None
-    amountBilledLast30: float | None = None
-    amountBilledPastThirtyDays: float | None = None
-    amountBilledOutstandingLast30: float | None = None
-    amountBilledOutstandingPastThirtyDays: float | None = None
-    amountBilledOutstanding: float | None = None
-    billCountLast30: int | None = None
-    billCountPastThirtyDays: int | None = None
-    paidBillCountLast30: int | None = None
-    paidBillCountPastThirtyDays: int | None = None
-    openBillCount: int | None = None
-    paidBillCount: int | None = None
-    totalBillCount: int | None = None
-    dpo: float | None = None
-    modified: str | None = None
+    groupKey: object | None = None
+    vendorId: object | None = None
+    vendorName: object | None = None
+    appEnrollmentId: object | None = None
+    primaryContactName: object | None = None
+    primaryContactId: object | None = None
+    amountPaidLast30: object | None = None
+    amountPaidPastThirtyDays: object | None = None
+    advancePayLast30: object | None = None
+    advancePayPastThirtyDays: object | None = None
+    advancePayOutstanding: object | None = None
+    amountBilledLast30: object | None = None
+    amountBilledPastThirtyDays: object | None = None
+    amountBilledOutstandingLast30: object | None = None
+    amountBilledOutstandingPastThirtyDays: object | None = None
+    amountBilledOutstanding: object | None = None
+    billCountLast30: object | None = None
+    billCountPastThirtyDays: object | None = None
+    paidBillCountLast30: object | None = None
+    paidBillCountPastThirtyDays: object | None = None
+    openBillCount: object | None = None
+    paidBillCount: object | None = None
+    totalBillCount: object | None = None
+    dpo: object | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

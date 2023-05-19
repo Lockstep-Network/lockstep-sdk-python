@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.webhookrulemodel import WebhookRuleModel
@@ -26,13 +26,13 @@ class WebhookRulesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_webhook_rule(self, id: str) -> LockstepResponse[WebhookRuleModel]:
+    def retrieve_webhook_rule(self, id: object) -> LockstepResponse[WebhookRuleModel]:
         """
         Retrieves the Webhook Rule specified by this unique identifier.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Webhook Rule
         """
         path = f"/api/v1/WebhookRules/{id}"
@@ -40,9 +40,9 @@ class WebhookRulesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookRuleModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_webhook_rule(self, id: str, body: object) -> LockstepResponse[WebhookRuleModel]:
+    def update_webhook_rule(self, id: object, body: object) -> LockstepResponse[WebhookRuleModel]:
         """
         Updates a webhook rule that matches the specified id with the
         requested information.
@@ -56,7 +56,7 @@ class WebhookRulesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Webhook Rule
             to update.
         body : object
@@ -67,15 +67,15 @@ class WebhookRulesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookRuleModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_webhook_rule(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_webhook_rule(self, id: object) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Webhook Rule referred to by this unique identifier.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Webhook Rule
             to delete.
         """
@@ -84,25 +84,25 @@ class WebhookRulesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhook_rules(self, body: list[WebhookRuleModel]) -> LockstepResponse[list[WebhookRuleModel]]:
+    def create_webhook_rules(self, body: list[object]) -> LockstepResponse[list[WebhookRuleModel]]:
         """
         Creates one or more webhook rules from a given model.
 
         Parameters
         ----------
-        body : list[WebhookRuleModel]
+        body : list[object]
             The Webhook Rules to create
         """
         path = "/api/v1/WebhookRules"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[WebhookRuleModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [WebhookRuleModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_webhook_rules(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookRuleModel]]:
+    def query_webhook_rules(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[WebhookRuleModel]]:
         """
         Queries Webhook Rules for this account using the specified
         filtering, sorting, and pagination rules requested.
@@ -113,26 +113,26 @@ class WebhookRulesClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/WebhookRules/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[WebhookRuleModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), WebhookRuleModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

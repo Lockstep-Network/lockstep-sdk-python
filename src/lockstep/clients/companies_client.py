@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.companydetailsmodel import CompanyDetailsModel
@@ -31,7 +31,7 @@ class CompaniesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_company(self, id: str, include: str) -> LockstepResponse[CompanyModel]:
+    def retrieve_company(self, id: object, include: object) -> LockstepResponse[CompanyModel]:
         """
         Retrieves the Company specified by this unique identifier,
         optionally including nested data sets.
@@ -48,10 +48,10 @@ class CompaniesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the customer's ERP key
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             Contacts, CustomFields, Invoices, Notes, Classification
@@ -61,9 +61,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_company(self, id: str, body: object) -> LockstepResponse[CompanyModel]:
+    def update_company(self, id: object, body: object) -> LockstepResponse[CompanyModel]:
         """
         Updates a Company that matches the specified id with the
         requested information.
@@ -87,7 +87,7 @@ class CompaniesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the customer's ERP key
         body : object
@@ -98,9 +98,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_company(self, id: str) -> LockstepResponse[DeleteResult]:
+    def delete_company(self, id: object) -> LockstepResponse[DeleteResult]:
         """
         Delete the Company referred to by this unique identifier.
 
@@ -116,7 +116,7 @@ class CompaniesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the customer's ERP key
         """
@@ -125,9 +125,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_companies(self, body: list[CompanyModel]) -> LockstepResponse[list[CompanyModel]]:
+    def create_companies(self, body: list[object]) -> LockstepResponse[list[CompanyModel]]:
         """
         Creates one or more Companies from a given model.
 
@@ -143,17 +143,17 @@ class CompaniesClient:
 
         Parameters
         ----------
-        body : list[CompanyModel]
+        body : list[object]
             The Companies to create
         """
         path = "/api/v1/Companies"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CompanyModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CompanyModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_companies(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
+    def delete_companies(self, body: object) -> LockstepResponse[DeleteResult]:
         """
         Delete the Companies referred to by these unique identifiers.
 
@@ -169,7 +169,7 @@ class CompaniesClient:
 
         Parameters
         ----------
-        body : BulkDeleteRequestModel
+        body : object
             The unique Lockstep Platform ID numbers of the Companies to
             delete; NOT the customer's ERP key
         """
@@ -178,9 +178,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_companies(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CompanyModel]]:
+    def query_companies(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[CompanyModel]]:
         """
         Queries Companies for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -202,29 +202,29 @@ class CompaniesClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             Contacts, CustomFields, Invoices, Notes, Classification
-        order : str
+        order : object
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0)
         """
         path = "/api/v1/Companies/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CompanyModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CompanyModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
+    def query_customer_summary(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object, reportDate: object) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
         """
         Queries Customer Summaries for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -245,32 +245,32 @@ class CompaniesClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : str
+        order : object
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0)
-        reportDate : str
+        reportDate : object
             The date to calculate the fields on. If no date is entered
             the current UTC date will be used.
         """
         path = "/api/v1/Companies/views/customer-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CustomerSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CustomerSummaryModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_vendor_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
+    def query_vendor_summary(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object, reportDate: object) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
         """
         Queries Vendor Summaries for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -291,32 +291,32 @@ class CompaniesClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. No collections are currently available
             but may be offered in the future
-        order : str
+        order : object
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0)
-        reportDate : str
+        reportDate : object
             The date to calculate the fields on. If no date is entered
             the current UTC date will be used.
         """
         path = "/api/v1/Companies/views/vendor-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[VendorSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), VendorSummaryModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieve_company_detail(self, id: str) -> LockstepResponse[CompanyDetailsModel]:
+    def retrieve_company_detail(self, id: object) -> LockstepResponse[CompanyDetailsModel]:
         """
         Retrieves the Company Details specified by this unique
         identifier, optionally including nested data sets.
@@ -332,7 +332,7 @@ class CompaniesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the company's ERP key
         """
@@ -341,9 +341,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyDetailsModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def set_company_logo(self, id: str, min_x: float, min_y: float, width: float, height: float, filename: str) -> LockstepResponse[CompanyModel]:
+    def set_company_logo(self, id: object, min_x: object, min_y: object, width: object, height: object, filename: object) -> LockstepResponse[CompanyModel]:
         """
         Sets the logo for specified company. The logo will be stored in
         the Lockstep Platform and will be **publicly accessible**.
@@ -369,18 +369,18 @@ class CompaniesClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the customer's ERP key
-        min_x : float
+        min_x : object
             ViewBox minX setting for this Company's logo.
-        min_y : float
+        min_y : object
             ViewBox minY setting for this Company's logo.
-        width : float
+        width : object
             ViewBox width setting for this Company's logo.
-        height : float
+        height : object
             ViewBox height setting for this Company's logo.
-        filename : str
+        filename : object
             The full path of a file to upload to the API
         """
         path = f"/api/v1/Companies/{id}/logo"
@@ -388,18 +388,18 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_logo_view_box_settings(self, id: str, body: ViewBoxSettingsModel) -> LockstepResponse[CompanyModel]:
+    def update_logo_view_box_settings(self, id: object, body: object) -> LockstepResponse[CompanyModel]:
         """
         Update view box meta data for the given Company id.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Company; NOT
             the customer's ERP key
-        body : ViewBoxSettingsModel
+        body : object
             The `ViewBoxSettingsModel` containing meta data value
             updates
         """
@@ -408,4 +408,4 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

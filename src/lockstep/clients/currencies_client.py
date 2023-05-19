@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 from lockstep.models.currencyratemodel import CurrencyRateModel
 
@@ -25,7 +25,7 @@ class CurrenciesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_currency_rate(self, sourceCurrency: str, destinationCurrency: str, date: str, dataProvider: str) -> LockstepResponse[CurrencyRateModel]:
+    def retrieve_currency_rate(self, sourceCurrency: object, destinationCurrency: object, date: object, dataProvider: object) -> LockstepResponse[CurrencyRateModel]:
         """
         Retrieve a currency conversation rate from one currency to
         another as of the specified date. Optionally, you can specify
@@ -36,16 +36,16 @@ class CurrenciesClient:
 
         Parameters
         ----------
-        sourceCurrency : str
+        sourceCurrency : object
             The ISO 4217 currency code of the origin currency. For a
             list of currency codes, call List Currencies.
-        destinationCurrency : str
+        destinationCurrency : object
             The ISO 4217 currency code of the target currency. For a
             list of currency codes, call List Currencies.
-        date : str
+        date : object
             The date for which we should cto use for this currency
             conversion.
-        dataProvider : str
+        dataProvider : object
             Optionally, you can specify a data provider.
         """
         path = f"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}"
@@ -53,9 +53,9 @@ class CurrenciesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CurrencyRateModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse[list[CurrencyRateModel]]:
+    def bulk_currency_data(self, destinationCurrency: object, body: list[object]) -> LockstepResponse[list[CurrencyRateModel]]:
         """
         Receives an array of dates and currencies and a destination
         currency and returns an array of the corresponding currency
@@ -63,14 +63,14 @@ class CurrenciesClient:
 
         Parameters
         ----------
-        destinationCurrency : str
+        destinationCurrency : object
             The currency to convert to.
-        body : list[BulkCurrencyConversionModel]
+        body : list[object]
             A list of dates and source currencies.
         """
         path = "/api/v1/Currencies/bulk"
         result = self.client.send_request("POST", path, body, {"destinationCurrency": destinationCurrency}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CurrencyRateModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CurrencyRateModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

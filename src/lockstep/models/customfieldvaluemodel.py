@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 @dataclass
 class CustomFieldValueModel:
@@ -28,19 +27,21 @@ class CustomFieldValueModel:
     for more information.
     """
 
-    groupKey: str | None = None
-    customFieldDefinitionId: str | None = None
-    recordKey: str | None = None
-    tableKey: str | None = None
-    customFieldLabel: str | None = None
-    dataType: str | None = None
-    stringValue: str | None = None
-    numericValue: float | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    value: str | None = None
-    customFieldDefinition: CustomFieldDefinitionModel | None = None
+    groupKey: object | None = None
+    customFieldDefinitionId: object | None = None
+    recordKey: object | None = None
+    tableKey: object | None = None
+    customFieldLabel: object | None = None
+    dataType: object | None = None
+    stringValue: object | None = None
+    numericValue: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    value: object | None = None
+    customFieldDefinition: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

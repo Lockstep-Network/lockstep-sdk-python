@@ -23,20 +23,22 @@ class TransactionDetailModel:
     as payment for an Invoice transaction.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    referenceNumber: str | None = None
-    transactionDetailId: str | None = None
-    transactionDetailAppliedId: str | None = None
-    transactionId: str | None = None
-    transactionType: str | None = None
-    transactionSubType: str | None = None
-    transactionDate: str | None = None
-    transactionInvoiceDate: str | None = None
-    currencyCode: str | None = None
-    transactionAmount: float | None = None
-    outstandingAmount: float | None = None
-    baseCurrencyTransactionAmount: float | None = None
-    baseCurrencyOutstandingAmount: float | None = None
-    supportsErpPdfRetrieval: bool | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    referenceNumber: object | None = None
+    transactionDetailId: object | None = None
+    transactionDetailAppliedId: object | None = None
+    transactionId: object | None = None
+    transactionType: object | None = None
+    transactionSubType: object | None = None
+    transactionDate: object | None = None
+    transactionInvoiceDate: object | None = None
+    currencyCode: object | None = None
+    transactionAmount: object | None = None
+    outstandingAmount: object | None = None
+    baseCurrencyTransactionAmount: object | None = None
+    baseCurrencyOutstandingAmount: object | None = None
+    supportsErpPdfRetrieval: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

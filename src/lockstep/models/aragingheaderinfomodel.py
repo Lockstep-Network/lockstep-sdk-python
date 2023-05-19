@@ -20,14 +20,16 @@ class ArAgingHeaderInfoModel:
     Aggregated Accounts Receivable Aging information.
     """
 
-    groupKey: str | None = None
-    reportBucket: str | None = None
-    totalCustomers: int | None = None
-    totalInvoicesOutstanding: int | None = None
-    totalInvoiceOutstandingAmount: float | None = None
-    totalCreditMemoOutstandingAmount: float | None = None
-    totalUnappliedPaymentAmount: float | None = None
-    totalOutstandingAmount: float | None = None
-    totalArAmount: float | None = None
-    percentageOfTotalAr: float | None = None
+    groupKey: object | None = None
+    reportBucket: object | None = None
+    totalCustomers: object | None = None
+    totalInvoicesOutstanding: object | None = None
+    totalInvoiceOutstandingAmount: object | None = None
+    totalCreditMemoOutstandingAmount: object | None = None
+    totalUnappliedPaymentAmount: object | None = None
+    totalOutstandingAmount: object | None = None
+    totalArAmount: object | None = None
+    percentageOfTotalAr: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

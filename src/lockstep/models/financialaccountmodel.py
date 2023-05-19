@@ -21,20 +21,22 @@ class FinancialAccountModel:
     income, expenses, and equity.
     """
 
-    financialAccountId: str | None = None
-    groupKey: str | None = None
-    code: str | None = None
-    erpKey: str | None = None
-    appEnrollmentId: str | None = None
-    name: str | None = None
-    status: str | None = None
-    cashflowType: str | None = None
-    description: str | None = None
-    classification: str | None = None
-    category: str | None = None
-    subcategory: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    financialAccountId: object | None = None
+    groupKey: object | None = None
+    code: object | None = None
+    erpKey: object | None = None
+    appEnrollmentId: object | None = None
+    name: object | None = None
+    status: object | None = None
+    cashflowType: object | None = None
+    description: object | None = None
+    classification: object | None = None
+    category: object | None = None
+    subcategory: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

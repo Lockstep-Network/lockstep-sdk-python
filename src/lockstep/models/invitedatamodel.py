@@ -21,6 +21,8 @@ class InviteDataModel:
     process.
     """
 
-    email: str | None = None
-    userStatus: str | None = None
+    email: object | None = None
+    userStatus: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

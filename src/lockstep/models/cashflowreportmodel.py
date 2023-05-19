@@ -20,10 +20,12 @@ class CashflowReportModel:
     Represents the cashflow report based on a timeframe
     """
 
-    timeframe: int | None = None
-    baseCurrencyCode: str | None = None
-    paymentsCollected: float | None = None
-    paymentsCollectedCount: int | None = None
-    invoicesBilled: float | None = None
-    invoicesBilledCount: int | None = None
+    timeframe: object | None = None
+    baseCurrencyCode: object | None = None
+    paymentsCollected: object | None = None
+    paymentsCollectedCount: object | None = None
+    invoicesBilled: object | None = None
+    invoicesBilledCount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

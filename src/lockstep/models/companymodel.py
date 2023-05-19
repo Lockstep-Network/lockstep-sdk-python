@@ -13,13 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.viewboxsettingsmodel import ViewBoxSettingsModel
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.contactmodel import ContactModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 
 @dataclass
 class CompanyModel:
@@ -33,58 +26,60 @@ class CompanyModel:
     for more information.
     """
 
-    companyId: str | None = None
-    companyName: str | None = None
-    erpKey: str | None = None
-    companyType: str | None = None
-    parentCompanyId: str | None = None
-    enterpriseId: str | None = None
-    groupKey: str | None = None
-    isActive: bool | None = None
-    defaultCurrencyCode: str | None = None
-    companyLogoUrl: str | None = None
-    primaryContactId: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    stateRegion: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    timeZone: str | None = None
-    phoneNumber: str | None = None
-    faxNumber: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    modifiedUserName: str | None = None
-    taxId: str | None = None
-    dunsNumber: str | None = None
-    apEmailAddress: str | None = None
-    arEmailAddress: str | None = None
-    preferredDeliveryMethod: str | None = None
-    domainName: str | None = None
-    companyClassificationCodeDefId: str | None = None
-    description: str | None = None
-    website: str | None = None
-    appEnrollmentId: str | None = None
-    emailAddress: str | None = None
-    publicUrlSlug: str | None = None
-    stateTaxId: str | None = None
-    stateOfIncorporation: str | None = None
-    linkedInUrlSlug: str | None = None
-    isVerified: bool | None = None
-    lastVerifiedDate: str | None = None
-    viewBoxSettings: ViewBoxSettingsModel | None = None
-    serviceFabricOrgId: str | None = None
-    serviceFabricCompanyId: str | None = None
-    companyRegistrationNumber: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    contacts: list[ContactModel] | None = None
+    companyId: object | None = None
+    companyName: object | None = None
+    erpKey: object | None = None
+    companyType: object | None = None
+    parentCompanyId: object | None = None
+    enterpriseId: object | None = None
+    groupKey: object | None = None
+    isActive: object | None = None
+    defaultCurrencyCode: object | None = None
+    companyLogoUrl: object | None = None
+    primaryContactId: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    stateRegion: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    timeZone: object | None = None
+    phoneNumber: object | None = None
+    faxNumber: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    modifiedUserName: object | None = None
+    taxId: object | None = None
+    dunsNumber: object | None = None
+    apEmailAddress: object | None = None
+    arEmailAddress: object | None = None
+    preferredDeliveryMethod: object | None = None
+    domainName: object | None = None
+    companyClassificationCodeDefId: object | None = None
+    description: object | None = None
+    website: object | None = None
+    appEnrollmentId: object | None = None
+    emailAddress: object | None = None
+    publicUrlSlug: object | None = None
+    stateTaxId: object | None = None
+    stateOfIncorporation: object | None = None
+    linkedInUrlSlug: object | None = None
+    isVerified: object | None = None
+    lastVerifiedDate: object | None = None
+    viewBoxSettings: object | None = None
+    serviceFabricOrgId: object | None = None
+    serviceFabricCompanyId: object | None = None
+    companyRegistrationNumber: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    contacts: list[object] | None = None
     invoices: list[object] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    companyClassificationCodeDefinition: CodeDefinitionModel | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    companyClassificationCodeDefinition: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

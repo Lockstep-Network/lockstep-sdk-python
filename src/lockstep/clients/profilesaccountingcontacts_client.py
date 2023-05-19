@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilecontactmodel import AccountingProfileContactModel
 from lockstep.models.accountingprofilecontactresultmodel import AccountingProfileContactResultModel
@@ -27,7 +27,7 @@ class ProfilesAccountingContactsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_accounting_profile_contact(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
+    def retrieve_accounting_profile_contact(self, id: object) -> LockstepResponse[AccountingProfileContactModel]:
         """
         Retrieves the Accounting Profile Contact specified by this
         unique identifier, optionally including nested data sets.
@@ -38,7 +38,7 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Accounting
             Profile Contact
         """
@@ -47,9 +47,9 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_accounting_profile_contact(self, id: str) -> LockstepResponse[DeleteResult]:
+    def delete_accounting_profile_contact(self, id: object) -> LockstepResponse[DeleteResult]:
         """
         Delete the Accounting Profile Contact referred to by this unique
         identifier.
@@ -60,7 +60,7 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Accounting
             Profile Contact to delete
         """
@@ -69,9 +69,9 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profile_contacts(self, body: list[AccountingProfileContactModel]) -> LockstepResponse[list[AccountingProfileContactModel]]:
+    def create_accounting_profile_contacts(self, body: list[object]) -> LockstepResponse[list[AccountingProfileContactModel]]:
         """
         Creates one or more Accounting Profile Contacts from a given
         model.
@@ -82,17 +82,17 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileContactModel]
+        body : list[object]
             The Accounting Profile Contacts to create
         """
         path = "/api/v1/profiles/accounting/contacts"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AccountingProfileContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AccountingProfileContactModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_accounting_profile_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileContactModel]]:
+    def query_accounting_profile_contacts(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AccountingProfileContactModel]]:
         """
         Queries Accounting Profile Contacts for this account using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -108,30 +108,30 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: None
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/profiles/accounting/contacts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AccountingProfileContactModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_linked_accounting_profile_contacts(self, filter: str, order: str, include: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileContactResultModel]]:
+    def query_linked_accounting_profile_contacts(self, filter: object, order: object, include: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[AccountingProfileContactResultModel]]:
         """
         Queries Accounting Profile Contacts and Contacts for this
         account using the specified filtering, sorting, nested fetch,
@@ -153,30 +153,30 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: None
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/profiles/accounting/contacts/query/models"
         result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "include": include, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactResultModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AccountingProfileContactResultModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def set_secondary_contact_as_primary(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
+    def set_secondary_contact_as_primary(self, id: object) -> LockstepResponse[AccountingProfileContactModel]:
         """
         Reverses the isPrimary fields on the primary and secondary
         contact to reflect a swap and returns the new primary accounting
@@ -188,7 +188,7 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Accounting
             Profile Contact to set as primary
         """
@@ -197,4 +197,4 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

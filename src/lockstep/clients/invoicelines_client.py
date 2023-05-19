@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.deleteresult import DeleteResult
@@ -27,30 +27,30 @@ class InvoiceLinesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_invoiceline(self, body: list[InvoiceLineModel]) -> LockstepResponse[list[InvoiceLineModel]]:
+    def create_invoiceline(self, body: list[object]) -> LockstepResponse[list[InvoiceLineModel]]:
         """
         Creates one or more invoice lines within this account and
         returns the created records
 
         Parameters
         ----------
-        body : list[InvoiceLineModel]
+        body : list[object]
 
         """
         path = "/api/v1/invoice-lines"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[InvoiceLineModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [InvoiceLineModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_invoice_lines(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
+    def delete_invoice_lines(self, body: object) -> LockstepResponse[DeleteResult]:
         """
 
 
         Parameters
         ----------
-        body : BulkDeleteRequestModel
+        body : object
             The unique Lockstep Platform ID numbers of the Invoice Lines
             to delete; NOT the customer's ERP keys
         """
@@ -59,15 +59,15 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retrieves_invoice_line(self, invoiceLineId: str) -> LockstepResponse[InvoiceLineModel]:
+    def retrieves_invoice_line(self, invoiceLineId: object) -> LockstepResponse[InvoiceLineModel]:
         """
 
 
         Parameters
         ----------
-        invoiceLineId : str
+        invoiceLineId : object
             Unique id of the the InvoiceLine
         """
         path = f"/api/v1/invoice-lines/{invoiceLineId}"
@@ -75,9 +75,9 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceLineModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_invoice_line(self, invoiceLineId: str, body: object) -> LockstepResponse[InvoiceLineModel]:
+    def update_invoice_line(self, invoiceLineId: object, body: object) -> LockstepResponse[InvoiceLineModel]:
         """
         Updates an existing Invoice Line with the information supplied
         to this PATCH call.
@@ -91,7 +91,7 @@ class InvoiceLinesClient:
 
         Parameters
         ----------
-        invoiceLineId : str
+        invoiceLineId : object
             Unique id of the the InvoiceLine
         body : object
             A list of changes to apply to this Invoice Line
@@ -101,15 +101,15 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceLineModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def deletes_invoice_line(self, invoiceLineId: str) -> LockstepResponse[DeleteResult]:
+    def deletes_invoice_line(self, invoiceLineId: object) -> LockstepResponse[DeleteResult]:
         """
 
 
         Parameters
         ----------
-        invoiceLineId : str
+        invoiceLineId : object
             Unique id of the the InvoiceLine
         """
         path = f"/api/v1/invoice-lines/{invoiceLineId}"
@@ -117,9 +117,9 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_invoice_lines(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceLineModel]]:
+    def query_invoice_lines(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[InvoiceLineModel]]:
         """
         Queries Invoice Lines for the account using specified filtering
         More information on querying can be found on the [Searchlight
@@ -128,23 +128,23 @@ class InvoiceLinesClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve.
-        order : str
+        order : object
             The sort order for the results, in the [Searchlight order
             syntax]
-        pageSize : int
+        pageSize : object
             The page size for results (default 200, maximum of 10,000)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0)
         """
         path = "/api/v1/invoice-lines/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[InvoiceLineModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), InvoiceLineModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

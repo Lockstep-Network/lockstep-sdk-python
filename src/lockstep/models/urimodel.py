@@ -20,5 +20,7 @@ class UriModel:
     Represents a Uri for download link
     """
 
-    downloadLink: str | None = None
+    downloadLink: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

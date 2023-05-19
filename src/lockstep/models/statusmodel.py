@@ -13,9 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.magiclinkstatusmodel import MagicLinkStatusModel
-from lockstep.models.supportaccessmodel import SupportAccessModel
-from lockstep.models.usergroupmodel import UserGroupModel
 
 @dataclass
 class StatusModel:
@@ -23,28 +20,30 @@ class StatusModel:
     Represents the status of a user's credentials
     """
 
-    userName: str | None = None
-    emailAddress: str | None = None
-    accountName: str | None = None
-    accountCompanyId: str | None = None
-    userId: str | None = None
-    groupKey: str | None = None
-    loggedIn: bool | None = None
-    errorMessage: str | None = None
-    roles: list[str] | None = None
-    lastLoggedIn: str | None = None
-    apiKeyId: str | None = None
-    userStatus: str | None = None
-    environment: str | None = None
-    version: str | None = None
-    onboardingScheduled: bool | None = None
-    baseCurrencyCode: str | None = None
-    countryCode: str | None = None
-    magicLinkId: str | None = None
-    magicLinkCompanyId: str | None = None
-    magicLink: MagicLinkStatusModel | None = None
-    supportAccess: SupportAccessModel | None = None
-    isImpersonated: bool | None = None
-    userGroups: list[UserGroupModel] | None = None
+    userName: object | None = None
+    emailAddress: object | None = None
+    accountName: object | None = None
+    accountCompanyId: object | None = None
+    userId: object | None = None
+    groupKey: object | None = None
+    loggedIn: object | None = None
+    errorMessage: object | None = None
+    roles: list[object] | None = None
+    lastLoggedIn: object | None = None
+    apiKeyId: object | None = None
+    userStatus: object | None = None
+    environment: object | None = None
+    version: object | None = None
+    onboardingScheduled: object | None = None
+    baseCurrencyCode: object | None = None
+    countryCode: object | None = None
+    magicLinkId: object | None = None
+    magicLinkCompanyId: object | None = None
+    magicLink: object | None = None
+    supportAccess: object | None = None
+    isImpersonated: object | None = None
+    userGroups: list[object] | None = None
     dependencies: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

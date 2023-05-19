@@ -21,8 +21,10 @@ class UserGroupModel:
     user may have varying permissions/access within a Group.
     """
 
-    groupKey: str | None = None
-    userRole: str | None = None
-    groupName: str | None = None
-    status: str | None = None
+    groupKey: object | None = None
+    userRole: object | None = None
+    groupName: object | None = None
+    status: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

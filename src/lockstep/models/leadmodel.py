@@ -20,9 +20,11 @@ class LeadModel:
     Represents leads for creating new ERP connectors
     """
 
-    leadId: str | None = None
-    name: str | None = None
-    company: str | None = None
-    email: str | None = None
-    erpSystem: str | None = None
+    leadId: object | None = None
+    name: object | None = None
+    company: object | None = None
+    email: object | None = None
+    erpSystem: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

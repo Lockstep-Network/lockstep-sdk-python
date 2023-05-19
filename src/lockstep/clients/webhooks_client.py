@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
@@ -27,13 +27,13 @@ class WebhooksClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_webhook(self, id: str) -> LockstepResponse[WebhookModel]:
+    def retrieve_webhook(self, id: object) -> LockstepResponse[WebhookModel]:
         """
         Retrieves the Webhook specified by this unique identifier.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Webhook
         """
         path = f"/api/v1/Webhooks/{id}"
@@ -41,9 +41,9 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_webhook(self, id: str, body: object) -> LockstepResponse[WebhookModel]:
+    def update_webhook(self, id: object, body: object) -> LockstepResponse[WebhookModel]:
         """
         Updates a webhook that matches the specified id with the
         requested information.
@@ -57,7 +57,7 @@ class WebhooksClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Webhook to
             update.
         body : object
@@ -68,15 +68,15 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_webhook(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_webhook(self, id: object) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Webhook referred to by this unique identifier.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Webhook to
             delete.
         """
@@ -85,32 +85,32 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhooks(self, body: list[WebhookModel]) -> LockstepResponse[list[WebhookModel]]:
+    def create_webhooks(self, body: list[object]) -> LockstepResponse[list[WebhookModel]]:
         """
         Creates one or more webhooks from a given model.
 
         Parameters
         ----------
-        body : list[WebhookModel]
+        body : list[object]
             The Webhooks to create
         """
         path = "/api/v1/Webhooks"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[WebhookModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [WebhookModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def regenerate_client_secret(self, id: str) -> LockstepResponse[WebhookModel]:
+    def regenerate_client_secret(self, id: object) -> LockstepResponse[WebhookModel]:
         """
         Updates a webhook that matches the specified id with a new
         client secret.
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Webhook to
             update.
         """
@@ -119,9 +119,9 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_webhooks(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookModel]]:
+    def query_webhooks(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[WebhookModel]]:
         """
         Queries Webhooks for this account using the specified filtering,
         sorting, and pagination rules requested.
@@ -132,70 +132,70 @@ class WebhooksClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collection: WebhookRules
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Webhooks/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[WebhookModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), WebhookModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_webhook_history(self, webhookId: str, include: str, filter: str, select: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookHistoryTableStorageModel]]:
+    def query_webhook_history(self, webhookId: object, include: object, filter: object, select: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[WebhookHistoryTableStorageModel]]:
         """
 
 
         Parameters
         ----------
-        webhookId : str
+        webhookId : object
             The unique Lockstep Platform ID number of this Webhook
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collection: Records,
             RequestMessage, ResponseMessage
-        filter : str
+        filter : object
             The filter for this query. See [Azure Query
             Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
-        select : str
+        select : object
             The selection for this query. Selection is the desired
             properties of an entity to pull from the set. If a property
             is not selected, it will either return as null or empty. See
             [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500).
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0).
         """
         path = f"/api/v1/Webhooks/{webhookId}/history/query"
         result = self.client.send_request("GET", path, None, {"include": include, "filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[WebhookHistoryTableStorageModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), WebhookHistoryTableStorageModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def retry_failed_webhook_history(self, webhookId: str, webhookHistoryId: str) -> LockstepResponse[str]:
+    def retry_failed_webhook_history(self, webhookId: object, webhookHistoryId: object) -> LockstepResponse[str]:
         """
 
 
         Parameters
         ----------
-        webhookId : str
+        webhookId : object
             The unique Lockstep Platform ID number of this Webhook
-        webhookHistoryId : str
+        webhookHistoryId : object
             The unique Lockstep Platform ID number of the Webhook
             History to be retried. Note: the webhook history supplied
             must have a isSuccessful status of false to be retried.
@@ -205,4 +205,4 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, str(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

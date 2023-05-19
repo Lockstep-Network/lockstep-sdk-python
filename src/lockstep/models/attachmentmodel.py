@@ -26,16 +26,18 @@ class AttachmentModel:
     for more information.
     """
 
-    attachmentId: str | None = None
-    groupKey: str | None = None
-    tableKey: str | None = None
-    objectKey: str | None = None
-    fileName: str | None = None
-    fileExt: str | None = None
-    isArchived: bool | None = None
-    erpKey: str | None = None
-    appEnrollmentId: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    attachmentType: str | None = None
+    attachmentId: object | None = None
+    groupKey: object | None = None
+    tableKey: object | None = None
+    objectKey: object | None = None
+    fileName: object | None = None
+    fileExt: object | None = None
+    isArchived: object | None = None
+    erpKey: object | None = None
+    appEnrollmentId: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    attachmentType: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

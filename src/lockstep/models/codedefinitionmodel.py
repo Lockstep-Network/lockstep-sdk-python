@@ -22,13 +22,15 @@ class CodeDefinitionModel:
     lists of system values for Lockstep objects.
     """
 
-    codeDefinitionId: str | None = None
-    groupKey: str | None = None
-    codeType: str | None = None
-    code: str | None = None
-    codeDescription: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    codeDefinitionId: object | None = None
+    groupKey: object | None = None
+    codeType: object | None = None
+    code: object | None = None
+    codeDescription: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

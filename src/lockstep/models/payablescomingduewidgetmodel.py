@@ -20,8 +20,10 @@ class PayablesComingDueWidgetModel:
     Contains summary information for payables for the widget
     """
 
-    groupKey: str | None = None
-    date: str | None = None
-    baseCurrencyCode: str | None = None
-    amountDue: float | None = None
+    groupKey: object | None = None
+    date: object | None = None
+    baseCurrencyCode: object | None = None
+    amountDue: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

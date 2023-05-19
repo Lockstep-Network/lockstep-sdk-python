@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.paymentappliedmodel import PaymentAppliedModel
@@ -26,7 +26,7 @@ class PaymentsAppliedClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_payment_applied(self, id: str, include: str) -> LockstepResponse[PaymentAppliedModel]:
+    def retrieve_payment_applied(self, id: object, include: object) -> LockstepResponse[PaymentAppliedModel]:
         """
         Retrieves the Payment Applied specified by this unique
         identifier, optionally including nested data sets.
@@ -40,10 +40,10 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Payment
             Applied; NOT the customer's ERP key
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Invoice,
             Payment
@@ -53,9 +53,9 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_payment_applied(self, id: str, body: object) -> LockstepResponse[PaymentAppliedModel]:
+    def update_payment_applied(self, id: object, body: object) -> LockstepResponse[PaymentAppliedModel]:
         """
         Updates an existing Payment Applied with the information
         supplied to this PATCH call.
@@ -76,7 +76,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Payment
             Applied to update; NOT the customer's ERP key
         body : object
@@ -87,9 +87,9 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_payment_applied(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_payment_applied(self, id: object) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Payment Applied referred to by this unique
         identifier.
@@ -103,7 +103,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Payment
             Applied to delete; NOT the customer's ERP key
         """
@@ -112,9 +112,9 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments_applied(self, body: list[PaymentAppliedModel]) -> LockstepResponse[list[PaymentAppliedModel]]:
+    def create_payments_applied(self, body: list[object]) -> LockstepResponse[list[PaymentAppliedModel]]:
         """
         Creates one or more Payments Applied within this account and
         returns the records as created.
@@ -128,17 +128,17 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        body : list[PaymentAppliedModel]
+        body : list[object]
             The Payments Applied to create
         """
         path = "/api/v1/payments-applied"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[PaymentAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [PaymentAppliedModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_payments_applied(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
+    def query_payments_applied(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
         """
         Queries Payments Applied for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -157,25 +157,25 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Invoice
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/payments-applied/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PaymentAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentAppliedModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

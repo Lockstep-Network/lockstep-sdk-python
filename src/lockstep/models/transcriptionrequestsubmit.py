@@ -21,10 +21,12 @@ class TranscriptionRequestSubmit:
     Platform object.
     """
 
-    fileContent: str | None = None
-    fileUrl: str | None = None
-    fileContentUrl: str | None = None
-    fileName: str | None = None
-    invoiceTypeCode: str | None = None
-    transcriptionValidationRequestId: str | None = None
+    fileContent: object | None = None
+    fileUrl: object | None = None
+    fileContentUrl: object | None = None
+    fileName: object | None = None
+    invoiceTypeCode: object | None = None
+    transcriptionValidationRequestId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

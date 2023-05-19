@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.applicationmodel import ApplicationModel
@@ -26,7 +26,7 @@ class ApplicationsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_application(self, id: str, include: str) -> LockstepResponse[ApplicationModel]:
+    def retrieve_application(self, id: object, include: object) -> LockstepResponse[ApplicationModel]:
         """
         Retrieves the Application with this identifier.
 
@@ -46,9 +46,9 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique ID number of the Application to retrieve
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields
@@ -58,9 +58,9 @@ class ApplicationsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ApplicationModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_application(self, id: str, body: object) -> LockstepResponse[ApplicationModel]:
+    def update_application(self, id: object, body: object) -> LockstepResponse[ApplicationModel]:
         """
         Updates an existing Application with the information supplied to
         this PATCH call.
@@ -88,7 +88,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique ID number of the Application to update
         body : object
             A list of changes to apply to this Application
@@ -98,9 +98,9 @@ class ApplicationsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ApplicationModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_application(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def delete_application(self, id: object) -> LockstepResponse[ActionResultModel]:
         """
         Deletes the Application referred to by this unique identifier.
         Information about this Application is retained but after the
@@ -123,7 +123,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique ID number of the Application to delete
         """
         path = f"/api/v1/Applications/{id}"
@@ -131,9 +131,9 @@ class ApplicationsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_applications(self, body: list[ApplicationModel]) -> LockstepResponse[list[ApplicationModel]]:
+    def create_applications(self, body: list[object]) -> LockstepResponse[list[ApplicationModel]]:
         """
         Creates one or more Applications and returns the records as
         created. Applications are universal and available across all
@@ -155,17 +155,17 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        body : list[ApplicationModel]
+        body : list[object]
             The Applications to create
         """
         path = "/api/v1/Applications"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ApplicationModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [ApplicationModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_applications(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ApplicationModel]]:
+    def query_applications(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[ApplicationModel]]:
         """
         Queries Applications on the Lockstep Platform using the
         specified filtering, sorting, nested fetch, and pagination rules
@@ -191,26 +191,26 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
             Attachments, CustomFields
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Applications/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[ApplicationModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), ApplicationModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

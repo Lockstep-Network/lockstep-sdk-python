@@ -29,5 +29,7 @@ class BaseCurrencySyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    baseCurrencyCode: str | None = None
+    baseCurrencyCode: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

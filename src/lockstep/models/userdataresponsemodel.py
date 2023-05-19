@@ -21,5 +21,7 @@ class UserDataResponseModel:
     """
 
     data: object | None = None
-    userId: str | None = None
+    userId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -20,15 +20,17 @@ class RiskRateModel:
     Represents a risk rate calculation for a single month
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    reportPeriod: str | None = None
-    reportDate: str | None = None
-    invoiceMonthName: str | None = None
-    totalInvoiceCount: int | None = None
-    totalInvoiceAmount: float | None = None
-    atRiskCount: int | None = None
-    atRiskAmount: float | None = None
-    atRiskCountPercentage: float | None = None
-    atRiskPercentage: float | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    reportPeriod: object | None = None
+    reportDate: object | None = None
+    invoiceMonthName: object | None = None
+    totalInvoiceCount: object | None = None
+    totalInvoiceAmount: object | None = None
+    atRiskCount: object | None = None
+    atRiskAmount: object | None = None
+    atRiskCountPercentage: object | None = None
+    atRiskPercentage: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -20,30 +20,32 @@ class PaymentSummaryModel:
     Contains summary information for a Payment
     """
 
-    groupKey: str | None = None
-    paymentId: str | None = None
-    memoText: str | None = None
-    referenceCode: str | None = None
-    tenderType: str | None = None
-    paymentType: str | None = None
-    paymentDate: str | None = None
-    currencyCode: str | None = None
-    paymentAmount: float | None = None
-    unappliedAmount: float | None = None
-    baseCurrencyCode: str | None = None
-    baseCurrencyPaymentAmount: float | None = None
-    baseCurrencyUnappliedAmount: float | None = None
-    isOpen: bool | None = None
-    invoiceCount: int | None = None
-    totalPaymentsApplied: float | None = None
-    invoiceList: list[str] | None = None
-    invoiceIdList: list[str] | None = None
-    paymentCompanyId: str | None = None
-    paymentCompanyName: str | None = None
-    supportsErpPdfRetrieval: bool | None = None
-    customerIds: list[str] | None = None
-    customerNames: list[str] | None = None
-    companyIds: list[str] | None = None
-    companyNames: list[str] | None = None
-    modified: str | None = None
+    groupKey: object | None = None
+    paymentId: object | None = None
+    memoText: object | None = None
+    referenceCode: object | None = None
+    tenderType: object | None = None
+    paymentType: object | None = None
+    paymentDate: object | None = None
+    currencyCode: object | None = None
+    paymentAmount: object | None = None
+    unappliedAmount: object | None = None
+    baseCurrencyCode: object | None = None
+    baseCurrencyPaymentAmount: object | None = None
+    baseCurrencyUnappliedAmount: object | None = None
+    isOpen: object | None = None
+    invoiceCount: object | None = None
+    totalPaymentsApplied: object | None = None
+    invoiceList: list[object] | None = None
+    invoiceIdList: list[object] | None = None
+    paymentCompanyId: object | None = None
+    paymentCompanyName: object | None = None
+    supportsErpPdfRetrieval: object | None = None
+    customerIds: list[object] | None = None
+    customerNames: list[object] | None = None
+    companyIds: list[object] | None = None
+    companyNames: list[object] | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

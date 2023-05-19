@@ -20,7 +20,9 @@ class DailyPayableOutstandingReportModel:
     Represents the daily payable outstanding report
     """
 
-    timeframe: str | None = None
-    invoiceCount: int | None = None
-    dailyPayableOutstanding: float | None = None
+    timeframe: object | None = None
+    invoiceCount: object | None = None
+    dailyPayableOutstanding: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

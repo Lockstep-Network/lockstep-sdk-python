@@ -20,5 +20,7 @@ class TransferOwnerSubmitModel:
     Model used to submit a transfer ownership request
     """
 
-    targetUserId: str | None = None
+    targetUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

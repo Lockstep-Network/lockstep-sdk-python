@@ -21,15 +21,17 @@ class ConnectorInfoModel:
     for a connector. Only send required fields for the given connector.
     """
 
-    authCode: str | None = None
-    tokenId: str | None = None
-    tokenSecret: str | None = None
-    realmId: str | None = None
-    subsidiaryId: str | None = None
-    redirectUri: str | None = None
-    email: str | None = None
-    username: str | None = None
-    password: str | None = None
-    serverName: str | None = None
-    serverPort: int | None = None
+    authCode: object | None = None
+    tokenId: object | None = None
+    tokenSecret: object | None = None
+    realmId: object | None = None
+    subsidiaryId: object | None = None
+    redirectUri: object | None = None
+    email: object | None = None
+    username: object | None = None
+    password: object | None = None
+    serverName: object | None = None
+    serverPort: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

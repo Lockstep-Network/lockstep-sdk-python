@@ -13,10 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 @dataclass
 class ApplicationModel:
@@ -34,22 +30,24 @@ class ApplicationModel:
     for more information. --swaggerCategory:Platform
     """
 
-    appId: str | None = None
-    name: str | None = None
-    description: str | None = None
-    appType: str | None = None
-    ownerId: str | None = None
-    projectUrl: str | None = None
-    iconUrl: str | None = None
-    createdUserId: str | None = None
-    modifiedUserId: str | None = None
-    created: str | None = None
-    modified: str | None = None
-    isActive: bool | None = None
-    groupKey: str | None = None
-    b2CClientId: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
+    appId: object | None = None
+    name: object | None = None
+    description: object | None = None
+    appType: object | None = None
+    ownerId: object | None = None
+    projectUrl: object | None = None
+    iconUrl: object | None = None
+    createdUserId: object | None = None
+    modifiedUserId: object | None = None
+    created: object | None = None
+    modified: object | None = None
+    isActive: object | None = None
+    groupKey: object | None = None
+    b2CClientId: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

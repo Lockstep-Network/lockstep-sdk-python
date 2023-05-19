@@ -13,8 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.useraccountmodel import UserAccountModel
-from lockstep.models.useraccountmodel import UserAccountModel
 
 @dataclass
 class TransferOwnerModel:
@@ -22,6 +20,8 @@ class TransferOwnerModel:
     Model from the transfer ownership process.
     """
 
-    previousOwner: UserAccountModel | None = None
-    newOwner: UserAccountModel | None = None
+    previousOwner: object | None = None
+    newOwner: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

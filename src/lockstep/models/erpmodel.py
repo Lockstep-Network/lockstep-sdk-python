@@ -20,7 +20,9 @@ class ErpModel:
     Represents unsupported ERP systems
     """
 
-    erpSystemId: str | None = None
-    name: str | None = None
-    isSupported: bool | None = None
+    erpSystemId: object | None = None
+    name: object | None = None
+    isSupported: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

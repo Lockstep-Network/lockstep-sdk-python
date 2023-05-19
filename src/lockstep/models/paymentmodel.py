@@ -13,11 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.paymentappliedmodel import PaymentAppliedModel
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 @dataclass
 class PaymentModel:
@@ -35,37 +30,39 @@ class PaymentModel:
     paid and not yet applied to an Invoice.
     """
 
-    groupKey: str | None = None
-    paymentId: str | None = None
-    companyId: str | None = None
-    erpKey: str | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    paymentType: str | None = None
-    tenderType: str | None = None
-    isOpen: bool | None = None
-    memoText: str | None = None
-    paymentDate: str | None = None
-    postDate: str | None = None
-    paymentAmount: float | None = None
-    unappliedAmount: float | None = None
-    currencyCode: str | None = None
-    referenceCode: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    isVoided: bool | None = None
-    inDispute: bool | None = None
-    currencyRate: float | None = None
-    baseCurrencyPaymentAmount: float | None = None
-    baseCurrencyUnappliedAmount: float | None = None
-    serviceFabricStatus: str | None = None
-    sourceModifiedDate: str | None = None
-    applications: list[PaymentAppliedModel] | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
+    groupKey: object | None = None
+    paymentId: object | None = None
+    companyId: object | None = None
+    erpKey: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    paymentType: object | None = None
+    tenderType: object | None = None
+    isOpen: object | None = None
+    memoText: object | None = None
+    paymentDate: object | None = None
+    postDate: object | None = None
+    paymentAmount: object | None = None
+    unappliedAmount: object | None = None
+    currencyCode: object | None = None
+    referenceCode: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    isVoided: object | None = None
+    inDispute: object | None = None
+    currencyRate: object | None = None
+    baseCurrencyPaymentAmount: object | None = None
+    baseCurrencyUnappliedAmount: object | None = None
+    serviceFabricStatus: object | None = None
+    sourceModifiedDate: object | None = None
+    applications: list[object] | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

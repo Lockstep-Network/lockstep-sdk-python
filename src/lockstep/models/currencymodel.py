@@ -20,9 +20,11 @@ class CurrencyModel:
     Represents an ISO-4217 currency code definition
     """
 
-    alphaCode: str | None = None
-    numericCode: str | None = None
-    currencyName: str | None = None
-    minorUnit: int | None = None
-    symbol: str | None = None
+    alphaCode: object | None = None
+    numericCode: object | None = None
+    currencyName: object | None = None
+    minorUnit: object | None = None
+    symbol: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

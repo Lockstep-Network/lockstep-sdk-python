@@ -1,7 +1,6 @@
 from lockstep.lockstep_api import LockstepApi
 from lockstep.lockstep_response import LockstepResponse
 from lockstep.fetch_result import FetchResult
-from lockstep.errorresult import ErrorResult
 from lockstep.clients.apikeys_client import ApiKeysClient
 from lockstep.clients.appenrollments_client import AppEnrollmentsClient
 from lockstep.clients.applications_client import ApplicationsClient
@@ -93,6 +92,7 @@ from lockstep.models.emailreplygeneratorrequest import EmailReplyGeneratorReques
 from lockstep.models.emailreplygeneratorresponse import EmailReplyGeneratorResponse
 from lockstep.models.emailreplygeneratorsuggestions import EmailReplyGeneratorSuggestions
 from lockstep.models.erpmodel import ErpModel
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.featureflagsrequestmodel import FeatureFlagsRequestModel
 from lockstep.models.featureflagsresponsemodel import FeatureFlagsResponseModel
 from lockstep.models.financialaccountbalancehistorymodel import FinancialAccountBalanceHistoryModel

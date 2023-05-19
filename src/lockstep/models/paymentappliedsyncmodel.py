@@ -30,13 +30,15 @@ class PaymentAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    erpKey: str | None = None
-    invoiceErpKey: str | None = None
-    paymentErpKey: str | None = None
-    entryNumber: int | None = None
-    applyToInvoiceDate: str | None = None
-    paymentAppliedAmount: float | None = None
-    created: str | None = None
-    modified: str | None = None
+    onMatchAction: object | None = None
+    erpKey: object | None = None
+    invoiceErpKey: object | None = None
+    paymentErpKey: object | None = None
+    entryNumber: object | None = None
+    applyToInvoiceDate: object | None = None
+    paymentAppliedAmount: object | None = None
+    created: object | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

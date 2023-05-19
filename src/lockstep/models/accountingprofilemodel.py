@@ -13,10 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 @dataclass
 class AccountingProfileModel:
@@ -29,26 +25,28 @@ class AccountingProfileModel:
     to interface with the function.
     """
 
-    accountingProfileId: str | None = None
-    companyId: str | None = None
-    groupKey: str | None = None
-    name: str | None = None
-    type: str | None = None
-    emailAddress: str | None = None
-    phone: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    region: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
+    accountingProfileId: object | None = None
+    companyId: object | None = None
+    groupKey: object | None = None
+    name: object | None = None
+    type: object | None = None
+    emailAddress: object | None = None
+    phone: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    region: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

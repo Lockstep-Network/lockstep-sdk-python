@@ -13,8 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.paymentmodel import PaymentModel
-from lockstep.models.invoicemodel import InvoiceModel
 
 @dataclass
 class PaymentAppliedModel:
@@ -27,22 +25,24 @@ class PaymentAppliedModel:
     connected to which Payments and for which amounts.
     """
 
-    groupKey: str | None = None
-    paymentAppliedId: str | None = None
-    invoiceId: str | None = None
-    paymentId: str | None = None
-    erpKey: str | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    entryNumber: int | None = None
-    applyToInvoiceDate: str | None = None
-    paymentAppliedAmount: float | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    sourceModifiedDate: str | None = None
-    payment: PaymentModel | None = None
-    invoice: InvoiceModel | None = None
+    groupKey: object | None = None
+    paymentAppliedId: object | None = None
+    invoiceId: object | None = None
+    paymentId: object | None = None
+    erpKey: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    entryNumber: object | None = None
+    applyToInvoiceDate: object | None = None
+    paymentAppliedAmount: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    sourceModifiedDate: object | None = None
+    payment: object | None = None
+    invoice: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

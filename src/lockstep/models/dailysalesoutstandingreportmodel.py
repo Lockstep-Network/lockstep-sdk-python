@@ -20,6 +20,8 @@ class DailySalesOutstandingReportModel:
     Represents the daily sales outstanding report
     """
 
-    timeframe: str | None = None
-    dailySalesOutstanding: float | None = None
+    timeframe: object | None = None
+    dailySalesOutstanding: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

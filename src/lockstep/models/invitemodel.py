@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.useraccountmodel import UserAccountModel
 
 @dataclass
 class InviteModel:
@@ -21,8 +20,10 @@ class InviteModel:
     Model from the User invite process
     """
 
-    email: str | None = None
-    success: bool | None = None
-    invitedUser: UserAccountModel | None = None
-    errorMessage: str | None = None
+    email: object | None = None
+    success: object | None = None
+    invitedUser: object | None = None
+    errorMessage: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

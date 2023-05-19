@@ -20,21 +20,23 @@ class InvoiceAddressModel:
     Represents a single address for an invoice
     """
 
-    invoiceAddressId: str | None = None
-    groupKey: str | None = None
-    invoiceId: str | None = None
-    line1: str | None = None
-    line2: str | None = None
-    line3: str | None = None
-    city: str | None = None
-    region: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    latitude: float | None = None
-    longitude: float | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
+    invoiceAddressId: object | None = None
+    groupKey: object | None = None
+    invoiceId: object | None = None
+    line1: object | None = None
+    line2: object | None = None
+    line3: object | None = None
+    city: object | None = None
+    region: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    latitude: object | None = None
+    longitude: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

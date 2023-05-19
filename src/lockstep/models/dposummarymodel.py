@@ -21,12 +21,14 @@ class DpoSummaryModel:
     their associated daily payable outstanding value.
     """
 
-    groupKey: str | None = None
-    vendorId: str | None = None
-    vendorName: str | None = None
-    primaryContact: str | None = None
-    bills: int | None = None
-    baseCurrencyCode: str | None = None
-    amountOutstanding: float | None = None
-    dpo: float | None = None
+    groupKey: object | None = None
+    vendorId: object | None = None
+    vendorName: object | None = None
+    primaryContact: object | None = None
+    bills: object | None = None
+    baseCurrencyCode: object | None = None
+    amountOutstanding: object | None = None
+    dpo: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

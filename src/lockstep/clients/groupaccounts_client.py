@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.groupaccountmodel import GroupAccountModel
 
 class GroupAccountsClient:
@@ -36,9 +36,9 @@ class GroupAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, GroupAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_group_account(self, id: str, body: object) -> LockstepResponse[GroupAccountModel]:
+    def update_group_account(self, id: object, body: object) -> LockstepResponse[GroupAccountModel]:
         """
         Updates a group account that matches the specified id with the
         requested information.
@@ -52,7 +52,7 @@ class GroupAccountsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique ID number of the Group Account to retrieve
         body : object
             A list of changes to apply to this Group Account
@@ -62,4 +62,4 @@ class GroupAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, GroupAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

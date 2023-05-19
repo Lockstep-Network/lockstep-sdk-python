@@ -20,5 +20,7 @@ class FinancialReportCellModel:
     Represents a cell of a financial report
     """
 
-    value: str | None = None
+    value: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

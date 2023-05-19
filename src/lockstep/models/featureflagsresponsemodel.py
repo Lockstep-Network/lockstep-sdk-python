@@ -22,3 +22,5 @@ class FeatureFlagsResponseModel:
 
     values: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

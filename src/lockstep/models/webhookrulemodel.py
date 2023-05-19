@@ -23,14 +23,16 @@ class WebhookRuleModel:
     filter to further refine the updates you want to receive.
     """
 
-    webhookRuleId: str | None = None
-    webhookId: str | None = None
-    groupKey: str | None = None
-    tableKey: str | None = None
-    eventType: str | None = None
-    filter: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    webhookRuleId: object | None = None
+    webhookId: object | None = None
+    groupKey: object | None = None
+    tableKey: object | None = None
+    eventType: object | None = None
+    filter: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -13,17 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.invoiceaddressmodel import InvoiceAddressModel
-from lockstep.models.invoicelinemodel import InvoiceLineModel
-from lockstep.models.invoicepaymentdetailmodel import InvoicePaymentDetailModel
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.companymodel import CompanyModel
-from lockstep.models.companymodel import CompanyModel
-from lockstep.models.contactmodel import ContactModel
-from lockstep.models.creditmemoinvoicemodel import CreditMemoInvoiceModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
 
 @dataclass
 class InvoiceModel:
@@ -39,59 +28,61 @@ class InvoiceModel:
     different.
     """
 
-    groupKey: str | None = None
-    invoiceId: str | None = None
-    companyId: str | None = None
-    customerId: str | None = None
-    erpKey: str | None = None
-    purchaseOrderCode: str | None = None
-    referenceCode: str | None = None
-    salespersonCode: str | None = None
-    salespersonName: str | None = None
-    invoiceTypeCode: str | None = None
-    invoiceStatusCode: str | None = None
-    termsCode: str | None = None
-    specialTerms: str | None = None
-    currencyCode: str | None = None
-    totalAmount: float | None = None
-    salesTaxAmount: float | None = None
-    discountAmount: float | None = None
-    outstandingBalanceAmount: float | None = None
-    invoiceDate: str | None = None
-    discountDate: str | None = None
-    postedDate: str | None = None
-    invoiceClosedDate: str | None = None
-    paymentDueDate: str | None = None
-    importedDate: str | None = None
-    primaryOriginAddressId: str | None = None
-    primaryBillToAddressId: str | None = None
-    primaryShipToAddressId: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    isVoided: bool | None = None
-    inDispute: bool | None = None
-    excludeFromAging: bool | None = None
-    preferredDeliveryMethod: str | None = None
-    currencyRate: float | None = None
-    baseCurrencyTotalAmount: float | None = None
-    baseCurrencySalesTaxAmount: float | None = None
-    baseCurrencyDiscountAmount: float | None = None
-    baseCurrencyOutstandingBalanceAmount: float | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    sourceModifiedDate: str | None = None
-    addresses: list[InvoiceAddressModel] | None = None
-    lines: list[InvoiceLineModel] | None = None
-    payments: list[InvoicePaymentDetailModel] | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    company: CompanyModel | None = None
-    customer: CompanyModel | None = None
-    customerPrimaryContact: ContactModel | None = None
-    creditMemos: list[CreditMemoInvoiceModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
+    groupKey: object | None = None
+    invoiceId: object | None = None
+    companyId: object | None = None
+    customerId: object | None = None
+    erpKey: object | None = None
+    purchaseOrderCode: object | None = None
+    referenceCode: object | None = None
+    salespersonCode: object | None = None
+    salespersonName: object | None = None
+    invoiceTypeCode: object | None = None
+    invoiceStatusCode: object | None = None
+    termsCode: object | None = None
+    specialTerms: object | None = None
+    currencyCode: object | None = None
+    totalAmount: object | None = None
+    salesTaxAmount: object | None = None
+    discountAmount: object | None = None
+    outstandingBalanceAmount: object | None = None
+    invoiceDate: object | None = None
+    discountDate: object | None = None
+    postedDate: object | None = None
+    invoiceClosedDate: object | None = None
+    paymentDueDate: object | None = None
+    importedDate: object | None = None
+    primaryOriginAddressId: object | None = None
+    primaryBillToAddressId: object | None = None
+    primaryShipToAddressId: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    isVoided: object | None = None
+    inDispute: object | None = None
+    excludeFromAging: object | None = None
+    preferredDeliveryMethod: object | None = None
+    currencyRate: object | None = None
+    baseCurrencyTotalAmount: object | None = None
+    baseCurrencySalesTaxAmount: object | None = None
+    baseCurrencyDiscountAmount: object | None = None
+    baseCurrencyOutstandingBalanceAmount: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    sourceModifiedDate: object | None = None
+    addresses: list[object] | None = None
+    lines: list[object] | None = None
+    payments: list[object] | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    company: object | None = None
+    customer: object | None = None
+    customerPrimaryContact: object | None = None
+    creditMemos: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -34,13 +34,15 @@ class FinancialAccountBalanceHistorySyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    financialAccountCode: str | None = None
-    financialAccountErpKey: str | None = None
-    financialYear: int | None = None
-    periodNumber: int | None = None
-    periodStartDate: str | None = None
-    periodEndDate: str | None = None
-    status: str | None = None
-    balance: float | None = None
-    balanceType: int | None = None
+    financialAccountCode: object | None = None
+    financialAccountErpKey: object | None = None
+    financialYear: object | None = None
+    periodNumber: object | None = None
+    periodStartDate: object | None = None
+    periodEndDate: object | None = None
+    status: object | None = None
+    balance: object | None = None
+    balanceType: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

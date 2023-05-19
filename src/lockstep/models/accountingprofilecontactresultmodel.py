@@ -13,10 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
 
 @dataclass
 class AccountingProfileContactResultModel:
@@ -31,38 +27,40 @@ class AccountingProfileContactResultModel:
     primary that is on the profile.
     """
 
-    contactId: str | None = None
-    companyId: str | None = None
-    groupKey: str | None = None
-    erpKey: str | None = None
-    contactName: str | None = None
-    contactCode: str | None = None
-    title: str | None = None
-    roleCode: str | None = None
-    emailAddress: str | None = None
-    phone: str | None = None
-    fax: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    stateRegion: str | None = None
-    postalCode: str | None = None
-    countryCode: str | None = None
-    isActive: bool | None = None
-    webpageUrl: str | None = None
-    pictureUrl: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    isPrimary: bool | None = None
-    accountingProfileId: str | None = None
-    accountingProfileContactId: str | None = None
-    name: str | None = None
+    contactId: object | None = None
+    companyId: object | None = None
+    groupKey: object | None = None
+    erpKey: object | None = None
+    contactName: object | None = None
+    contactCode: object | None = None
+    title: object | None = None
+    roleCode: object | None = None
+    emailAddress: object | None = None
+    phone: object | None = None
+    fax: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    stateRegion: object | None = None
+    postalCode: object | None = None
+    countryCode: object | None = None
+    isActive: object | None = None
+    webpageUrl: object | None = None
+    pictureUrl: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    isPrimary: object | None = None
+    accountingProfileId: object | None = None
+    accountingProfileContactId: object | None = None
+    name: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

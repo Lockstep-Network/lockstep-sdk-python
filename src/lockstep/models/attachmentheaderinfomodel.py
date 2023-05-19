@@ -20,9 +20,11 @@ class AttachmentHeaderInfoModel:
     Aggregated Attachment status information.
     """
 
-    groupKey: str | None = None
-    companyId: str | None = None
-    totalAttachments: int | None = None
-    totalArchived: int | None = None
-    totalActive: int | None = None
+    groupKey: object | None = None
+    companyId: object | None = None
+    totalAttachments: object | None = None
+    totalArchived: object | None = None
+    totalActive: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

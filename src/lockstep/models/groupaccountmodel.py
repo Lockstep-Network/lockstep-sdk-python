@@ -20,16 +20,18 @@ class GroupAccountModel:
     Represents an account for an entire group
     """
 
-    groupKey: str | None = None
-    groupName: str | None = None
-    primaryUserId: str | None = None
-    groupCompanyId: str | None = None
-    baseCurrencyCode: str | None = None
-    isActive: bool | None = None
-    onboardingScheduled: bool | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    countryCode: str | None = None
+    groupKey: object | None = None
+    groupName: object | None = None
+    primaryUserId: object | None = None
+    groupCompanyId: object | None = None
+    baseCurrencyCode: object | None = None
+    isActive: object | None = None
+    onboardingScheduled: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    countryCode: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

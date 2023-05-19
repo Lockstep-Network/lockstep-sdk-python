@@ -20,8 +20,10 @@ class ViewBoxSettingsModel:
     Optional meta data for image view box settings.
     """
 
-    logoViewBoxMinX: float | None = None
-    logoViewBoxMinY: float | None = None
-    logoViewBoxWidth: float | None = None
-    logoViewBoxHeight: float | None = None
+    logoViewBoxMinX: object | None = None
+    logoViewBoxMinY: object | None = None
+    logoViewBoxWidth: object | None = None
+    logoViewBoxHeight: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

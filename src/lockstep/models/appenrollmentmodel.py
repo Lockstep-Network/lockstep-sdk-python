@@ -13,12 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.applicationmodel import ApplicationModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from lockstep.models.syncrequestmodel import SyncRequestModel
-from lockstep.models.syncrequestmodel import SyncRequestModel
-from lockstep.models.connectorinfomodel import ConnectorInfoModel
 
 @dataclass
 class AppEnrollmentModel:
@@ -33,21 +27,23 @@ class AppEnrollmentModel:
     for more information.
     """
 
-    appEnrollmentId: str | None = None
-    appId: str | None = None
-    groupKey: str | None = None
-    isActive: bool | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    cronSettings: str | None = None
-    syncScheduleIsActive: bool | None = None
-    isDeleted: bool | None = None
-    app: ApplicationModel | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    lastSync: SyncRequestModel | None = None
-    lastSuccessfulSync: SyncRequestModel | None = None
-    connectorInfo: ConnectorInfoModel | None = None
+    appEnrollmentId: object | None = None
+    appId: object | None = None
+    groupKey: object | None = None
+    isActive: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    cronSettings: object | None = None
+    syncScheduleIsActive: object | None = None
+    isDeleted: object | None = None
+    app: object | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    lastSync: object | None = None
+    lastSuccessfulSync: object | None = None
+    connectorInfo: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

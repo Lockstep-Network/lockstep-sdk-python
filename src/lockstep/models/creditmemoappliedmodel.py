@@ -13,12 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from lockstep.models.invoicemodel import InvoiceModel
-from lockstep.models.invoicemodel import InvoiceModel
 
 @dataclass
 class CreditMemoAppliedModel:
@@ -32,26 +26,28 @@ class CreditMemoAppliedModel:
     track which Invoices were paid using this Credit.
     """
 
-    creditMemoAppliedId: str | None = None
-    groupKey: str | None = None
-    invoiceId: str | None = None
-    creditMemoInvoiceId: str | None = None
-    erpKey: str | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    entryNumber: int | None = None
-    applyToInvoiceDate: str | None = None
-    creditMemoAppliedAmount: float | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    sourceModifiedDate: str | None = None
-    attachments: list[AttachmentModel] | None = None
-    notes: list[NoteModel] | None = None
-    customFieldDefinitions: list[CustomFieldDefinitionModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    creditMemoInvoice: InvoiceModel | None = None
-    invoice: InvoiceModel | None = None
+    creditMemoAppliedId: object | None = None
+    groupKey: object | None = None
+    invoiceId: object | None = None
+    creditMemoInvoiceId: object | None = None
+    erpKey: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    entryNumber: object | None = None
+    applyToInvoiceDate: object | None = None
+    creditMemoAppliedAmount: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    sourceModifiedDate: object | None = None
+    attachments: list[object] | None = None
+    notes: list[object] | None = None
+    customFieldDefinitions: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    creditMemoInvoice: object | None = None
+    invoice: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

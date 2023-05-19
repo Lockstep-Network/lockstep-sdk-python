@@ -13,8 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
 
 @dataclass
 class InvoiceLineModel:
@@ -22,32 +20,34 @@ class InvoiceLineModel:
     Represents a line in an invoice
     """
 
-    invoiceLineId: str | None = None
-    groupKey: str | None = None
-    invoiceId: str | None = None
-    erpKey: str | None = None
-    lineNumber: str | None = None
-    productCode: str | None = None
-    description: str | None = None
-    unitMeasureCode: str | None = None
-    unitPrice: float | None = None
-    quantity: float | None = None
-    quantityShipped: float | None = None
-    quantityReceived: float | None = None
-    totalAmount: float | None = None
-    exemptionCode: str | None = None
-    reportingDate: str | None = None
-    overrideOriginAddressId: str | None = None
-    overrideBillToAddressId: str | None = None
-    overrideShipToAddressId: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    sourceModifiedDate: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
+    invoiceLineId: object | None = None
+    groupKey: object | None = None
+    invoiceId: object | None = None
+    erpKey: object | None = None
+    lineNumber: object | None = None
+    productCode: object | None = None
+    description: object | None = None
+    unitMeasureCode: object | None = None
+    unitPrice: object | None = None
+    quantity: object | None = None
+    quantityShipped: object | None = None
+    quantityReceived: object | None = None
+    totalAmount: object | None = None
+    exemptionCode: object | None = None
+    reportingDate: object | None = None
+    overrideOriginAddressId: object | None = None
+    overrideBillToAddressId: object | None = None
+    overrideShipToAddressId: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    sourceModifiedDate: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

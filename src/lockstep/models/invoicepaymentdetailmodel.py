@@ -21,19 +21,21 @@ class InvoicePaymentDetailModel:
     record.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    currencyCode: str | None = None
-    paymentAppliedId: str | None = None
-    invoiceId: str | None = None
-    paymentId: str | None = None
-    applyToInvoiceDate: str | None = None
-    paymentAppliedAmount: float | None = None
-    baseCurrencyPaymentAppliedAmount: float | None = None
-    referenceCode: str | None = None
-    companyId: str | None = None
-    paymentAmount: float | None = None
-    unappliedAmount: float | None = None
-    baseCurrencyPaymentAmount: float | None = None
-    baseCurrencyUnappliedAmount: float | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    currencyCode: object | None = None
+    paymentAppliedId: object | None = None
+    invoiceId: object | None = None
+    paymentId: object | None = None
+    applyToInvoiceDate: object | None = None
+    paymentAppliedAmount: object | None = None
+    baseCurrencyPaymentAppliedAmount: object | None = None
+    referenceCode: object | None = None
+    companyId: object | None = None
+    paymentAmount: object | None = None
+    unappliedAmount: object | None = None
+    baseCurrencyPaymentAmount: object | None = None
+    baseCurrencyUnappliedAmount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

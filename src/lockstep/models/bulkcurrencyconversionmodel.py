@@ -20,6 +20,8 @@ class BulkCurrencyConversionModel:
     Input format used for bulk conversion route
     """
 
-    date: str | None = None
-    sourceCurrency: str | None = None
+    date: object | None = None
+    sourceCurrency: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.featureflagsrequestmodel import FeatureFlagsRequestModel
 from lockstep.models.featureflagsresponsemodel import FeatureFlagsResponseModel
 
@@ -25,14 +25,14 @@ class FeatureFlagsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_feature_flags(self, body: FeatureFlagsRequestModel) -> LockstepResponse[FeatureFlagsResponseModel]:
+    def retrieve_feature_flags(self, body: object) -> LockstepResponse[FeatureFlagsResponseModel]:
         """
         Retrieves the specified feature flags. True if they are enabled,
         false otherwise.
 
         Parameters
         ----------
-        body : FeatureFlagsRequestModel
+        body : object
 
         """
         path = "/api/v1/feature-flags"
@@ -40,4 +40,4 @@ class FeatureFlagsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FeatureFlagsResponseModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

@@ -20,5 +20,7 @@ class SupportAccessRequest:
     Sets support access data for a user.
     """
 
-    expiresAt: str | None = None
+    expiresAt: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

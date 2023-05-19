@@ -20,14 +20,16 @@ class ApAgingHeaderInfoModel:
     Aggregated Accounts Payable Aging information.
     """
 
-    groupKey: str | None = None
-    reportBucket: str | None = None
-    totalVendors: int | None = None
-    totalBillsOutstanding: int | None = None
-    totalBillsOutstandingAmount: float | None = None
-    totalCreditMemoOutstandingAmount: float | None = None
-    totalAdvancePaymentAmount: float | None = None
-    totalOutstandingAmount: float | None = None
-    totalApAmount: float | None = None
-    percentageOfTotalAp: float | None = None
+    groupKey: object | None = None
+    reportBucket: object | None = None
+    totalVendors: object | None = None
+    totalBillsOutstanding: object | None = None
+    totalBillsOutstandingAmount: object | None = None
+    totalCreditMemoOutstandingAmount: object | None = None
+    totalAdvancePaymentAmount: object | None = None
+    totalOutstandingAmount: object | None = None
+    totalApAmount: object | None = None
+    percentageOfTotalAp: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

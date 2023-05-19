@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.developeraccountsubmitmodel import DeveloperAccountSubmitModel
 
@@ -25,14 +25,14 @@ class ProvisioningClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def provision_free_developer_account(self, body: DeveloperAccountSubmitModel) -> LockstepResponse[ActionResultModel]:
+    def provision_free_developer_account(self, body: object) -> LockstepResponse[ActionResultModel]:
         """
         Creates a new account for a developer, sending an email with
         information on how to access the API.
 
         Parameters
         ----------
-        body : DeveloperAccountSubmitModel
+        body : object
 
         """
         path = "/api/v1/Provisioning/free-account"
@@ -40,4 +40,4 @@ class ProvisioningClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

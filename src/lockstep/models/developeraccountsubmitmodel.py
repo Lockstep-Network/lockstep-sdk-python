@@ -20,8 +20,10 @@ class DeveloperAccountSubmitModel:
     Model containing information to create a new developer account.
     """
 
-    firstName: str | None = None
-    lastName: str | None = None
-    email: str | None = None
-    companyName: str | None = None
+    firstName: object | None = None
+    lastName: object | None = None
+    email: object | None = None
+    companyName: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

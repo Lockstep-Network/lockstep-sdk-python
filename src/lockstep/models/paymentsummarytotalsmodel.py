@@ -20,6 +20,8 @@ class PaymentSummaryTotalsModel:
     The totals for a Payment Summary
     """
 
-    totalPaidAmount: float | None = None
-    totalUnappliedBalance: float | None = None
+    totalPaidAmount: object | None = None
+    totalUnappliedBalance: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

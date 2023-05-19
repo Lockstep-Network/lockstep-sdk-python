@@ -30,14 +30,16 @@ class FinancialAccountSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    code: str | None = None
-    erpKey: str | None = None
-    name: str | None = None
-    status: str | None = None
-    cashflowType: str | None = None
-    description: str | None = None
-    classification: str | None = None
-    category: str | None = None
-    subcategory: str | None = None
+    onMatchAction: object | None = None
+    code: object | None = None
+    erpKey: object | None = None
+    name: object | None = None
+    status: object | None = None
+    cashflowType: object | None = None
+    description: object | None = None
+    classification: object | None = None
+    category: object | None = None
+    subcategory: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

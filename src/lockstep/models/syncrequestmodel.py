@@ -30,17 +30,19 @@ class SyncRequestModel:
     sync.
     """
 
-    syncRequestId: str | None = None
-    groupKey: str | None = None
-    statusCode: str | None = None
-    operationTypeName: str | None = None
-    operationType: int | None = None
-    processResultMessage: str | None = None
-    failureCount: int | None = None
-    runFullSync: bool | None = None
-    appEnrollmentId: str | None = None
-    created: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    syncRequestId: object | None = None
+    groupKey: object | None = None
+    statusCode: object | None = None
+    operationTypeName: object | None = None
+    operationType: object | None = None
+    processResultMessage: object | None = None
+    failureCount: object | None = None
+    runFullSync: object | None = None
+    appEnrollmentId: object | None = None
+    created: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
     details: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

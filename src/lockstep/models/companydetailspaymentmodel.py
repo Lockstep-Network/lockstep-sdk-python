@@ -20,16 +20,18 @@ class CompanyDetailsPaymentModel:
     Company payment collected information
     """
 
-    groupKey: str | None = None
-    paymentId: str | None = None
-    paymentAppliedId: str | None = None
-    paymentType: str | None = None
-    invoiceId: str | None = None
-    invoiceTypeCode: str | None = None
-    invoiceReferenceCode: str | None = None
-    invoiceCurrencyCode: str | None = None
-    invoiceTotalAmount: float | None = None
-    paymentDate: str | None = None
-    paymentCurrencyCode: str | None = None
-    paymentAmount: float | None = None
+    groupKey: object | None = None
+    paymentId: object | None = None
+    paymentAppliedId: object | None = None
+    paymentType: object | None = None
+    invoiceId: object | None = None
+    invoiceTypeCode: object | None = None
+    invoiceReferenceCode: object | None = None
+    invoiceCurrencyCode: object | None = None
+    invoiceTotalAmount: object | None = None
+    paymentDate: object | None = None
+    paymentCurrencyCode: object | None = None
+    paymentAmount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

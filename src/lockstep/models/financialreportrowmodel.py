@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 from dataclasses import dataclass
-from lockstep.models.financialreportcellmodel import FinancialReportCellModel
 
 @dataclass
 class FinancialReportRowModel:
@@ -22,8 +21,10 @@ class FinancialReportRowModel:
     Represents a row of a financial Report report
     """
 
-    rowType: str | None = None
-    label: str | None = None
-    rows: list[FinancialReportRowModel] | None = None
-    cells: list[FinancialReportCellModel] | None = None
+    rowType: object | None = None
+    label: object | None = None
+    rows: list[object] | None = None
+    cells: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

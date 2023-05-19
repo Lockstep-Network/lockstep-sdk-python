@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.magiclinkmodel import MagicLinkModel
@@ -26,16 +26,16 @@ class MagicLinksClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_magic_link(self, id: str, include: str) -> LockstepResponse[MagicLinkModel]:
+    def retrieve_magic_link(self, id: object, include: object) -> LockstepResponse[MagicLinkModel]:
         """
         Retrieves the Magic Link specified by this unique identifier,
         optionally including nested data sets.
 
         Parameters
         ----------
-        id : str
+        id : object
             The id of the Magic Link
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: User
         """
@@ -44,9 +44,9 @@ class MagicLinksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, MagicLinkModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def revoke_magic_link(self, id: str) -> LockstepResponse[ActionResultModel]:
+    def revoke_magic_link(self, id: object) -> LockstepResponse[ActionResultModel]:
         """
         Revokes the magic link with the specified id so it cannot be
         used to call the API.
@@ -57,7 +57,7 @@ class MagicLinksClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this magic link
         """
         path = f"/api/v1/useraccounts/magic-links/{id}"
@@ -65,9 +65,9 @@ class MagicLinksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_magic_links(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[MagicLinkModel]]:
+    def query_magic_links(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[MagicLinkModel]]:
         """
         Queries Magic Links for this account using the specified
         filtering, sorting, nested fetch, and pagination rules
@@ -75,23 +75,23 @@ class MagicLinksClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: User
-        order : str
+        order : object
             The sort order for the results, in the [Searchlight order
             syntax](https://github.com/tspence/csharp-searchlight).
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0)
         """
         path = "/api/v1/useraccounts/magic-links/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[MagicLinkModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), MagicLinkModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

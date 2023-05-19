@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.contactmodel import ContactModel
@@ -27,7 +27,7 @@ class ContactsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def retrieve_contact(self, id: str, include: str) -> LockstepResponse[ContactModel]:
+    def retrieve_contact(self, id: object, include: object) -> LockstepResponse[ContactModel]:
         """
         Retrieves the Contact specified by this unique identifier,
         optionally including nested data sets.
@@ -40,10 +40,10 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of this Contact; NOT
             the customer's ERP key
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
@@ -53,9 +53,9 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def update_contact(self, id: str, body: object) -> LockstepResponse[ContactModel]:
+    def update_contact(self, id: object, body: object) -> LockstepResponse[ContactModel]:
         """
         Updates a contact that matches the specified id with the
         requested information.
@@ -75,7 +75,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Contact to
             update; NOT the customer's ERP key
         body : object
@@ -86,9 +86,9 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_contact(self, id: str) -> LockstepResponse[DeleteResult]:
+    def delete_contact(self, id: object) -> LockstepResponse[DeleteResult]:
         """
         Delete the Contact referred to by this unique identifier.
 
@@ -100,7 +100,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        id : str
+        id : object
             The unique Lockstep Platform ID number of the Contact to
             delete; NOT the customer's ERP key
         """
@@ -109,9 +109,9 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_contacts(self, body: list[ContactModel]) -> LockstepResponse[list[ContactModel]]:
+    def create_contacts(self, body: list[object]) -> LockstepResponse[list[ContactModel]]:
         """
         Creates one or more contacts from a given model.
 
@@ -123,17 +123,17 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : list[ContactModel]
+        body : list[object]
             The Contacts to create
         """
         path = "/api/v1/Contacts"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [ContactModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def delete_contacts(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
+    def delete_contacts(self, body: object) -> LockstepResponse[DeleteResult]:
         """
         Delete the Contacts referred to by these unique identifiers.
 
@@ -145,7 +145,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : BulkDeleteRequestModel
+        body : object
             The unique Lockstep Platform ID numbers of the Contacts to
             delete; NOT the customer's ERP keys
         """
@@ -154,9 +154,9 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def query_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ContactModel]]:
+    def query_contacts(self, filter: object, include: object, order: object, pageSize: object, pageNumber: object) -> LockstepResponse[FetchResult[ContactModel]]:
         """
         Queries Contacts for this account using the specified filtering,
         sorting, nested fetch, and pagination rules requested.
@@ -173,26 +173,26 @@ class ContactsClient:
 
         Parameters
         ----------
-        filter : str
+        filter : object
             The filter for this query. See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        include : str
+        include : object
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Attachments,
             CustomFields, Notes
-        order : str
+        order : object
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageSize : int
+        pageSize : object
             The page size for results (default 250, maximum of 500). See
             [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-        pageNumber : int
+        pageNumber : object
             The page number for results (default 0). See [Searchlight
             Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         """
         path = "/api/v1/Contacts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[ContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), ContactModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

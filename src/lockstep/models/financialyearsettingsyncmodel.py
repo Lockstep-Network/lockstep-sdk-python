@@ -35,8 +35,10 @@ class FinancialYearSettingSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    yearType: str | None = None
-    totalPeriods: int | None = None
-    startDate: str | None = None
-    endDate: str | None = None
+    yearType: object | None = None
+    totalPeriods: object | None = None
+    startDate: object | None = None
+    endDate: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

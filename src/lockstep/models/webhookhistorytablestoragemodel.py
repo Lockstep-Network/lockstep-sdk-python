@@ -20,17 +20,19 @@ class WebhookHistoryTableStorageModel:
     Represents the Webhook Trigger History
     """
 
-    groupKey: str | None = None
-    webhookId: str | None = None
-    webhookHistoryId: str | None = None
-    eventType: str | None = None
-    requestSent: bool | None = None
-    isSuccessful: bool | None = None
-    responseStatusCode: str | None = None
-    processResultMessage: str | None = None
-    failureCount: int | None = None
-    timestamp: str | None = None
-    records: str | None = None
-    requestMessage: str | None = None
-    responseMessage: str | None = None
+    groupKey: object | None = None
+    webhookId: object | None = None
+    webhookHistoryId: object | None = None
+    eventType: object | None = None
+    requestSent: object | None = None
+    isSuccessful: object | None = None
+    responseStatusCode: object | None = None
+    processResultMessage: object | None = None
+    failureCount: object | None = None
+    timestamp: object | None = None
+    records: object | None = None
+    requestMessage: object | None = None
+    responseMessage: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)
