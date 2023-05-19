@@ -71,7 +71,7 @@ class ProfilesAccountingContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profile_contacts(self, body: list[AccountingProfileContactModel]) -> LockstepResponse[list[AccountingProfileContactModel]]:
+    def create_accounting_profile_contacts(self, body: list[object]) -> LockstepResponse[list[AccountingProfileContactModel]]:
         """
         Creates one or more Accounting Profile Contacts from a given
         model.
@@ -82,7 +82,7 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileContactModel]
+        body : list[object]
             The Accounting Profile Contacts to create
         """
         path = "/api/v1/profiles/accounting/contacts"

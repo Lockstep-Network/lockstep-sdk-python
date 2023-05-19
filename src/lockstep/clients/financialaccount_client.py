@@ -26,13 +26,13 @@ class FinancialAccountClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_financial_account(self, body: list[FinancialAccountModel]) -> LockstepResponse[FinancialAccountModel]:
+    def create_financial_account(self, body: list[object]) -> LockstepResponse[FinancialAccountModel]:
         """
         Creates a financial account with the specified name.
 
         Parameters
         ----------
-        body : list[FinancialAccountModel]
+        body : list[object]
             Metadata about the financial account to create.
         """
         path = "/api/v1/FinancialAccount"

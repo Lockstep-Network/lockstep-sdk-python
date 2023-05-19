@@ -111,7 +111,7 @@ class ContactsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_contacts(self, body: list[ContactModel]) -> LockstepResponse[list[ContactModel]]:
+    def create_contacts(self, body: list[object]) -> LockstepResponse[list[ContactModel]]:
         """
         Creates one or more contacts from a given model.
 
@@ -123,7 +123,7 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : list[ContactModel]
+        body : list[object]
             The Contacts to create
         """
         path = "/api/v1/Contacts"

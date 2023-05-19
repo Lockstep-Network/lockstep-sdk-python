@@ -53,7 +53,7 @@ class AttachmentLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def upload_attachment(self, body: list[AttachmentLinkModel]) -> LockstepResponse[list[AttachmentLinkModel]]:
+    def upload_attachment(self, body: list[object]) -> LockstepResponse[list[AttachmentLinkModel]]:
         """
         Creates one Attachment Link from the provided arguments.
 
@@ -65,7 +65,7 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        body : list[AttachmentLinkModel]
+        body : list[object]
 
         """
         path = "/api/v1/AttachmentLinks"

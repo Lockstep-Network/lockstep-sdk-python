@@ -252,7 +252,7 @@ class ReportsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
+    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[object], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
         """
         The Aging Report contains information about the total dollar
         value of invoices broken down by their age. Last default or
@@ -289,7 +289,7 @@ class ReportsClient:
             Currency provider currency rates should be returned from to
             convert aging amounts to (default Lockstep currency provider
             used if no data provider specified)
-        Buckets : list[int]
+        Buckets : list[object]
             Customized buckets used for aging calculations (default
             buckets [0,30,60,90,120,180] will be used if buckets not
             specified)

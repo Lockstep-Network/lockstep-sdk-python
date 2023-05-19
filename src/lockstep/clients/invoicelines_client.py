@@ -27,14 +27,14 @@ class InvoiceLinesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_invoiceline(self, body: list[InvoiceLineModel]) -> LockstepResponse[list[InvoiceLineModel]]:
+    def create_invoiceline(self, body: list[object]) -> LockstepResponse[list[InvoiceLineModel]]:
         """
         Creates one or more invoice lines within this account and
         returns the created records
 
         Parameters
         ----------
-        body : list[InvoiceLineModel]
+        body : list[object]
 
         """
         path = "/api/v1/invoice-lines"

@@ -117,7 +117,7 @@ class CreditMemosAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_credit_memos_applied(self, body: list[CreditMemoAppliedModel]) -> LockstepResponse[list[CreditMemoAppliedModel]]:
+    def create_credit_memos_applied(self, body: list[object]) -> LockstepResponse[list[CreditMemoAppliedModel]]:
         """
         Creates one or more Credit Memos Applied within this account and
         returns the records as created.
@@ -132,7 +132,7 @@ class CreditMemosAppliedClient:
 
         Parameters
         ----------
-        body : list[CreditMemoAppliedModel]
+        body : list[object]
             The Credit Memos Applied to create
         """
         path = "/api/v1/credit-memos-applied"

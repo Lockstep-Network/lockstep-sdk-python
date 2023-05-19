@@ -123,7 +123,7 @@ class AppEnrollmentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_app_enrollments(self, startSync: bool, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
+    def create_app_enrollments(self, startSync: bool, body: list[object]) -> LockstepResponse[list[AppEnrollmentModel]]:
         """
         Creates one or more App Enrollments within this account and
         returns the records as created.
@@ -143,7 +143,7 @@ class AppEnrollmentsClient:
         startSync : bool
             Option to start sync immediately after creation of app
             enrollments (default false)
-        body : list[AppEnrollmentModel]
+        body : list[object]
             The App Enrollments to create
         """
         path = "/api/v1/AppEnrollments"

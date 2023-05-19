@@ -132,7 +132,7 @@ class PaymentsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments(self, body: list[PaymentModel]) -> LockstepResponse[list[PaymentModel]]:
+    def create_payments(self, body: list[object]) -> LockstepResponse[list[PaymentModel]]:
         """
         Creates one or more Payments within this account and returns the
         records as created.
@@ -151,7 +151,7 @@ class PaymentsClient:
 
         Parameters
         ----------
-        body : list[PaymentModel]
+        body : list[object]
             The Payments to create
         """
         path = "/api/v1/Payments"

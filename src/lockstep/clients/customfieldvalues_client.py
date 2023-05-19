@@ -133,7 +133,7 @@ class CustomFieldValuesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def create_fields(self, body: list[object]) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Creates one or more Custom Fields and returns the records as
         created.
@@ -151,7 +151,7 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        body : list[CustomFieldValueModel]
+        body : list[object]
             The Custom Fields to create
         """
         path = "/api/v1/CustomFieldValues"

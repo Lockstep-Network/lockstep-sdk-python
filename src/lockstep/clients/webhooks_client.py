@@ -87,13 +87,13 @@ class WebhooksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhooks(self, body: list[WebhookModel]) -> LockstepResponse[list[WebhookModel]]:
+    def create_webhooks(self, body: list[object]) -> LockstepResponse[list[WebhookModel]]:
         """
         Creates one or more webhooks from a given model.
 
         Parameters
         ----------
-        body : list[WebhookModel]
+        body : list[object]
             The Webhooks to create
         """
         path = "/api/v1/Webhooks"

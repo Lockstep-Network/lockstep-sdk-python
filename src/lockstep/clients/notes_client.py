@@ -82,7 +82,7 @@ class NotesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_notes(self, body: list[NoteModel]) -> LockstepResponse[list[NoteModel]]:
+    def create_notes(self, body: list[object]) -> LockstepResponse[list[NoteModel]]:
         """
         Creates one or more notes from the specified array of Note
         Models
@@ -99,7 +99,7 @@ class NotesClient:
 
         Parameters
         ----------
-        body : list[NoteModel]
+        body : list[object]
             The array of notes to be created
         """
         path = "/api/v1/Notes"

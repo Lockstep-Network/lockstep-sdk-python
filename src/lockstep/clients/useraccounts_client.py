@@ -120,7 +120,7 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invite_user(self, body: list[InviteSubmitModel]) -> LockstepResponse[list[InviteModel]]:
+    def invite_user(self, body: list[object]) -> LockstepResponse[list[InviteModel]]:
         """
         Invite a user with the specified email to join your accounting
         group. The user will receive an email to set up their account.
@@ -135,7 +135,7 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        body : list[InviteSubmitModel]
+        body : list[object]
             The user to invite
         """
         path = "/api/v1/UserAccounts/invite"
@@ -256,14 +256,14 @@ class UserAccountsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def get_user_data(self, include: list[str]) -> LockstepResponse[UserDataResponseModel]:
+    def get_user_data(self, include: list[object]) -> LockstepResponse[UserDataResponseModel]:
         """
         Retrieves the user data for the current user. This allows for
         retrieving extended user data such as UTM parameters.
 
         Parameters
         ----------
-        include : list[str]
+        include : list[object]
             The set of data to retrieve. To avoid any casing confusion,
             these values are converted to upper case. Possible values
             are: UTM

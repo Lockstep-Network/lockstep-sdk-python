@@ -86,13 +86,13 @@ class WebhookRulesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhook_rules(self, body: list[WebhookRuleModel]) -> LockstepResponse[list[WebhookRuleModel]]:
+    def create_webhook_rules(self, body: list[object]) -> LockstepResponse[list[WebhookRuleModel]]:
         """
         Creates one or more webhook rules from a given model.
 
         Parameters
         ----------
-        body : list[WebhookRuleModel]
+        body : list[object]
             The Webhook Rules to create
         """
         path = "/api/v1/WebhookRules"

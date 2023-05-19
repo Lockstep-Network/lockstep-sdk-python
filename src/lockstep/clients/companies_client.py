@@ -127,7 +127,7 @@ class CompaniesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_companies(self, body: list[CompanyModel]) -> LockstepResponse[list[CompanyModel]]:
+    def create_companies(self, body: list[object]) -> LockstepResponse[list[CompanyModel]]:
         """
         Creates one or more Companies from a given model.
 
@@ -143,7 +143,7 @@ class CompaniesClient:
 
         Parameters
         ----------
-        body : list[CompanyModel]
+        body : list[object]
             The Companies to create
         """
         path = "/api/v1/Companies"

@@ -99,7 +99,7 @@ class FinancialAccountBalanceHistoryClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_balance_history(self, body: list[FinancialAccountBalanceHistoryModel]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
+    def create_balance_history(self, body: list[object]) -> LockstepResponse[list[FinancialAccountBalanceHistoryModel]]:
         """
         Creates a Financial Account Balance History from a given model.
 
@@ -108,7 +108,7 @@ class FinancialAccountBalanceHistoryClient:
 
         Parameters
         ----------
-        body : list[FinancialAccountBalanceHistoryModel]
+        body : list[object]
             The Financial Account Balance Histories to create
         """
         path = "/api/v1/FinancialAccountBalanceHistory"

@@ -109,7 +109,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_transcription_validation_request(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[TranscriptionValidationRequestModel]:
+    def create_transcription_validation_request(self, body: list[object]) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
         Creates one Transcription Validation Request with all the
         associated request items within this account and returns the
@@ -121,7 +121,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[TranscriptionRequestSubmit]
+        body : list[object]
             The files which will be verified
         """
         path = "/api/v1/Transcriptions/validate"
@@ -166,7 +166,7 @@ class TranscriptionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
+    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[object]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
         """
         Retrieves the TranscriptionValidationRequestItemModel specified
         by this unique identifier.
@@ -177,7 +177,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[TranscriptionRequestSubmit]
+        body : list[object]
             The TranscriptionValidationRequestItemModels to add to an
             existing TranscriptionValidationRequestItemModel
         """

@@ -126,7 +126,7 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_invoices(self, body: list[InvoiceModel]) -> LockstepResponse[list[InvoiceModel]]:
+    def create_invoices(self, body: list[object]) -> LockstepResponse[list[InvoiceModel]]:
         """
         Creates one or more Invoices within this account and returns the
         records as created.
@@ -143,7 +143,7 @@ class InvoicesClient:
 
         Parameters
         ----------
-        body : list[InvoiceModel]
+        body : list[object]
             The Invoices to create
         """
         path = "/api/v1/Invoices"

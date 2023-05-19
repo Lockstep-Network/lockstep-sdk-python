@@ -127,7 +127,7 @@ class CustomFieldDefinitionsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_field_definitions(self, body: list[CustomFieldDefinitionModel]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
+    def create_field_definitions(self, body: list[object]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
         """
         Creates one or more Custom Field Definitions and returns the
         records as created.
@@ -145,7 +145,7 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        body : list[CustomFieldDefinitionModel]
+        body : list[object]
             The Custom Field Definitions to create
         """
         path = "/api/v1/CustomFieldDefinitions"

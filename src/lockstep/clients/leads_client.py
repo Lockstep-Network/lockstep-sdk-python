@@ -24,7 +24,7 @@ class LeadsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_leads(self, body: list[LeadModel]) -> LockstepResponse[list[LeadModel]]:
+    def create_leads(self, body: list[object]) -> LockstepResponse[list[LeadModel]]:
         """
         Creates one or more Leads within the Lockstep platform and
         returns the records as created.
@@ -37,7 +37,7 @@ class LeadsClient:
 
         Parameters
         ----------
-        body : list[LeadModel]
+        body : list[object]
             The Leads to create
         """
         path = "/api/v1/Leads"

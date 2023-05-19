@@ -115,7 +115,7 @@ class ProfilesAccountingClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profiles(self, body: list[AccountingProfileRequest]) -> LockstepResponse[list[AccountingProfileModel]]:
+    def create_accounting_profiles(self, body: list[object]) -> LockstepResponse[list[AccountingProfileModel]]:
         """
         Creates one or more accounting profiles from a given model.
 
@@ -128,7 +128,7 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileRequest]
+        body : list[object]
             The Accounting Profiles to create
         """
         path = "/api/v1/profiles/accounting"

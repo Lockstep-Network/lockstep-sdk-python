@@ -55,7 +55,7 @@ class CurrenciesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse[list[CurrencyRateModel]]:
+    def bulk_currency_data(self, destinationCurrency: str, body: list[object]) -> LockstepResponse[list[CurrencyRateModel]]:
         """
         Receives an array of dates and currencies and a destination
         currency and returns an array of the corresponding currency
@@ -65,7 +65,7 @@ class CurrenciesClient:
         ----------
         destinationCurrency : str
             The currency to convert to.
-        body : list[BulkCurrencyConversionModel]
+        body : list[object]
             A list of dates and source currencies.
         """
         path = "/api/v1/Currencies/bulk"

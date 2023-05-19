@@ -133,7 +133,7 @@ class ApplicationsClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_applications(self, body: list[ApplicationModel]) -> LockstepResponse[list[ApplicationModel]]:
+    def create_applications(self, body: list[object]) -> LockstepResponse[list[ApplicationModel]]:
         """
         Creates one or more Applications and returns the records as
         created. Applications are universal and available across all
@@ -155,7 +155,7 @@ class ApplicationsClient:
 
         Parameters
         ----------
-        body : list[ApplicationModel]
+        body : list[object]
             The Applications to create
         """
         path = "/api/v1/Applications"

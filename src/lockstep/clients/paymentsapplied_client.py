@@ -114,7 +114,7 @@ class PaymentsAppliedClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments_applied(self, body: list[PaymentAppliedModel]) -> LockstepResponse[list[PaymentAppliedModel]]:
+    def create_payments_applied(self, body: list[object]) -> LockstepResponse[list[PaymentAppliedModel]]:
         """
         Creates one or more Payments Applied within this account and
         returns the records as created.
@@ -128,7 +128,7 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        body : list[PaymentAppliedModel]
+        body : list[object]
             The Payments Applied to create
         """
         path = "/api/v1/payments-applied"

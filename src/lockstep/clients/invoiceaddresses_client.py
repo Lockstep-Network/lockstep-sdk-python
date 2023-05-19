@@ -106,7 +106,7 @@ class InvoiceAddressesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_invoice_address(self, body: list[InvoiceAddressModel]) -> LockstepResponse[list[InvoiceAddressModel]]:
+    def create_invoice_address(self, body: list[object]) -> LockstepResponse[list[InvoiceAddressModel]]:
         """
         Creates one or more Invoice Addresses within this account and
         returns the records as created.
@@ -119,7 +119,7 @@ class InvoiceAddressesClient:
 
         Parameters
         ----------
-        body : list[InvoiceAddressModel]
+        body : list[object]
             The Invoice Address to create
         """
         path = "/api/v1/invoice-addresses"
