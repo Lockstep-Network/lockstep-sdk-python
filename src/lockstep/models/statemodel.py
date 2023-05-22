@@ -20,7 +20,9 @@ class StateModel:
     State model for ISO-3166-2
     """
 
-    name: str | None = None
-    alpha2: str | None = None
-    aliases: str | None = None
+    name: object | None = None
+    alpha2: object | None = None
+    aliases: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

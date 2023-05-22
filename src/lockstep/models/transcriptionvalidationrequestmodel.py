@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.transcriptionvalidationrequestitemmodel import TranscriptionValidationRequestItemModel
 
 @dataclass
 class TranscriptionValidationRequestModel:
@@ -22,12 +21,14 @@ class TranscriptionValidationRequestModel:
     validate if file is of a specific type.
     """
 
-    transcriptionValidationRequestId: str | None = None
-    groupKey: str | None = None
-    statusCode: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    items: list[TranscriptionValidationRequestItemModel] | None = None
+    transcriptionValidationRequestId: object | None = None
+    groupKey: object | None = None
+    statusCode: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    items: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

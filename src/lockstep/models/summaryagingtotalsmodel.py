@@ -20,6 +20,8 @@ class SummaryAgingTotalsModel:
     Represents summary aging bucket total.
     """
 
-    bucket: str | None = None
-    outstandingBalance: float | None = None
+    bucket: object | None = None
+    outstandingBalance: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -22,13 +22,15 @@ class AccountingProfileContactModel:
     are secondary contacts to the primary that is on the profile.
     """
 
-    accountingProfileContactId: str | None = None
-    accountingProfileId: str | None = None
-    contactId: str | None = None
-    isPrimary: bool | None = None
-    groupKey: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    accountingProfileContactId: object | None = None
+    accountingProfileId: object | None = None
+    contactId: object | None = None
+    isPrimary: object | None = None
+    groupKey: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

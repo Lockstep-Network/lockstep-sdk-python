@@ -20,7 +20,9 @@ class AgingModel:
     Represents an aging record
     """
 
-    bucket: int | None = None
-    currencyCode: str | None = None
-    outstandingBalance: float | None = None
+    bucket: object | None = None
+    currencyCode: object | None = None
+    outstandingBalance: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

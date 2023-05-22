@@ -20,11 +20,13 @@ class PayablesComingDueHeaderModel:
     Contains summary information for payables that will be due soon
     """
 
-    groupKey: str | None = None
-    numberOfBillsDue: int | None = None
-    numberOfVendors: int | None = None
-    percentageOfTotal: float | None = None
-    baseCurrencyCode: str | None = None
-    totalAmountDue: float | None = None
-    dueDate: str | None = None
+    groupKey: object | None = None
+    numberOfBillsDue: object | None = None
+    numberOfVendors: object | None = None
+    percentageOfTotal: object | None = None
+    baseCurrencyCode: object | None = None
+    totalAmountDue: object | None = None
+    dueDate: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

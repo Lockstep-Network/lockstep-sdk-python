@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.appenrollmentcustomfieldmodel import AppEnrollmentCustomFieldModel
 from lockstep.models.appenrollmentmodel import AppEnrollmentModel
@@ -57,7 +57,7 @@ class AppEnrollmentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AppEnrollmentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_app_enrollment(self, id: str, body: object) -> LockstepResponse[AppEnrollmentModel]:
         """
@@ -93,7 +93,7 @@ class AppEnrollmentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AppEnrollmentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_app_enrollment(self, id: str, removeEnrollmentData: bool) -> LockstepResponse[DeleteResult]:
         """
@@ -121,9 +121,9 @@ class AppEnrollmentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_app_enrollments(self, startSync: bool, body: list[AppEnrollmentModel]) -> LockstepResponse[list[AppEnrollmentModel]]:
+    def create_app_enrollments(self, startSync: bool, body: list[object]) -> LockstepResponse[list[AppEnrollmentModel]]:
         """
         Creates one or more App Enrollments within this account and
         returns the records as created.
@@ -143,15 +143,15 @@ class AppEnrollmentsClient:
         startSync : bool
             Option to start sync immediately after creation of app
             enrollments (default false)
-        body : list[AppEnrollmentModel]
+        body : list[object]
             The App Enrollments to create
         """
         path = "/api/v1/AppEnrollments"
         result = self.client.send_request("POST", path, body, {"startSync": startSync}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AppEnrollmentModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AppEnrollmentModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def reconnect_app_enrollment(self, id: str, body: AppEnrollmentReconnectInfo) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
@@ -167,9 +167,9 @@ class AppEnrollmentsClient:
         path = f"/api/v1/AppEnrollments/{id}/reconnect"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CustomFieldValueModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CustomFieldValueModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_app_enrollments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AppEnrollmentModel]]:
         """
@@ -213,9 +213,9 @@ class AppEnrollmentsClient:
         path = "/api/v1/AppEnrollments/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AppEnrollmentModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AppEnrollmentModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_enrollment_fields(self, id: str) -> LockstepResponse[FetchResult[AppEnrollmentCustomFieldModel]]:
         """
@@ -246,6 +246,6 @@ class AppEnrollmentsClient:
         path = f"/api/v1/AppEnrollments/settings/{id}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AppEnrollmentCustomFieldModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AppEnrollmentCustomFieldModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

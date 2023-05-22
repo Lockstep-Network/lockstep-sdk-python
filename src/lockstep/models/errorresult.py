@@ -15,12 +15,24 @@
 from dataclasses import dataclass
 
 @dataclass
-class FeatureFlagsRequestModel:
+class ErrorResult:
     """
-    Request information for Feature Flags
+    Represents a failed API request.
     """
 
-    names: list[object] | None = None
+    type: object | None = None
+    title: object | None = None
+    status: object | None = None
+    detail: object | None = None
+    instance: object | None = None
+    content: object | None = None
 
+    @classmethod
+    def from_json(cls, data: dict):
+        obj = cls()
+        for key, value in data.items():
+            if hasattr(obj, key):
+                setattr(obj, key, value)
+        return obj
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

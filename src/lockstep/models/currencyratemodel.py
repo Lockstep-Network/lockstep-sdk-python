@@ -20,8 +20,10 @@ class CurrencyRateModel:
     Represents a currency rate for specific currencies and date
     """
 
-    sourceCurrency: str | None = None
-    destinationCurrency: str | None = None
-    date: str | None = None
-    currencyRate: float | None = None
+    sourceCurrency: object | None = None
+    destinationCurrency: object | None = None
+    date: object | None = None
+    currencyRate: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

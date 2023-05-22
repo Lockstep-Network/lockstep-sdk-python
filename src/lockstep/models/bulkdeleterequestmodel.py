@@ -20,5 +20,7 @@ class BulkDeleteRequestModel:
     Represents a bulk delete request in the API
     """
 
-    idsToDelete: list[str] | None = None
+    idsToDelete: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

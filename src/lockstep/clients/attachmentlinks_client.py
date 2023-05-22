@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.attachmentlinkmodel import AttachmentLinkModel
 from lockstep.models.deleteresult import DeleteResult
@@ -51,9 +51,9 @@ class AttachmentLinksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AttachmentLinkModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def upload_attachment(self, body: list[AttachmentLinkModel]) -> LockstepResponse[list[AttachmentLinkModel]]:
+    def upload_attachment(self, body: list[object]) -> LockstepResponse[list[AttachmentLinkModel]]:
         """
         Creates one Attachment Link from the provided arguments.
 
@@ -65,15 +65,15 @@ class AttachmentLinksClient:
 
         Parameters
         ----------
-        body : list[AttachmentLinkModel]
+        body : list[object]
 
         """
         path = "/api/v1/AttachmentLinks"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AttachmentLinkModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AttachmentLinkModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_attachment_link(self, attachmentId: str, objectKey: str, tableName: str) -> LockstepResponse[DeleteResult]:
         """
@@ -99,7 +99,7 @@ class AttachmentLinksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_attachment_links(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AttachmentLinkModel]]:
         """
@@ -138,6 +138,6 @@ class AttachmentLinksClient:
         path = "/api/v1/AttachmentLinks/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AttachmentLinkModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AttachmentLinkModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

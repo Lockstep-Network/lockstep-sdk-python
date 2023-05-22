@@ -20,11 +20,13 @@ class SyncEntityResultModel:
     Contains information about a sync process for an entity.
     """
 
-    insertCount: int | None = None
-    updateCount: int | None = None
-    deleteCount: int | None = None
-    skipCount: int | None = None
-    errorCount: int | None = None
+    insertCount: object | None = None
+    updateCount: object | None = None
+    deleteCount: object | None = None
+    skipCount: object | None = None
+    errorCount: object | None = None
     errors: object | None = None
     skips: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

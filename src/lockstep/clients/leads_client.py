@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.leadmodel import LeadModel
 
 class LeadsClient:
@@ -24,7 +24,7 @@ class LeadsClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_leads(self, body: list[LeadModel]) -> LockstepResponse[list[LeadModel]]:
+    def create_leads(self, body: list[object]) -> LockstepResponse[list[LeadModel]]:
         """
         Creates one or more Leads within the Lockstep platform and
         returns the records as created.
@@ -37,12 +37,12 @@ class LeadsClient:
 
         Parameters
         ----------
-        body : list[LeadModel]
+        body : list[object]
             The Leads to create
         """
         path = "/api/v1/Leads"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[LeadModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [LeadModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

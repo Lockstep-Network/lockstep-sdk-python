@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.invoiceaddressmodel import InvoiceAddressModel
@@ -50,7 +50,7 @@ class InvoiceAddressesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceAddressModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_invoice_address(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -72,7 +72,7 @@ class InvoiceAddressesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_invoice_address(self, id: str, body: object) -> LockstepResponse[InvoiceAddressModel]:
         """
@@ -104,9 +104,9 @@ class InvoiceAddressesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceAddressModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_invoice_address(self, body: list[InvoiceAddressModel]) -> LockstepResponse[list[InvoiceAddressModel]]:
+    def create_invoice_address(self, body: list[object]) -> LockstepResponse[list[InvoiceAddressModel]]:
         """
         Creates one or more Invoice Addresses within this account and
         returns the records as created.
@@ -119,15 +119,15 @@ class InvoiceAddressesClient:
 
         Parameters
         ----------
-        body : list[InvoiceAddressModel]
+        body : list[object]
             The Invoice Address to create
         """
         path = "/api/v1/invoice-addresses"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[InvoiceAddressModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [InvoiceAddressModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_invoice_addresses(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceAddressModel]]:
         """
@@ -161,6 +161,6 @@ class InvoiceAddressesClient:
         path = "/api/v1/invoice-addresses/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[InvoiceAddressModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), InvoiceAddressModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

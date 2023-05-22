@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.contactmodel import ContactModel
@@ -53,7 +53,7 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_contact(self, id: str, body: object) -> LockstepResponse[ContactModel]:
         """
@@ -86,7 +86,7 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_contact(self, id: str) -> LockstepResponse[DeleteResult]:
         """
@@ -109,9 +109,9 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_contacts(self, body: list[ContactModel]) -> LockstepResponse[list[ContactModel]]:
+    def create_contacts(self, body: list[object]) -> LockstepResponse[list[ContactModel]]:
         """
         Creates one or more contacts from a given model.
 
@@ -123,15 +123,15 @@ class ContactsClient:
 
         Parameters
         ----------
-        body : list[ContactModel]
+        body : list[object]
             The Contacts to create
         """
         path = "/api/v1/Contacts"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [ContactModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_contacts(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
@@ -154,7 +154,7 @@ class ContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[ContactModel]]:
         """
@@ -193,6 +193,6 @@ class ContactsClient:
         path = "/api/v1/Contacts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[ContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), ContactModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

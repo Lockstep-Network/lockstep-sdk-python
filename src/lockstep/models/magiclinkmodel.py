@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.useraccountmodel import UserAccountModel
 
 @dataclass
 class MagicLinkModel:
@@ -22,19 +21,21 @@ class MagicLinkModel:
     application.
     """
 
-    magicLinkId: str | None = None
-    groupKey: str | None = None
-    userId: str | None = None
-    userRole: str | None = None
-    applicationId: str | None = None
-    expires: str | None = None
-    revoked: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    companyId: str | None = None
-    accountingProfileId: str | None = None
-    magicLinkUrl: str | None = None
-    user: UserAccountModel | None = None
+    magicLinkId: object | None = None
+    groupKey: object | None = None
+    userId: object | None = None
+    userRole: object | None = None
+    applicationId: object | None = None
+    expires: object | None = None
+    revoked: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    companyId: object | None = None
+    accountingProfileId: object | None = None
+    magicLinkUrl: object | None = None
+    user: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

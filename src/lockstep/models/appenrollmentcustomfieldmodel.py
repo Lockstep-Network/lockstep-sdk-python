@@ -20,16 +20,18 @@ class AppEnrollmentCustomFieldModel:
     App enrollment and custom field merged into one
     """
 
-    appEnrollmentId: str | None = None
-    appId: str | None = None
-    name: str | None = None
-    appType: str | None = None
-    groupKey: str | None = None
-    customFieldDefinitionId: str | None = None
-    customFieldLabel: str | None = None
-    dataType: str | None = None
-    sortOrder: int | None = None
-    stringValue: str | None = None
-    numericValue: float | None = None
-    value: str | None = None
+    appEnrollmentId: object | None = None
+    appId: object | None = None
+    name: object | None = None
+    appType: object | None = None
+    groupKey: object | None = None
+    customFieldDefinitionId: object | None = None
+    customFieldLabel: object | None = None
+    dataType: object | None = None
+    sortOrder: object | None = None
+    stringValue: object | None = None
+    numericValue: object | None = None
+    value: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

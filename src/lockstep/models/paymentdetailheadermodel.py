@@ -20,11 +20,13 @@ class PaymentDetailHeaderModel:
     Contains group level payment data.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    customerCount: int | None = None
-    amountCollected: float | None = None
-    unappliedAmount: float | None = None
-    paidInvoiceCount: int | None = None
-    openInvoiceCount: int | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    customerCount: object | None = None
+    amountCollected: object | None = None
+    unappliedAmount: object | None = None
+    paidInvoiceCount: object | None = None
+    openInvoiceCount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -20,11 +20,13 @@ class UserRoleModel:
     Represents a role for a user
     """
 
-    userRoleId: str | None = None
-    groupKey: str | None = None
-    userRoleName: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    userRoleId: object | None = None
+    groupKey: object | None = None
+    userRoleName: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

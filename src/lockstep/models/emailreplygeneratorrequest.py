@@ -20,7 +20,9 @@ class EmailReplyGeneratorRequest:
     Represents the request to the SAGE GMS API
     """
 
-    date: str | None = None
-    body: str | None = None
-    subject: str | None = None
+    date: object | None = None
+    body: object | None = None
+    subject: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

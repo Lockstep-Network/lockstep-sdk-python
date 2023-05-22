@@ -20,11 +20,13 @@ class AppEnrollmentReconnectInfo:
     Information to reconnect an ERP.
     """
 
-    authCode: str | None = None
-    username: str | None = None
-    password: str | None = None
-    realmId: str | None = None
-    tokenId: str | None = None
-    tokenSecret: str | None = None
-    redirectUri: str | None = None
+    authCode: object | None = None
+    username: object | None = None
+    password: object | None = None
+    realmId: object | None = None
+    tokenId: object | None = None
+    tokenSecret: object | None = None
+    redirectUri: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

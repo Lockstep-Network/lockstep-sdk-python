@@ -20,33 +20,35 @@ class ArHeaderInfoModel:
     Aggregated Accounts Receivable information.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    reportDate: str | None = None
-    reportPeriod: str | None = None
-    totalCustomers: int | None = None
-    totalInvoices: int | None = None
-    totalInvoicedAmount: float | None = None
-    totalUnappliedPayments: float | None = None
-    totalCollected: float | None = None
-    totalArAmount: float | None = None
-    totalInvoicesPaid: int | None = None
-    totalInvoicesPastDue: int | None = None
-    totalInvoices90DaysPastDue: int | None = None
-    totalPastDueAmount: float | None = None
-    totalPastDueAmount90Days: float | None = None
-    percentageOfTotalAr: float | None = None
-    dso: float | None = None
-    totalInvoiceAmountCurrentYear: float | None = None
-    totalInvoiceAmountPreviousYear: float | None = None
-    totalPaymentAmountCurrentYear: float | None = None
-    percentageOfTotalAr90DaysPastDue: float | None = None
-    customersPaidPastThirtyDays: int | None = None
-    amountCollectedPastThirtyDays: float | None = None
-    unappliedAmountPastThirtyDays: float | None = None
-    invoicesPaidPastThirtyDays: int | None = None
-    customersInvoicedPastThirtyDays: int | None = None
-    amountInvoicedPastThirtyDays: float | None = None
-    amountDuePastThirtyDays: float | None = None
-    invoicesPastThirtyDays: int | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    reportDate: object | None = None
+    reportPeriod: object | None = None
+    totalCustomers: object | None = None
+    totalInvoices: object | None = None
+    totalInvoicedAmount: object | None = None
+    totalUnappliedPayments: object | None = None
+    totalCollected: object | None = None
+    totalArAmount: object | None = None
+    totalInvoicesPaid: object | None = None
+    totalInvoicesPastDue: object | None = None
+    totalInvoices90DaysPastDue: object | None = None
+    totalPastDueAmount: object | None = None
+    totalPastDueAmount90Days: object | None = None
+    percentageOfTotalAr: object | None = None
+    dso: object | None = None
+    totalInvoiceAmountCurrentYear: object | None = None
+    totalInvoiceAmountPreviousYear: object | None = None
+    totalPaymentAmountCurrentYear: object | None = None
+    percentageOfTotalAr90DaysPastDue: object | None = None
+    customersPaidPastThirtyDays: object | None = None
+    amountCollectedPastThirtyDays: object | None = None
+    unappliedAmountPastThirtyDays: object | None = None
+    invoicesPaidPastThirtyDays: object | None = None
+    customersInvoicedPastThirtyDays: object | None = None
+    amountInvoicedPastThirtyDays: object | None = None
+    amountDuePastThirtyDays: object | None = None
+    invoicesPastThirtyDays: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilecontactmodel import AccountingProfileContactModel
 from lockstep.models.accountingprofilecontactresultmodel import AccountingProfileContactResultModel
@@ -47,7 +47,7 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_accounting_profile_contact(self, id: str) -> LockstepResponse[DeleteResult]:
         """
@@ -69,9 +69,9 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profile_contacts(self, body: list[AccountingProfileContactModel]) -> LockstepResponse[list[AccountingProfileContactModel]]:
+    def create_accounting_profile_contacts(self, body: list[object]) -> LockstepResponse[list[AccountingProfileContactModel]]:
         """
         Creates one or more Accounting Profile Contacts from a given
         model.
@@ -82,15 +82,15 @@ class ProfilesAccountingContactsClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileContactModel]
+        body : list[object]
             The Accounting Profile Contacts to create
         """
         path = "/api/v1/profiles/accounting/contacts"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AccountingProfileContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AccountingProfileContactModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_accounting_profile_contacts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileContactModel]]:
         """
@@ -127,9 +127,9 @@ class ProfilesAccountingContactsClient:
         path = "/api/v1/profiles/accounting/contacts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AccountingProfileContactModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_linked_accounting_profile_contacts(self, filter: str, order: str, include: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileContactResultModel]]:
         """
@@ -172,9 +172,9 @@ class ProfilesAccountingContactsClient:
         path = "/api/v1/profiles/accounting/contacts/query/models"
         result = self.client.send_request("GET", path, None, {"filter": filter, "order": order, "include": include, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileContactResultModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AccountingProfileContactResultModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def set_secondary_contact_as_primary(self, id: str) -> LockstepResponse[AccountingProfileContactModel]:
         """
@@ -197,4 +197,4 @@ class ProfilesAccountingContactsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileContactModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

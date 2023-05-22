@@ -20,24 +20,26 @@ class AtRiskInvoiceSummaryModel:
     Contains summarized data for an invoice
     """
 
-    reportDate: str | None = None
-    groupKey: str | None = None
-    customerId: str | None = None
-    invoiceId: str | None = None
-    invoiceNumber: str | None = None
-    invoiceDate: str | None = None
-    customerName: str | None = None
-    status: str | None = None
-    paymentDueDate: str | None = None
-    currencyCode: str | None = None
-    invoiceAmount: float | None = None
-    outstandingBalance: float | None = None
-    baseCurrencyCode: str | None = None
-    baseCurrencyInvoiceAmount: float | None = None
-    baseCurrencyOutstandingBalance: float | None = None
-    invoiceTypeCode: str | None = None
-    newestActivity: str | None = None
-    daysPastDue: int | None = None
-    paymentNumbers: list[str] | None = None
-    paymentIds: list[str] | None = None
+    reportDate: object | None = None
+    groupKey: object | None = None
+    customerId: object | None = None
+    invoiceId: object | None = None
+    invoiceNumber: object | None = None
+    invoiceDate: object | None = None
+    customerName: object | None = None
+    status: object | None = None
+    paymentDueDate: object | None = None
+    currencyCode: object | None = None
+    invoiceAmount: object | None = None
+    outstandingBalance: object | None = None
+    baseCurrencyCode: object | None = None
+    baseCurrencyInvoiceAmount: object | None = None
+    baseCurrencyOutstandingBalance: object | None = None
+    invoiceTypeCode: object | None = None
+    newestActivity: object | None = None
+    daysPastDue: object | None = None
+    paymentNumbers: list[object] | None = None
+    paymentIds: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

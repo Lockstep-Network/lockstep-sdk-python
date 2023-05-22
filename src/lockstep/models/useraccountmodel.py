@@ -13,10 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.notemodel import NoteModel
-from lockstep.models.attachmentmodel import AttachmentModel
-from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
-from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 
 @dataclass
 class UserAccountModel:
@@ -30,37 +26,39 @@ class UserAccountModel:
     rights within the Lockstep Platform.
     """
 
-    userId: str | None = None
-    groupKey: str | None = None
-    userName: str | None = None
-    email: str | None = None
-    status: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    modifiedUserName: str | None = None
-    b2CUserId: str | None = None
-    userRole: str | None = None
-    inviteSent: str | None = None
-    phoneNumber: str | None = None
-    faxNumber: str | None = None
-    title: str | None = None
-    accountingRoleCodeDefId: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    stateRegion: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    timeZone: str | None = None
-    imageURL: str | None = None
-    description: str | None = None
-    b2CLastLoggedIn: str | None = None
-    defaultCurrencyCode: str | None = None
-    notes: list[NoteModel] | None = None
-    attachments: list[AttachmentModel] | None = None
-    customFieldValues: list[CustomFieldValueModel] | None = None
-    accountingRoleCodeDefinition: CodeDefinitionModel | None = None
+    userId: object | None = None
+    groupKey: object | None = None
+    userName: object | None = None
+    email: object | None = None
+    status: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    modifiedUserName: object | None = None
+    b2CUserId: object | None = None
+    userRole: object | None = None
+    inviteSent: object | None = None
+    phoneNumber: object | None = None
+    faxNumber: object | None = None
+    title: object | None = None
+    accountingRoleCodeDefId: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    stateRegion: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    timeZone: object | None = None
+    imageURL: object | None = None
+    description: object | None = None
+    b2CLastLoggedIn: object | None = None
+    defaultCurrencyCode: object | None = None
+    notes: list[object] | None = None
+    attachments: list[object] | None = None
+    customFieldValues: list[object] | None = None
+    accountingRoleCodeDefinition: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

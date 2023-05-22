@@ -21,21 +21,23 @@ class TransactionModel:
     Invoices, Credit Memos or Payments within the group account.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    referenceNumber: str | None = None
-    transactionId: str | None = None
-    transactionStatus: str | None = None
-    transactionType: str | None = None
-    transactionSubType: str | None = None
-    transactionDate: str | None = None
-    dueDate: str | None = None
-    daysPastDue: int | None = None
-    currencyCode: str | None = None
-    transactionAmount: float | None = None
-    outstandingAmount: float | None = None
-    baseCurrencyTransactionAmount: float | None = None
-    baseCurrencyOutstandingAmount: float | None = None
-    transactionDetailCount: int | None = None
-    supportsErpPdfRetrieval: bool | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    referenceNumber: object | None = None
+    transactionId: object | None = None
+    transactionStatus: object | None = None
+    transactionType: object | None = None
+    transactionSubType: object | None = None
+    transactionDate: object | None = None
+    dueDate: object | None = None
+    daysPastDue: object | None = None
+    currencyCode: object | None = None
+    transactionAmount: object | None = None
+    outstandingAmount: object | None = None
+    baseCurrencyTransactionAmount: object | None = None
+    baseCurrencyOutstandingAmount: object | None = None
+    transactionDetailCount: object | None = None
+    supportsErpPdfRetrieval: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

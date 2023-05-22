@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.invitedatamodel import InviteDataModel
@@ -60,7 +60,7 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_user(self, id: str, body: object) -> LockstepResponse[UserAccountModel]:
         """
@@ -94,7 +94,7 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def disable_user(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -118,9 +118,9 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invite_user(self, body: list[InviteSubmitModel]) -> LockstepResponse[list[InviteModel]]:
+    def invite_user(self, body: list[object]) -> LockstepResponse[list[InviteModel]]:
         """
         Invite a user with the specified email to join your accounting
         group. The user will receive an email to set up their account.
@@ -135,15 +135,15 @@ class UserAccountsClient:
 
         Parameters
         ----------
-        body : list[InviteSubmitModel]
+        body : list[object]
             The user to invite
         """
         path = "/api/v1/UserAccounts/invite"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[InviteModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [InviteModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_invite_data(self, code: str) -> LockstepResponse[InviteDataModel]:
         """
@@ -167,7 +167,7 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InviteDataModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def transfer_owner(self, body: TransferOwnerSubmitModel) -> LockstepResponse[TransferOwnerModel]:
         """
@@ -192,7 +192,7 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TransferOwnerModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_users(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[UserAccountModel]]:
         """
@@ -228,9 +228,9 @@ class UserAccountsClient:
         path = "/api/v1/UserAccounts/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[UserAccountModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), UserAccountModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def change_user_group(self, groupKey: str) -> LockstepResponse[UserAccountModel]:
         """
@@ -254,16 +254,16 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def get_user_data(self, include: list[str]) -> LockstepResponse[UserDataResponseModel]:
+    def get_user_data(self, include: list[object]) -> LockstepResponse[UserDataResponseModel]:
         """
         Retrieves the user data for the current user. This allows for
         retrieving extended user data such as UTM parameters.
 
         Parameters
         ----------
-        include : list[str]
+        include : list[object]
             The set of data to retrieve. To avoid any casing confusion,
             these values are converted to upper case. Possible values
             are: UTM
@@ -273,7 +273,7 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, UserDataResponseModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def set_support_access(self, body: SupportAccessRequest) -> LockstepResponse[SupportAccessModel]:
         """
@@ -296,4 +296,4 @@ class UserAccountsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, SupportAccessModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

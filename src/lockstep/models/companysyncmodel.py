@@ -30,32 +30,34 @@ class CompanySyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    erpKey: str | None = None
-    companyName: str | None = None
-    companyType: str | None = None
-    parentCompanyErpKey: str | None = None
-    isActive: bool | None = None
-    defaultCurrencyCode: str | None = None
-    companyLogoUrl: str | None = None
-    primaryContactErpKey: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    stateRegion: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    phoneNumber: str | None = None
-    faxNumber: str | None = None
-    created: str | None = None
-    modified: str | None = None
-    taxId: str | None = None
-    dunsNumber: str | None = None
-    apEmailAddress: str | None = None
-    arEmailAddress: str | None = None
-    preferredDeliveryMethod: str | None = None
-    emailAddress: str | None = None
-    externalReference: str | None = None
-    companyRegistrationNumber: str | None = None
+    onMatchAction: object | None = None
+    erpKey: object | None = None
+    companyName: object | None = None
+    companyType: object | None = None
+    parentCompanyErpKey: object | None = None
+    isActive: object | None = None
+    defaultCurrencyCode: object | None = None
+    companyLogoUrl: object | None = None
+    primaryContactErpKey: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    stateRegion: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    phoneNumber: object | None = None
+    faxNumber: object | None = None
+    created: object | None = None
+    modified: object | None = None
+    taxId: object | None = None
+    dunsNumber: object | None = None
+    apEmailAddress: object | None = None
+    arEmailAddress: object | None = None
+    preferredDeliveryMethod: object | None = None
+    emailAddress: object | None = None
+    externalReference: object | None = None
+    companyRegistrationNumber: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

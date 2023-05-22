@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.deleteresult import DeleteResult
 from lockstep.models.emailreplygeneratorrequest import EmailReplyGeneratorRequest
@@ -53,7 +53,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TranscriptionValidationRequestModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_transcription_validation_request(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
@@ -85,7 +85,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TranscriptionValidationRequestModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_transcription_validation_request(self, id: str) -> LockstepResponse[DeleteResult]:
         """
@@ -107,9 +107,9 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_transcription_validation_request(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[TranscriptionValidationRequestModel]:
+    def create_transcription_validation_request(self, body: list[object]) -> LockstepResponse[TranscriptionValidationRequestModel]:
         """
         Creates one Transcription Validation Request with all the
         associated request items within this account and returns the
@@ -121,7 +121,7 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[TranscriptionRequestSubmit]
+        body : list[object]
             The files which will be verified
         """
         path = "/api/v1/Transcriptions/validate"
@@ -129,7 +129,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TranscriptionValidationRequestModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_transcription_validation_requests(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[TranscriptionValidationRequestModel]]:
         """
@@ -162,11 +162,11 @@ class TranscriptionsClient:
         path = "/api/v1/Transcriptions/validate/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[TranscriptionValidationRequestModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), TranscriptionValidationRequestModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[TranscriptionRequestSubmit]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
+    def creates_a_transcriptionvalidationrequestitemmodel(self, body: list[object]) -> LockstepResponse[list[TranscriptionValidationRequestItemModel]]:
         """
         Retrieves the TranscriptionValidationRequestItemModel specified
         by this unique identifier.
@@ -177,16 +177,16 @@ class TranscriptionsClient:
 
         Parameters
         ----------
-        body : list[TranscriptionRequestSubmit]
+        body : list[object]
             The TranscriptionValidationRequestItemModels to add to an
             existing TranscriptionValidationRequestItemModel
         """
         path = "/api/v1/Transcriptions/validation-items"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[TranscriptionValidationRequestItemModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [TranscriptionValidationRequestItemModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
@@ -208,7 +208,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TranscriptionValidationRequestItemModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_a_transcriptionvalidationrequestitemmodel(self, id: str, body: object) -> LockstepResponse[TranscriptionValidationRequestItemModel]:
         """
@@ -240,7 +240,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TranscriptionValidationRequestItemModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_a_transcriptionvalidationrequestitemmodel(self, id: str) -> LockstepResponse[DeleteResult]:
         """
@@ -262,7 +262,7 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_transcription_validation_request_items(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[TranscriptionValidationRequestItemModel]]:
         """
@@ -296,9 +296,9 @@ class TranscriptionsClient:
         path = "/api/v1/Transcriptions/validation-items/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[TranscriptionValidationRequestItemModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), TranscriptionValidationRequestItemModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_an_emailreplygeneratorresponse(self, body: EmailReplyGeneratorRequest) -> LockstepResponse[EmailReplyGeneratorResponse]:
         """
@@ -318,4 +318,4 @@ class TranscriptionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, EmailReplyGeneratorResponse(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

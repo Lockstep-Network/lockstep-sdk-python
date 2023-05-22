@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.financialreportrowmodel import FinancialReportRowModel
 
 @dataclass
 class FinancialReportModel:
@@ -21,10 +20,12 @@ class FinancialReportModel:
     Represents a Financial Report
     """
 
-    reportName: str | None = None
-    groupKey: str | None = None
-    reportStartDate: str | None = None
-    reportEndDate: str | None = None
-    reportCreatedDate: str | None = None
-    rows: list[FinancialReportRowModel] | None = None
+    reportName: object | None = None
+    groupKey: object | None = None
+    reportStartDate: object | None = None
+    reportEndDate: object | None = None
+    reportCreatedDate: object | None = None
+    rows: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

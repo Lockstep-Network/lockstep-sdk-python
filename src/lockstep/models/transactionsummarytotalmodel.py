@@ -21,9 +21,11 @@ class TransactionSummaryTotalModel:
     request within the group account.
     """
 
-    totalCount: int | None = None
-    totalAmount: float | None = None
-    outstandingAmount: float | None = None
-    invoiceOpenCount: int | None = None
-    invoicePastDueCount: int | None = None
+    totalCount: object | None = None
+    totalAmount: object | None = None
+    outstandingAmount: object | None = None
+    invoiceOpenCount: object | None = None
+    invoicePastDueCount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

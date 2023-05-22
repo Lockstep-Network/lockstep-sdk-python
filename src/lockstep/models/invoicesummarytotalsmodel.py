@@ -20,6 +20,8 @@ class InvoiceSummaryTotalsModel:
     The totals for an Invoice Summary
     """
 
-    totalInvoiceAmount: float | None = None
-    totalInvoiceBalance: float | None = None
+    totalInvoiceAmount: object | None = None
+    totalInvoiceBalance: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

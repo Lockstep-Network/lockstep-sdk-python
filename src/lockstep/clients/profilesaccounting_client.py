@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.accountingprofilemodel import AccountingProfileModel
 from lockstep.models.accountingprofilerequest import AccountingProfileRequest
@@ -54,7 +54,7 @@ class ProfilesAccountingClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_accounting_profile(self, id: str, body: object) -> LockstepResponse[AccountingProfileModel]:
         """
@@ -88,7 +88,7 @@ class ProfilesAccountingClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AccountingProfileModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_accounting_profile(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -113,9 +113,9 @@ class ProfilesAccountingClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_accounting_profiles(self, body: list[AccountingProfileRequest]) -> LockstepResponse[list[AccountingProfileModel]]:
+    def create_accounting_profiles(self, body: list[object]) -> LockstepResponse[list[AccountingProfileModel]]:
         """
         Creates one or more accounting profiles from a given model.
 
@@ -128,15 +128,15 @@ class ProfilesAccountingClient:
 
         Parameters
         ----------
-        body : list[AccountingProfileRequest]
+        body : list[object]
             The Accounting Profiles to create
         """
         path = "/api/v1/profiles/accounting"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AccountingProfileModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AccountingProfileModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_accounting_profiles(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[AccountingProfileModel]]:
         """
@@ -177,6 +177,6 @@ class ProfilesAccountingClient:
         path = "/api/v1/profiles/accounting/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[AccountingProfileModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), AccountingProfileModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

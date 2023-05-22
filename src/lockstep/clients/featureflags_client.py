@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.featureflagsrequestmodel import FeatureFlagsRequestModel
 from lockstep.models.featureflagsresponsemodel import FeatureFlagsResponseModel
 
@@ -40,4 +40,4 @@ class FeatureFlagsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FeatureFlagsResponseModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

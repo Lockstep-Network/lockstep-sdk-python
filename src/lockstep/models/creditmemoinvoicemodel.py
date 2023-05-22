@@ -20,21 +20,23 @@ class CreditMemoInvoiceModel:
     Contains information about a credit memo invoice
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    currencyCode: str | None = None
-    creditMemoAppliedId: str | None = None
-    invoiceId: str | None = None
-    creditMemoInvoiceId: str | None = None
-    applyToInvoiceDate: str | None = None
-    creditMemoAppliedAmount: float | None = None
-    baseCurrencyCreditMemoAppliedAmount: float | None = None
-    referenceCode: str | None = None
-    companyId: str | None = None
-    customerId: str | None = None
-    invoiceStatusCode: str | None = None
-    totalAmount: float | None = None
-    outstandingBalanceAmount: float | None = None
-    baseCurrencyTotalAmount: float | None = None
-    baseCurrencyOutstandingBalanceAmount: float | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    currencyCode: object | None = None
+    creditMemoAppliedId: object | None = None
+    invoiceId: object | None = None
+    creditMemoInvoiceId: object | None = None
+    applyToInvoiceDate: object | None = None
+    creditMemoAppliedAmount: object | None = None
+    baseCurrencyCreditMemoAppliedAmount: object | None = None
+    referenceCode: object | None = None
+    companyId: object | None = None
+    customerId: object | None = None
+    invoiceStatusCode: object | None = None
+    totalAmount: object | None = None
+    outstandingBalanceAmount: object | None = None
+    baseCurrencyTotalAmount: object | None = None
+    baseCurrencyOutstandingBalanceAmount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

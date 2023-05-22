@@ -27,16 +27,18 @@ class CustomFieldDefinitionModel:
     for more information.
     """
 
-    groupKey: str | None = None
-    customFieldDefinitionId: str | None = None
-    tableKey: str | None = None
-    appId: str | None = None
-    customFieldLabel: str | None = None
-    dataType: str | None = None
-    sortOrder: int | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    appEnrollmentId: str | None = None
+    groupKey: object | None = None
+    customFieldDefinitionId: object | None = None
+    tableKey: object | None = None
+    appId: object | None = None
+    customFieldLabel: object | None = None
+    dataType: object | None = None
+    sortOrder: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    appEnrollmentId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

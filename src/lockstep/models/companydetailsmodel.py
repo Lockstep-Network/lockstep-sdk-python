@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.companydetailspaymentmodel import CompanyDetailsPaymentModel
 
 @dataclass
 class CompanyDetailsModel:
@@ -21,25 +20,27 @@ class CompanyDetailsModel:
     Contains company details data
     """
 
-    groupKey: str | None = None
-    customerId: str | None = None
-    name: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    state: str | None = None
-    postalCode: str | None = None
-    country: str | None = None
-    phoneNumber: str | None = None
-    faxNumber: str | None = None
-    email: str | None = None
-    contactId: str | None = None
-    contactName: str | None = None
-    contactEmail: str | None = None
-    outstandingInvoices: int | None = None
-    groupBaseCurrencyCode: str | None = None
-    outstandingAmount: float | None = None
-    amountPastDue: float | None = None
-    payments: list[CompanyDetailsPaymentModel] | None = None
+    groupKey: object | None = None
+    customerId: object | None = None
+    name: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    state: object | None = None
+    postalCode: object | None = None
+    country: object | None = None
+    phoneNumber: object | None = None
+    faxNumber: object | None = None
+    email: object | None = None
+    contactId: object | None = None
+    contactName: object | None = None
+    contactEmail: object | None = None
+    outstandingInvoices: object | None = None
+    groupBaseCurrencyCode: object | None = None
+    outstandingAmount: object | None = None
+    amountPastDue: object | None = None
+    payments: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

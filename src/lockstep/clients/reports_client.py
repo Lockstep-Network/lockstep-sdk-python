@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.agingmodel import AgingModel
 from lockstep.models.apagingheaderinfomodel import ApAgingHeaderInfoModel
@@ -61,7 +61,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CashflowReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def payables_summary_report(self, timeframe: int) -> LockstepResponse[PayablesSummaryReportModel]:
         """
@@ -84,7 +84,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PayablesSummaryReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def daily_sales_outstanding(self, reportDate: str) -> LockstepResponse[list[DailySalesOutstandingReportModel]]:
         """
@@ -105,9 +105,9 @@ class ReportsClient:
         path = "/api/v1/Reports/daily-sales-outstanding"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[DailySalesOutstandingReportModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [DailySalesOutstandingReportModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def days_payable_outstanding(self, ) -> LockstepResponse[list[DailyPayableOutstandingReportModel]]:
         """
@@ -125,9 +125,9 @@ class ReportsClient:
         path = "/api/v1/Reports/daily-payable-outstanding"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[DailyPayableOutstandingReportModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [DailyPayableOutstandingReportModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def payables_coming_due(self, ) -> LockstepResponse[list[PayablesComingDueWidgetModel]]:
         """
@@ -140,9 +140,9 @@ class ReportsClient:
         path = "/api/v1/Reports/payables-coming-due"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[PayablesComingDueWidgetModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [PayablesComingDueWidgetModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def payables_coming_due_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PayablesComingDueModel]]:
         """
@@ -171,9 +171,9 @@ class ReportsClient:
         path = "/api/v1/Reports/payables-coming-due-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PayablesComingDueModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PayablesComingDueModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def payables_coming_due_header(self, reportDate: str) -> LockstepResponse[list[PayablesComingDueHeaderModel]]:
         """
@@ -191,9 +191,9 @@ class ReportsClient:
         path = "/api/v1/Reports/payables-coming-due-header"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[PayablesComingDueHeaderModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [PayablesComingDueHeaderModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def risk_rates(self, ) -> LockstepResponse[list[RiskRateModel]]:
         """
@@ -210,9 +210,9 @@ class ReportsClient:
         path = "/api/v1/Reports/risk-rates"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[RiskRateModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [RiskRateModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def accounts_receivable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ArHeaderInfoModel]:
         """
@@ -231,7 +231,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ArHeaderInfoModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def accounts_payable_header(self, reportDate: str, companyId: str) -> LockstepResponse[ApHeaderInfoModel]:
         """
@@ -250,9 +250,9 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ApHeaderInfoModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[int], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
+    def invoice_aging_report(self, CompanyId: str, Recalculate: bool, CurrencyCode: str, CurrencyProvider: str, Buckets: list[object], ApReport: bool) -> LockstepResponse[list[AgingModel]]:
         """
         The Aging Report contains information about the total dollar
         value of invoices broken down by their age. Last default or
@@ -289,7 +289,7 @@ class ReportsClient:
             Currency provider currency rates should be returned from to
             convert aging amounts to (default Lockstep currency provider
             used if no data provider specified)
-        Buckets : list[int]
+        Buckets : list[object]
             Customized buckets used for aging calculations (default
             buckets [0,30,60,90,120,180] will be used if buckets not
             specified)
@@ -299,9 +299,9 @@ class ReportsClient:
         path = "/api/v1/Reports/aging"
         result = self.client.send_request("GET", path, None, {"CompanyId": CompanyId, "Recalculate": Recalculate, "CurrencyCode": CurrencyCode, "CurrencyProvider": CurrencyProvider, "Buckets": Buckets, "ApReport": ApReport}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[AgingModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [AgingModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def accounts_receivable_aging_header(self, ) -> LockstepResponse[list[ArAgingHeaderInfoModel]]:
         """
@@ -319,9 +319,9 @@ class ReportsClient:
         path = "/api/v1/Reports/ar-aging-header"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ArAgingHeaderInfoModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [ArAgingHeaderInfoModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def accounts_payable_aging_header(self, ) -> LockstepResponse[list[ApAgingHeaderInfoModel]]:
         """
@@ -338,9 +338,9 @@ class ReportsClient:
         path = "/api/v1/Reports/ap-aging-header"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[ApAgingHeaderInfoModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [ApAgingHeaderInfoModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def attachments_header_information(self, companyId: str) -> LockstepResponse[AttachmentHeaderInfoModel]:
         """
@@ -362,7 +362,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, AttachmentHeaderInfoModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def trial_balance_report(self, startDate: str, endDate: str, appEnrollmentId: str) -> LockstepResponse[FinancialReportModel]:
         """
@@ -383,7 +383,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def income_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
@@ -436,7 +436,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def balance_sheet_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int, comparisonPeriod: str, showCurrencyDifference: bool, showPercentageDifference: bool) -> LockstepResponse[FinancialReportModel]:
         """
@@ -485,7 +485,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def cash_flow_statement_report(self, startDate: str, endDate: str, appEnrollmentId: str, columnOption: str, displayDepth: int) -> LockstepResponse[FinancialReportModel]:
         """
@@ -519,7 +519,7 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialReportModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def days_payable_outstanding_summary(self, reportDate: str, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[DpoSummaryModel]]:
         """
@@ -559,9 +559,9 @@ class ReportsClient:
         path = "/api/v1/Reports/daily-payable-outstanding-summary"
         result = self.client.send_request("GET", path, None, {"reportDate": reportDate, "filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[DpoSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), DpoSummaryModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def days_payable_outstanding_summary_total(self, reportDate: str) -> LockstepResponse[DpoSummaryGroupTotalModel]:
         """
@@ -585,4 +585,4 @@ class ReportsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DpoSummaryGroupTotalModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

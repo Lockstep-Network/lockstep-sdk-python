@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.customfielddefinitionmodel import CustomFieldDefinitionModel
@@ -58,7 +58,7 @@ class CustomFieldDefinitionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CustomFieldDefinitionModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_field_definition(self, id: str, body: object) -> LockstepResponse[CustomFieldDefinitionModel]:
         """
@@ -96,7 +96,7 @@ class CustomFieldDefinitionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CustomFieldDefinitionModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_field_definition(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -125,9 +125,9 @@ class CustomFieldDefinitionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_field_definitions(self, body: list[CustomFieldDefinitionModel]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
+    def create_field_definitions(self, body: list[object]) -> LockstepResponse[list[CustomFieldDefinitionModel]]:
         """
         Creates one or more Custom Field Definitions and returns the
         records as created.
@@ -145,15 +145,15 @@ class CustomFieldDefinitionsClient:
 
         Parameters
         ----------
-        body : list[CustomFieldDefinitionModel]
+        body : list[object]
             The Custom Field Definitions to create
         """
         path = "/api/v1/CustomFieldDefinitions"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CustomFieldDefinitionModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CustomFieldDefinitionModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_field_definitions(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomFieldDefinitionModel]]:
         """
@@ -199,6 +199,6 @@ class CustomFieldDefinitionsClient:
         path = "/api/v1/CustomFieldDefinitions/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CustomFieldDefinitionModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CustomFieldDefinitionModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

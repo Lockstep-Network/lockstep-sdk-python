@@ -34,13 +34,15 @@ class CustomFieldSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    erpKey: str | None = None
-    tableKey: str | None = None
-    customFieldLabel: str | None = None
-    stringValue: str | None = None
-    numericValue: float | None = None
-    value: str | None = None
-    created: str | None = None
-    modified: str | None = None
+    onMatchAction: object | None = None
+    erpKey: object | None = None
+    tableKey: object | None = None
+    customFieldLabel: object | None = None
+    stringValue: object | None = None
+    numericValue: object | None = None
+    value: object | None = None
+    created: object | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.creditmemoappliedmodel import CreditMemoAppliedModel
@@ -54,7 +54,7 @@ class CreditMemosAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CreditMemoAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_credit_memos_applied(self, id: str, body: object) -> LockstepResponse[CreditMemoAppliedModel]:
         """
@@ -89,7 +89,7 @@ class CreditMemosAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CreditMemoAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_credit_memo_applied(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -115,9 +115,9 @@ class CreditMemosAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_credit_memos_applied(self, body: list[CreditMemoAppliedModel]) -> LockstepResponse[list[CreditMemoAppliedModel]]:
+    def create_credit_memos_applied(self, body: list[object]) -> LockstepResponse[list[CreditMemoAppliedModel]]:
         """
         Creates one or more Credit Memos Applied within this account and
         returns the records as created.
@@ -132,15 +132,15 @@ class CreditMemosAppliedClient:
 
         Parameters
         ----------
-        body : list[CreditMemoAppliedModel]
+        body : list[object]
             The Credit Memos Applied to create
         """
         path = "/api/v1/credit-memos-applied"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CreditMemoAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CreditMemoAppliedModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_credit_memos_applied(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CreditMemoAppliedModel]]:
         """
@@ -182,6 +182,6 @@ class CreditMemosAppliedClient:
         path = "/api/v1/credit-memos-applied/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CreditMemoAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CreditMemoAppliedModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

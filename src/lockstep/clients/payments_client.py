@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
@@ -62,7 +62,7 @@ class PaymentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_payment(self, id: str, body: object) -> LockstepResponse[PaymentModel]:
         """
@@ -101,7 +101,7 @@ class PaymentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_payment(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -130,9 +130,9 @@ class PaymentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments(self, body: list[PaymentModel]) -> LockstepResponse[list[PaymentModel]]:
+    def create_payments(self, body: list[object]) -> LockstepResponse[list[PaymentModel]]:
         """
         Creates one or more Payments within this account and returns the
         records as created.
@@ -151,15 +151,15 @@ class PaymentsClient:
 
         Parameters
         ----------
-        body : list[PaymentModel]
+        body : list[object]
             The Payments to create
         """
         path = "/api/v1/Payments"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[PaymentModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [PaymentModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_payments(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentModel]]:
         """
@@ -204,9 +204,9 @@ class PaymentsClient:
         path = "/api/v1/Payments/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PaymentModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_payment_pdf(self, id: str) -> Response:
         """
@@ -273,7 +273,7 @@ class PaymentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_payment_detail_header(self, ) -> LockstepResponse[PaymentDetailHeaderModel]:
         """
@@ -287,7 +287,7 @@ class PaymentsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentDetailHeaderModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_payment_detail_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentDetailModel]]:
         """
@@ -334,6 +334,6 @@ class PaymentsClient:
         path = "/api/v1/Payments/views/detail"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PaymentDetailModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentDetailModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

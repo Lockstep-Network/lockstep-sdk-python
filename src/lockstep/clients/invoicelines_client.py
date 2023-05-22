@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.deleteresult import DeleteResult
@@ -27,22 +27,22 @@ class InvoiceLinesClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_invoiceline(self, body: list[InvoiceLineModel]) -> LockstepResponse[list[InvoiceLineModel]]:
+    def create_invoiceline(self, body: list[object]) -> LockstepResponse[list[InvoiceLineModel]]:
         """
         Creates one or more invoice lines within this account and
         returns the created records
 
         Parameters
         ----------
-        body : list[InvoiceLineModel]
+        body : list[object]
 
         """
         path = "/api/v1/invoice-lines"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[InvoiceLineModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [InvoiceLineModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_invoice_lines(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
@@ -59,7 +59,7 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieves_invoice_line(self, invoiceLineId: str) -> LockstepResponse[InvoiceLineModel]:
         """
@@ -75,7 +75,7 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceLineModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_invoice_line(self, invoiceLineId: str, body: object) -> LockstepResponse[InvoiceLineModel]:
         """
@@ -101,7 +101,7 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, InvoiceLineModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def deletes_invoice_line(self, invoiceLineId: str) -> LockstepResponse[DeleteResult]:
         """
@@ -117,7 +117,7 @@ class InvoiceLinesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_invoice_lines(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[InvoiceLineModel]]:
         """
@@ -145,6 +145,6 @@ class InvoiceLinesClient:
         path = "/api/v1/invoice-lines/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[InvoiceLineModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), InvoiceLineModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

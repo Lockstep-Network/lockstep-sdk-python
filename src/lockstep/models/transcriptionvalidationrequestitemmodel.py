@@ -20,22 +20,24 @@ class TranscriptionValidationRequestItemModel:
     Represents a transcription validation request item to be validated.
     """
 
-    transcriptionValidationRequestItemId: str | None = None
-    transcriptionValidationRequestId: str | None = None
-    groupKey: str | None = None
-    fileHash: str | None = None
-    fileName: str | None = None
-    fileExt: str | None = None
-    fileLocation: str | None = None
-    transcriptionResult: str | None = None
-    processStart: str | None = None
-    processEnd: str | None = None
-    retryCount: int | None = None
-    feedbackResult: str | None = None
-    feedbackSent: str | None = None
-    statusCode: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    transcriptionValidationRequestItemId: object | None = None
+    transcriptionValidationRequestId: object | None = None
+    groupKey: object | None = None
+    fileHash: object | None = None
+    fileName: object | None = None
+    fileExt: object | None = None
+    fileLocation: object | None = None
+    transcriptionResult: object | None = None
+    processStart: object | None = None
+    processEnd: object | None = None
+    retryCount: object | None = None
+    feedbackResult: object | None = None
+    feedbackSent: object | None = None
+    statusCode: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

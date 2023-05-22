@@ -26,16 +26,18 @@ class NoteModel:
     for more information.
     """
 
-    noteId: str | None = None
-    groupKey: str | None = None
-    tableKey: str | None = None
-    objectKey: str | None = None
-    noteText: str | None = None
-    noteType: str | None = None
-    isArchived: bool | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    createdUserName: str | None = None
-    appEnrollmentId: str | None = None
-    recipientName: str | None = None
+    noteId: object | None = None
+    groupKey: object | None = None
+    tableKey: object | None = None
+    objectKey: object | None = None
+    noteText: object | None = None
+    noteType: object | None = None
+    isArchived: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    createdUserName: object | None = None
+    appEnrollmentId: object | None = None
+    recipientName: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -30,24 +30,26 @@ class PaymentSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    erpKey: str | None = None
-    companyErpKey: str | None = None
-    paymentType: str | None = None
-    tenderType: str | None = None
-    isOpen: bool | None = None
-    memoText: str | None = None
-    paymentDate: str | None = None
-    postDate: str | None = None
-    paymentAmount: float | None = None
-    unappliedAmount: float | None = None
-    currencyCode: str | None = None
-    created: str | None = None
-    modified: str | None = None
-    referenceCode: str | None = None
-    isVoided: bool | None = None
-    inDispute: bool | None = None
-    currencyRate: float | None = None
-    baseCurrencyPaymentAmount: float | None = None
-    baseCurrencyUnappliedAmount: float | None = None
+    onMatchAction: object | None = None
+    erpKey: object | None = None
+    companyErpKey: object | None = None
+    paymentType: object | None = None
+    tenderType: object | None = None
+    isOpen: object | None = None
+    memoText: object | None = None
+    paymentDate: object | None = None
+    postDate: object | None = None
+    paymentAmount: object | None = None
+    unappliedAmount: object | None = None
+    currencyCode: object | None = None
+    created: object | None = None
+    modified: object | None = None
+    referenceCode: object | None = None
+    isVoided: object | None = None
+    inDispute: object | None = None
+    currencyRate: object | None = None
+    baseCurrencyPaymentAmount: object | None = None
+    baseCurrencyUnappliedAmount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

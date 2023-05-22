@@ -13,17 +13,16 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.transactionmodel import TransactionModel
-from lockstep.models.transactionsummarytotalmodel import TransactionSummaryTotalModel
-from lockstep.models.summaryagingtotalsmodel import SummaryAgingTotalsModel
 
 @dataclass
 class TransactionModelTransactionSummaryTotalModelSummaryFetchResult:
 
-    totalCount: int | None = None
-    pageSize: int | None = None
-    pageNumber: int | None = None
-    records: list[TransactionModel] | None = None
-    summary: TransactionSummaryTotalModel | None = None
-    agingSummary: list[SummaryAgingTotalsModel] | None = None
+    totalCount: object | None = None
+    pageSize: object | None = None
+    pageNumber: object | None = None
+    records: list[object] | None = None
+    summary: object | None = None
+    agingSummary: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

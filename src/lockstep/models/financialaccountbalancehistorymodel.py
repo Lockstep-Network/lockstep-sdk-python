@@ -21,20 +21,22 @@ class FinancialAccountBalanceHistoryModel:
     time.
     """
 
-    financialAccountBalanceHistoryId: str | None = None
-    groupKey: str | None = None
-    financialAccountId: str | None = None
-    appEnrollmentId: str | None = None
-    financialYear: int | None = None
-    periodNumber: int | None = None
-    periodStartDate: str | None = None
-    periodEndDate: str | None = None
-    status: str | None = None
-    balance: float | None = None
-    balanceType: int | None = None
-    balanceTypeName: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    financialAccountBalanceHistoryId: object | None = None
+    groupKey: object | None = None
+    financialAccountId: object | None = None
+    appEnrollmentId: object | None = None
+    financialYear: object | None = None
+    periodNumber: object | None = None
+    periodStartDate: object | None = None
+    periodEndDate: object | None = None
+    status: object | None = None
+    balance: object | None = None
+    balanceType: object | None = None
+    balanceTypeName: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -31,13 +31,15 @@ class CreditMemoAppliedSyncModel:
     Data](https://developer.lockstep.io/docs/connector-data).
     """
 
-    onMatchAction: int | None = None
-    erpKey: str | None = None
-    invoiceErpKey: str | None = None
-    creditMemoInvoiceErpKey: str | None = None
-    entryNumber: int | None = None
-    applyToInvoiceDate: str | None = None
-    creditMemoAppliedAmount: float | None = None
-    created: str | None = None
-    modified: str | None = None
+    onMatchAction: object | None = None
+    erpKey: object | None = None
+    invoiceErpKey: object | None = None
+    creditMemoInvoiceErpKey: object | None = None
+    entryNumber: object | None = None
+    applyToInvoiceDate: object | None = None
+    creditMemoAppliedAmount: object | None = None
+    created: object | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

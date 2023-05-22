@@ -20,5 +20,7 @@ class DeleteResult:
     Information about result of delete operations
     """
 
-    messages: list[str] | None = None
+    messages: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

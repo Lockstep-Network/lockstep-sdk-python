@@ -20,11 +20,13 @@ class PayablesSummaryReportModel:
     Represents the payables summary report based on a timeframe
     """
 
-    groupKey: str | None = None
-    timeframe: int | None = None
-    baseCurrencyCode: str | None = None
-    totalPaymentsAmount: float | None = None
-    totalPaymentsCount: int | None = None
-    totalAmountBilled: float | None = None
-    totalBillsCount: int | None = None
+    groupKey: object | None = None
+    timeframe: object | None = None
+    baseCurrencyCode: object | None = None
+    totalPaymentsAmount: object | None = None
+    totalPaymentsCount: object | None = None
+    totalAmountBilled: object | None = None
+    totalBillsCount: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

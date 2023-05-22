@@ -25,15 +25,17 @@ class FinancialYearSettingModel:
     enrollment id.
     """
 
-    financialYearSettingId: str | None = None
-    groupKey: str | None = None
-    appEnrollmentId: str | None = None
-    yearType: str | None = None
-    totalPeriods: int | None = None
-    startDate: str | None = None
-    endDate: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
+    financialYearSettingId: object | None = None
+    groupKey: object | None = None
+    appEnrollmentId: object | None = None
+    yearType: object | None = None
+    totalPeriods: object | None = None
+    startDate: object | None = None
+    endDate: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -20,10 +20,12 @@ class PublicCompanyProfileModel:
     Contains Public Company Profile data.
     """
 
-    companyId: str | None = None
-    companyName: str | None = None
-    companyLogoUrl: str | None = None
-    website: str | None = None
-    description: str | None = None
-    publicUrlSlug: str | None = None
+    companyId: object | None = None
+    companyName: object | None = None
+    companyLogoUrl: object | None = None
+    website: object | None = None
+    description: object | None = None
+    publicUrlSlug: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

@@ -20,9 +20,11 @@ class MagicLinkStatusModel:
     Contains information about the user's magic link
     """
 
-    magicLinkId: str | None = None
-    applicationId: str | None = None
-    companyId: str | None = None
-    accountingProfileId: str | None = None
-    expires: str | None = None
+    magicLinkId: object | None = None
+    applicationId: object | None = None
+    companyId: object | None = None
+    accountingProfileId: object | None = None
+    expires: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

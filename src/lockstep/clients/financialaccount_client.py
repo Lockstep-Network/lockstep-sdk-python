@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.financialaccountmodel import FinancialAccountModel
@@ -26,13 +26,13 @@ class FinancialAccountClient:
     def __init__(self, client: LockstepApi):
         self.client = client
 
-    def create_financial_account(self, body: list[FinancialAccountModel]) -> LockstepResponse[FinancialAccountModel]:
+    def create_financial_account(self, body: list[object]) -> LockstepResponse[FinancialAccountModel]:
         """
         Creates a financial account with the specified name.
 
         Parameters
         ----------
-        body : list[FinancialAccountModel]
+        body : list[object]
             Metadata about the financial account to create.
         """
         path = "/api/v1/FinancialAccount"
@@ -40,7 +40,7 @@ class FinancialAccountClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_financial_account(self, id: str) -> LockstepResponse[FinancialAccountModel]:
         """
@@ -58,7 +58,7 @@ class FinancialAccountClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_financial_account(self, id: str, body: object) -> LockstepResponse[FinancialAccountModel]:
         """
@@ -77,7 +77,7 @@ class FinancialAccountClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FinancialAccountModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_financial_account(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -95,7 +95,7 @@ class FinancialAccountClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_financial_accounts(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[FinancialAccountModel]]:
         """
@@ -122,6 +122,6 @@ class FinancialAccountClient:
         path = "/api/v1/FinancialAccount/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[FinancialAccountModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), FinancialAccountModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

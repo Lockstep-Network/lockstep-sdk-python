@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.webhookrulemodel import WebhookRuleModel
 
 @dataclass
 class WebhookModel:
@@ -25,21 +24,23 @@ class WebhookModel:
     or updated.
     """
 
-    webhookId: str | None = None
-    groupKey: str | None = None
-    name: str | None = None
-    statusCode: str | None = None
-    statusMessage: str | None = None
-    clientSecret: str | None = None
-    requestContentType: str | None = None
-    callbackHttpMethod: str | None = None
-    callbackUrl: str | None = None
-    expirationDate: str | None = None
-    retryCount: int | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    modified: str | None = None
-    modifiedUserId: str | None = None
-    webhookRules: list[WebhookRuleModel] | None = None
-    partitionKey: str | None = None
+    webhookId: object | None = None
+    groupKey: object | None = None
+    name: object | None = None
+    statusCode: object | None = None
+    statusMessage: object | None = None
+    clientSecret: object | None = None
+    requestContentType: object | None = None
+    callbackHttpMethod: object | None = None
+    callbackUrl: object | None = None
+    expirationDate: object | None = None
+    retryCount: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
+    webhookRules: list[object] | None = None
+    partitionKey: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

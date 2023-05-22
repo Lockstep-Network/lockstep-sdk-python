@@ -20,16 +20,18 @@ class CountryModel:
     Country model for ISO-3166
     """
 
-    name: str | None = None
-    alpha2: str | None = None
-    alpha3: str | None = None
-    countryCode: int | None = None
-    region: str | None = None
-    subRegion: str | None = None
-    intermediateRegion: str | None = None
-    regionCode: int | None = None
-    subRegionCode: int | None = None
-    intermediateRegionCode: int | None = None
-    frenchName: str | None = None
-    aliases: str | None = None
+    name: object | None = None
+    alpha2: object | None = None
+    alpha3: object | None = None
+    countryCode: object | None = None
+    region: object | None = None
+    subRegion: object | None = None
+    intermediateRegion: object | None = None
+    regionCode: object | None = None
+    subRegionCode: object | None = None
+    intermediateRegionCode: object | None = None
+    frenchName: object | None = None
+    aliases: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

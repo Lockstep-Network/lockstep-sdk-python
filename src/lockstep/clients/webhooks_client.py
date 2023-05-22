@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
@@ -41,7 +41,7 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_webhook(self, id: str, body: object) -> LockstepResponse[WebhookModel]:
         """
@@ -68,7 +68,7 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_webhook(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -85,23 +85,23 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_webhooks(self, body: list[WebhookModel]) -> LockstepResponse[list[WebhookModel]]:
+    def create_webhooks(self, body: list[object]) -> LockstepResponse[list[WebhookModel]]:
         """
         Creates one or more webhooks from a given model.
 
         Parameters
         ----------
-        body : list[WebhookModel]
+        body : list[object]
             The Webhooks to create
         """
         path = "/api/v1/Webhooks"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[WebhookModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [WebhookModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def regenerate_client_secret(self, id: str) -> LockstepResponse[WebhookModel]:
         """
@@ -119,7 +119,7 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, WebhookModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_webhooks(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookModel]]:
         """
@@ -151,9 +151,9 @@ class WebhooksClient:
         path = "/api/v1/Webhooks/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[WebhookModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), WebhookModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_webhook_history(self, webhookId: str, include: str, filter: str, select: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[WebhookHistoryTableStorageModel]]:
         """
@@ -183,9 +183,9 @@ class WebhooksClient:
         path = f"/api/v1/Webhooks/{webhookId}/history/query"
         result = self.client.send_request("GET", path, None, {"include": include, "filter": filter, "select": select, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[WebhookHistoryTableStorageModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), WebhookHistoryTableStorageModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retry_failed_webhook_history(self, webhookId: str, webhookHistoryId: str) -> LockstepResponse[str]:
         """
@@ -205,4 +205,4 @@ class WebhooksClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, str(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

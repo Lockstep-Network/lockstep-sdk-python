@@ -20,6 +20,8 @@ class SupportAccessModel:
     Contains information for Lockstep to support/assist a user.
     """
 
-    code: str | None = None
-    expiresAt: str | None = None
+    code: object | None = None
+    expiresAt: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

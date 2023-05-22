@@ -27,15 +27,17 @@ class ApiKeyModel:
     Keys](https://developer.lockstep.io/docs/api-keys).
     """
 
-    apiKeyId: str | None = None
-    groupKey: str | None = None
-    name: str | None = None
-    environment: str | None = None
-    apiKey: str | None = None
-    keyPrefix: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
-    revoked: str | None = None
-    revokedUserId: str | None = None
-    expires: str | None = None
+    apiKeyId: object | None = None
+    groupKey: object | None = None
+    name: object | None = None
+    environment: object | None = None
+    apiKey: object | None = None
+    keyPrefix: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+    revoked: object | None = None
+    revokedUserId: object | None = None
+    expires: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

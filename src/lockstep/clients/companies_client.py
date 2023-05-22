@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.companydetailsmodel import CompanyDetailsModel
@@ -61,7 +61,7 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_company(self, id: str, body: object) -> LockstepResponse[CompanyModel]:
         """
@@ -98,7 +98,7 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_company(self, id: str) -> LockstepResponse[DeleteResult]:
         """
@@ -125,9 +125,9 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_companies(self, body: list[CompanyModel]) -> LockstepResponse[list[CompanyModel]]:
+    def create_companies(self, body: list[object]) -> LockstepResponse[list[CompanyModel]]:
         """
         Creates one or more Companies from a given model.
 
@@ -143,15 +143,15 @@ class CompaniesClient:
 
         Parameters
         ----------
-        body : list[CompanyModel]
+        body : list[object]
             The Companies to create
         """
         path = "/api/v1/Companies"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CompanyModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CompanyModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_companies(self, body: BulkDeleteRequestModel) -> LockstepResponse[DeleteResult]:
         """
@@ -178,7 +178,7 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, DeleteResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_companies(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CompanyModel]]:
         """
@@ -220,9 +220,9 @@ class CompaniesClient:
         path = "/api/v1/Companies/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CompanyModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CompanyModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_customer_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[CustomerSummaryModel]]:
         """
@@ -266,9 +266,9 @@ class CompaniesClient:
         path = "/api/v1/Companies/views/customer-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CustomerSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CustomerSummaryModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_vendor_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int, reportDate: str) -> LockstepResponse[FetchResult[VendorSummaryModel]]:
         """
@@ -312,9 +312,9 @@ class CompaniesClient:
         path = "/api/v1/Companies/views/vendor-summary"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[VendorSummaryModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), VendorSummaryModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_company_detail(self, id: str) -> LockstepResponse[CompanyDetailsModel]:
         """
@@ -341,7 +341,7 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyDetailsModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def set_company_logo(self, id: str, min_x: float, min_y: float, width: float, height: float, filename: str) -> LockstepResponse[CompanyModel]:
         """
@@ -388,7 +388,7 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_logo_view_box_settings(self, id: str, body: ViewBoxSettingsModel) -> LockstepResponse[CompanyModel]:
         """
@@ -408,4 +408,4 @@ class CompaniesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CompanyModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

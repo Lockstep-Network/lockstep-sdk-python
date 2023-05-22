@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.customfieldvaluemodel import CustomFieldValueModel
@@ -59,7 +59,7 @@ class CustomFieldValuesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CustomFieldValueModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_field(self, definitionId: str, recordKey: str, body: object) -> LockstepResponse[CustomFieldValueModel]:
         """
@@ -100,7 +100,7 @@ class CustomFieldValuesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CustomFieldValueModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_field(self, definitionId: str, recordKey: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -131,9 +131,9 @@ class CustomFieldValuesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_fields(self, body: list[CustomFieldValueModel]) -> LockstepResponse[list[CustomFieldValueModel]]:
+    def create_fields(self, body: list[object]) -> LockstepResponse[list[CustomFieldValueModel]]:
         """
         Creates one or more Custom Fields and returns the records as
         created.
@@ -151,15 +151,15 @@ class CustomFieldValuesClient:
 
         Parameters
         ----------
-        body : list[CustomFieldValueModel]
+        body : list[object]
             The Custom Fields to create
         """
         path = "/api/v1/CustomFieldValues"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CustomFieldValueModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CustomFieldValueModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_fields(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CustomFieldValueModel]]:
         """
@@ -204,6 +204,6 @@ class CustomFieldValuesClient:
         path = "/api/v1/CustomFieldValues/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[CustomFieldValueModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CustomFieldValueModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

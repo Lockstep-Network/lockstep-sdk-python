@@ -20,6 +20,8 @@ class EmailReplyGeneratorSuggestions:
     Represents the email reply suggestion from the SAGE GMS API
     """
 
-    kind: str | None = None
-    body: str | None = None
+    kind: object | None = None
+    body: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

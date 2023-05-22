@@ -20,32 +20,34 @@ class ApHeaderInfoModel:
     Aggregated Accounts Payable information.
     """
 
-    groupKey: str | None = None
-    baseCurrencyCode: str | None = None
-    reportDate: str | None = None
-    reportPeriod: str | None = None
-    totalVendors: int | None = None
-    totalBills: int | None = None
-    totalBilledAmount: float | None = None
-    totalAdvancePayments: float | None = None
-    totalPaid: float | None = None
-    totalApAmount: float | None = None
-    totalBillsPaid: int | None = None
-    totalBillsPastDue: int | None = None
-    totalBills90DaysPastDue: int | None = None
-    totalPastDueAmount: float | None = None
-    totalPastDueAmount90Days: float | None = None
-    percentageOfTotalAp: float | None = None
-    totalBilledAmountCurrentYear: float | None = None
-    totalBilledAmountPreviousYear: float | None = None
-    totalPaidAmountCurrentYear: float | None = None
-    percentageOfTotalAp90DaysPastDue: float | None = None
-    vendorsPaidPastThirtyDays: int | None = None
-    amountPaidPastThirtyDays: float | None = None
-    advancePaymentAmountPastThirtyDays: float | None = None
-    billsPaidPastThirtyDays: int | None = None
-    billingVendorsPastThirtyDays: int | None = None
-    amountBilledPastThirtyDays: float | None = None
-    amountDuePastThirtyDays: float | None = None
-    billsPastThirtyDays: int | None = None
+    groupKey: object | None = None
+    baseCurrencyCode: object | None = None
+    reportDate: object | None = None
+    reportPeriod: object | None = None
+    totalVendors: object | None = None
+    totalBills: object | None = None
+    totalBilledAmount: object | None = None
+    totalAdvancePayments: object | None = None
+    totalPaid: object | None = None
+    totalApAmount: object | None = None
+    totalBillsPaid: object | None = None
+    totalBillsPastDue: object | None = None
+    totalBills90DaysPastDue: object | None = None
+    totalPastDueAmount: object | None = None
+    totalPastDueAmount90Days: object | None = None
+    percentageOfTotalAp: object | None = None
+    totalBilledAmountCurrentYear: object | None = None
+    totalBilledAmountPreviousYear: object | None = None
+    totalPaidAmountCurrentYear: object | None = None
+    percentageOfTotalAp90DaysPastDue: object | None = None
+    vendorsPaidPastThirtyDays: object | None = None
+    amountPaidPastThirtyDays: object | None = None
+    advancePaymentAmountPastThirtyDays: object | None = None
+    billsPaidPastThirtyDays: object | None = None
+    billingVendorsPastThirtyDays: object | None = None
+    amountBilledPastThirtyDays: object | None = None
+    amountDuePastThirtyDays: object | None = None
+    billsPastThirtyDays: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

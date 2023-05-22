@@ -21,10 +21,12 @@ class DpoSummaryGroupTotalModel:
     payable outstanding summary
     """
 
-    groupKey: str | None = None
-    vendors: int | None = None
-    bills: int | None = None
-    baseCurrencyCode: str | None = None
-    amountOutstanding: float | None = None
-    dpo: float | None = None
+    groupKey: object | None = None
+    vendors: object | None = None
+    bills: object | None = None
+    baseCurrencyCode: object | None = None
+    amountOutstanding: object | None = None
+    dpo: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

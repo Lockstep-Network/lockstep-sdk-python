@@ -20,27 +20,29 @@ class CustomerSummaryModel:
     Contains summarized data for a customer
     """
 
-    groupKey: str | None = None
-    companyId: str | None = None
-    companyName: str | None = None
-    primaryContact: str | None = None
-    appEnrollmentId: str | None = None
-    outstandingInvoices: int | None = None
-    totalInvoicesOpen: int | None = None
-    totalInvoicesPastDue: int | None = None
-    closedInvoices: int | None = None
-    closedInvoicesPastThirtyDays: int | None = None
-    amountCollected: float | None = None
-    amountCollectedPastThirtyDays: float | None = None
-    outstandingAmount: float | None = None
-    invoicedAmountPastThirtyDays: float | None = None
-    outstandingAmountPastThirtyDays: float | None = None
-    invoicesPastThirtyDays: int | None = None
-    amountPastDue: float | None = None
-    unappliedPayments: float | None = None
-    unappliedAmountPastThirtyDays: float | None = None
-    percentOfTotalAr: float | None = None
-    dso: float | None = None
-    newestActivity: str | None = None
-    modified: str | None = None
+    groupKey: object | None = None
+    companyId: object | None = None
+    companyName: object | None = None
+    primaryContact: object | None = None
+    appEnrollmentId: object | None = None
+    outstandingInvoices: object | None = None
+    totalInvoicesOpen: object | None = None
+    totalInvoicesPastDue: object | None = None
+    closedInvoices: object | None = None
+    closedInvoicesPastThirtyDays: object | None = None
+    amountCollected: object | None = None
+    amountCollectedPastThirtyDays: object | None = None
+    outstandingAmount: object | None = None
+    invoicedAmountPastThirtyDays: object | None = None
+    outstandingAmountPastThirtyDays: object | None = None
+    invoicesPastThirtyDays: object | None = None
+    amountPastDue: object | None = None
+    unappliedPayments: object | None = None
+    unappliedAmountPastThirtyDays: object | None = None
+    percentOfTotalAr: object | None = None
+    dso: object | None = None
+    newestActivity: object | None = None
+    modified: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

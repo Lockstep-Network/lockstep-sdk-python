@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.bulkcurrencyconversionmodel import BulkCurrencyConversionModel
 from lockstep.models.currencyratemodel import CurrencyRateModel
 
@@ -53,9 +53,9 @@ class CurrenciesClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, CurrencyRateModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def bulk_currency_data(self, destinationCurrency: str, body: list[BulkCurrencyConversionModel]) -> LockstepResponse[list[CurrencyRateModel]]:
+    def bulk_currency_data(self, destinationCurrency: str, body: list[object]) -> LockstepResponse[list[CurrencyRateModel]]:
         """
         Receives an array of dates and currencies and a destination
         currency and returns an array of the corresponding currency
@@ -65,12 +65,12 @@ class CurrenciesClient:
         ----------
         destinationCurrency : str
             The currency to convert to.
-        body : list[BulkCurrencyConversionModel]
+        body : list[object]
             A list of dates and source currencies.
         """
         path = "/api/v1/Currencies/bulk"
         result = self.client.send_request("POST", path, body, {"destinationCurrency": destinationCurrency}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[CurrencyRateModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [CurrencyRateModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

@@ -32,6 +32,8 @@ class SyncSubmitModel:
     has changed in the past 48 hours.
     """
 
-    appEnrollmentId: str | None = None
-    runFullSync: bool | None = None
+    appEnrollmentId: object | None = None
+    runFullSync: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

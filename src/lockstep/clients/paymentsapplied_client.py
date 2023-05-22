@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.paymentappliedmodel import PaymentAppliedModel
@@ -53,7 +53,7 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def update_payment_applied(self, id: str, body: object) -> LockstepResponse[PaymentAppliedModel]:
         """
@@ -87,7 +87,7 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, PaymentAppliedModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def delete_payment_applied(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
@@ -112,9 +112,9 @@ class PaymentsAppliedClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_payments_applied(self, body: list[PaymentAppliedModel]) -> LockstepResponse[list[PaymentAppliedModel]]:
+    def create_payments_applied(self, body: list[object]) -> LockstepResponse[list[PaymentAppliedModel]]:
         """
         Creates one or more Payments Applied within this account and
         returns the records as created.
@@ -128,15 +128,15 @@ class PaymentsAppliedClient:
 
         Parameters
         ----------
-        body : list[PaymentAppliedModel]
+        body : list[object]
             The Payments Applied to create
         """
         path = "/api/v1/payments-applied"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[PaymentAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [PaymentAppliedModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def query_payments_applied(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[PaymentAppliedModel]]:
         """
@@ -176,6 +176,6 @@ class PaymentsAppliedClient:
         path = "/api/v1/payments-applied/query"
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, FetchResult[PaymentAppliedModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentAppliedModel), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

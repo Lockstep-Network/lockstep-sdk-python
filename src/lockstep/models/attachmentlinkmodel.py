@@ -21,10 +21,12 @@ class AttachmentLinkModel:
     object and an attachment
     """
 
-    groupKey: str | None = None
-    attachmentId: str | None = None
-    objectKey: str | None = None
-    tableKey: str | None = None
-    created: str | None = None
-    createdUserId: str | None = None
+    groupKey: object | None = None
+    attachmentId: object | None = None
+    objectKey: object | None = None
+    tableKey: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

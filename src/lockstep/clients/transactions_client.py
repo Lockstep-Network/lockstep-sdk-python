@@ -12,7 +12,7 @@
 #
 
 from lockstep.lockstep_response import LockstepResponse
-from lockstep.errorresult import ErrorResult
+from lockstep.models.errorresult import ErrorResult
 from lockstep.models.transactiondetailmodel import TransactionDetailModel
 from lockstep.models.transactionmodeltransactionsummarytotalmodelsummaryfetchresult import TransactionModelTransactionSummaryTotalModelSummaryFetchResult
 
@@ -63,7 +63,7 @@ class TransactionsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, TransactionModelTransactionSummaryTotalModelSummaryFetchResult(**result.json()), None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
     def retrieve_transaction_details(self, id: str) -> LockstepResponse[list[TransactionDetailModel]]:
         """
@@ -83,6 +83,6 @@ class TransactionsClient:
         path = f"/api/v1/Transactions/{id}/details"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, list[TransactionDetailModel](**result.json()), None)
+            return LockstepResponse(True, result.status_code, [TransactionDetailModel(**item) for item in result.json()], None)
         else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult(**result.json()))
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

@@ -20,33 +20,35 @@ class PaymentDetailModel:
     Contains detailed information about a Payment.
     """
 
-    groupKey: str | None = None
-    paymentId: str | None = None
-    customerId: str | None = None
-    customerName: str | None = None
-    memoText: str | None = None
-    referenceCode: str | None = None
-    primaryContact: str | None = None
-    email: str | None = None
-    erpWriteStatus: int | None = None
-    erpWriteStatusName: str | None = None
-    currencyCode: str | None = None
-    paymentAmount: float | None = None
-    unappliedAmount: float | None = None
-    baseCurrencyCode: str | None = None
-    baseCurrencyPaymentAmount: float | None = None
-    baseCurrencyUnappliedAmount: float | None = None
-    paymentType: str | None = None
-    tenderType: str | None = None
-    paymentDate: str | None = None
-    postDate: str | None = None
-    phone: str | None = None
-    fax: str | None = None
-    address1: str | None = None
-    address2: str | None = None
-    address3: str | None = None
-    city: str | None = None
-    stateRegion: str | None = None
-    postalCode: str | None = None
-    countryCode: str | None = None
+    groupKey: object | None = None
+    paymentId: object | None = None
+    customerId: object | None = None
+    customerName: object | None = None
+    memoText: object | None = None
+    referenceCode: object | None = None
+    primaryContact: object | None = None
+    email: object | None = None
+    erpWriteStatus: object | None = None
+    erpWriteStatusName: object | None = None
+    currencyCode: object | None = None
+    paymentAmount: object | None = None
+    unappliedAmount: object | None = None
+    baseCurrencyCode: object | None = None
+    baseCurrencyPaymentAmount: object | None = None
+    baseCurrencyUnappliedAmount: object | None = None
+    paymentType: object | None = None
+    tenderType: object | None = None
+    paymentDate: object | None = None
+    postDate: object | None = None
+    phone: object | None = None
+    fax: object | None = None
+    address1: object | None = None
+    address2: object | None = None
+    address3: object | None = None
+    city: object | None = None
+    stateRegion: object | None = None
+    postalCode: object | None = None
+    countryCode: object | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)

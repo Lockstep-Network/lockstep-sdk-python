@@ -13,7 +13,6 @@
 
 
 from dataclasses import dataclass
-from lockstep.models.emailreplygeneratorsuggestions import EmailReplyGeneratorSuggestions
 
 @dataclass
 class EmailReplyGeneratorResponse:
@@ -21,6 +20,8 @@ class EmailReplyGeneratorResponse:
     Represents the response from SAGE GMS API
     """
 
-    message_id: str | None = None
-    suggestions: list[EmailReplyGeneratorSuggestions] | None = None
+    message_id: object | None = None
+    suggestions: list[object] | None = None
 
+    def to_dict(self) -> dict:
+        return dataclass.asdict(self)
