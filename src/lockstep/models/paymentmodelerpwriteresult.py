@@ -15,14 +15,17 @@
 from dataclasses import dataclass
 
 @dataclass
-class InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult:
+class PaymentModelErpWriteResult:
+    """
+    Contains results of a write back request
+    """
 
-    totalCount: object | None = None
-    pageSize: object | None = None
-    pageNumber: object | None = None
-    records: list[object] | None = None
-    summary: object | None = None
-    agingSummary: list[object] | None = None
+    appEnrollmentId: object | None = None
+    erpKey: object | None = None
+    groupKey: object | None = None
+    message: object | None = None
+    syncRequestId: object | None = None
+    results: list[object] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

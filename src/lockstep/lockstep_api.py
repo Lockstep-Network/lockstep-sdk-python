@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2023 Lockstep, Inc.
-# @version    2023.19.20
+# @version    2023.28.10
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -58,6 +58,7 @@ class LockstepApi:
         from lockstep.clients.featureflags_client import FeatureFlagsClient
         from lockstep.clients.financialaccount_client import FinancialAccountClient
         from lockstep.clients.financialaccountbalancehistory_client import FinancialAccountBalanceHistoryClient
+        from lockstep.clients.financialinstitutionaccounts_client import FinancialInstitutionAccountsClient
         from lockstep.clients.financialyearsettings_client import FinancialYearSettingsClient
         from lockstep.clients.groupaccounts_client import GroupAccountsClient
         from lockstep.clients.invoiceaddresses_client import InvoiceAddressesClient
@@ -97,6 +98,7 @@ class LockstepApi:
         self.featureFlags = FeatureFlagsClient(self)
         self.financialAccount = FinancialAccountClient(self)
         self.financialAccountBalanceHistory = FinancialAccountBalanceHistoryClient(self)
+        self.financialInstitutionAccounts = FinancialInstitutionAccountsClient(self)
         self.financialYearSettings = FinancialYearSettingsClient(self)
         self.groupAccounts = GroupAccountsClient(self)
         self.invoiceAddresses = InvoiceAddressesClient(self)
@@ -126,7 +128,7 @@ class LockstepApi:
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2023.19.20"
+        self.sdkVersion = "2023.28.10"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None

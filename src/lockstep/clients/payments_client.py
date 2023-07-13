@@ -15,9 +15,11 @@ from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
+from lockstep.models.insertpaymentrequestmodelerpwritesyncsubmitmodel import InsertPaymentRequestModelErpWriteSyncSubmitModel
 from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
 from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
+from lockstep.models.paymentmodelerpwriteresult import PaymentModelErpWriteResult
 from lockstep.models.paymentsummarymodelpaymentsummarytotalsmodelsummaryfetchresult import PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult
 from requests.models import Response
 
@@ -335,5 +337,25 @@ class PaymentsClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentDetailModel), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def write_payments_to_connected_erp(self, body: InsertPaymentRequestModelErpWriteSyncSubmitModel) -> LockstepResponse[PaymentModelErpWriteResult]:
+        """
+        **This API endpoint is under maintenance and may not function
+        properly.** Schedule an ERP post request for payments.
+
+        The payments must be associated with an active app enrollment
+        and have a valid `AppEnrollmentId`.
+
+        Parameters
+        ----------
+        body : InsertPaymentRequestModelErpWriteSyncSubmitModel
+            The payments to submit to the connected ERP
+        """
+        path = "/api/v1/Payments/erp-write"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, PaymentModelErpWriteResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

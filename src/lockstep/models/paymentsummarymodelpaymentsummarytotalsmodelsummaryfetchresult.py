@@ -17,10 +17,10 @@ from dataclasses import dataclass
 @dataclass
 class PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult:
 
-    records: list[object] | None = None
     totalCount: object | None = None
     pageSize: object | None = None
     pageNumber: object | None = None
+    records: list[object] | None = None
     summary: object | None = None
     agingSummary: list[object] | None = None
 

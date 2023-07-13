@@ -15,35 +15,25 @@
 from dataclasses import dataclass
 
 @dataclass
-class PaymentSyncModel:
+class InsertPaymentRequestModel:
     """
-    The PaymentSyncModel represents information coming into Lockstep
-    from an external financial system or other enterprise resource
-    planning system. To import data from an external system, convert
-    your original data into the PaymentSyncModel format and call the
-    [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
-    This API retrieves all of the data you uploaded in a compressed ZIP
-    file and imports it into the Lockstep platform. Once imported, this
-    record will be available in the Lockstep API as a
-    [PaymentModel](https://developer.lockstep.io/docs/paymentmodel). For
-    more information on writing your own connector, see [Connector
-    Data](https://developer.lockstep.io/docs/connector-data).
+    A request to insert a new Payment
     """
 
-    onMatchAction: object | None = None
-    erpKey: object | None = None
+    appEnrollmentId: object | None = None
+    paymentId: object | None = None
+    companyId: object | None = None
     companyErpKey: object | None = None
+    companyExternalReference: object | None = None
+    erpKey: object | None = None
     paymentType: object | None = None
     tenderType: object | None = None
-    isOpen: object | None = None
     memoText: object | None = None
     paymentDate: object | None = None
     postDate: object | None = None
     paymentAmount: object | None = None
     unappliedAmount: object | None = None
     currencyCode: object | None = None
-    created: object | None = None
-    modified: object | None = None
     referenceCode: object | None = None
     isVoided: object | None = None
     inDispute: object | None = None
@@ -51,6 +41,8 @@ class PaymentSyncModel:
     baseCurrencyPaymentAmount: object | None = None
     baseCurrencyUnappliedAmount: object | None = None
     bankAccountId: object | None = None
+    groupKey: object | None = None
+    applications: list[object] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

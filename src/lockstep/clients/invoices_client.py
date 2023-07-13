@@ -239,6 +239,8 @@ class InvoicesClient:
         Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP
         Credit Memos.
 
+        Sage 50 supports AR Invoices and AR Credit Memos.
+
         Parameters
         ----------
         id : str
