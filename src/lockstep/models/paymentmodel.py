@@ -45,6 +45,7 @@ class PaymentModel:
     paymentAmount: object | None = None
     unappliedAmount: object | None = None
     currencyCode: object | None = None
+    bankAccountId: object | None = None
     referenceCode: object | None = None
     created: object | None = None
     createdUserId: object | None = None

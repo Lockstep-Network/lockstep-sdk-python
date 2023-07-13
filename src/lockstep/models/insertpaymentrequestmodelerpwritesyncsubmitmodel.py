@@ -15,14 +15,15 @@
 from dataclasses import dataclass
 
 @dataclass
-class InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult:
+class InsertPaymentRequestModelErpWriteSyncSubmitModel:
+    """
+    Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a
+    request to write back a collection of requests to the connected
+    AppEnrollment.
+    """
 
-    totalCount: object | None = None
-    pageSize: object | None = None
-    pageNumber: object | None = None
-    records: list[object] | None = None
-    summary: object | None = None
-    agingSummary: list[object] | None = None
+    appEnrollmentId: object | None = None
+    requests: list[object] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

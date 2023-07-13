@@ -55,6 +55,7 @@ class UserAccountModel:
     description: object | None = None
     b2CLastLoggedIn: object | None = None
     defaultCurrencyCode: object | None = None
+    locale: object | None = None
     notes: list[object] | None = None
     attachments: list[object] | None = None
     customFieldValues: list[object] | None = None
