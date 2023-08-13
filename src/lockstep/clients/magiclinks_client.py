@@ -95,3 +95,24 @@ class MagicLinksClient:
             return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), MagicLinkModel), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def generate(self, email, expiry, app_id, user_role, company_id, accounting_profile_id):
+
+        body = {
+            email: email,
+            expiresInMinutes: expiry,
+            applicationId: app_id,
+            userRole: user_role,
+            companyId: company_id,
+            accountingProfileId: accounting_profile_id
+        }
+
+        path = "/api/v1/useraccounts/magic-links/"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), MagicLinkModel),
+                                    None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+
