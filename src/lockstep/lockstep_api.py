@@ -163,6 +163,9 @@ class LockstepApi:
         """
         self.apiKey = None
         self.bearerToken = bearerToken
+
+    def set_internal_service_key(self, internalServiceKey):
+        self.internalServiceKey = internalServiceKey
     
     def send_request(self, method: str, path: str, body: object, 
         query_params: typing.Dict[str, typing.Any] | None, filename: str | None) -> Response:
@@ -199,6 +202,8 @@ class LockstepApi:
             headers["Api-Key"] = self.apiKey
         elif self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
+        elif self.internalServiceKey:
+            headers["LS-InternalService"] = self.internalServiceKey
     
         return requests.request(method, url, headers=headers, json=body, files=files)
         
