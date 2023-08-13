@@ -96,15 +96,16 @@ class MagicLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
+
     def generate(self, email, expiry, app_id, user_role, company_id, accounting_profile_id):
 
         body = {
-            email: email,
-            expiresInMinutes: expiry,
-            applicationId: app_id,
-            userRole: user_role,
-            companyId: company_id,
-            accountingProfileId: accounting_profile_id
+            "email": email,
+            "expiresInMinutes": expiry,
+            "applicationId": app_id,
+            "userRole": user_role,
+            "companyId": company_id,
+            "accountingProfileId": accounting_profile_id
         }
 
         path = "/api/v1/useraccounts/magic-links/"
