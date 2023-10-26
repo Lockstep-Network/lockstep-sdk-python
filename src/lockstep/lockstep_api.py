@@ -9,7 +9,7 @@
 # @author     Lockstep Network <support@lockstep.io>
 #             
 # @copyright  2021-2023 Lockstep, Inc.
-# @version    2023.28.10
+# @version    2023.40.72
 # @link       https://github.com/Lockstep-Network/lockstep-sdk-python
 #
 
@@ -64,6 +64,8 @@ class LockstepApi:
         from lockstep.clients.invoiceaddresses_client import InvoiceAddressesClient
         from lockstep.clients.invoicelines_client import InvoiceLinesClient
         from lockstep.clients.invoices_client import InvoicesClient
+        from lockstep.clients.journalentries_client import JournalEntriesClient
+        from lockstep.clients.journalentrylines_client import JournalEntryLinesClient
         from lockstep.clients.leads_client import LeadsClient
         from lockstep.clients.magiclinks_client import MagicLinksClient
         from lockstep.clients.notes_client import NotesClient
@@ -82,6 +84,7 @@ class LockstepApi:
         from lockstep.clients.userroles_client import UserRolesClient
         from lockstep.clients.webhookrules_client import WebhookRulesClient
         from lockstep.clients.webhooks_client import WebhooksClient
+        from lockstep.clients.workflowstatuses_client import WorkflowStatusesClient
         self.apiKeys = ApiKeysClient(self)
         self.appEnrollments = AppEnrollmentsClient(self)
         self.applications = ApplicationsClient(self)
@@ -104,6 +107,8 @@ class LockstepApi:
         self.invoiceAddresses = InvoiceAddressesClient(self)
         self.invoiceLines = InvoiceLinesClient(self)
         self.invoices = InvoicesClient(self)
+        self.journalEntries = JournalEntriesClient(self)
+        self.journalEntryLines = JournalEntryLinesClient(self)
         self.leads = LeadsClient(self)
         self.magicLinks = MagicLinksClient(self)
         self.notes = NotesClient(self)
@@ -122,13 +127,14 @@ class LockstepApi:
         self.userRoles = UserRolesClient(self)
         self.webhookRules = WebhookRulesClient(self)
         self.webhooks = WebhooksClient(self)
+        self.workflowStatuses = WorkflowStatusesClient(self)
         self.serverUrl = env
         if env == "sbx":
             self.serverUrl = "https://api.sbx.lockstep.io/"
         if env == "prd":
             self.serverUrl = "https://api.lockstep.io/"
         self.sdkName = "Python"
-        self.sdkVersion = "2023.28.10"
+        self.sdkVersion = "2023.40.72"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None

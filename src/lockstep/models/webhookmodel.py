@@ -42,5 +42,9 @@ class WebhookModel:
     webhookRules: list[object] | None = None
     partitionKey: object | None = None
 
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

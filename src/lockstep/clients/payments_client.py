@@ -15,11 +15,9 @@ from lockstep.lockstep_response import LockstepResponse
 from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
-from lockstep.models.insertpaymentrequestmodelerpwritesyncsubmitmodel import InsertPaymentRequestModelErpWriteSyncSubmitModel
 from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
 from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
-from lockstep.models.paymentmodelerpwriteresult import PaymentModelErpWriteResult
 from lockstep.models.paymentsummarymodelpaymentsummarytotalsmodelsummaryfetchresult import PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult
 from requests.models import Response
 
@@ -217,6 +215,9 @@ class PaymentsClient:
 
         QuickBooks Online supports AR Payments.
 
+        For other ERPs, the supported types will depend on the synced
+        data.
+
         Parameters
         ----------
         id : str
@@ -225,6 +226,27 @@ class PaymentsClient:
         """
         path = f"/api/v1/Payments/{id}/pdf"
         result = self.client.send_request("GET", path, None, {}, None)
+        return result
+
+    def check_payment_pdf(self, id: str) -> Response:
+        """
+        Checks for whether a PDF file for this payment exists if it has
+        been synced using an app enrollment to one of the supported
+        apps.
+
+        QuickBooks Online supports AR Payments.
+
+        For other ERPs, the supported types will depend on the synced
+        data.
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this payment; NOT
+            the customer's ERP key
+        """
+        path = f"/api/v1/Payments/{id}/pdf"
+        result = self.client.send_request("HEAD", path, None, {}, None)
         return result
 
     def query_payment_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult]:
@@ -337,25 +359,5 @@ class PaymentsClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), PaymentDetailModel), None)
-        else:
-            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
-
-    def write_payments_to_connected_erp(self, body: InsertPaymentRequestModelErpWriteSyncSubmitModel) -> LockstepResponse[PaymentModelErpWriteResult]:
-        """
-        **This API endpoint is under maintenance and may not function
-        properly.** Schedule an ERP post request for payments.
-
-        The payments must be associated with an active app enrollment
-        and have a valid `AppEnrollmentId`.
-
-        Parameters
-        ----------
-        body : InsertPaymentRequestModelErpWriteSyncSubmitModel
-            The payments to submit to the connected ERP
-        """
-        path = "/api/v1/Payments/erp-write"
-        result = self.client.send_request("POST", path, body, {}, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return LockstepResponse(True, result.status_code, PaymentModelErpWriteResult(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

@@ -16,6 +16,7 @@ from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.actionresultmodel import ActionResultModel
 from lockstep.models.magiclinkmodel import MagicLinkModel
+from lockstep.models.magiclinksummarymodel import MagicLinkSummaryModel
 
 class MagicLinksClient:
     """
@@ -67,6 +68,27 @@ class MagicLinksClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
+    def revoke_bounced_magic_link(self, id: str) -> LockstepResponse[ActionResultModel]:
+        """
+        Revokes the bounced magic link with the specified id so it
+        cannot be used to call the API.
+
+        Revocation will be received by all servers within five minutes
+        of revocation. API calls made using this magic link after the
+        revocation will fail. A revoked magic link cannot be un-revoked.
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this magic link
+        """
+        path = f"/api/v1/useraccounts/magic-links/{id}/bounced"
+        result = self.client.send_request("DELETE", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, ActionResultModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
     def query_magic_links(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[MagicLinkModel]]:
         """
         Queries Magic Links for this account using the specified
@@ -93,5 +115,26 @@ class MagicLinksClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), MagicLinkModel), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def magic_link_summary(self, from_date: str, to: str) -> LockstepResponse[MagicLinkSummaryModel]:
+        """
+        Gets a summary of all magic links created during the specified
+        date range, returns no content if there are no magic links for
+        the specified date range
+
+        Parameters
+        ----------
+        from : str
+            The date that the summary starts from (default one year ago
+            from today)
+        to : str
+            The date that the summary ends at (default today)
+        """
+        path = "/api/v1/useraccounts/magic-links/summary"
+        result = self.client.send_request("GET", path, None, {"from": from_date, "to": to}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, MagicLinkSummaryModel(**result.json()), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))

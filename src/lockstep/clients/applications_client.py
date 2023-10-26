@@ -51,7 +51,7 @@ class ApplicationsClient:
         include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
-            Attachments, CustomFields
+            Attachments, CustomFields, Enrollments
         """
         path = f"/api/v1/Applications/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
@@ -197,7 +197,7 @@ class ApplicationsClient:
         include : str
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Notes,
-            Attachments, CustomFields
+            Attachments, CustomFields, Enrollments
         order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)

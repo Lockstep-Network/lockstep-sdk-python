@@ -31,8 +31,10 @@ class PaymentSyncModel:
     """
 
     onMatchAction: object | None = None
+    networkId: object | None = None
     erpKey: object | None = None
     companyErpKey: object | None = None
+    companyNetworkId: object | None = None
     paymentType: object | None = None
     tenderType: object | None = None
     isOpen: object | None = None
@@ -51,6 +53,10 @@ class PaymentSyncModel:
     baseCurrencyPaymentAmount: object | None = None
     baseCurrencyUnappliedAmount: object | None = None
     bankAccountId: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

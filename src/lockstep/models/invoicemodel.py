@@ -39,6 +39,8 @@ class InvoiceModel:
     salespersonName: object | None = None
     invoiceTypeCode: object | None = None
     invoiceStatusCode: object | None = None
+    workflowStatusId: object | None = None
+    workflowStatusNotes: object | None = None
     termsCode: object | None = None
     specialTerms: object | None = None
     currencyCode: object | None = None
@@ -69,9 +71,10 @@ class InvoiceModel:
     baseCurrencySalesTaxAmount: object | None = None
     baseCurrencyDiscountAmount: object | None = None
     baseCurrencyOutstandingBalanceAmount: object | None = None
-    erpWriteStatus: object | None = None
-    erpWriteStatusName: object | None = None
+    erpUpdateStatus: object | None = None
+    erpUpdateAction: object | None = None
     sourceModifiedDate: object | None = None
+    workflowStatuses: list[object] | None = None
     addresses: list[object] | None = None
     lines: list[object] | None = None
     payments: list[object] | None = None
@@ -83,6 +86,11 @@ class InvoiceModel:
     creditMemos: list[object] | None = None
     customFieldValues: list[object] | None = None
     customFieldDefinitions: list[object] | None = None
+    isEInvoice: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

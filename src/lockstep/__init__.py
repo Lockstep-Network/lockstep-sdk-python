@@ -24,6 +24,8 @@ from lockstep.clients.groupaccounts_client import GroupAccountsClient
 from lockstep.clients.invoiceaddresses_client import InvoiceAddressesClient
 from lockstep.clients.invoicelines_client import InvoiceLinesClient
 from lockstep.clients.invoices_client import InvoicesClient
+from lockstep.clients.journalentries_client import JournalEntriesClient
+from lockstep.clients.journalentrylines_client import JournalEntryLinesClient
 from lockstep.clients.leads_client import LeadsClient
 from lockstep.clients.magiclinks_client import MagicLinksClient
 from lockstep.clients.notes_client import NotesClient
@@ -42,6 +44,7 @@ from lockstep.clients.useraccounts_client import UserAccountsClient
 from lockstep.clients.userroles_client import UserRolesClient
 from lockstep.clients.webhookrules_client import WebhookRulesClient
 from lockstep.clients.webhooks_client import WebhooksClient
+from lockstep.clients.workflowstatuses_client import WorkflowStatusesClient
 from lockstep.models.accountingprofilecontactmodel import AccountingProfileContactModel
 from lockstep.models.accountingprofilecontactresultmodel import AccountingProfileContactResultModel
 from lockstep.models.accountingprofilemodel import AccountingProfileModel
@@ -69,6 +72,7 @@ from lockstep.models.cashflowreportmodel import CashflowReportModel
 from lockstep.models.codedefinitionmodel import CodeDefinitionModel
 from lockstep.models.companydetailsmodel import CompanyDetailsModel
 from lockstep.models.companydetailspaymentmodel import CompanyDetailsPaymentModel
+from lockstep.models.companymagiclinksummarymodel import CompanyMagicLinkSummaryModel
 from lockstep.models.companymodel import CompanyModel
 from lockstep.models.companysyncmodel import CompanySyncModel
 from lockstep.models.connectorinfomodel import ConnectorInfoModel
@@ -107,9 +111,6 @@ from lockstep.models.financialreportrowmodel import FinancialReportRowModel
 from lockstep.models.financialyearsettingmodel import FinancialYearSettingModel
 from lockstep.models.financialyearsettingsyncmodel import FinancialYearSettingSyncModel
 from lockstep.models.groupaccountmodel import GroupAccountModel
-from lockstep.models.insertpaymentappliedrequestmodel import InsertPaymentAppliedRequestModel
-from lockstep.models.insertpaymentrequestmodel import InsertPaymentRequestModel
-from lockstep.models.insertpaymentrequestmodelerpwritesyncsubmitmodel import InsertPaymentRequestModelErpWriteSyncSubmitModel
 from lockstep.models.invitedatamodel import InviteDataModel
 from lockstep.models.invitemodel import InviteModel
 from lockstep.models.invitesubmitmodel import InviteSubmitModel
@@ -122,9 +123,15 @@ from lockstep.models.invoicesummarymodel import InvoiceSummaryModel
 from lockstep.models.invoicesummarymodelinvoicesummarytotalsmodelsummaryfetchresult import InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult
 from lockstep.models.invoicesummarytotalsmodel import InvoiceSummaryTotalsModel
 from lockstep.models.invoicesyncmodel import InvoiceSyncModel
+from lockstep.models.invoiceworkflowstatushistorymodel import InvoiceWorkflowStatusHistoryModel
+from lockstep.models.journalentrylinemodel import JournalEntryLineModel
+from lockstep.models.journalentrylinesyncmodel import JournalEntryLineSyncModel
+from lockstep.models.journalentrymodel import JournalEntryModel
+from lockstep.models.journalentrysyncmodel import JournalEntrySyncModel
 from lockstep.models.leadmodel import LeadModel
 from lockstep.models.magiclinkmodel import MagicLinkModel
 from lockstep.models.magiclinkstatusmodel import MagicLinkStatusModel
+from lockstep.models.magiclinksummarymodel import MagicLinkSummaryModel
 from lockstep.models.notemodel import NoteModel
 from lockstep.models.payablescomingdueheadermodel import PayablesComingDueHeaderModel
 from lockstep.models.payablescomingduemodel import PayablesComingDueModel
@@ -135,7 +142,6 @@ from lockstep.models.paymentappliedsyncmodel import PaymentAppliedSyncModel
 from lockstep.models.paymentdetailheadermodel import PaymentDetailHeaderModel
 from lockstep.models.paymentdetailmodel import PaymentDetailModel
 from lockstep.models.paymentmodel import PaymentModel
-from lockstep.models.paymentmodelerpwriteresult import PaymentModelErpWriteResult
 from lockstep.models.paymentsummarymodel import PaymentSummaryModel
 from lockstep.models.paymentsummarymodelpaymentsummarytotalsmodelsummaryfetchresult import PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult
 from lockstep.models.paymentsummarytotalsmodel import PaymentSummaryTotalsModel
@@ -169,3 +175,4 @@ from lockstep.models.viewboxsettingsmodel import ViewBoxSettingsModel
 from lockstep.models.webhookhistorytablestoragemodel import WebhookHistoryTableStorageModel
 from lockstep.models.webhookmodel import WebhookModel
 from lockstep.models.webhookrulemodel import WebhookRuleModel
+from lockstep.models.workflowstatusmodel import WorkflowStatusModel

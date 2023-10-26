@@ -30,8 +30,8 @@ class PaymentAppliedModel:
     invoiceId: object | None = None
     paymentId: object | None = None
     erpKey: object | None = None
-    erpWriteStatus: object | None = None
-    erpWriteStatusName: object | None = None
+    erpUpdateStatus: object | None = None
+    erpUpdateAction: object | None = None
     entryNumber: object | None = None
     applyToInvoiceDate: object | None = None
     paymentAppliedAmount: object | None = None
@@ -43,6 +43,10 @@ class PaymentAppliedModel:
     sourceModifiedDate: object | None = None
     payment: object | None = None
     invoice: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

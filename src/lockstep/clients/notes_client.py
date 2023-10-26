@@ -56,6 +56,34 @@ class NotesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
+    def update_note(self, id: str, body: object) -> LockstepResponse[NoteModel]:
+        """
+        Updates the Note with the unique ID specified.
+
+        A note is a customizable text string that can be attached to
+        various account attributes within Lockstep. You can use notes
+        for internal communication, correspondence with clients, or
+        personal reminders. The Note Model represents a note and a
+        number of different metadata attributes related to the creation,
+        storage, and ownership of the note.
+
+        See [Extensibility](https://developer.lockstep.io/docs/extensibility)
+        for more information.
+
+        Parameters
+        ----------
+        id : str
+            Note id to be updated
+        body : object
+            A list of changes to apply to this Note
+        """
+        path = f"/api/v1/Notes/{id}"
+        result = self.client.send_request("PATCH", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, NoteModel(**result.json()), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
     def archive_note(self, id: str) -> LockstepResponse[ActionResultModel]:
         """
         Archives the Note with the unique ID specified.

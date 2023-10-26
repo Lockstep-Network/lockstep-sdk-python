@@ -31,14 +31,17 @@ class CompanySyncModel:
     """
 
     onMatchAction: object | None = None
+    networkId: object | None = None
     erpKey: object | None = None
     companyName: object | None = None
     companyType: object | None = None
     parentCompanyErpKey: object | None = None
+    parentCompanyNetworkId: object | None = None
     isActive: object | None = None
     defaultCurrencyCode: object | None = None
     companyLogoUrl: object | None = None
     primaryContactErpKey: object | None = None
+    primaryContactNetworkId: object | None = None
     address1: object | None = None
     address2: object | None = None
     address3: object | None = None
@@ -58,6 +61,10 @@ class CompanySyncModel:
     emailAddress: object | None = None
     externalReference: object | None = None
     companyRegistrationNumber: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

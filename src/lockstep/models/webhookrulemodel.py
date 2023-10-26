@@ -34,5 +34,9 @@ class WebhookRuleModel:
     modified: object | None = None
     modifiedUserId: object | None = None
 
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

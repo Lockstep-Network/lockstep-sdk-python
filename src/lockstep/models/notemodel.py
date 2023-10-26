@@ -35,9 +35,15 @@ class NoteModel:
     isArchived: object | None = None
     created: object | None = None
     createdUserId: object | None = None
+    modified: object | None = None
+    modifiedUserId: object | None = None
     createdUserName: object | None = None
     appEnrollmentId: object | None = None
     recipientName: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -31,8 +31,8 @@ class CreditMemoAppliedModel:
     invoiceId: object | None = None
     creditMemoInvoiceId: object | None = None
     erpKey: object | None = None
-    erpWriteStatus: object | None = None
-    erpWriteStatusName: object | None = None
+    erpUpdateStatus: object | None = None
+    erpUpdateAction: object | None = None
     entryNumber: object | None = None
     applyToInvoiceDate: object | None = None
     creditMemoAppliedAmount: object | None = None
@@ -48,6 +48,10 @@ class CreditMemoAppliedModel:
     customFieldValues: list[object] | None = None
     creditMemoInvoice: object | None = None
     invoice: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

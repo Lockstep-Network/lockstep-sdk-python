@@ -15,17 +15,23 @@
 from dataclasses import dataclass
 
 @dataclass
-class PaymentModelErpWriteResult:
+class InvoiceWorkflowStatusHistoryModel:
     """
-    Contains results of a write back request
+    A Invoice Workflow Status History represents prior workflow statuses
+    of an E-Invoice.
     """
 
-    appEnrollmentId: object | None = None
-    erpKey: object | None = None
+    invoiceWorkflowStatusHistoryId: object | None = None
+    invoiceId: object | None = None
+    workflowStatusId: object | None = None
     groupKey: object | None = None
-    message: object | None = None
-    syncRequestId: object | None = None
-    results: list[object] | None = None
+    workflowStatusNotes: object | None = None
+    created: object | None = None
+    createdUserId: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -36,6 +36,12 @@ class MagicLinkModel:
     accountingProfileId: object | None = None
     magicLinkUrl: object | None = None
     user: object | None = None
+    visits: object | None = None
+    status: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
