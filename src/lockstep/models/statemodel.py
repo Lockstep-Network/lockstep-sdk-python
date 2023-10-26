@@ -24,5 +24,9 @@ class StateModel:
     alpha2: object | None = None
     aliases: object | None = None
 
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

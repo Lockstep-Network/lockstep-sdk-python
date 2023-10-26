@@ -16,6 +16,7 @@ from lockstep.models.errorresult import ErrorResult
 from lockstep.fetch_result import FetchResult
 from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.companydetailsmodel import CompanyDetailsModel
+from lockstep.models.companymagiclinksummarymodel import CompanyMagicLinkSummaryModel
 from lockstep.models.companymodel import CompanyModel
 from lockstep.models.customersummarymodel import CustomerSummaryModel
 from lockstep.models.deleteresult import DeleteResult
@@ -313,6 +314,36 @@ class CompaniesClient:
         result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber, "reportDate": reportDate}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), VendorSummaryModel), None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def query_magic_link_summary(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[FetchResult[CompanyMagicLinkSummaryModel]]:
+        """
+        See [Vendors, Customers, and
+        Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors)
+        for more information.
+
+        Parameters
+        ----------
+        filter : str
+            The filter for this query. See [Searchlight Query
+            Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        include : str
+            To fetch additional data on this object, specify the list of
+            elements to retrieve. No collections are currently available
+            but may be offered in the future
+        order : str
+            The sort order for the results, in the [Searchlight order
+            syntax](https://github.com/tspence/csharp-searchlight).
+        pageSize : int
+            The page size for results (default 250, maximum of 500)
+        pageNumber : int
+            The page number for results (default 0)
+        """
+        path = "/api/v1/Companies/views/magic-link-summary"
+        result = self.client.send_request("GET", path, None, {"filter": filter, "include": include, "order": order, "pageSize": pageSize, "pageNumber": pageNumber}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, FetchResult.from_json(result.json(), CompanyMagicLinkSummaryModel), None)
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 

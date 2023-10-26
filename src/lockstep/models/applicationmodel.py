@@ -48,6 +48,11 @@ class ApplicationModel:
     attachments: list[object] | None = None
     customFieldDefinitions: list[object] | None = None
     customFieldValues: list[object] | None = None
+    enrollments: list[object] | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

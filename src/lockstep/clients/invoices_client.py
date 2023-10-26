@@ -19,6 +19,7 @@ from lockstep.models.bulkdeleterequestmodel import BulkDeleteRequestModel
 from lockstep.models.deleteresult import DeleteResult
 from lockstep.models.invoicemodel import InvoiceModel
 from lockstep.models.invoicesummarymodelinvoicesummarytotalsmodelsummaryfetchresult import InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult
+from lockstep.models.invoiceworkflowstatushistorymodel import InvoiceWorkflowStatusHistoryModel
 from requests.models import Response
 
 class InvoicesClient:
@@ -54,7 +55,7 @@ class InvoicesClient:
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Addresses,
             Lines, Payments, Notes, Attachments, Company, Customer,
-            CustomFields, CreditMemos
+            CustomFields, CreditMemos, WorkflowStatuses
         """
         path = f"/api/v1/Invoices/{id}"
         result = self.client.send_request("GET", path, None, {"include": include}, None)
@@ -126,7 +127,28 @@ class InvoicesClient:
         else:
             return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
 
-    def create_invoices(self, body: list[object]) -> LockstepResponse[list[InvoiceModel]]:
+    def retrieve_invoice_workflow_status_histories(self, id: str) -> LockstepResponse[list[InvoiceWorkflowStatusHistoryModel]]:
+        """
+        Retrieves the Invoice Workflow Status Histories specified by the
+        unique identifier of the Invoice.
+
+        An Invoice Workflow Status History represents a prior Workflow
+        Status that was assigned to an Invoice.
+
+        Parameters
+        ----------
+        id : str
+            The unique Accounting Data Service Platform ID number of the
+            Invoice.
+        """
+        path = f"/api/v1/Invoices/{id}/workflow-status-history"
+        result = self.client.send_request("GET", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return LockstepResponse(True, result.status_code, [InvoiceWorkflowStatusHistoryModel(**item) for item in result.json()], None)
+        else:
+            return LockstepResponse(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def create_invoices(self, customerCompanyId: str, filename: str, body: list[object]) -> LockstepResponse[list[InvoiceModel]]:
         """
         Creates one or more Invoices within this account and returns the
         records as created.
@@ -143,11 +165,16 @@ class InvoicesClient:
 
         Parameters
         ----------
+        customerCompanyId : str
+            The ID of the customer company. Only to be used with the UBL
+            file upload multipart/form-data option.
+        filename : str
+            The full path of a file to upload to the API
         body : list[object]
-            The Invoices to create
+            Upload a UBL file or provide an InvoiceModel array
         """
         path = "/api/v1/Invoices"
-        result = self.client.send_request("POST", path, body, {}, None)
+        result = self.client.send_request("POST", path, body, {"customerCompanyId": customerCompanyId}, filename)
         if result.status_code >= 200 and result.status_code < 300:
             return LockstepResponse(True, result.status_code, [InvoiceModel(**item) for item in result.json()], None)
         else:
@@ -208,7 +235,7 @@ class InvoicesClient:
             To fetch additional data on this object, specify the list of
             elements to retrieve. Available collections: Addresses,
             Lines, Payments, Notes, Attachments, Company, Customer,
-            CustomFields, CreditMemos
+            CustomFields, CreditMemos, WorkflowStatuses
         order : str
             The sort order for this query. See See [Searchlight Query
             Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -239,7 +266,8 @@ class InvoicesClient:
         Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP
         Credit Memos.
 
-        Sage 50 supports AR Invoices and AR Credit Memos.
+        For other ERPs, the supported types will depend on the synced
+        data.
 
         Parameters
         ----------
@@ -249,6 +277,32 @@ class InvoicesClient:
         """
         path = f"/api/v1/Invoices/{id}/pdf"
         result = self.client.send_request("GET", path, None, {}, None)
+        return result
+
+    def check_invoice_pdf(self, id: str) -> Response:
+        """
+        Checks for whether a PDF file for this invoice exists if it is
+        of one of the supported invoice types and has been synced using
+        an app enrollment to one of the supported apps.
+
+        Sage Intacct supports AR Invoices.
+
+        QuickBooks Online supports AR Invoices, and AR Credit Memos.
+
+        Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP
+        Credit Memos.
+
+        For other ERPs, the supported types will depend on the synced
+        data.
+
+        Parameters
+        ----------
+        id : str
+            The unique Lockstep Platform ID number of this invoice; NOT
+            the customer's ERP key
+        """
+        path = f"/api/v1/Invoices/{id}/pdf"
+        result = self.client.send_request("HEAD", path, None, {}, None)
         return result
 
     def query_invoice_summary_view(self, filter: str, include: str, order: str, pageSize: int, pageNumber: int) -> LockstepResponse[InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult]:

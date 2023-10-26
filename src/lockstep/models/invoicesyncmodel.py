@@ -31,9 +31,12 @@ class InvoiceSyncModel:
     """
 
     onMatchAction: object | None = None
+    networkId: object | None = None
     erpKey: object | None = None
     companyErpKey: object | None = None
+    companyNetworkId: object | None = None
     customerErpKey: object | None = None
+    customerNetworkId: object | None = None
     salespersonName: object | None = None
     purchaseOrderCode: object | None = None
     referenceCode: object | None = None
@@ -90,6 +93,12 @@ class InvoiceSyncModel:
     baseCurrencySalesTaxAmount: object | None = None
     baseCurrencyDiscountAmount: object | None = None
     baseCurrencyOutstandingBalanceAmount: object | None = None
+    isEInvoice: object | None = None
+    sendImmediately: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

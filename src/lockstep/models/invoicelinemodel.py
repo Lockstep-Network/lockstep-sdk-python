@@ -43,11 +43,15 @@ class InvoiceLineModel:
     modified: object | None = None
     modifiedUserId: object | None = None
     appEnrollmentId: object | None = None
-    erpWriteStatus: object | None = None
-    erpWriteStatusName: object | None = None
+    erpUpdateStatus: object | None = None
+    erpUpdateAction: object | None = None
     sourceModifiedDate: object | None = None
     notes: list[object] | None = None
     attachments: list[object] | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

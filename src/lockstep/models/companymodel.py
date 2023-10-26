@@ -73,6 +73,7 @@ class CompanyModel:
     serviceFabricOrgId: object | None = None
     serviceFabricCompanyId: object | None = None
     companyRegistrationNumber: object | None = None
+    profileReferenceId: object | None = None
     notes: list[object] | None = None
     attachments: list[object] | None = None
     contacts: list[object] | None = None
@@ -80,6 +81,10 @@ class CompanyModel:
     customFieldDefinitions: list[object] | None = None
     customFieldValues: list[object] | None = None
     companyClassificationCodeDefinition: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

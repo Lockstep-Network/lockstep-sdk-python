@@ -31,14 +31,21 @@ class PaymentAppliedSyncModel:
     """
 
     onMatchAction: object | None = None
+    networkId: object | None = None
     erpKey: object | None = None
     invoiceErpKey: object | None = None
+    invoiceNetworkId: object | None = None
     paymentErpKey: object | None = None
+    paymentNetworkId: object | None = None
     entryNumber: object | None = None
     applyToInvoiceDate: object | None = None
     paymentAppliedAmount: object | None = None
     created: object | None = None
     modified: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

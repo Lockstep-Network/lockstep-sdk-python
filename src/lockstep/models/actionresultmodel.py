@@ -17,16 +17,18 @@ from dataclasses import dataclass
 @dataclass
 class ActionResultModel:
     """
-    Represents the result of an action.
-
-    In the Lockstep API, an Action is returned when an API call does not
-    produce any data but does produce messages that can be useful in
-    understanding what work was performed. You may use the messages text
-    to display user visible error messages or the results of various
-    operations.
+    Represents the result of an action. In the Lockstep API, an Action
+    is returned when an API call does not produce any data but does
+    produce messages that can be useful in understanding what work was
+    performed. You may use the messages text to display user visible
+    error messages or the results of various operations.
     """
 
     messages: list[object] | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

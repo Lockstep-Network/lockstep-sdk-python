@@ -65,7 +65,18 @@ class UserAccountsClient:
     def update_user(self, id: str, body: object) -> LockstepResponse[UserAccountModel]:
         """
         Updates a User that matches the specified id with the requested
-        information.
+        information. The following limitations are applied when updating
+        a user:
+
+        <list type="bullet"><item>Only Group Owners and Admins can
+        change other users.</item><item>When updating another user, only
+        the role and status can be updated.</item><item>A user can only
+        change their own status when their current status is
+        Onboarding.</item><item>A user can never change their own
+        role.</item><item>Nobody can change the owner's role or status.
+        See the "/transfer-owner" route for changing the
+        owner.</item><item>A user can change their own personal
+        information.</item></list>
 
         The PATCH method allows you to change specific values on the
         object while leaving other values alone. As input you should

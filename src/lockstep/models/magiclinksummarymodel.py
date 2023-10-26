@@ -15,15 +15,19 @@
 from dataclasses import dataclass
 
 @dataclass
-class InsertPaymentRequestModelErpWriteSyncSubmitModel:
+class MagicLinkSummaryModel:
     """
-    Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a
-    request to write back a collection of requests to the connected
-    AppEnrollment.
+    A historic summary of all magic links sent in a given group
     """
 
-    appEnrollmentId: object | None = None
-    requests: list[object] | None = None
+    groupKey: object | None = None
+    totalCount: object | None = None
+    totalBounced: object | None = None
+    totalVisited: object | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

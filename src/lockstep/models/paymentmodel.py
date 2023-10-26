@@ -34,8 +34,8 @@ class PaymentModel:
     paymentId: object | None = None
     companyId: object | None = None
     erpKey: object | None = None
-    erpWriteStatus: object | None = None
-    erpWriteStatusName: object | None = None
+    erpUpdateStatus: object | None = None
+    erpUpdateAction: object | None = None
     paymentType: object | None = None
     tenderType: object | None = None
     isOpen: object | None = None
@@ -64,6 +64,10 @@ class PaymentModel:
     attachments: list[object] | None = None
     customFieldDefinitions: list[object] | None = None
     customFieldValues: list[object] | None = None
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
